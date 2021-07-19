@@ -1,6 +1,7 @@
 # Probabilidad y Estadística  
-## Licenciatura en Tecnología, Semestre 2022-I
-### ENES Juriquilla, Universidad Nacional Autónoma de México  
+## Licenciatura en Tecnología  
+## Semestre 2022-I, ENES Juriquilla
+### Universidad Nacional Autónoma de México  
 
 Profesor: Fernando A Barrios, PhD  
 barrios@inb.unam.mx  
@@ -29,23 +30,6 @@ Tarea 1 Tarea 01 Estadística Descriptiva.
 Tema 2 [Probabilidad](https://fabarrios.github.io/ProbEstad2021/Probabilidad/Probabilidad.html).  
 Tarea 2    
 
-Tema 3 [Distribuciones de Probabilidad](https://fabarrios.github.io/ProbEstad2021/DistribProb/DistribProb.html).  
-Tarea 3  
-
-Tema 4 [Teoría del Muestreo](https://fabarrios.github.io/ProbEstad2021/DistribMuestra/DistribMuestra.html).  
-Tarea 4  
-
-Tema 5 [Estimación](https://fabarrios.github.io/ProbEstad2021/Estimacion/Estimacion.html).  
-Tarea 5  
-
-Tema 6 [Prueba de Hipótesis](https://fabarrios.github.io/ProbEstad2021/Hipotesis/Hipotesis.html).  
-Tarea 6  
-
-Tema 7 [Correlación y Regresión](https://fabarrios.github.io/ProbEstad2021/Corr_Regr/Corr_Regr.html).  
-Tarea 7
-
-Tema 8 [ANOVA](https://fabarrios.github.io/ProbEstad2021/ANOVA/ANOVA.html).  
-Tarea 8  
 
 Proyectos finales.  
 

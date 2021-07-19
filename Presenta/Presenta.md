@@ -5,8 +5,8 @@
 barrios@inb.unam.mx  
 
 
-El [Programa original](https://fabarrios.github.io/ProbEstad/ProgramaOriginal.pdf)
-de la clase se puede checar en la liga, este programa en forma muy general se seguirá.  
+El [Programa Original](https://github.com/fabarrios/ProbEstad/files/6844250/ProgramaOriginal.pdf) de la clase se puede checar en la liga, este 
+programa en forma muy general se seguirá.  
 
 ## Calificaciones  
 

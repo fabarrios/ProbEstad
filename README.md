@@ -17,7 +17,7 @@ Referencia:
 Holmes, S. & Huber W. (2019) Modern Statistics for Modern Biology, Cambridge University Press.  
 Verzani, J. (2005) Using R for Introductory Statistics, Chapman & Hall/CRC.  
 
-Algunos detalles del curso y cómo se **calificará** están en la página de [Presentación](https://fabarrios.github.io/ProbEstad2021/Presenta/Presenta.html), además algunas ligas para encontrar las distribuciones de R y RStudio así como otras ligas útiles las encontrarán en la página de [Introducción](https://fabarrios.github.io/ProbEstad2021/Presenta/Intro.html).
+Algunos detalles del curso y cómo se **calificará** están en la página de [Presentación](https://fabarrios.github.io/ProbEstad/Presenta.md), además algunas ligas para encontrar las distribuciones de R y RStudio así como otras ligas útiles las encontrarán en la página de [Introducción](https://fabarrios.github.io/ProbEstad2021/Presenta/Intro.html).
 
 El **objetivo general** de esta materia es que: El alumno aplicará los conceptos y la metodología básicos de la teoría de la probabilidad y la estadística, para analizar algunos experimentos aleatorios que ocurren en la naturaleza y la sociedad, resaltando los correspondientes a estudios biomédicos.  
 El uso del lenguage [R](https://www.r-project.org/about.html) es **obligatorio** para el desarrollo del curso, la solución de las tareas y presentación de los trabajos. El material de clase se desarrollará en [RStudio](https://rstudio.com/products/rstudio/) y la última versión de R (del repositorio [CRAN](https://cran.r-project.org/) ).  

@@ -22,7 +22,6 @@ opts_chunk$set(echo=FALSE,
                warning=FALSE)
 opts_knit$set(width=80)
 ```
-# Presentación  
 ## Probabilidad y Estadística  
 ## Dr. Fernando A Barrios  
 ## Instituto de Neurobiología, UNAM  

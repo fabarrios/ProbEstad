@@ -12,7 +12,7 @@ output:
 library(knitr)
 library(rmdformats)
 ## Global options
-options(max.print="75")
+options(max.print="80")
 opts_chunk$set(echo=FALSE,
 	             cache=TRUE,
                prompt=FALSE,
@@ -20,7 +20,7 @@ opts_chunk$set(echo=FALSE,
                comment=NA,
                message=FALSE,
                warning=FALSE)
-opts_knit$set(width=75)
+opts_knit$set(width=80)
 ```
 # Presentación  
 ## Probabilidad y Estadística  
@@ -28,22 +28,25 @@ opts_knit$set(width=75)
 barrios@inb.unam.mx  
 ## Instituto de Neurobiología, UNAM  
 
-El [Programa original](https://fabarrios.github.io/ProbEstad2021/ProgramaOriginal.md)
-de la clase se puede checar en la liga, este programa en forma muy general se
-seguirá.  
+El [Programa original](https://fabarrios.github.io/ProbEstad/ProgramaOriginal.pdf)
+de la clase se puede revisar en la liga, este programa se segurá en forma muy general
+principalmente se cubrirán los temas de muestreo y prueba de hipótesis, para cubrir los
+temas de comparación de dos y más poblaciones.  Se seguirá el [calendario oficial](https://fabarrios.github.io/ProbEstad/calendario_semestral2022.pdf) semestral de la
+UNAM para 2022.  
 
 ## Calificaciones  
 
-Se tiene pensado tres elementos básicos de evaluación; **participación en clase, exámenes parciales y un proyecto final**, todos muy importantes. Estos elementos de evaluación tendrán los siguientes valores:  
+Se tiene pensado tres elementos básicos de evaluación; **participación en clase (tareas entregadas a tiempo y discusión en clase de tareas), exámenes parciales y un proyecto final**, todos muy importantes. Estos elementos de evaluación tendrán los siguientes valores:  
 - Participación en clase, 30%  
 - Exámenes parciales, 30%  
 - Proyecto final, 40%  
 
-El uso del programa (lenguaje) **R** durante el curso es **obligatorio**, en la actualidad, en particular en el ámbito académico, el sistema R ha ganado una atención y desarrollo muy importantes, es un sistema que cuenta con una cantidad muy extensa de herramientas, desarrollos y proyectos públicos.  
-Contar con experiencia en modelos de software compartido en la actualidad considero es una herramienta básica de trabajo que se debe desarrollar.  
+EN particular hay que mencionar lo importante que es el proyecto final, ya que para que las evaluaciones parciales sean promediadas con los pesos antes descritos, se debe obtener una calificación aprobatoria en el proyecto final, de lo contrario la calificación final del curso será la calificación (no aprobada) del proyecto.  Los proyectos finales son personales y se presentarán **usando R**, ningún proyecto final que sea presentado en algún otro sistema *podrá recibir calificación aprobatoria*.  Los proyectos finales se presentarán en la clase durante las ultimas semanas del curso o semana de exámenes finales (dependiendo del tiempo que se tenga) y además de la presentación los estudiantes tendrán que entregar un documento escrito que contenga la explicación punto por punto del trabajo así como el código de R usado.  
+El uso del programa (lenguaje) **R** durante el curso es **obligatorio**, en la actualidad, en particular en el ámbito académico, el sistema R ha ganado una gran popularidad, atención y desarrollo, es un sistema que cuenta con una cantidad muy extensa de herramientas, desarrollos y proyectos públicos.  Estos proyectos públicos son uno de los ejemplos más importantes de "open code, open access, open science).  Además existen una cantidad enorme de documentos y ayudas en el internet que se pueden consultar.  
+Contar con experiencia en modelos de software compartido en la actualidad es una herramienta básica de trabajo que se debe desarrollar y favorecer como parte de la cultura profesional.  
 
 Hablemos de que tecnología de cómputo tienen, con que recursos cuentan?    
 1. Tecnología de software (sistema operativo) y que experiencia tienen.  
 2. Discutir R en la tecnología que tienen (hablar del uso de [UBUNTU](https://ubuntu.com/)).  
 3. Hablar de sistemas de control de versión (versión control, source control, distributed source control) git  
-4. GitHub y mi cuenta. El depósito de fuentes lo encontrarán en [ProbEstad2021](https://fabarrios.github.io/ProbEstad2021/).  
+4. GitHub y mi cuenta. El depósito de fuentes lo encontrarán en [ProbEstad](https://fabarrios.github.io/ProbEstad/).  

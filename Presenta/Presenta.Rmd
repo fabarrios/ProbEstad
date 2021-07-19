@@ -1,6 +1,5 @@
 ---
 title: "Presentación"
-author: "F.A. Barrios"
 date: "`r Sys.Date()`"
 output:
   rmdformats::html_clean:
@@ -22,17 +21,16 @@ opts_chunk$set(echo=FALSE,
                warning=FALSE)
 opts_knit$set(width=80)
 ```
-## Probabilidad y Estadística  
-## Dr. Fernando A Barrios  
-## Instituto de Neurobiología, UNAM  
+## Probabilidad y Estadística, ENESj  
+### Dr. Fernando A Barrios  
+### Instituto de Neurobiología, UNAM  
 barrios@inb.unam.mx  
 
 
-El [Programa original](https://fabarrios.github.io/ProbEstad/ProgramaOriginal.pdf)
+El [Programa original](http://www.enesjuriquilla.unam.mx/?page_id=566)
 de la clase se puede revisar en la liga, este programa se seguirá en forma muy general
 principalmente se cubrirán los temas de muestreo y prueba de hipótesis, para cubrir los
-temas de comparación de dos y más poblaciones.  Se seguirá el [calendario oficial](https://fabarrios.github.io/ProbEstad/calendario_semestral2022.pdf) semestral de la
-UNAM para 2022.  
+temas de comparación de dos y más poblaciones.  Se seguirá el [calendario oficial](https://www.dgae.unam.mx/calendarios_escolares.html) semestral de la UNAM para 2022.  
 
 ## Calificaciones  
 

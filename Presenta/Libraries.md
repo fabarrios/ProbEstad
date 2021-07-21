@@ -10,9 +10,9 @@ The easiest way to install is un RStudio, go to the Packages screen (at the righ
 |car | https://cran.r-project.org/web/packages/car/index.html |
 |scales | https://scales.r-lib.org/ |
 |broom | https://broom.tidymodels.org/ |
-|effects |   |
+|effects | https://cran.r-project.org/web/packages/effects/index.html  |
 |devtools | https://www.r-project.org/nosvn/pandoc/devtools.html |  
-| rms |  |
-| Hmisc |  | 
-|multcomp |   |
+| rms | https://hbiostat.org/R/rms/ |
+| Hmisc | https://hbiostat.org/R/Hmisc/ | 
+|multcomp | https://multcomp.r-forge.r-project.org/  |
 |ggstatsplot | https://indrajeetpatil.github.io/ggstatsplot/index.html  |

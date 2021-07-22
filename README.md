@@ -28,12 +28,12 @@ Harrell, F.E. (2015) Regression Modeling Strategies (2nd edition), Springer Seri
 MacFarland, T.W. & Yates J.M.(2021) Using R for Biostatistics, Springer Series in Statistics, Springer.  
 
 
-Tema 0 [Introducción](https://fabarrios.github.io/ProbEstad/Presenta/Intro.html), R, RStudio, CRAN packages, github y más.  
+Tema 0  , R, RStudio, CRAN packages, github y más.  
 
 Tema 1 [Estadística Descriptiva](https://fabarrios.github.io/ProbEstad/EstadDescrip/EstadDescrip.html).  
 Tarea 1 Tarea 01 Estadística Descriptiva.  
 
-Tema 2 [Probabilidad](https://fabarrios.github.io/ProbEstad/Probabilidad/Probabilidad.html).  
+Tema 2 Probabilidad.  
 Tarea 2    
 
 

@@ -37,6 +37,11 @@ Se les recomienda bajar e instalar la última versión de R [CRAN](https://cran.
 para Windows, Mac, y LINUX (Fedora, UBUNTU). Y para la interface gráfica instalar la ultima verisión libre de 
 [RStudio desktop](https://www.rstudio.com/products/rstudio/).
 
+## Librerias (packetes de R)  
+Como ya se a dicho el elenguaje R cuenta con una cantidad de paquetes muy grande, que aumentan las capacidades del lenguaje original 
+y permiten respondet a necesidades de todo tipo.  
+Aquí enlisto una pequeña lista de [paquetes de R](https://fabarrios.github.io/ProbEstad/Presenta/Libraries) que más usamos en el curso.
+
 ## Material en Inglés  
 La realidad es que al ser un proyecto global de "open code, open access, open science" el material de trabajo y ayuda para R por 
 lo general está en inglés, es decir el material es en su gran mayoría en inglés, por lo que los invitamos a hacer un esfuerzo para 

@@ -31,7 +31,7 @@ En esta clase revisaremos el concepto de estadística descriptiva (Daniel W.W. 2
 Una de las primeras cosas que es indispensable hacer al iniciar el sistema R es determinar cual es el directorio de trabajo y si se van a usar algunas librerías hay que cargarlas.  En este caso usaremos una librería muy popular, `tidyverse` que se usa para una multitud de cosas ya que es un sub-set de librerías que en conjunto cuentan con una gran cantidad de funciones de uso común.
 
 ```{r}
-setwd("~/Dropbox/GitHub/ProbEstad2021")
+setwd("~/Dropbox/GitHub/ProbEstad")
 # To set the working directory realtive to the user's dir
 
 library(tidyverse)

@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output:
   rmdformats::readthedown:
     highlight: kate
-  description: "to prepare ProbEstad2021 presentations"
+  description: "to prepare ProbEstad presentations"
 ---
 
 ```{r setup, include=FALSE}
@@ -37,6 +37,7 @@ setwd("~/Dropbox/GitHub/ProbEstad")
 library(tidyverse)
 library(fdth)
 library(UsingR)
+library(formatR)
 
 ```
 Iniciaremos con unos ejemplos muy simples de funciones ya integradas en R de carácter muy general.  Empezando por cargar una serie de números, usando una serie de datos de la cantidad de ballenas que llegaron a la playa en el estado de Texas, E.E.U.U. por año, en la década de los 90's.
@@ -47,14 +48,16 @@ Iniciaremos con unos ejemplos muy simples de funciones ya integradas en R de car
 whales <- c(74, 122, 235, 111, 292, 111, 211, 133, 156, 79)
 #
 whales # print the variable whales
-
 sum(whales)
-
 length(whales)
 #
 sum(whales)/length(whales)
 #
 mean(whales)
+sd(whales)
+#
+median(whales)
+mad(whales)  # median absolute deviation
 ```
 Como se puede ver con simples comandos se pueden estimar *estadísticas* de los datos.  Un mecanismo para describir una series de *datos crudos* es el ordenamiento, es decir si yo tengo un conjunto de datos numéricos una técnica para describirlos es iniciar por ordenarlos. En los tiempos anteriores a las computadoras esto tomaría un esfuerzo, pero en la actualidad se hace por una solicitud de ordenamiento, en el R existe un comando que hace esto en un paso, también es por medio de un comando que se puede encontrar el mínimo o el máximo.
 
@@ -64,12 +67,11 @@ min(whales)
 max(whales)
 ```
 
-Y de esta colección de instrucciones se tienen el rango y la suma acumulada.  Pero uno de los comandos más útiles puede ser el `summary`, que nos entrega una serie de parámetros de la variable, y vale la pena mencionar que a esta funciona se le puede pasar una estructura que entregará la misma serie de parámetros para cada variable de la estructura, y muchas otras estucturas de R, como veremos posteriormente.
+Y de esta colección de instrucciones se tienen el rango y la suma acumulada.  Pero uno de los comandos más útiles puede ser el `summary`, que nos entrega una serie de parámetros de la variable, y vale la pena mencionar que a esta funciona se le puede pasar una estructura que entregará la misma serie de parámetros para cada variable de la estructura, y muchas otras estructuras de R, como veremos posteriormente.
 
 ```{r}
 range(whales)
-# cumulative sum of a vector
-cumsum(whales)
+cumsum(whales) # cumulative sum of a vector
 summary(whales)
 ```
 
@@ -117,7 +119,7 @@ Las variables continuas no incluyen discontinuidades o interrupciones que son ca
 La *inferencia estadística* es el proceso por el cual se puede llegar a conclusiones relacionadas a una *población* a partir de información contenida en una *muestra* que fue extraída de dicha población.  
 
 # Agrupamiento de Datos
-Para iniciar el estudio de una muestra de datos se pueden hacer algunos procesos que nos permitan hacer una serie de *Medidas Descriptivas* de los datos que se obtuvieron a traves de una muestra tomada de una población.  
+Para iniciar el estudio de una muestra de datos se pueden hacer algunos procesos que nos permitan hacer una serie de *Medidas Descriptivas* de los datos que se obtuvieron a través de una muestra tomada de una población.  
 Como ya lo expusimos en el ejemplo del número de ballenas que llegaron a las playas del estado de Texas en la década de los 90's. uno de los pasos iniciales que se puede hacer para entender un conjunto de datos medidos es hacer una arreglo ordenado de los datos que tenemos.  En el ejemplo a continuación vamos a usar una muestra de un estudio de sujetos que dejaron de fumar, se listan las edades a las que dejaron de ser fumadores.  La lista al cargarse, no está ordenada ni se han manipulado los datos y por lo tanto se acostumbra decir que los datos están *crudos (raw data)*, encontramos que si nos preguntaran cual es la edad mayor y menor de cuando este grupo de sujetos dejó de fumar nos tomaría algún esfuerzo, sin embargo si cargamos los datos en un vector (arreglo unidimensional) y lo ordenamos bastará con ver el primer y último elementos para saber cual es el mínimo y máximo del grupo de edades.   
 
 ```{r}
@@ -130,7 +132,7 @@ tail(ord_Fuma)
 #
 summary(Fuma)
 ```
-Otra forma muy útil de visualizar un conjunto de datos es el diagrama de tallo y hojas, este se diagrama en R se estima con el comando `stem()`, otra función de utilidad es hacer una tabla de frecuencias con `table()` y esta función se usa para *preparar* los datos en un variable para hace una gráfica de barras por ejemplo, `barplot(table(Fuma$Age, col = "red"))` pero una de las funciones más útiles para generar graficas es el histograma, en R `hist()`, (claro que hay toda una gama de  posibilidades en ggplot para hacer histogramas).  Y un histograma con el polinomio de frecuencias graficado soobre el histograma, para usar `simple.freqpoly()` es necesario tener cargada la librería de UsingR.
+Otra forma muy útil de visualizar un conjunto de datos es el diagrama de tallo y hojas, este se diagrama en R se estima con el comando `stem()`, otra función de utilidad es hacer una tabla de frecuencias con `table()` y esta función se usa para *preparar* los datos en un variable para hace una gráfica de barras por ejemplo, `barplot(table(Fuma$Age, col = "red"))` pero una de las funciones más útiles para generar gráficas es el histograma, en R `hist()`, (claro que hay toda una gama de  posibilidades en ggplot para hacer histogramas).  Y un histograma con el polinomio de frecuencias graficando sobre el histograma, para usar `simple.freqpoly()` es necesario tener cargada la librería de UsingR.
 
 ```{r}
 stem(Fuma$Age)
@@ -148,7 +150,7 @@ simple.freqpoly(Fuma$Age)
 
 Hay varios casos que necesitan una mejor descripción que las que dan las distribuciones de frecuencia, y es necesario obtener otro tipo de medidas como un número, llamadas *medidas descriptivas*, estas medidas se calculan de una muestra.  
 
-**Definicinones**  
+**Definiciónes**  
 
 1. Una medida descriptiva que de calcula a partir de los datos de una muestra es una *estadística*.  
 2. Una medida descriptiva que se calcula a partir de los datos de una población se llama *parámetro*.  
@@ -158,7 +160,7 @@ Las tres medidas de tendencia central más comunes son el *promedio* la *media* 
 
 ## Promedio (Media)
 
-**Promedio aritmético** La medida de tendencia central más conocida es el promedio aritmético o media, y se distingue por que puede ser estimado. Para generalizar al promedio se define el promedio general como la suma de los elementos de conjunto a describir dibididos entre el número total de ellos. Si los elemtos de la variable aleatoria a describir se denotan por $x_i$ cib la letra $i$ como índice de referencia de los $N$ como el número total de valores distintos. Para una *población* la letra $\mu$ denota el promedio de la población, con fórmula
+**Promedio aritmético** La medida de tendencia central más conocida es el promedio aritmético o media, y se distingue por que puede ser estimado. Para generalizar al promedio se define el promedio general como la suma de los elementos de conjunto a describir divididos entre el número total de ellos. Si los elemetos de la variable aleatoria a describir se denotan por $x_i$ cib la letra $i$ como índice de referencia de los $N$ como el número total de valores distintos. Para una *población* la letra $\mu$ denota el promedio de la población, con fórmula
 $$ \mu = \frac{\sum_{i=1}^{N} x_i}{N} $$
 
 Sabemos que hacer una evaluación de un parámetro de toda la población puede ser imposible, por lo que se toma una muestra de la población y se evalúa el promedio de la muestra cómo una estadística para describir por el parámetro promedio. Y se define el promedio de la muestra de n elementos $x_i$ cómo
@@ -178,6 +180,7 @@ Propiedades de la Media
 ## Moda  
 La moda de una muestra de datos es el valor más común, el que ocurre más frecuentemente en la muestra. Si todos los valores de una muestra son distintos la muestra no tiene moda (se puede estimar).  
 
+## Sesgo  
 Una distribución se puede clasificar si es simétrica o asimétrica. Se dice que si el histograma de una distribución no es simétrico la distribución esta *sesgada* (skewed) si la tendencia de las barras del histograma está cargada a la derecha se dice que está sesgada de forma positiva y si es para la izquierda se dice que está sesgada de forma negativa.  
 
 $$ Skewness = \frac{\sqrt{n}\sum_{i=1}^n(x_i-\bar{x})^3}{(\sum_{i=1}^n(x_i-\bar{x})^2)^{3/2}} =
@@ -228,14 +231,14 @@ $$ IQR = Q_3 - Q_1 $$
 
 ## Kurtosis  
 
-Así como describimos las careacterísticas de simetría por la idea de sesgo, la dispersión se puede describir en términos de kurtosis.  
-**Definición** Kurtosis is una medida del grado de tan afilada o aplanada es la distribución de nuestros datos, comparado con la distribución normal, cuya distribución está caracterizada por una forma de campana. Tres carácterísticas, Mesokurtica (muy similar a la normal), Leptokurtica con un pico muy pronunciado en la media y Platikurtica, muy ancha con solo un pico pequeño en la media.  
+Así como describimos las características de simetría por la idea de sesgo, la dispersión se puede describir en términos de kurtosis.  
+**Definición** Kurtosis is una medida del grado de tan afilada o aplanada es la distribución de nuestros datos, comparado con la distribución normal, cuya distribución está caracterizada por una forma de campana. Tres características, Mesocúrtica (muy similar a la normal), Leptocúrtica con un pico muy pronunciado en la media y Platiúrtica, muy ancha con solo un pico pequeño en la media.  
 
 $$ Kurtosis = \frac{n\sum_{i=1}^{n}(x_i-\bar{x})^4}{(\sum_{i=1}^{n}(x_i-\bar{x})^2)^2}-3 
    = \frac{n\sum_{i=1}^{n}(x_i-\bar{x})^4}{(n-1)^2s^4}-3 $$
    
 
-**Gráfica de caja** (Box-plot, Box-and-Whisker plot), una herramienta muy útil para describir datos aleatorios es la gráfica de caja. Se representa a la variable en algún eje, y se dibuja una caja que un extremo representa el primer cuartil $Q_1$ y el otro extremo el tercer cuartil $Q_3$ la caja se divide en dos con una linea que represetna a la mediana $Q_2$, dos líneas se extienden de la caja una llegan hasta el valor más pequeño y la otra al valor más grande, sin considerar valores *extremos* (outliers).  
+**Gráfica de caja** (Box-plot, Box-and-Whisker plot), una herramienta muy útil para describir datos aleatorios es la gráfica de caja. Se representa a la variable en algún eje, y se dibuja una caja que un extremo representa el primer cuartil $Q_1$ y el otro extremo el tercer cuartil $Q_3$ la caja se divide en dos con una linea que representa a la mediana $Q_2$, dos líneas se extienden de la caja una llegan hasta el valor más pequeño y la otra al valor más grande, sin considerar valores *extremos* (outliers).  
 
 **Valor extremo** un valor *extremo* (outlier) es una observación cuyo valor, x, exede el valor del tercer cuartil $Q_3$ por una magnitud mayor a $1.5(IQR)$ o menor al primer cuartil $Q_1$ por una cantidad mayor a $1.5(IQR)$, esto es una observación de $x>Q_3 + 1.5(IQR)$ o una observación de $x < Q_1-1.5(IQR)$.  
 

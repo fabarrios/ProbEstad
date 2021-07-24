@@ -229,10 +229,10 @@ $$ Q_3 = \frac{3(n+1)}{4} \hspace{10pt}observaciones \hspace{10pt}ordenadas $$
 
 $$ IQR = Q_3 - Q_1 $$  
 
-## Kurtosis  
+## Curtosis  
 
 Así como describimos las características de simetría por la idea de sesgo, la dispersión se puede describir en términos de kurtosis.  
-**Definición** Kurtosis is una medida del grado de tan afilada o aplanada es la distribución de nuestros datos, comparado con la distribución normal, cuya distribución está caracterizada por una forma de campana. Tres características, Mesocúrtica (muy similar a la normal), Leptocúrtica con un pico muy pronunciado en la media y Platiúrtica, muy ancha con solo un pico pequeño en la media.  
+**Definición** Curtosis is una medida del grado de tan afilada o aplanada es la distribución de nuestros datos, comparado con la distribución normal, cuya distribución está caracterizada por una forma de campana. Tres características, Mesocúrtica (muy similar a la normal), Leptocúrtica con un pico muy pronunciado en la media y Platiúrtica, muy ancha con solo un pico pequeño en la media.  
 
 $$ Kurtosis = \frac{n\sum_{i=1}^{n}(x_i-\bar{x})^4}{(\sum_{i=1}^{n}(x_i-\bar{x})^2)^2}-3 
    = \frac{n\sum_{i=1}^{n}(x_i-\bar{x})^4}{(n-1)^2s^4}-3 $$

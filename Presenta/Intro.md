@@ -5,7 +5,6 @@ Este curso está orientado a la solución de problemas de probabilidad y estadí
 prácticos, y en particular por el enfoque del libro que estaremos usando, varios de estos problemas son de 
 carácter biomédico. Los dátos biomédicos son un campu muy fertil para hacer uso de técnicas estadísticas.
 
-
 ## Por que R ?  
 El lenguaje R en la actualidad cuenta con apmplia acptación por la comunidad académica, es un sistema que tuvo
 origen en ambientes de investigación y siempre ha sido de acceso gratuito, "open access". Por la gran calidad que
@@ -26,7 +25,9 @@ por lo general son de my buena cálidad. Otro libor que usaré de referencia es 
 [Harrison & Pius](https://argoshare.is.ed.ac.uk/healthyr_book/) que tiene una versión abierta en la red. Hay otros materiales de
 empresas que se han dedicado a la publicación de libros que tienen versiones en papel así como verisiónes digitales y 
 si encuentran el material presentado de interés pueden pagar su acceso completo, como el libro de 
-[R in Action](https://livebook.manning.com/book/r-in-action-third-edition/copyright-2020-manning-publications/v-8/5).  
+[R in Action](https://livebook.manning.com/book/r-in-action-third-edition/copyright-2020-manning-publications/v-8/5). Otro libro 
+que tiene una buena cnatidad de ejemplos y material relacionado con R es 
+[Statistics de Crawley](https://www.oreilly.com/library/view/statistics-an-introduction/9781118941102/), que tiene buenas explicaciones.
 
 ## Instalación 
 Como ya lo comentamos, el prograna R es un proyecto muy importante de "open code", "open access" y "open science", goza de una popularidad

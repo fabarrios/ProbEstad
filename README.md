@@ -17,6 +17,7 @@ Algunos detalles del curso y cómo se **calificará** están en la página de [P
 **Bibliografía:**  
 Daniel, W.W. (2009) Biostatistics. A Foundation for Analysis in the Health Sciences, Wiley, 9th Edition.  
 Harrison, E. & Pius, R. (2021) R for Health Data Science, CRC Press, Taylor and Francis Group.  
+Crawley, M.J. (2005) Statistics An Introduction using R, John Wiley & Sons Ltd.  
   
 Referencia:  
 Holmes, S. & Huber W. (2019) Modern Statistics for Modern Biology, Cambridge University Press.  

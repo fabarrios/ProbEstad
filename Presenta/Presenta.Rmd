@@ -27,7 +27,7 @@ opts_knit$set(width=80)
 barrios@inb.unam.mx  
 
 
-El [Programa original](https://fabarrios.icloud.io/ProbEstad/Presenta/ProgramaOriginal) de la clase se puede revisar en 
+El [Programa original](https://fabarrios.icloud.io/ProbEstad/Presenta/ProgramaOriginal.pdf) de la clase se puede revisar en 
 la liga, este programa se seguirá en forma muy general principalmente se cubrirán los temas de muestreo y prueba de 
 hipótesis, para cubrir los temas de comparación de dos y más poblaciones.  Se seguirá el [calendario oficial](https://www.dgae.unam.mx/calendarios_escolares.html) semestral de la UNAM para 2022.  
 

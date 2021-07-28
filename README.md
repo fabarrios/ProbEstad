@@ -17,6 +17,7 @@ Algunos detalles del curso y cómo se **calificará** están en la página de [P
 **Bibliografía:**  
 Daniel, W.W. (2009) Biostatistics. A Foundation for Analysis in the Health Sciences, Wiley, 9th Edition.  
 Harrison, E. & Pius, R. (2021) R for Health Data Science, CRC Press, Taylor and Francis Group.  
+Crawley, M.J. (2005) Statistics An Introduction using R, John Wiley & Sons Ltd.  
   
 Referencia:  
 Holmes, S. & Huber W. (2019) Modern Statistics for Modern Biology, Cambridge University Press.  
@@ -31,10 +32,9 @@ MacFarland, T.W. & Yates J.M.(2021) Using R for Biostatistics, Springer Series i
 Tema 0  [Introducción](https://fabarrios.github.io/ProbEstad/Presenta/Intro).  
 
 Tema 1 [Estadística Descriptiva](https://fabarrios.github.io/ProbEstad/EstadDescrip/EstadDescrip.html).  
-Tarea 1 Tarea 01 Estadística Descriptiva.  
+Tarea 1 Estadística Descriptiva.  
 
-Tema 2 Probabilidad.  
-Tarea 2    
+Tema 2 Probabilidad.      
 
 
 Proyectos finales.  

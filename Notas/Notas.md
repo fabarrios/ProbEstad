@@ -1,10 +1,12 @@
 # Notas de R  
 
-En este documento agregaremos notas y comentarios pr·cticos del leguaje R o partes de cÛdigo. Por ejemplo por lo general en las funciones numÈricas de R si se encuentran alg˙n elemento con un NA (sin contenido numÈrico) por lo general se detienen sin estimar la operaciÛn pudiendo detener un programa. AsÌ casi todas las funciones de R cuentan con una opciÛn `na.rm = TRUE` que si est· presente como opciÛn el la funciÛn, no incluyen en la estimaciÛn de la funciÛn los elementos con NA (no los toman en cuenta)  
+En este documento agregaremos notas y comentarios pr√°cticos del leguaje R o partes de c√≥digo. Por ejemplo por lo general en las funciones num√©ricas de R si se encuentran alg√∫n elemento con un NA (sin contenido num√©rico) se detienen sin estimar la operaci√≥n pudiendo detener un programa. As√≠ casi todas las funciones de R cuentan con una opci√≥n `na.rm = TRUE` que si est√° presente como opci√≥n en la funci√≥n, no incluyen en la estimaci√≥n de la funci√≥n aquellos elementos con NA (no los toman en cuenta).  
 
 ## Funciones  
-
-De las funciones m·s b·sicas de R que son de gran utilidad est·n
-`sum(x)` esta funciÛn suma los elementos del vector numÈrico x  
-`mean(x)` esta funciÛn regresa la media de los elementos del vector numÈrico x  
-`median(x)` esta funciÛn estima la mediana de los elementos del vector numÈrico x  
+De las funciones m√°s b√°sicas de R que son de gran utilidad est√°n:  
+`sum(x)` esta funci√≥n suma los elementos del vector num√©rico x.  
+`mean(x)` esta funci√≥n regresa la media de los elementos del vector num√©rico x, como (`sum(x)/lenght(x)`).  
+`median(x)` esta funci√≥n estima la mediana de los elementos del vector num√©rico x.  
+`min(x)` y `max(x)` estiman el m√≠nimo y el m√°ximo num√©rico del vector x.  
+`sd(x)` y `var(x)` estiman la desviaci√≥n est√°ndar y la varianza del vector x.  
+`IQR(x)` estima el Inter Quartile Range, la distancia intercuartile de x, usa la funcion `quantile(x)`.  

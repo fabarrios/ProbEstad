@@ -10,3 +10,7 @@ De las funciones más básicas de R que son de gran utilidad están:
 `min(x)` y `max(x)` estiman el mínimo y el máximo numérico del vector x.  
 `sd(x)` y `var(x)` estiman la desviación estándar y la varianza del vector x.  
 `IQR(x)` estima el Inter Quartile Range, la distancia intercuartile de x, usa la funcion `quantile(x)`.  
+
+Para variables paramétricas, tenemos `mean(x)` media y `sd(x)` desviación estándar, como estimadores de medida central y dispersión. Y para medidas no-paramétricas tenemos `median(x)` mediana y `mad(x)` (median absolute deviation) desviación de la mediana, como medidas de centralidad.  
+
+## Operadores para filtrado  

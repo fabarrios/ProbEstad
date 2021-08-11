@@ -14,3 +14,14 @@ De las funciones más básicas de R que son de gran utilidad están:
 Para variables paramétricas, tenemos `mean(x)` media y `sd(x)` desviación estándar, como estimadores de medida central y dispersión. Y para medidas no-paramétricas tenemos `median(x)` mediana y `mad(x)` (median absolute deviation) desviación de la mediana, como medidas de centralidad.  
 
 ## Operadores para filtrado  
+
+| Operators | Meaning |  
+| --------- | ------- |  
+|  ==  |  equal to  |  
+|  !=  |  not equal to  |  
+|  <  | less than  |  
+|  >  |  greater than  |  
+|  <=  |  less than or equal to  |
+|  >=  |  greater than or equal to  |
+|  &  |  AND  |  
+|     |  OR  |  

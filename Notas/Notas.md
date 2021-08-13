@@ -47,5 +47,5 @@ Algunos (pocos) comandos para transformación de datos en "tidy data" de `dplyr`
 - Todas se pueden usar junto con  
  `group_by()`  
  
- Estos son solo algunas funciones y comentarios para recordar el uso de 
+ Estos son solo algunas funciones y comentarios para recordar el uso de algunos comandos de `dplyr`.  
  

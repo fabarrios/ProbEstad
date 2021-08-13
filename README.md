@@ -34,7 +34,9 @@ Tema 0  [Introducción](https://fabarrios.github.io/ProbEstad/Presenta/Intro).
 Tema 1 [Estadística Descriptiva](https://fabarrios.github.io/ProbEstad/EstadDescrip/EstadDescrip.html).  
 Tarea 1 Estadística Descriptiva.  
 
-Tema 2 Probabilidad.      
+Tema 2 Probabilidad.    
+
+[Notas](https://fabarrios.github.io/ProbEstad/Notas/Notas).  
 
 
 Proyectos finales.  

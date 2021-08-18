@@ -48,7 +48,7 @@ Algunos (pocos) comandos para transformación de datos en "tidy data" de `dplyr`
 Estos son solo algunas funciones y comentarios para recordar el uso de algunos comandos de `dplyr`.  
  
 ## Gráficas con ggplot  
- Para gráficas en `ggplot` ademas del libro de [Harrison & Pius](https://argoshare.is.ed.ac.uk/healthyr_book/), hay varias páginas en la red que tienen recursos para aprender a hacer gráficas en ggplot una buena es https://plotly.com/ggplot2/  
+ Para gráficas en `ggplot` ademas del libro de [Harrison & Pius](https://argoshare.is.ed.ac.uk/healthyr_book/), hay varias páginas en la red que tienen recursos para aprender a hacer gráficas en ggplot una buena es [plotly](https://plotly.com/ggplot2/)  
  
 ## Librerías de R (CRAN)  
 Algunas [librerías de R](https://fabarrios.github.io/ProbEstad/Presenta/Libraries) estan latabla, pero al instalar se instalan varias otras librerías que complementan la operación del conjunto. Siempre es bueno checar por compatibilidades de las librerías cargadas en memoria.  

@@ -53,6 +53,7 @@ Estos son solo algunas funciones y comentarios para recordar el uso de algunos c
 
 ## Ligrerías de R (CRAN)  
 Algunas librerías de R esta es una tabla muy incompleta, pero al instalar estas librerías se instalan varias otras librerías que complementan la operación de todas ellas. Siempre es bueno checar por compatibilidades de las librerías cargadas en memoria.  
+
 | Library | site |
 | ------- | ---- |
 | tidyverse | https://www.tidyverse.org/ | 

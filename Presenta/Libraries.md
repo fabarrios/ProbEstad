@@ -16,15 +16,16 @@ The easiest way to install is in RStudio, go to the Packages screen (at the righ
 | Hmisc | https://hbiostat.org/R/Hmisc/ | 
 | multcomp | https://multcomp.r-forge.r-project.org/  |
 | ggstatsplot | https://indrajeetpatil.github.io/ggstatsplot/index.html  |
-| gmodels |  |
+| gmodels | https://cran.r-project.org/web/packages/gmodels/gmodels.pdf |
 | multcomp | https://rdrr.io/rforge/multcomp/ |
 | broom | https://broom.tidymodels.org/  |
 | survminer | https://rpkgs.datanovia.com/survminer/index.html |
-| mice |  |
-| UsingR |  |
-| modetest |  |
-| rcompanion |  |
-| devtools |  |
-| HSAUR2 |  |
-| HSAUR3 |  |
+| mice | https://www.rdocumentation.org/packages/mice/versions/3.13.0/topics/mice |
+| UsingR | https://cran.r-project.org/web/packages/UsingR/UsingR.pdf |
+| modetest | https://www.rdocumentation.org/packages/multimode/versions/1.5/topics/modetest |
+| rcompanion | https://rcompanion.org/handbook/ |
+| devtools | https://github.com/r-lib/devtools |
+| HSAUR2 | https://cran.r-project.org/web/packages/HSAUR/HSAUR.pdf |
+| HSAUR3 | https://cran.r-project.org/web/packages/HSAUR/HSAUR.pdf |
 | scales | https://scales.r-lib.org/ |
+| ------ | --------------------------|

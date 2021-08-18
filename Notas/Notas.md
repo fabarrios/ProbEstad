@@ -24,8 +24,7 @@ Para variables paramétricas, tenemos `mean(x)` media y `sd(x)` desviación est�
 |  <=  |  less than or equal to  |
 |  >=  |  greater than or equal to  |
 |  &  |  AND  |  
-|  "pipe" |  OR  |  
-| ------- | ---- |  
+|  '|' |  OR  |  
 
 ## Tidy Data (de acuerdo a `dplyr`)  
 Para hacer uso de estos comandos hay que cargar la `tidyverse` por medio del comando `library()`. Estos comandos son usados frecuentemente con el comando de "tubería o tubo" `%>%` y son de extrema utilidad al manipular estructuras de datos, o tablas o cómo se llaman en los datos "tidy" tibbles (tablas) en esta [liga](https://es.r4ds.hadley.nz/tibbles.html) se encuentra un documento que explica en R el manejo de "tibbles".  

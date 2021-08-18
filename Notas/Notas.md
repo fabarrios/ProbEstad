@@ -80,4 +80,4 @@ Algunas librerías de R esta es una tabla muy incompleta, pero al instalar estas
 | HSAUR2 | https://cran.r-project.org/web/packages/HSAUR/HSAUR.pdf |
 | HSAUR3 | https://cran.r-project.org/web/packages/HSAUR/HSAUR.pdf |
 | scales | https://scales.r-lib.org/ |
-| ------ | --------------------------|
+| survival | https://cran.r-project.org/web/packages/survival/survival.pdf |

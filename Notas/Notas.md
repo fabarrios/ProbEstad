@@ -52,4 +52,4 @@ Estos son solo algunas funciones y comentarios para recordar el uso de algunos c
 
 
 ## Ligrerías de R (CRAN)  
-Algunas [librerías de R](https://fabarrios.github.io/ProbEstad/Presenta/Libraries esta es una tabla muy incompleta, pero al instalar estas librerías se instalan varias otras librerías que complementan la operación de todas ellas. Siempre es bueno checar por compatibilidades de las librerías cargadas en memoria.  
+Algunas [librerías de R](https://fabarrios.github.io/ProbEstad/Presenta/Libraries) esta es una tabla muy incompleta, pero al instalar estas librerías se instalan varias otras librerías que complementan la operación de todas ellas. Siempre es bueno checar por compatibilidades de las librerías cargadas en memoria.  

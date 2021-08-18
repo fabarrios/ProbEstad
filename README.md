@@ -32,7 +32,7 @@ MacFarland, T.W. & Yates J.M.(2021) Using R for Biostatistics, Springer Series i
 Tema 0  [Introducción](https://fabarrios.github.io/ProbEstad/Presenta/Intro).  
 
 Tema 1 [Estadística Descriptiva](https://fabarrios.github.io/ProbEstad/EstadDescrip/EstadDescrip.html).  
-Tarea 1 Estadística Descriptiva.  
+Tarea 1 [Estadística Descriptiva](https://fabarrios.github.io/ProbEstad/HW/HW_01).  
 
 Tema 2 Probabilidad.    
 

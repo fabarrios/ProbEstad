@@ -31,12 +31,14 @@ Al hablar de probabilidad se habla de la posibilidad de que suceda un evento, y 
 **Definición** Se dice que si un evento puede ocurrir de $N$ formas mutuamente excluyentes e igualmente posibles, y $m$ de estas formas poseen una característica $E$, la probabilidad de que ocurra $E$ es igual a $m/N$.  
 Si definimos $P(E)$ como la "Probabilidad de E" de la definición anterior podemos expresar
 $$ P(E) = \frac{m}{N}$$  
+
 **Probabilidad de frecuencia relativa** El enfoque de la probabilidad por frecuencia relativa nos indica que la probabilidad depende de la repetición de algún proceso y la capacidad de contar sus repeticiones así como el número de veces que un evento de interés ocurre.  
-**Definición** Si algún proceso se repite un número grande de veces, $n$, y si alguno evento resultante de característica $E$ ocurre $m$ veces, la frecuencia relativa de ocurrencia de $E$, $m/n$, será aproximadamente igual a $P(E) = \frac{m}{n}$.  
+**Definición** Si algún proceso se repite un número grande de veces, $n$, y si algún evento relativo a ese proceso resultante con característica $E$ ocurre $m$ veces, la frecuencia relativa de ocurrencia de $E$, $m/n$, será aproximadamente igual a $P(E) = \frac{m}{n}$.  
 
 ## Propiedades elementales de la probabilidad  
 1. Dado un proceso con $n$ resultados mutuamente excluyentes (llamados eventos), $E_1, E_2, \dots , E_n$ la probabilidad de cualquiera de ellos es un número diferente de cero,
 $$ P(E_i) \geq 0$$  
+
 2. La suma de las probabilidades de eventos mutuamente excluyentes es igual a 1.
 $$P(E_1) + P(E_2) + \dots + P(E_n) = 1 $$  
 
@@ -45,7 +47,7 @@ $$P(E_i + E_j) = P(E_i) + P(E_j)$$
 
 ## Probabilidad de un evento  
 
-En este ejemplo Carte et al. investigo la edad del debut del desorden bipolar. Una de las variables que se investigó fue la historia familiar de Trastornos Afectivos (mood disorders). La **Tabla 1** a continuación muestra las frecuencias de historia familiar de Trastornos Afectivos para dos rangos de edad para el debut de la enfermedad; Temprana a los 18 años o menores y tardía para mayores de 18 años.  
+En este ejemplo Carte et al. investigó la edad del debut del desorden bipolar. Una de las variables que se investigó fue la historia familiar de Trastornos Afectivos (mood disorders). La **Tabla 1** a continuación muestra las frecuencias de historia familiar de Trastornos Afectivos para dos rangos de edad para el debut de la enfermedad; Temprana a los 18 años o menores y tardía para mayores de 18 años.  
 **Tabla 1** Frecuencia de historia familiar de Trastornos Afectivos por grupo de edad entre sujetos bipolares, de Carter et al. (2003), Daniel capítulo 3.  
 $$\begin{array}{lccc}
   {\verb+Historia Familiar de Trastornos Afectivos+} & {\verb+Temprano = 18(E)+} & {\verb+Tardío > 18(L)+} & {\verb+Total+} \\

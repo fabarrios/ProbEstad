@@ -65,7 +65,7 @@ $$\begin{array}{lccc}
 $$ P(E) =141/318 = 0.4434 $$  
 
 ## Probabilidad Condicional  
-Cuando la probabilidad se calcula con la frecuencia de un sub-grupo del total de la muestra como la escala, la probabilidad es *condicional*, en este ejemplo que acabamos de estimar, se puedes decir que la probabilidad es incondicional ya que se usó el total de la muestra para estimar la probabilidad. Pero si restringimos la escala (el tamaño del denominador) para estimar la probabilidad se dice que es una *probabilidad marginal* ya que los totales marginales de la muestra son los que se usan.  
+Cuando la probabilidad se calcula con la frecuencia de un sub-grupo del total de la muestra como la escala, la probabilidad es *condicional*, en este ejemplo que acabamos de estimar, se puede decir que la probabilidad es incondicional ya que se usó el total de la muestra para estimar la probabilidad. Pero si restringimos la escala (el tamaño del denominador) para estimar la probabilidad se dice que es una *probabilidad marginal* ya que los totales marginales de la muestra son los que se usan.  
 **Pregunta** Supongamos que escogemos un sujeto de la muestra de los 318 sujetos y resulta que es de 18 años o más joven $(E)$, Cual es la probabilidad de que este sujeto pertenezca a una familia que no tiene historial de Trastornos Afectivos $(A)$?  
 **Respuesta** Se dice que la probabilidad de que el sujeto pertenezca a que su familia no tenga historial de Trastornos Afectivos $(A)$ y además sea de 18 o menos años $(E)$, se escribe como $P(A \mid E)$ "Probabilidad de A *dado* E" y la probabilidad condicional es A para 18 (28) de todos los de 18 (141), entonces  
 $$P(A \mid E) = 28/141 = .1986$$  

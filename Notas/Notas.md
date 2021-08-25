@@ -16,7 +16,7 @@ Para variables paramétricas, tenemos `mean(x)` media y `sd(x)` desviación est�
 ## Operadores lógicos de filtrado  
 
 | Operators | Meaning |  
-| --------- | ------- |  
+| :-------: | ------- |  
 |  ==  |  equal to  |  
 |  !=  |  not equal to  |  
 |  <  | less than  |  

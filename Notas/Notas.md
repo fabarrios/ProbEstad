@@ -13,7 +13,7 @@ De las funciones más básicas de R que son de gran utilidad están:
 
 Para variables paramétricas, tenemos `mean(x)` media y `sd(x)` desviación estándar, como estimadores de medida central y dispersión. Y para medidas no-paramétricas tenemos `median(x)` mediana y `mad(x)` (median absolute deviation) desviación de la mediana, como medidas de centralidad.  
 
-## Operadores para filtrado  
+## Operadores lógicos de filtrado  
 
 | Operators | Meaning |  
 | --------- | ------- |  
@@ -25,6 +25,9 @@ Para variables paramétricas, tenemos `mean(x)` media y `sd(x)` desviación est�
 |  >=  |  greater than or equal to  |
 |  &  |  AND  |  
 |  "pipe" |  OR  |  
+
+## Recusrso importante !!!  
+Un recurso muy importante y práctico para el uso de voirs de los recursos de Rstudio y varios de los paquetes miembros de la familia (y extras) de `tidyverse` son las "Cheatsheets" (hojas de trampa, o mejor dicho en español acordiones) estos acordiones son muy utilizados y prácticos y acaban de ser revisados y re-publicados, es muy recomendable imprimirlos (en color) y guardarlos en una carpeta de trabajo. Yo los uso frecuentemenre. [Acordiones](https://www.rstudio.com/resources/cheatsheets/) de la familia `tidy` de Rstudio.  
 
 ## Tidy Data (de acuerdo a `dplyr`)  
 Para hacer uso de estos comandos hay que cargar la `tidyverse` por medio del comando `library()`. Estos comandos son usados frecuentemente con el comando de "tubería o tubo" `%>%` y son de extrema utilidad al manipular estructuras de datos, o tablas o cómo se llaman en los datos "tidy" tibbles (tablas) en esta [liga](https://es.r4ds.hadley.nz/tibbles.html) se encuentra un documento que explica en R el manejo de "tibbles".  

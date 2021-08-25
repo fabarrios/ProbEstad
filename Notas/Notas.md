@@ -24,7 +24,7 @@ Para variables paramétricas, tenemos `mean(x)` media y `sd(x)` desviación est�
 |  <=  |  less than or equal to  |
 |  >=  |  greater than or equal to  |
 |  &  |  AND  |  
-|  "pipe" |  OR  |  
+|  \| |  OR  |  
 
 ## Recusrso importante !!!  
 Un recurso muy importante y práctico para el uso de voirs de los recursos de Rstudio y varios de los paquetes miembros de la familia (y extras) de `tidyverse` son las "Cheatsheets" (hojas de trampa, o mejor dicho en español acordiones) estos acordiones son muy utilizados y prácticos y acaban de ser revisados y re-publicados, es muy recomendable imprimirlos (en color) y guardarlos en una carpeta de trabajo. Yo los uso frecuentemenre. [Acordiones](https://www.rstudio.com/resources/cheatsheets/) de la familia `tidy` de Rstudio.  

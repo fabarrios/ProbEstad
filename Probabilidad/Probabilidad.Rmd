@@ -118,7 +118,6 @@ La probabilidad del evento $A$ es igual a 1 menos la probabilidad de su evento c
 $$ P(\bar{A}) = 1 - P(A)$$
 
 ## Probabilidad marginal
-Una definición general de este tipo de probabilidad, es la siguiente  
-**Definición** Dada una variable que puede ser clasificada en $m$ categorías designadas por $A_1, A_2, \dots, A_i, \dots, A_m$ y otra variable con ocurrencia conjunta que está clasificada en $n$ categorías designadas por $B_1, B_2, \dots, B_j, \dots, B_n$, la probabilidad marginal  de alguna de las categorías $A_i$, $P(A_i)$ es igual a la suma de las de las probabilidades conjuntas de $A_i$ con todas las categorías de **B**.  Est es,
+Una definición general de este tipo de probabilidad, es la siguiente **Definición**: Dada una variable que puede ser clasificada en $m$ categorías designadas por $A_1, A_2, \dots, A_i, \dots, A_m$ y otra variable con ocurrencia conjunta que está clasificada en $n$ categorías designadas por $B_1, B_2, \dots, B_j, \dots, B_n$, la probabilidad marginal de alguna de las categorías $A_i$, $P(A_i)$ es igual a la suma de las de las probabilidades conjuntas de $A_i$ con todas las categorías de **B**.  Esto es,
 $$P(A_i) = \sum_{j=1}^{n}P(A_i \cap B_j), \hspace{10pt}(todos \hspace{10pt}los \hspace{10pt}valores \hspace{10pt}de\hspace{10pt}j)$$
 

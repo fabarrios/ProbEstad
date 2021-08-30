@@ -7,7 +7,7 @@
 
         <meta name="author" content="F. A. Barrios ENES Juriquilla, UNAM " />
     
-        <meta name="date" content="2021-08-23" />
+        <meta name="date" content="2021-08-29" />
     
     <title>Probabilidad</title>
 
@@ -140,7 +140,7 @@
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
                   <p class="author"><span class="glyphicon glyphicon-user"></span> F. A. Barrios<br>ENES Juriquilla, UNAM<br></p>
-                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2021-08-23</p>
+                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2021-08-29</p>
           </div>
    </div>
      
@@ -180,7 +180,7 @@ Si definimos <span class="math inline">\(P(E)\)</span> como la “Probabilidad d
   \verb+Total+ &amp; 141 &amp; 177 &amp; 318
 \end{array} \]</span></p>
 <p><strong>Pregunta</strong> si tomamos a una persona de este grupo, cual es la probabilidad de que esta persona tenga 18 años o menor?</p>
-<p><strong>Respuesta</strong> Este es una grupo de 318 sujetos (muestra) y de la muestra completa de 18 o menores son 141 (como menores y 18 es excluyente de mayores a 18), la probabilidad es numero de sujetos en (debut Temprano)/total de sujetos de la muestra <span class="math display">\[ P(E) =141/318 = 0.4434 \]</span></p>
+<p><strong>Respuesta</strong> Este es un grupo de 318 sujetos (muestra) y de la muestra completa 18 o menores son 141 (como menores y 18 es excluyente de mayores a 18), la probabilidad es el numero de sujetos en (debut Temprano)/total de sujetos de la muestra <span class="math display">\[ P(E) =141/318 = 0.4434 \]</span></p>
 </div>
 <div id="probabilidad-condicional" class="section level2">
 <h2>Probabilidad Condicional</h2>
@@ -210,11 +210,11 @@ En general se tiene que<br />
 </div>
 <div id="regla-de-la-adición" class="section level2">
 <h2>Regla de la adición</h2>
-<p>Cuando dos eventos no so mutuamente excluyentes la probabilidad se calcula por medio de la regla de la adición<br />
+<p>Cuando dos eventos no son mutuamente excluyentes la probabilidad se calcula por medio de la regla de la adición<br />
 <strong>Definición</strong> Dados dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>, la probabilidad de que el evento <span class="math inline">\(A\)</span>, o el evento <span class="math inline">\(B\)</span>, o los dos ocurran es igual a la probabilidad de que el evento <span class="math inline">\(A\)</span> ocurra más la probabilidad de que el evento <span class="math inline">\(B\)</span> ocurra, menos la probabilidad de que los eventos ocurran en forma simultanea.<br />
 <span class="math display">\[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]</span></p>
 <p>Cuando los eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> no pueden ocurrir de forma simultanea, <span class="math inline">\(P(A \cap B)\)</span> es llamado “O exclusivo” y <span class="math inline">\(P(A \cup B) = 0\)</span></p>
-<p><strong>Ejemplo</strong> Si seleccionamos de forma aleatoria de los 318 sujetos de la <strong>Tabla 1</strong>, cual es la probabilidad de que esta persona pertenezca al grupo de debut temprano de Trastornos Afectivos <span class="math inline">\((E)\)</span> o pertenezca al grupo de familia sin historial de Trastornos Afectivos <span class="math inline">\((A)\)</span> o ambos?</p>
+<p><strong>Ejemplo</strong> Si seleccionamos de forma aleatoria de los 318 sujetos de la <strong>Tabla 1</strong>, cuál es la probabilidad de que esta persona pertenezca al grupo de debut temprano de Trastornos Afectivos <span class="math inline">\((E)\)</span> o pertenezca al grupo de familia sin historial de Trastornos Afectivos <span class="math inline">\((A)\)</span> o ambos?</p>
 <p>La probabilidad que estamos buscando es <span class="math inline">\(P(E \cup A)\)</span>, por la regla de la adición es igual a <span class="math inline">\(P(E \cup A) = P(E) + P(A) - P(E \cap A)\)</span>, sabemos que <span class="math inline">\(P(E) = 141/318 = .4434\)</span> y ya calculamos <span class="math inline">\(P(E \cap A) = 28/318 = .0881\)</span> y directo de la Tabla 1, <span class="math inline">\(P(A) = 63/318 = .1981\)</span>, y sustituyendo en la ecuación<br />
 <span class="math display">\[P(E \cup A) = .4434 + .1981 - .0881 = .5534\]</span></p>
 <div id="eventos-independientes" class="section level3">

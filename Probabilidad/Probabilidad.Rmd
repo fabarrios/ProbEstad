@@ -61,7 +61,7 @@ $$\begin{array}{lccc}
 
 **Pregunta** si tomamos a una persona de este grupo, cual es la probabilidad de que esta persona tenga 18 años o menor?  
 
-**Respuesta** Este es una grupo de 318 sujetos (muestra) y de la muestra completa de 18 o menores son 141 (como menores y 18 es excluyente de mayores a 18), la probabilidad es numero de sujetos en (debut Temprano)/total de sujetos de la muestra
+**Respuesta** Este es un grupo de 318 sujetos (muestra) y de la muestra completa 18 o menores son 141 (como menores y 18 es excluyente de mayores a 18), la probabilidad es el numero de sujetos en (debut Temprano)/total de sujetos de la muestra
 $$ P(E) =141/318 = 0.4434 $$  
 
 ## Probabilidad Condicional  
@@ -93,13 +93,13 @@ $$ P(A \mid B) = \frac{P(A \cap B)}{P(B)} ,\hspace{10pt} P(B) \neq 0 $$
 
 ## Regla de la adición  
 
-Cuando dos eventos no so mutuamente excluyentes la probabilidad se calcula por medio de la regla de la adición  
+Cuando dos eventos no son mutuamente excluyentes la probabilidad se calcula por medio de la regla de la adición  
 **Definición** Dados dos eventos $A$ y $B$, la probabilidad de que el evento $A$, o el evento $B$, o los dos ocurran es igual a la probabilidad de que el evento $A$ ocurra más la probabilidad de que el evento $B$ ocurra, menos la probabilidad de que los eventos ocurran en forma simultanea.  
 $$ P(A \cup B) = P(A) + P(B) - P(A \cap B) $$
 
 Cuando los eventos $A$ y $B$ no pueden ocurrir de forma simultanea, $P(A \cap B)$ es llamado "O exclusivo" y $P(A \cup B) = 0$  
 
-**Ejemplo** Si seleccionamos de forma aleatoria de los 318 sujetos de la **Tabla 1**, cual es la probabilidad de que esta persona pertenezca al grupo de debut temprano de Trastornos Afectivos $(E)$ o pertenezca al grupo de familia sin historial de Trastornos Afectivos $(A)$ o ambos?  
+**Ejemplo** Si seleccionamos de forma aleatoria de los 318 sujetos de la **Tabla 1**, cuál es la probabilidad de que esta persona pertenezca al grupo de debut temprano de Trastornos Afectivos $(E)$ o pertenezca al grupo de familia sin historial de Trastornos Afectivos $(A)$ o ambos?  
 
 La probabilidad que estamos buscando es $P(E \cup A)$, por la regla de la adición es igual a $P(E \cup A) = P(E) + P(A) - P(E \cap A)$, sabemos que $P(E) = 141/318 = .4434$ y ya calculamos $P(E \cap A) = 28/318 = .0881$ y directo de la Tabla 1, $P(A) = 63/318 = .1981$, y sustituyendo en la ecuación  
 $$P(E \cup A) = .4434 + .1981 - .0881 = .5534$$

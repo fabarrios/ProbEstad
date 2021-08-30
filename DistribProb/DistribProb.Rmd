@@ -1,0 +1,312 @@
+---
+title: "Distribuciones de Probabilidad"
+author: "F. A. Barrios<br>ENES Juriquilla, UNAM<br>"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+  description: "to prepare ProbEstad presentations"
+---
+
+
+```{r setup, include=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+
+# Variables discretas
+
+**Definición** Una distribución de probabilidad para un variable discreta es una tabla, gráfica, fórmula, o cualquier sistema que describan los valores de una variable discreta junto con sus respectivas probabilidades.
+Se acostumbra denotar la probabilidad de la variable $x$ como $p(x)$ entonces $p(x) = P(X=x)$ es la probabilidad de que la variable discreta $X$ tome el valor $x$.  
+La probabilidad de una variable discreta aleatoria $X$ tiene las dos propiedades esenciales:  
+$$ (1) \hspace {20pt} 0 \leq P(X=x) \leq 1$$
+$$ (2) \hspace {20pt} \sum{P(X=x)} = 1 \hspace {20pt} para \hspace {5pt} toda \hspace {5pt} x $$
+
+El valor de $p$ para cada $x$ se estima de la proporción de eventos y se dice que es la *probabilidad relativa de ocurrecia*.  La distribución acumulada de probabilidad de una variable aleatoria se obtiene de la suma de la probabilidad relativa de cada uno los puntos $P(x_i)$ y las probabilidades en los valores $x_j$ anteriores.  
+
+## Promedio y varianza  
+El promedio y la varianza para la distribución de una variable aleatoria discreta se pueden estimar a partir de las siguientes fórmulas:  
+$$ \mu = \sum{xp(x)} $$
+
+$$ \sigma^2 = \sum{(x-\mu)^2 p(x)} = \sum{x^2 p(x) - \mu^2} $$  
+
+## Ejemplo de distribución de una variable aleatoria discreta  
+En un articulo de Holben et al. estudiaron el estado de seguridad alimenticia de familias en la región de los Appalaches, al sur del estado de Ohio.  El propósito del estudio fue examinar la proporción de desnutrición en familias con niños en el programa local de "Head Start" en Athens Ohio.  En su encuesta incluyeron preguntas de U.S. Household Food Sequirity y además preguntaron en cuantos programas de ayuda de alimentos participaban. Se quiere construir la distribución de probabilidades del número de programas en que los sujetos participan.  
+Tabla con el número de programas de asistencia en que participan familias  
+$$\begin{array}{cc}
+  {\verb+Numero de programas+} & {\verb+Frecuencia+} \\
+   1 & 62 \\
+   2 & 47 \\
+   3 & 39 \\
+   4 & 39 \\
+   5 & 58 \\
+   6 & 37 \\
+   7 & 4  \\
+   8 & 11 \\
+  \hline
+  \verb+Total+ & 297
+\end{array} $$
+
+Tabla de la distribución de probabilidades del número de programas de asistencia en que participan.  
+$$\begin{array}{cc}
+  {\verb+Numero de programas+} & {P(X=x)} \\
+   1 & 62/297 = .2088 \\
+   2 & 47/297 = .1582 \\
+   3 & 39/297 = .1313 \\
+   4 & 39/297 = .1313 \\
+   5 & 58/297 = .1953 \\
+   6 & 37/297 = .1246 \\
+   7 &  4/297 = .0135 \\
+   8 & 11/297 = .0370 \\
+  \hline
+  \verb+Total+ & 1
+\end{array} $$
+
+Y para terminar la tabla de probabilidades acumuladas por $x$ "Número de programas de ayuda"  
+
+$$\begin{array}{cc}
+  {\verb+Numero de programas+} & {P(X \leq x)} \\
+   1 & .2088 \\
+   2 & .3670 \\
+   3 & .4983 \\
+   4 & .6296 \\
+   5 & .8249 \\
+   6 & .9495 \\
+   7 & .9630 \\
+   8 & 1.000 \\
+  \hline
+\end{array} $$
+
+(a) en este ejemplo, cuál es la probabilidad de que de este grupo se escoja una familia que participe en tres programas?  
+respuesta: $p(3) = P(X=3) = .1313$  
+
+(b) en este ejemplo, cuál es la probabilidad de escojer una familia que participe uno o dos programas?  
+respuesta: $P(1 \cup 2) = P(1) + P(2) = .2088 + .1582 = .3670$  
+
+(c) en el mismo ejemplo, cual es la probabilidad de que al azar se escoja una familia que participe en menos de 4 programas?
+respuesta: hya que recordar que tenemos una variable discreta y que $X < 4$ para este caso es $X \leq 3$, que se saca directo de la tabla de probabilidades acumuladas. $P(X \leq 3) = .4983$  
+
+(d) cual es el promedio y varianza de este ejemplo?  
+respuesta: para el promedio $\mu = \sum{xp(x)}$ que es
+$$ \mu = (1)(.2088) + (2)(.1582) + (3)(.1313) + (4)(.1313) + \dots + (8)(.0370) = 3.5589 $$
+
+$$ \sigma^2 = (1 - 3.5589)^2(.2088) + (2 - 3.5589)^2(.1582) + (3 - 3.5589)^2(.1313) + \dots + (8 - 3.5589)^2(.0370) = 3.8559 $$
+de donde concluimos que en promedio se usan $3.5589$ programas por familia con una varianza de $3.8559$ y una desviación estándar de $\sqrt{3.8559} = 1.9637$ programas por familia.
+
+
+# Distribución Binomial  
+Cuando un ensayo (toma de dato) aleatorio solo puede suceder suceder de una de dos formas posibles, mutuamente excluyentes (vivo-muerto, enfermo-sano, mujer-hombre) se llama un ensayo de Bernoulli.  
+Un **Proceso de Bernoulli** es una secuencia de ensayos de Bernoulli. Y cumple con las siguientes condiciones  
+1. Cada ensayo solo puede resultar en una de dos posibles, mutuamente excluyentes, posibilidades. A una de ellas se le llama "éxito" y a la otra "fracaso".  
+2. La probabilidad de "éxito" se denota $p$, y es constante de ensayo en ensayo, la probabilidad de "fracaso" es $(1-p) = q$  
+3. Cada ensayo es *independiente*, es decir el resultado de cada ensayo no afecta el resultado de los otros ensayos.  
+
+
+## Combinación  
+Definición: La **Combinación** de $n$ objetos tomados de $x$ a la vez, es un subconjunto desordenado de $x$ objetos tomados de $n$ de ellos.  El número de posibles combinaciones de $n$ objetos tomados de $x$ formas está dado por  
+$$ _nC_x = \frac{n!}{x!(n-x)!}$$
+en donde $x!$ es el factorial de $x$, definido como el producto de números enteros desde $x$ hasta $1$, es decir $x! = x(x-1)(x-2) \dots (1)$.  Entonces de un proceso de Bernoulli se tiene que la probabilidad de obtener exactamente $x$ éxitos en $n$ ensayos es:  
+$$ f(x) =  _nC_x p^x (1-p)^{n-x} \hspace {20pt} para \; x = 0, 1, 2, \dots , n $$
+$$ f(x) = 0, \hspace {20pt} de\; otra\; forma.$$
+Esta expresión es la **Distribución Binomial**, en general os valores de $p(x)$ para una distribución Binomial, se pueden estimar a partir de tablas de valores de $p$, pero en R se calculan con la familia de funciones `dbinom, pbinom, qbinom y rbinom`.  
+Los parámetros de una distribución binomial son dos: n y p, son suficientes para estimar la distribución binomial. Y la expresión para el promedio y varianza de una distribución binomial están dados por: $\mu = np$ y $\sigma^2 = np(1-p) = npq$.  
+Como lo mencionamos en R se usa la funciona `dbinom` para estimar el valor de la probabilidad em un punto $x$ del valor de la variable aleatoria, la distribución se estima con `pbinom` y resultados por cuartil se usa `qbinom`. Además para obtener un conjunto de números estimados de tal forma que estén distribuidos siguiendo una binomial se usa `rbinom`.  
+Para calcular la función de probabilidad binomial para un conjunto de valores, $x_i$, un número de ensayos $n$ y una probabilidad de éxito $p$ se puede hacer uso de la función `dbinom`.  
+
+*Ejemplo* Se analizaron los registros de nacimientos del NC State Center for Health Statistics para el año 2001, se encontró que el 85.8 por ciento de los embarazos tuvieron un parto a término 37 semanas o después. Con este dato podemos determinar que la probabilidad de nacimiento a término es de $p =.858$.  Si de estos registros escogemos de forma aleatoria cinco, cual es la probabilidad que exactamente tres de ellos sean nacimientos a término?  
+*Respuesta:* tenemos que $p = .858$ probabilidad a término, $q = (1-p) = (1-.858) = .142$  
+```{r}
+dbinom(3, 5, .858) # x = 3, de una muestra de 5, y p = .858 a término
+```
+
+*Ejemplo* De los mismos datos de NC SCHS muestran que 14 porciento de las madres declararon que fumaron uno o más cigarros al día durante el embarazo. Si tomamos una muestra al azar de 10 madres, cual es la probabilidad de que contenga exactamente 4 madres que declararon fumar durante el embarazo?  
+*Respuesta*  
+```{r}
+dbinom(4, 10, .14)
+```
+
+*Ejemplo* 
+Sabemos que el 10 por ciento de cierta población es daltónica. Si tomamos una muestra al azar de 25 sujetos de esta población, cual es la probabilidad de que:  
+(a) Cinco o menos sean daltónicos?
+
+```{r}
+pbinom(5, 25, 0.10, lower.tail = TRUE)
+```
+
+(b) Seis o más sean daltónicos
+```{r}
+pbinom(5, 25, 0.10, lower.tail = FALSE)
+```
+
+# Distribución de Poisson  
+La distribución de Poisson es ampliamente usada para describir procesos biológicos y de las ciencias médicas, se aplica a una variable discreta en la que si $x$ es el número de sucesos de un evento aleatorio en un intervalo de tiempo (o volumen), la probabilidad de que el evento $x$ suceda está dada por,  
+$$ f(x) = \frac{e^{-\lambda} \lambda^x}{x!} \hspace{20pt} x = 0,1,2, \dots $$
+En donde $\lambda$ es el parámetro de la distribución y es el número promedio de ocurrencias en el intervalo (o volumen) descrito. $e$ es el número irracional $2.718 \dots$. Se puede demostrar que $f(x) \geq 0$ para toda $x$ y además $\sum{f(x)} = 1$.  
+
+## Proceso de Poisson  
+1. Las ocurrencias de cada evento son independientes. Es decir la ocurrencia de un evento en un intervalo o volumen no tiene ningún efecto de que ocurra otro o más eventos en el intervalo.  
+2. En teoría puede suceden un número infinito de ocurrencias en el intervalo.  
+3. La probabilidad de que ocurra un evento en un intervalo es proporcional a la longitud del intervalo.  
+4. En cuanquier porción infinitamente pequeña del intervalo, la probabilidad de que ocurra más de un evento es insignificante.  
+
+La distribución de Poisson se usa como modelo para describir cuando los ensayos de los eventos (o entidades) están distribuidas aleatoriamente en le tiempo o espacio.  
+
+En R la distribución de Poisson es ejecutada por los comandos `dpois, ppois, qpois, y rpois`
+
+**Ejemplo** En un estudio de anafilaxis entre pacientes que expuestos a anestesia con rocuronio bromuro, laake y Rottingen encontraron que los casos de anafilaxis siguen una distribución de Poissson con $\lambda = 12$ incidentes por año en Noruega. Encuentre la probabilidad de que en el año siguiente a este estudio, en paciente que fueron anestesiados por rocuronio bromuro,se darán exactamente tres casos de anafilaxis.  
+*respuesta* La respuesta es $P(X=3)$ en una distribución de poisson. En R dpois(3, 12)  
+```{r}
+dpois(3, 12)
+```
+
+**Ejemplo** del mismo ejemplo anterior cual es la probabilidad de que por lo menos tres pacientes in el año siguiente al estudio experimenten anafilaxis si rocuronio bromuro es usan para anestesia.  
+*respuesta* Por lo menos tres es $P(X \geq 3)$ se necesita calcular el complemento de $P(X \geq 3)$ entonces es $1 - P(X \leq 2)$  
+```{r}
+(1 - ppois(2, 12))
+
+ppois(2 ,12, lower.tail = FALSE)
+```
+
+Podemos concluir de este ejemplo que para probabilidades complementarias en R podemos suponer: `(1 - ppois(x, l, lower.tail = TRUE) = ppois(x, l, lower.tail = FALSE)`  
+
+**Ejemplo** En un estudio de un organismo acuático, una gran cantidad de muestras son tomadas de un estanque de agua, y el número de organismos del estudio son estimados.  El promedio deorganismos fue determinado en dos.  Suponiendo que el número de organismos sigue una distribución de Poisson, encuentre la probabilidad de que en la siguiente muestra contenga uno o menos organismos?.  
+*respuesta* estamos estimando $P(X \leq 1)$
+```{r}
+
+ppois(1, 2)
+```
+
+**Ejemplo** del ejemplo encuentra la probabilidad de que en la sigiente muestra del estanque, está contenga exactamente tre organismos.  
+*respuesta* necesitamos estimar $P(X=3)$  
+```{r}
+dpois(3,2)
+```
+
+# Distribución Normal  
+**Definición** Una funcinon positiva definida $f(x)$ es llamada una distribución de probabilidad (función de densidad de probabilidad) de la variable aleatoria continua $X$ si el total del área bajo la curva (entre la curva y el eje de las $x$) es igual a $1$ y el área parcial abajo de la curva entre los puntos $x=a$ y $x=b$ y el eje de las $x$ es la probabilidad de que $X$ esté entre $a$ y $b$.  
+La distribución *normal*, o la distribución de Gauss está definida por  
+$$ f(x) = \frac{1}{\sqrt{2\pi\sigma}}e^\frac{-(x-\mu)^2}{2\sigma^2} \hspace {20pt} -\infty < x < \infty $$
+en la ecuación anterior $\pi$ y $e$ son los números irracionales iguales a $3.141516 \dots$ y $2.71828 \dots$.  Los dos parámetros de la distribución son $\mu$, el promedio y $\sigma$ la desviación estándar.  
+
+## Propiedades de la distribución normal  
+1. Es simétrica al rededor de la media $\mu$, la curva a cada lado del valor $x=\mu$ es una imagen de espejo de la otra mitad.  
+2. La media, la mediana y la moda son iguales.  
+3. El total del área bajo la curva de la campana de gauss es igual a la unidad de área.  
+4. Si se dibujan dos líneas verticales a una distancia de la desviación estándar de la media $\mu$, esto es $\mu - \sigma$ y en $\mu + \sigma$ esto englobaría el 68% del área bajo la curva, y a dos veces $\sigma$ el 95%.  
+5. La distribución normal está completamente descrita por los parámetros de la media $\mu$ y la desviación estándar $\sigma$.  
+```{r}
+curve(dnorm, from = -4., to = 4., main = "Distribución Normal y d.s. = 1, 2, 3")
+abline(v=0)
+abline(v=1, col = 3, lty = 2)
+abline(v=-1, col = 3, lty = 2)
+abline(v=2, col = 2, lty = 2)
+abline(v=-2, col = 2, lty = 2)
+abline(v=3, col = 4, lty = 2)
+abline(v=-3, col = 4, lty = 2)
+```
+
+## La distribución normal estándar  
+Es la distribución que esta centrada al cero $\mu = 0$ y con desviación estándar igual a 1, $\sigma = 1$, creando la variable aleatoria estandarizada    
+$$ z = (x - \mu)/\sigma $$  
+resultando en la distribución normal estándar  
+$$ f(z) = \frac{1}{\sqrt{2\pi}} e^{-z^2/2}, \hspace{20pt} -\infty < z < \infty $$  
+
+En R la función `dnorm, pnorm, qnorm y rnorm` nos estima una distribución normal estándar $(\mu = 0 \; y \; \sigma = 1)$ Y podemos estimar $P(X=z) = dnorm(z)$ por ejemplo.  
+
+Para ver el efecto del cambio en la desviación estándar (s.d.) a promedio $\mu = 0$ constante, que efecto tiene en la gráfica de la función de probabilidad normal dichos cambios?  Iniciando con una distribución para $\sigma = 1$ en negro y después $\sigma = 1.25, 1.5, 1.75$.
+```{r}
+curve(dnorm(x, sd = 1), from = -3.5, to = 3.5, main = "Distribución Normal a diferentes d.s.")
+abline(v=0, lty = 2)
+curve(dnorm(x, sd = 1.25), from = -3.5, to = 3.5, col = 2, add = TRUE)
+abline(v=1.25, col = 2)
+abline(v=-1.25, col = 2)
+curve(dnorm(x, sd = 1.5), from = -3.5, to = 3.5, col = 3, add = TRUE)
+abline(v=1.5, col = 3)
+abline(v=-1.5, col = 3)
+curve(dnorm(x, sd = 1.75), from = -3.5, to = 3.5, col = 4, add = TRUE)
+abline(v=1.75, col = 4)
+abline(v=-1.75, col = 4)
+```
+
+## Aplicaciones de la distribución normal  
+
+**Ejemplo** cual es la probabilidad de que z tomado al azar esté entre $-2.55$ y $2.55$?    
+*respuesta* estamos calculando la probabilidad de $P(-2.55 < z < 2.55) = P(X \leq 2.55) - P(X \leq -2.55)$  
+```{r}
+pnorm(2.55) - pnorm(-2.55)
+
+curve(dnorm, from = -4.5, to = 4.5, main = "Distribución Normal Estándar")
+abline(v=-2.55, lty = 2)
+abline(v=2.55, lty = 2)
+```
+
+**Ejemplo** Diskin et al. estudiaron los metabolitos presentes en el aliento, tales como amonio, acetona, isopreno, etanol, y acetaldehído en cinco sujetos en un periodo de 30 días. Se tomaron muestras diarias de aliento en la mañana temprano y se analizaron en el laboratorio. Para el sujeto A, mujer de 27 años, la concentración de amonio en partes por billón, ppb, siguieron una distribución normal por los treinta días con promedio 491 y desviación estándar 119. Cual es la probabilidad de que en un día tomado al azar, el amonio presente en su aliento tenga una concentración entre 292 y 649 ppb?  
+*respuesta* hay que recordar que este tipo de problemas se resolvía usando tablas de una distribución normal estándar $(\mu = 0 \; y \; \sigma = 1)$, y para poder hace ruso de dichas tablas era necesario transformar los puntos de interés a la escala de $z$, $z = (x - \mu)/\sigma$, pero con el uso de un programa como R que en el que podemos estimar el valor de $p$ para cualquier valor de $x$, lo que nos están preguntando es  
+$$ P(292 \leq x \leq 649) $$
+```{r}
+curve(dnorm(x , mean = 491, sd = 119), from = 150, to = 850)
+abline(v=292, col = 2)
+abline(v=649, col = 2)
+#
+pnorm(649, mean = 491, sd = 119, lower.tail = TRUE) - pnorm(292, mean = 491, sd = 119, lower.tail = TRUE)
+```
+
+Si usaramos una distribución normal estándar, primero tenemos que convertir $P(292 \leq x \leq 649)$ a la escala de $z$ usando $\mu = 491 \; y \; \sigma = 119$ en  
+$$ z = \frac{(x - \mu)}{\sigma} $$
+por lo tanto $P(292 \leq x \leq 649)$ es :  
+$$ P(\frac{292 - 491}{119} \leq z \leq \frac{649 - 491}{119})$$
+$$P(-1.67 \leq z \leq 1.33)$$
+```{r}
+pnorm((649-491)/119, lower.tail = TRUE) - pnorm((292-491)/119, lower.tail = TRUE)
+```
+que nos da la misma repuesta para la probabilidad de que el valor de la concentración de amonio esté en el rango mencionado.  
+De este **mismo ejemplo**, para otro sujeto hombre de 29 años de edad de el mismo estudio de Diskin et al., los niveles de acetona en su aliento, estuvieron normalmente distribuidos con promedio de 870 y desviación estándar de 221 ppb, encuentre la probabilidad de que en un día cualquiera su nivel de acetona esté  
+(a) Entre 600 y 1000 ppb  
+(b) Sobre 900 ppb  
+(c) Por debajo de 500 ppb  
+(d) Entre 900 y 1100 ppb  
+*respuesta* (a) nos pide $P(600 \leq x \leq 1000)$  
+```{r}
+curve(dnorm(x , mean = 870, sd = 211), from = 300, to = 1400)
+abline(v=600, col = 2)
+abline(v=1000, col = 2)
+#
+pnorm(1000, mean = 870, sd = 211, lower.tail = TRUE) - pnorm(600, mean = 870, sd = 211, lower.tail = TRUE)
+```
+
+Para (b) la repuesta es $P(x > 900)$ de 900 a la derecha de la gráfica.  
+```{r}
+curve(dnorm(x , mean = 870, sd = 211), from = 300, to = 1400)
+abline(v=900, col = 4, lty = 2)
+pnorm(900, mean = 870, sd = 211, lower.tail = FALSE)
+```
+Para (c) la repuesta es $P(500 \leq x)$  
+```{r}
+pnorm(500, mean = 870, sd = 211, lower.tail = TRUE)
+# Calculando como complemento de probabilidad
+1 - pnorm(500, mean = 870, sd = 211, lower.tail = FALSE)
+# Para una normal estándar (mean = 0, s.d. = 1)
+pnorm((500-870)/211, lower.tail = TRUE)
+```
+
+
+Y para (d) la respuesta es $P(900 \leq x \leq 1100)$ 
+
+```{r}
+pnorm(1100, mean = 870, sd = 211, lower.tail = TRUE) - pnorm(900, mean = 870, sd = 211, lower.tail = TRUE)
+```
+
+
+   
+

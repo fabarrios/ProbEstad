@@ -36,7 +36,7 @@ Tarea 1 [Estadística Descriptiva](https://fabarrios.github.io/ProbEstad/HW/HW_0
 
 Tema 2 [Probabilidad](https://fabarrios.github.io/ProbEstad/Probabilidad/Probabilidad.html).  
 
-Tema 3 [Distribuciones de Probabilidad](http://fabarrios.github.io/DistribProb/DistribProb.html).  
+Tema 3 [Distribuciones de Probabilidad](http://fabarrios.github.io/ProbEstad/DistribProb/DistribProb.html).  
 
 [Notas](https://fabarrios.github.io/ProbEstad/Notas/Notas).  
 

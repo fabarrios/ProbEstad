@@ -48,6 +48,7 @@ $$P(E_i + E_j) = P(E_i) + P(E_j)$$
 ## Probabilidad de un evento  
 
 En este ejemplo Carter et al. investigó la edad del debut del desorden bipolar. Una de las variables que se investigó fue la historia familiar de Trastornos Afectivos (mood disorders). La **Tabla 1** a continuación muestra las frecuencias de historia familiar de Trastornos Afectivos para dos rangos de edad para el debut de la enfermedad; Temprana a los menores o de 18 años y tardía para estrictamente mayores de 18 años.  
+
 **Tabla 1** Frecuencia de historia familiar de Trastornos Afectivos por grupo de edad entre sujetos bipolares, de Carter et al. (2003), Daniel capítulo 3.  
 
 $$\begin{array}{lccc}
@@ -62,7 +63,7 @@ $$\begin{array}{lccc}
 
 **Pregunta** si tomamos a una persona de este grupo, cual es la probabilidad de que esta persona sea menor o tenga 18 años?  
 
-**Respuesta** Este es un grupo de 318 sujetos (muestra) y de la muestra completa, menores o de 18 son 141 (como menores y 18 es excluyente de mayores a 18), la probabilidad es el numero de sujetos en (debut Temprano)/total de sujetos de la muestra  
+**Respuesta** Este es un grupo de 318 sujetos (muestra) y de la muestra completa, menores o de 18 son 141 (como menores o de 18 es excluyente de mayores a 18), la probabilidad es el número de sujetos en (debut Temprano)/total de sujetos de la muestra  
 
 $$ P(E) =141/318 = 0.4434 $$  
 
@@ -70,6 +71,7 @@ $$ P(E) =141/318 = 0.4434 $$
 Cuando la probabilidad se calcula con la frecuencia de un sub-grupo del total de la muestra como la escala, la probabilidad es *condicional*, en este ejemplo que acabamos de estimar, se puede decir que la probabilidad es incondicional ya que se usó el total de la muestra para estimar la probabilidad. Pero si restringimos la escala (el tamaño del denominador) para estimar la probabilidad se dice que es una *probabilidad marginal* ya que los totales marginales de la muestra son los que se usan.  
 **Pregunta** Supongamos que escogemos un sujeto de la muestra de los 318 sujetos y resulta que es de 18 años o más joven pertenece a la columna $(E)$, Cual es la probabilidad de que este sujeto pertenezca a una familia que no tiene historial de Trastornos Afectivos $(A)$?  
 **Respuesta** Se dice que la probabilidad de que el sujeto pertenezca a que su familia no tenga historial de Trastornos Afectivos $(A)$ y además sea de 18 o menos años $(E)$, se escribe como $P(A \mid E)$ "Probabilidad de A *dado* E" y la probabilidad condicional es A para 18 (28) de todos los de 18 (141), entonces  
+
 $$P(A \mid E) = 28/141 = .1986$$  
 
 ## Probabilidad conjunta  
@@ -85,9 +87,9 @@ Se puede estimar la probabilidad conjunta del producto de una probabilidad margi
 
 Se quiere calcular la probabilidad conjunta de debut temprano $(E)$ y la falta de historial familiar de Trastornos Afectivos $(A)$ a partir de probabilidades marginales. Sabemos que la probabilidad marginal $P(E) = 141/318 = .4434$ y la probabilidad condicional $P(A \cap E) = 28/141 = .1986$ son probabilidades marginales muy adecuadas por que $P(E \cap A) = P(E)P(A \mid E) = (.4434)(.1986) = .0881$ que es el resultado que ya habíamos calculado pero usando probabilidades marginales.  
 En general se tiene que  
-$$ P(A \cap B) = P(B)P(A \mid B),\hspace{10pt} \verb+si + P(B) \neq 0$$  
-
 $$ P(A \cap B) = P(A)P(B \mid A),\hspace{10pt} \verb+si + P(A) \neq 0$$  
+
+$$ P(B \cap A) = P(B)P(A \mid B),\hspace{10pt} \verb+si + P(B) \neq 0$$  
 
 ## Probabilidad condicional  
 

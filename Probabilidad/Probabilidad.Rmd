@@ -47,10 +47,11 @@ $$P(E_i + E_j) = P(E_i) + P(E_j)$$
 
 ## Probabilidad de un evento  
 
-En este ejemplo Carte et al. investigó la edad del debut del desorden bipolar. Una de las variables que se investigó fue la historia familiar de Trastornos Afectivos (mood disorders). La **Tabla 1** a continuación muestra las frecuencias de historia familiar de Trastornos Afectivos para dos rangos de edad para el debut de la enfermedad; Temprana a los 18 años o menores y tardía para mayores de 18 años.  
+En este ejemplo Carter et al. investigó la edad del debut del desorden bipolar. Una de las variables que se investigó fue la historia familiar de Trastornos Afectivos (mood disorders). La **Tabla 1** a continuación muestra las frecuencias de historia familiar de Trastornos Afectivos para dos rangos de edad para el debut de la enfermedad; Temprana a los menores o de 18 años y tardía para estrictamente mayores de 18 años.  
 **Tabla 1** Frecuencia de historia familiar de Trastornos Afectivos por grupo de edad entre sujetos bipolares, de Carter et al. (2003), Daniel capítulo 3.  
+
 $$\begin{array}{lccc}
-  {\verb+Historia Familiar de Trastornos Afectivos+} & {\verb+Temprano = 18(E)+} & {\verb+Tardío > 18(L)+} & {\verb+Total+} \\
+  {\verb+Historia Familiar de Trastornos Afectivos+} & {\verb+Temprano ≤ 18 (E)+} & {\verb+Tardío > 18 (L)+} & {\verb+Total+} \\
   \verb+Negativo (A)+ & 28 & 35 & 63 \\
   \verb+Desorden Bipolar (B)+ & 19 & 38 & 57 \\
   \verb+Unipolar (C)+ & 41 & 44 & 85  \\
@@ -59,14 +60,15 @@ $$\begin{array}{lccc}
   \verb+Total+ & 141 & 177 & 318
 \end{array} $$
 
-**Pregunta** si tomamos a una persona de este grupo, cual es la probabilidad de que esta persona tenga 18 años o menor?  
+**Pregunta** si tomamos a una persona de este grupo, cual es la probabilidad de que esta persona sea menor o tenga 18 años?  
 
-**Respuesta** Este es un grupo de 318 sujetos (muestra) y de la muestra completa 18 o menores son 141 (como menores y 18 es excluyente de mayores a 18), la probabilidad es el numero de sujetos en (debut Temprano)/total de sujetos de la muestra
+**Respuesta** Este es un grupo de 318 sujetos (muestra) y de la muestra completa, menores o de 18 son 141 (como menores y 18 es excluyente de mayores a 18), la probabilidad es el numero de sujetos en (debut Temprano)/total de sujetos de la muestra  
+
 $$ P(E) =141/318 = 0.4434 $$  
 
 ## Probabilidad Condicional  
 Cuando la probabilidad se calcula con la frecuencia de un sub-grupo del total de la muestra como la escala, la probabilidad es *condicional*, en este ejemplo que acabamos de estimar, se puede decir que la probabilidad es incondicional ya que se usó el total de la muestra para estimar la probabilidad. Pero si restringimos la escala (el tamaño del denominador) para estimar la probabilidad se dice que es una *probabilidad marginal* ya que los totales marginales de la muestra son los que se usan.  
-**Pregunta** Supongamos que escogemos un sujeto de la muestra de los 318 sujetos y resulta que es de 18 años o más joven $(E)$, Cual es la probabilidad de que este sujeto pertenezca a una familia que no tiene historial de Trastornos Afectivos $(A)$?  
+**Pregunta** Supongamos que escogemos un sujeto de la muestra de los 318 sujetos y resulta que es de 18 años o más joven pertenece a la columna $(E)$, Cual es la probabilidad de que este sujeto pertenezca a una familia que no tiene historial de Trastornos Afectivos $(A)$?  
 **Respuesta** Se dice que la probabilidad de que el sujeto pertenezca a que su familia no tenga historial de Trastornos Afectivos $(A)$ y además sea de 18 o menos años $(E)$, se escribe como $P(A \mid E)$ "Probabilidad de A *dado* E" y la probabilidad condicional es A para 18 (28) de todos los de 18 (141), entonces  
 $$P(A \mid E) = 28/141 = .1986$$  
 
@@ -74,27 +76,30 @@ $$P(A \mid E) = 28/141 = .1986$$
 Algunas veces se quiere estimar la probabilidad de escoger a un sujeto de una muestra pero que tenga dos características de la muestra (se no son mutuamente excluyentes) y es el caso de la *probabilidad conjunta*  
 **Pregunta** Cual es la probabilidad de escoger a un sujeto de los 318 que pertenece a la clasificación debut Temprano (18 años o menos) $(E)$ y que es de una familia que no tiene historial de Trastornos Afectivos $(A)$  
 **Repuesta** La probabilidad que estamos buscando se escribe cómo $P(E \cap A)$ que significa *E y A* (intersección) $E \cap A$ indica la *condición conjunta* de las dos condiciones $E$ y $A$ de la selección de TODA la muestra (318), la "intersección de la columna E y el renglón A de toda la muestra"  
+
 $$ P(E \cap A) = 28/318 = 0.0881$$  
 
 ## Regla de la multiplicación  
 
 Se puede estimar la probabilidad conjunta del producto de una probabilidad marginal adecuada con una probabilidad condicional adecuada, que se conoce como la regla de multiplicación.  
 
-Se quiere calcular la probabilidad conjunta de debut temprano $(E)$ y la falta de historial familiar de Trastornos Afectivos $(A)$ a partir de probabilidades marginales. Sabemos que la probabilidad marginal $P(E) = 141/318 = .4434$ y la probabilidad condicional $P(A \cap E) = 28/141 = .1986$ que son probabilidades marginales muy adecuadas por que $P(E \cap A) = P(E)P(A \mid E) = (.4434)(.1986) = .0881$ que es el resultado que ya habíamos calculado pero usando probabilidades marginales.  
+Se quiere calcular la probabilidad conjunta de debut temprano $(E)$ y la falta de historial familiar de Trastornos Afectivos $(A)$ a partir de probabilidades marginales. Sabemos que la probabilidad marginal $P(E) = 141/318 = .4434$ y la probabilidad condicional $P(A \cap E) = 28/141 = .1986$ son probabilidades marginales muy adecuadas por que $P(E \cap A) = P(E)P(A \mid E) = (.4434)(.1986) = .0881$ que es el resultado que ya habíamos calculado pero usando probabilidades marginales.  
 En general se tiene que  
-$$ P(A \cap B) = P(B)P(A \mid B),\hspace{10pt} si P(B) \neq 0$$  
+$$ P(A \cap B) = P(B)P(A \mid B),\hspace{10pt} \verb+si + P(B) \neq 0$$  
 
-$$ P(A \cap B) = P(A)P(B \mid A),\hspace{10pt} si P(A) \neq 0$$  
+$$ P(A \cap B) = P(A)P(B \mid A),\hspace{10pt} \verb+si + P(A) \neq 0$$  
 
 ## Probabilidad condicional  
 
-La probabilidad condicional  de $A$ dado $B$ es igual a la probabilidad de $A \cap B$ dividida por la probabilidad de $B$, siempre que la probabilidad de $B$ no sea cero
+La probabilidad condicional  de $A$ dado $B$ es igual a la probabilidad de $A \cap B$ dividida por la probabilidad de $B$, siempre que la probabilidad de $B$ no sea cero  
+
 $$ P(A \mid B) = \frac{P(A \cap B)}{P(B)} ,\hspace{10pt} P(B) \neq 0 $$
 
 ## Regla de la adición  
 
-Cuando dos eventos no son mutuamente excluyentes la probabilidad se calcula por medio de la regla de la adición  
+Cuando dos eventos **no son mutuamente excluyentes** la probabilidad se calcula por medio de la regla de la adición  
 **Definición** Dados dos eventos $A$ y $B$, la probabilidad de que el evento $A$, o el evento $B$, o los dos ocurran es igual a la probabilidad de que el evento $A$ ocurra más la probabilidad de que el evento $B$ ocurra, menos la probabilidad de que los eventos ocurran en forma simultanea.  
+
 $$ P(A \cup B) = P(A) + P(B) - P(A \cap B) $$
 
 Cuando los eventos $A$ y $B$ no pueden ocurrir de forma simultanea, $P(A \cap B)$ es llamado "O exclusivo" y $P(A \cup B) = 0$  
@@ -107,9 +112,10 @@ $$P(E \cup A) = .4434 + .1981 - .0881 = .5534$$
 ### Eventos independientes  
 
 Cuando la probabilidad del evento $A$ es igual sin importar que $B$ ocurra o no, entonces $P(A \mid B) = P(A)$ y se dice que A y B son independientes, y la regla de la multiplicación se expresa como  
+
 $$P(A \cap B) = P(A)P(B);\hspace{10pt} P(A) \neq 0,\hspace{10pt} P(B) \neq 0$$
 
-Entonces cuando dos eventos independientes de probabilidad diferente de cero, cada una de las siguientes es cierta:  
+Entonces se tiene el caso para dos eventos independientes de probabilidad diferente de cero, cada una de las siguientes relaciones es cierta:  
 $$ P(A \mid B) = P(A),\hspace{10pt} P(B \mid A) = P(B),\hspace{10pt} P(A \cap B) = P(A)P(B)$$
 
 ### Evento complementario
@@ -118,6 +124,7 @@ La probabilidad del evento $A$ es igual a 1 menos la probabilidad de su evento c
 $$ P(\bar{A}) = 1 - P(A)$$
 
 ## Probabilidad marginal
-Una definición general de este tipo de probabilidad, es la siguiente **Definición**: Dada una variable que puede ser clasificada en $m$ categorías designadas por $A_1, A_2, \dots, A_i, \dots, A_m$ y otra variable con ocurrencia conjunta que está clasificada en $n$ categorías designadas por $B_1, B_2, \dots, B_j, \dots, B_n$, la probabilidad marginal de alguna de las categorías $A_i$, $P(A_i)$ es igual a la suma de las de las probabilidades conjuntas de $A_i$ con todas las categorías de **B**.  Esto es,
-$$P(A_i) = \sum_{j=1}^{n}P(A_i \cap B_j), \hspace{10pt}(todos \hspace{10pt}los \hspace{10pt}valores \hspace{10pt}de\hspace{10pt}j)$$
+Una definición general de este tipo de probabilidad, es la siguiente **Definición**: Dada una variable que puede ser clasificada en $m$ categorías designadas por $A_1, A_2, \dots, A_i, \dots, A_m$ y otra variable con ocurrencia conjunta que está clasificada en $n$ categorías designadas por $B_1, B_2, \dots, B_j, \dots, B_n$, la probabilidad marginal de alguna de las categorías $A_i$, $P(A_i)$ es igual a la suma de las de las probabilidades conjuntas de $A_i$ con todas las categorías de **B**.  Esto es,  
+
+$$P(A_i) = \sum_{j=1}^{n}P(A_i \cap B_j), \hspace{10pt}\verb+(todos los valores de j)+$$
 

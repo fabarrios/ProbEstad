@@ -36,8 +36,8 @@ Una distribución de muestreo se puede construir empíricamente a partir de un m
 **Definición** Se dice que las variables aleatorias $X_1, X_2, \dots, X_n$ cuya función de densidad de probabilidad conjunta es $f(x_1, x_2, \dots, x_n))$ y cuya funciones particulares de densidad son $f_1(x_1), f_2(x_2), \dots, f_n(x_n)$ son *independientes* siempre y cuando  
 $$ f(x_1, x_2, \cdots, x_n) = f_1(x_1)f_2(x_2)\cdots f_n(x_n)$$
 
-## Características de una distribución de muestras  
-Por lo general se está interesado en estimar tres parámetros de una distribución de muestras: su *promedio*, su *varianza*, y su *forma funcional*.  Representemos por $f(x)$ la funcion de densidad de la variable aleatoria continua $X$ y por $n$ el tamaño de la muestra que se toma.Los valores muestrales que se resultantes se designan mediante los símbolos $x'_1, x'_2, \dots, x'_n$, Si se extrajera una segunda muestra de tamaño $n$ entonces a los valores muestrales resultantes se le designa por $x''_1, x''_2, \dots, x''_n$ y de igual forma para las restantes muestras. Estos valores los podemos representar en una tabla por conveniencia  
+## Características de una distribución muestral  
+Por lo general estámos interesados en estimar tres parámetros de una distribución de muestras: su *promedio*, su *varianza*, y su *forma funcional*.  Representemos por $f(x)$ la función de densidad de la variable aleatoria continua $X$ y por $n$ el tamaño de la muestra que se toma. Los valores muestrales (los elementos de la muestra) resultantes se designan mediante los símbolos $x'_1, x'_2, \dots, x'_n$, Si se extrajera una segunda muestra de tamaño $n$ entonces a los valores muestrales resultantes se le designa por $x''_1, x''_2, \dots, x''_n$ y de igual forma para las muestras restantes. Estos valores los podemos representar en una tabla por conveniencia:  
 
 $$\begin{array}{cccc}
   x'_1 & x'_2 & \dots & x'_n \\

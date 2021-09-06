@@ -39,6 +39,9 @@ Tarea 2 [Probabilidad](https://fabarrios.github.io/ProbEstad/HW/HW_02).
 
 Tema 3 [Distribuciones de Probabilidad](http://fabarrios.github.io/ProbEstad/DistribProb/DistribProb.html).  
 
+Tema 4 [Teoría del Muestreo](http://fabarrios.github.io/ProbEstad/DistribMuestra/DistribMuestra.html).  
+
+
 [Notas](https://fabarrios.github.io/ProbEstad/Notas/Notas).  
 
 

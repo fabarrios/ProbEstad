@@ -1,5 +1,5 @@
 ---
-title: "4 Distribucion de Muestreo"
+title: "Teoría del Muestreo"
 author: "F. A. Barrios<br>ENES Juriquilla, UNAM<br>"
 date: "`r Sys.Date()`"
 output:
@@ -24,13 +24,13 @@ opts_chunk$set(echo=TRUE,
 opts_knit$set(width=75)
 ```
 # Distribucion de Muestras  
-La distribución de todos los valores posibles que puede tomar una "estadística", construidos a partir de muestras del mismo tamaño de nuestra extraídas al azar de la misma población, es llamado la distribución de muestreo de esa "estadística".  
+La distribución de todos los valores posibles que puede tomar una "estadística", construidos a partir de muestras del mismo tamaño de muestra extraídas al azar de la misma población, es llamado la distribución de muestreo de esa "estadística", o distribución muestral.  
 
 ## Construcción de una distibución de muestras  
-Una distribución de muestreo se puede construir empíricamente a partir de un muestreo discreto, de una población finita, de la siguiente forma  
+Una distribución de muestreo se puede construir empíricamente a partir de un muestreo discreto, de una población finita, de la siguiente forma:  
 1. De una población finita de tamaño $N$, se extraen todas las muestras posibles de tamaño $n$.  
 2. La estadística de interés se estima en cada una de estas muestras.  
-3. En una lista se compilan todos los valores de la estadística obtenidos y todas las frecuencias de los valores obtenidos.  
+3. En una lista se compilan todos los valores de la *estadística* obtenidos y todas las frecuencias de los valores obtenidos.  
 
 ## Teoría del Muestreo  
 **Definición** Se dice que las variables aleatorias $X_1, X_2, \dots, X_n$ cuya función de densidad de probabilidad conjunta es $f(x_1, x_2, \dots, x_n))$ y cuya funciones particulares de densidad son $f_1(x_1), f_2(x_2), \dots, f_n(x_n)$ son *independientes* siempre y cuando  

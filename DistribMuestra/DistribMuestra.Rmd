@@ -37,7 +37,7 @@ Una distribución de muestreo se puede construir empíricamente a partir de un m
 $$ f(x_1, x_2, \cdots, x_n) = f_1(x_1)f_2(x_2)\cdots f_n(x_n)$$
 
 ## Características de una distribución muestral  
-Por lo general estámos interesados en estimar tres parámetros de una distribución de muestras: su *promedio*, su *varianza*, y su *forma funcional*.  Representemos por $f(x)$ la función de densidad de la variable aleatoria continua $X$ y por $n$ el tamaño de la muestra que se toma. Los valores muestrales (los elementos de la muestra) resultantes se designan mediante los símbolos $x'_1, x'_2, \dots, x'_n$, Si se extrajera una segunda muestra de tamaño $n$ entonces a los valores muestrales resultantes se le designa por $x''_1, x''_2, \dots, x''_n$ y de igual forma para las muestras restantes. Estos valores los podemos representar en una tabla por conveniencia:  
+Por lo general estámos interesados en estimar tres parámetros de una distribución de muestras: su *promedio*, su *varianza*, y su *forma funcional*.  Representemos por $f(x)$ la función de densidad de la variable aleatoria continua $X$ y por $n$ el tamaño de la muestra que se toma. Los valores muestrales (los elementos de la muestra) resultantes se designan mediante los símbolos $x'_1, x'_2, \dots, x'_n$, Si se extrajera una segunda muestra de tamaño $n$ entonces a los valores muestrales resultantes se le designa por $x''_1, x''_2, \dots, x''_n$ y de igual forma para las muestras restantes. Estos valores los podemos representar en una tabla (como una medida práctica), en la que se estiman las medias de cada columna :  
 
 $$\begin{array}{cccc}
   x'_1 & x'_2 & \dots & x'_n \\
@@ -48,13 +48,13 @@ $$\begin{array}{cccc}
 \end{array} $$
 
 ## La distribución de muestras del promedio: promedio  
-El promedio de muestras es  
+El promedio del promedio de las muestras es:   
 $$\mu_\bar{x} = \frac{\sum{\bar{x_i}}}{N^n}$$
-Las propiedades de de la distribución del promedio de muestras de una distribución normal, supongamos que X (la población de dónde se hace el muestreo) tiene una distribución normal con media $\mu$ y varianza $\sigma^2/n$. Consideremos una muestra aleatoria de tamaño $n$ de esta población normal, la media de dicha muestra,  
+Las propiedades de de la distribución del promedio de muestras de una distribución normal, supongamos que $X$ (la población de dónde se hace el muestreo) tiene una distribución normal con media $\mu$ y varianza $\sigma^2/n$. Consideremos una muestra aleatoria de tamaño $n$ de esta población normal, la media de dicha muestra,  
 $$ \bar{X}=\frac{1}{n}(X_1 + \dots +X_n) $$
-será una variable aleatoria por que las $X_1, X_2, \dots,X_n$ correspondientes a las $n$ pruebas de la nuestra son variables aleatorias.  Para un muestreo de una población de $N$ sujetos que no presenta una distribución normal, para numerar todas las posibles muestras de $n$ elementos sin reemplazo se enumeran por la combinatoria de $_{N}C_{n} = \frac{N!}{n!(N-n)!}$ con fórmula para el promedio dada por $\mu_{\bar{X}} = \frac{\sum{\bar{X_i}}}{_{N}C_{n}}$
+será una variable aleatoria por que las $X_1, X_2, \dots,X_n$ correspondientes a las $n$ pruebas de la muestra son variables aleatorias.  Para un muestreo de una población de $N$ sujetos que no presenta una distribución normal, para numerar todas las posibles muestras de $n$ elementos sin reemplazo se enumeran por la combinatoria de $_{N}C_{n} = \frac{N!}{n!(N-n)!}$ con fórmula para el promedio dada por $\mu_{\bar{X}} = \frac{\sum{\bar{X_i}}}{_{N}C_{n}}$.   
 
-Puesto que muchas variables experimentales pueden tener distribuciones que no son normales, es importante saber si las propiedades del promedio de las medias de muestreo (y sus propiedades de la varianza) pueden ser descritas. Se puede destacar que sin importar cuál sea el tipo de distribución que tenga pa población $X$, siempre que existan su media y su varianza, la distribución de $\bar{X}$ tenderá a la distribución normal cuando $n \rightarrow \infty$ , que es lo que se conoce como el *Teorema Central del Límite*  
+Puesto que muchas variables experimentales pueden tener distribuciones que no son normales, es importante saber si las propiedades del promedio de las medias del muestreo (y sus propiedades de la varianza) pueden ser descritas. Se puede destacar que sin importar cuál sea el tipo de distribución que tenga la población $X$, siempre que existan su media y su varianza, la distribución de $\bar{X}$ tenderá a la distribución normal cuando $n \rightarrow \infty$ , que es lo que se conoce como el *Teorema Central del Límite*  
 
 **Teorema central del límite:** Si $X$ es una variable aleatoria con media $\mu$ y varianza $\sigma^2$, la variable aleatoria $Z=(\bar{X} - \mu)/(\sigma/\sqrt{n})$ tiene una distribución que se aproxima a la distribución normal tipificada cuando $n \rightarrow \infty$.  
 
@@ -104,7 +104,7 @@ Es común que en estudios de la ciencia médica se tenga interés en estimar la 
 $$ \mu_{\bar{X_{i}}} = \frac{\sum{\bar{X_i}}}{_{N_i}C_{n_i}},$$
 $$ \sigma_{\bar{X_i}}^2 = \frac{\sum{(\bar{X_i} - \mu_{\bar{X_i}})^2}}{_{N_i}C_{n_i}} $$
 
-de dichas formulas podemos concluir que la diferencia de los promedios de las muestras es igual a $\mu_1 - \mu_2$ y la varianza es $(\sigma_1^2/n_1) + (\sigma_2^2/n_2)$ de donde se deduce que el error estándar de la diferencia de las medias es $\sqrt{(\sigma_1^2/n_1) + (\sigma_2^2/n_2)}$.  Como la varianza general depende de las contribuciones de las dos muestras, la varianza muestral siempre se suma, es decir los errores parciales siempre se suman. Se supone que las distribuciones de las muestras son independientes.  
+de dichas formulas podemos concluir que la diferencia de los promedios de las muestras es igual a $\mu_1 - \mu_2$ y la varianza es $(\sigma_1^2/n_1) + (\sigma_2^2/n_2)$ de donde se deduce que el error estándar de la diferencia de las medias es $\sqrt{(\sigma_1^2/n_1) + (\sigma_2^2/n_2)}$.  Como la varianza general depende de las contribuciones de las dos muestras, la varianza muestral siempre se suma, es decir **los errores parciales siempre se suman**. Se supone que las distribuciones de las muestras son independientes.  
 La transformación a una normal tipificada para transformar a la variable $z$ es  
 $$ z = \frac{ (\bar{X_1} - \bar{X_2}) - (\mu_1 - \mu_2) }{ \sqrt{ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} } } $$
 

@@ -1,0 +1,419 @@
+---
+title: "5 Estimación"
+author: "F. A. Barrios<br>ENES Juriquilla, UNAM<br>"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+---
+
+
+```{r setup, include=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="85")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=85)
+```
+
+```{r}
+setwd("~/Dropbox/GitHub/ProbEstad2021")
+# To set the working directory realtive to the user's dir
+
+library(tidyverse)
+library(Rmisc)
+library(rcompanion)
+```
+# Estimación  
+El proceso de hacer una estimación, es aquel que nos permite calcular, a partir de una muestra, alguna estadística que es una aproximación al valor real del parámetro de la población de donde la muestra fue tomada.  
+**Definición** Inferencia estadística es el procedimiento por el cual podemos alcanzar alguna conclusión acerca de alguna población con base en la información contenida en una muestra extraída de esa población.  
+Se encontrará que de cada parámetro que se discuta, se pueden estimar dos tipos de resultados: un estimado puntual y un estimado de intervalo.  
+**Definición** Un estimado puntual es un valor numérico único usado para estimar el parámetro correspondiente de la población.  
+**Definición** Un estimado de intervalo consiste en dos valores numéricos que definen el rango de valores que, con algún grado de confianza, que muy posiblemente incluye el parámetro de la población que se está estimando.  
+
+## Estimador  
+Nos hemos referido a un valor único estimado como un estimado único, a esto nos referiremos como un estimador,  una fórmula para estimar un valor puntual de una variable aleatoria.  
+**Estimador** Un estimador, digamos, T, de un parámetro $\theta$ se dice que no está sesgado cuando $E(T)=\theta$.    
+El símbolo $E(T)$ se conoce como el *valor esperado de T*, para una población finita, $E(T)$ se obtienetomendo el valor promedio de $T$ de todas las muestras posibles de un tamaño dado que se puedan extraer de la población de interés. Es decir $E(T) = \mu_T$.  Como ya lo comentamos, el promedio de la distribución muestral de una variable $\bar{x}$ es igual a $\mu$, sabemos que $\bar{x}$ es un estimador no-sesgado de $\mu$.  
+
+## Población muestral y población blanco  
+**Definición** La población muestral es aquella de donde de extraen las muestras.  
+**Definición** La población blanco es aquella de donde se quiere hacer alguna inferencia.  
+Estas poblaciones pueden o no, ser la misma población. La estadística nos permite hacer inferencias de las poblaciones muestreadas, suponiendo que el muestreo fue hecho correctamente.  
+
+## Intervalo de confianza para el promedio  
+En el tema anterior usamos el hecho de que una distribución normal tipificada es aquella con promedio $\mu=0$ y desviación estándar $\sigma = 1$ en donde para una muestra el promedio muestral $\mu_{\bar{x}}$ lo tomamos igual al promedio de la población $\mu$, y la varianza $\sigma_{\bar{x}}^2$ igual a $\sigma^2/n$. En donde para una distribución normal tipificada el 95% de los valores de la distribución de $\bar{x}$ están localizados dentro de los valores de una desviación estándar $\sigma_{\bar{x}}$ a la izquierda de cero (promedio $\bar{x}$) y a la derecha del cero otra desviación estándar.  
+
+```{r}
+curve(dnorm, from = -4.5, to = 4.5, main = "Distribución Normal Estándar")
+abline(v=-2, lty = 2, col = 2)
+abline(v= 2, lty = 2, col = 2)
+```
+
+## Componentes para estimar el intervalo  
+Cuando se estima un intervalo de confianza de una estadística que describe a un parámetro de la población se tiene, el valor central, el valor puntual de $\mu$ estimado, el valor al que el ancho del intervalo está canlulado, por lo general un factor de 2 errores estándar. Un valor $z$ conocido como el coeficiente de fiabilidad  
+
+$$ \verb+estimador+ \pm (\verb+coeficiente de fiabilidad+) \times (\verb+error estándar+)$$  
+
+En particular cuando el muestreo se hace de una población distribuida normalmente un estimado para el intervalo de $\mu$ es  
+
+$$ \bar{x} \pm z_{(1 - \alpha/2)}\sigma_{\bar{x}} $$  
+
+en donde $z_{(1 - \alpha/2)}$ es el valor,a la izquierda, de $z$ en donde queda $1-\alpha/2$ y a la derecha $\alpha/2$ de la curva bajo la gráfica.  
+
+## Interpretación del Intervalo de Confianza  
+
+La cantidad $1-\alpha$ en el caso más común $.95$ es llamado el *coeficiente de confianza* (o nivel de fiabilidad), y el intervalo $\bar{x} \pm z_{(1 - \alpha/2)}\sigma_{\bar{x}}$ es llamado el intervalo de confianza para $\mu$.
+*Interpretación práctica* Cuando un muestreo es tomado de una población distribuida normalmente con desviación estándar conocida, estamos $100(1-\alpha)$ por ciento confiados de que un único intervalo $\bar{x} \pm z_{(1 - \alpha/2)}\sigma_{\bar{x}}$, contengael promedio $\mu$ de la población.  
+
+**Precisión** La cantidad obtenida al multiplicar el coeficiente de fiabilidad por el error estándar, es llamado la precisión de la estimación. Esta cantidad también es llamad **margen de error**.  
+
+## Ejemplos
+
+1. Un fisioterapeuta deseaba estimar, con una confianza del 99 por ciento, la fuerza máxima de un músculo en particular, en un grupo de individuos.  Está dispuesto a aceptar que los registros de fuerza muscular están aproximadamente distribuidos en forma normal con una varianza de $144$.  Una muestra de $15$ sujetos que participaron en este experimento resultaron en un promedio de fuerza de $84.3$.
+*Respuesta* Los elementos son: tenemos $\alpha=.01$, $z_{(1-.01/2)} \rightarrow \alpha/2 = .005$ si usamos R para obtener el valor de $z$ para la condición a la derecha de $\alpha/2 = .005$ usamos `qnorm(.005, lower.tail = FALSE)` y el intervalo es  
+```{r}
+( 84.3 + qnorm(.005, lower.tail = FALSE)*sqrt(144/15) )
+( 84.3 - qnorm(.005, lower.tail = FALSE)*sqrt(144/15) )
+```
+
+2. En el archivo `EXA_C06_S02_04.csv` se listan los valores de actividad (micromoles por minuto por gramo de tejido) de cierta enzima medida en tejido normal gástrico de 35 pacientes con carcinoma gástrico. Se quiere estimar el intervalo de confianza a 95 por ciento de confianza del promedio de la población.  Suponga que conocemos la varianza de la población es .36. No es necesario suponer que los valores de muestreo siguen una distribución normal, ya que el número de muestras es suficientemente grande 
+
+```{r}
+ensyme <- read_csv("DataSets/ch06_all/EXA_C06_S02_04.csv")
+#
+CI(ensyme$ACTIVITY, ci=0.95)
+# Estimado con función de rcompanion
+groupwiseMean(ACTIVITY ~ 1,
+              data   = ensyme,
+              conf   = 0.95,
+              digits = 3)
+# estimado con una prueba t
+t.test(ensyme$ACTIVITY, alternative = c("two.sided"), var.equal = .36, conf.level = 0.95)
+```
+
+## La distribución t
+Hasta ahora hemos estabecido los procedimientos par aestimar el intervalo de confianza de un proceso de muestreo, y en dicho proceso se ha dado por conocida la varianza de la población de donde se extrajeron las muestras.  Por lo geenral si no se tiene el promedio de la población es muy posible que tampoco se conozca a varianza, y por lo tanto se tendrá que estimar de la muestra. lo que genera un problema. Entre las herramientas con las que contamos para resolver este problema se sabe que la estadística  
+$$ z=\frac{\bar{x}-\mu}{\sigma/\sqrt{n}} $$
+está distribuida normalmente cuando la población está distribuida normalmente o que por lo menos está distribuida de forma parcialmente normal para valores grandes de $n$, independientemente de la distribución de la población. Se puede usar la desviación estándar de la muestra  
+$$ s = \sqrt{\sum_i^n{(x_i - \bar{x})^2}/(n-1)} $$
+para reemplazar $\sigma$.  Cuando la muestra es grande, mayor a 30, el parámetro muestral $s$ se considera bueno.  Se sabe que para muestras de buen tamaño se tiene la *Distribución $t$ de Student* o distribución $t$  
+$$  t= \frac{\bar{x}-\mu}{s/\sqrt{n}} $$  
+
+## Propiedades de la distribución t    
+
+1. Tiene promedio $0$.  
+2. Es simétrica al promedio.  
+3. Por lo general tiene una varianza mayor que $1$, pero la varianza se aproxima a $1$ cuando el tamaño de la muestra se hace grande. Y por lo general para $df$ grados de libertad, la varianza de la $t$ es $(n-1)/(n-3)$ para $n>3$.  
+4. El rango de la variable $t$ va de $-\infty$ a $\infty$.  
+5. La distribución $t$ en realidad es una familia de distribuciones que tienen diferentes distribuciones para diferentes drados de libertad ($df$).  
+6. Comparado con la distribución normal la $t$ tiene un máximo central más bajo y cuerpo cntral más angosto y las colas mas anchas.  
+7. La distribución $t$ tiene a la distribución normal para $(n-1) \rightarrow \infty$.  
+
+```{r}
+curve(dnorm(x, sd = 1), from = -4.5, to = 4.5, main = "Distribución Normal y t")
+curve(dt(x, df = 2), col = 4, from = -4.5, to = 4.5, add = TRUE)
+curve(dt(x, df = 3), col = 4, lty = 2, from = -4.5, to = 4.5, add = TRUE)
+curve(dt(x, df = 5), col = 4, lty = 2, from = -4.5, to = 4.5, add = TRUE)
+abline(v=0, lty = 2, col = 3)
+abline(v=-2, col = 2)
+abline(v=2, col = 2)
+```
+
+## Intervalo de confianza usando $t$  
+
+El procedimiento general para estimar los intervalos de confianza no cambia al usar la distribución $t$ en lugar de la normal. Se usa el mismo algoritmo  
+$$ \verb+estimador+ \pm (\verb+coeficiente de fiabilidad+) \times (\verb+error estándar+) $$  
+La diferencia es el origen para el coeficiente de fiabilidad, que en este caso se obtiene de una función $t$.  Para una muestra de una distribución normal, con varianza desconocida el intervalo de confianza del $100(1-\alpha)$ por ciento para el promedio de la población, está dado por  
+$$  \bar{x} \pm t_{(1-\alpha/2)}\frac{s}{\sqrt{n}}  $$  
+
+## Ejemplos  
+
+1. Maffulli et al. estudiaron la efectividad de terapias que limitan carga y movilidad del tobillo, como seguimiento al tratamiento a ruptura del tendón de Aquiles, midieron la fuerza en un músculo del tobillo. En 19 sujetos, la fuerza promedio isométrica medida en el tobillo intervenido (en Newtons) fue de 250.8 con una desviación estándar de 130.9.  Si suponemos que la muestra aleatoria fue tomada de una población de sujetos control. Queremos usar estas medidas de la muestra para estimar la fuerza isométrica de la población después de una cirugía.  
+*Respuesta* Vamos a estimar un intervalo de confianza a 95 por ciento de confianza. Tenemos $\bar{x} = 250.8$, y $s=130.9$, primero estimamos el error estándar $se = s/\sqrt{n}$  
+```{r}
+# Intervalo conf. con t
+muestra.n <- 19
+muestra.sd <- 130.9
+muestra.se <- muestra.sd/sqrt(muestra.n)
+# coef. conf.
+alpha = 0.05
+grados.lib = muestra.n - 1
+(t.score = qt(p=alpha/2, df = grados.lib, lower.tail=FALSE))
+# Intervalo
+marg.error <- t.score * muestra.se
+#
+lim.bajo <- 250.8 - marg.error
+lim.alto <- 250.8 + marg.error
+#
+print(c(lim.bajo, lim.alto))
+```
+
+2. (Daniel6.3.1) Use la distribución t para estimar el factor de fiabilidad para el intervalo de confianza usando los siguientes niveles de confianza y tamaños de muestra  
+
+$$ \begin{array}{lcccc}
+               & a & b & c & d \\   
+\hline  
+{\verb+Nivel de confianza+} & .95 & .99 & .90 & .95 \\  
+{\verb+Tamaño de muestra+} & 15 & 24 & 8 & 30 \\
+\hline
+\end{array} $$
+
+```{r}
+# a
+muestra.n <- 15
+alpha = 0.05
+grados.lib = muestra.n - 1
+(t.score = qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
+
+#b
+muestra.n <- 24
+alpha = 0.01
+grados.lib = muestra.n - 1
+(t.score = qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
+
+#c
+muestra.n <- 8
+alpha = 0.1
+grados.lib = muestra.n - 1
+(t.score = qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
+
+#d
+muestra.n <- 30
+alpha = 0.05
+grados.lib = muestra.n - 1
+(t.score = qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
+```
+
+## Intervalo de confianza para la diferencia entre el promedio de dos poblaciones  
+
+Frecuentemente es necesario estimar el intervalo de confianza de la diferencia del promedio de dos poblaciones.  De cada una de las poblaciones se extrae una muestra aleatoria, y de estas muestras se estima la media $\bar{x}_1$ y $\bar{x}_2$ y que la diferencia $\bar{x}_1-\bar{x}_2$ es el estimador para $\mu_1 - \mu_2$. La varianza del estimador es estimada por $(\sigma_1^2/n_1)+(\sigma_2^2/n_2)$. Cuando las varianzas de las poblaciones se conocen el intervalo de confianza al $100(1-\alpha)$ por ciento de la diferencia $\mu_1-\mu_2$ es  
+
+$$ (\bar{x}_1 - \bar{x}_2) \pm z_{1-\alpha/2} \sqrt{ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} } $$
+
+**La distribución t y la diferencia entre promedios** Cuando se quiere estimar la diferencia entre los promedios de dos poblaciones y no se conoce la varianza de las poblaciones, es necesario estimar la varianza de las poblaciones a partir de las varianzas de las muestras y se puede usar la distribución t para estimar el valor de confiabilidad. En lo general se tendrán dos posibilidades, que las varianzas de las poblaciones que se estudian tengan igual o diferentes varianzas.
+
+*Para varianzas iguales* Si se puede suponer que la varianza de las poblaciones es igual y se quiere estimar la diferencia del promedio de las poblaciones se puede usar lo que se conoce como un *valor combinado* de las varinazas (pooled estimte).  
+El valor combinado se estima por la siguiente equación  
+$$ s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 -2} $$  
+El error estándar del valor combinado es  
+$$ s_{\bar{x}_1 - \bar{x}_2} = \sqrt{ \frac{s_p^2}{n_1} + \frac{s_p^2}{n_2} } $$
+y el intervalo de confianza al $100(1-\alpha)$ por ciento para $\mu_1 - \mu_2$ está dado por  
+$$ (\bar{x}_1 - \bar{x}_2) \pm t_{(1-\alpha/2)} \sqrt{ \frac{s_p^2}{n_1} + \frac{s_p^2}{n_2} }  $$
+
+El número de grados de libertad para estimar el valor de t para usar en la estimación del intervalos esta dado por $df = n_1 + n_2 -2$.  
+*ejemplo* El propócito del estudio de Granholm et al. fue determinar la efectividad del tratamiento integrado por el programa ambulatorio integrado de doble diagnóstico para pacientes de salud mental. Los investigadores estaban evaluando problemas de abuso de sustancias entre pacientes con desorden mental severo.  Una tabla retrospectiva de revisión se llevó a cabo en 50 pacientes consecutivos referidos a un programa. Una de las variables usadas en dicho programa fue el número de días de internamiento por el desorden psiquiátrico durante el año que siguió al programa.  Entre 18 pacientes con esquizofrenia, el promedio el numero promedio de días de tratamiento fue de 4.7 con una desviación estándar de 9.3. Para 10 pacientes con desorden bipolar el promedio de días de tratamiento psiquiátrico fue de 8.8 con desviación estándar de 11.5. Queremos construir un intervalo de confianza del 95 por ciento de la diferencia entre los promedios de estas poblaciones.  
+
+```{r}
+# Intervalo conf. con t
+# población 1
+muestra.n1 <- 18
+muestra.sd1 <- 9.3
+# población 2
+muestra.n2 <- 10
+muestra.sd2 <- 11.5
+# desviación combinada
+sd_p <- ( (muestra.n1 - 1)*muestra.sd1^2 + (muestra.n2 - 1)*muestra.sd2^2 )/(muestra.n1 + muestra.n2 - 2)
+# error estándar
+serr_p <- sqrt( sd_p/muestra.n1 + sd_p/muestra.n2)
+# coef. conf.
+alpha = 0.05
+grados.lib = muestra.n1 + muestra.n2 - 2
+(t.score = qt(p=alpha/2, df = grados.lib, lower.tail=FALSE))
+# Intervalo
+marg.error <- t.score * serr_p
+#
+lim.bajo <- (4.7 - 8.8) - marg.error
+lim.alto <- (4.7 - 8.8) + marg.error
+#
+print(c(lim.bajo, lim.alto))
+```
+
+
+## Estimación del tamaño de muestra para el cálculo de la media  
+
+La estimación del tamaño de la muestra a obtener para resolver una medida, es desde el inicio del proyecto un tema fundamental de suma importancia. Una muestra muy grande resulta en un uso excesivo de recursos y una muestra muy pequeña puede no tener el poder estadístico necesario para determinar un resultado fiable.
+
+El objetivo de la estimación en estadística es obtener intervalos estrechos que resulten en estimaciones más precisas. una forma de darnos cuenta lo los elementos necesarios es analizar los componentes usados para estimar el intervalo de confianza.  
+$$ (\verb+coeficiente de fiabilidad+) \times (\verb+error estándar+) $$  
+
+
+la extensión total del intervalo de confianza es dos veces este factor, y este parámetro se puede entender como el estimador del margen de error. Para un error estándar, incrementar la fiabilidad, implica un coeficiente de fiabilidad mayor, pero esto resulta en un intervalo más ancho.  Cómo el margen de error está dado por $\sigma/\sqrt{n}$ y $\sigma$ es constante para una población, esto implica y la única forma de reducir el error estándar es adquiriendo una muestra mayor $n$ más grande.  
+Supongamos que queremos un intervalo que se extienda $d$ unidades a cada lado del estimador  
+$$ d = (\verb+coeficiente de fiabilidad+) \times (\verb+error estándar+) $$
+Si el muestreo se toma con sustitución de una población infinita, o de una población suficientemente grande, que permita ignorar la corrección de población finita, la ecuación para $d$ es  
+$$ d = z\frac{\sigma}{\sqrt{n}} $$  
+
+Que si la resolvemos para la variable $n$ resulta en  
+
+$$ n = \frac{z^2\sigma^2}{d^2} $$
+Si el muestreo se toma sin sustitución de una población infinita, o de una población suficientemente grande, la ecuación que incluye la corrección de población finita es  
+
+$$ d = z\frac{\sigma}{\sqrt{n}}\sqrt{\frac{N-n}{N-1}}  $$
+que al resolver para $n$ es igual a  
+$$ n = \frac{Nz^2\sigma^2}{d^2(N-1) + z^2\sigma^2} $$
+Cuando la corrección para población finita puede ser ignorada está última ecuación se reduce a al anterior para $n$.  
+
+**Estimación de** $\sigma^2$ estas fórmulas para la estimación de el tamaño de la muestra, requieren del valor de $\sigma$ que como ya se dijo antes es una variable que por los general es desconocida.  Por lo tanto la varianza poblacional $\sigma^2$ se tiene que estimar de alguna forma.   
+1. Por medio de alguna estudio *piloto*  
+2. Estimados de $\sigma^2$ se pueden tener de otros estudios similares.  
+3. Si la población de donde se esta tomando la muestra es normal o aproximadamente normal y se conoce el rango de la población la desviación estándar se puede estimar a partir del rango $R$ que es aproximadamente 6 veces la desviación estándar $\sigma \approx R/6$.  
+
+## Estimación del tamaño de muestra para estimaciones de proporciones  
+Cuando se está trabajando con estimación de proporciones de una población y el muestreo se toma sin sustitución de una población infinita, o de una población suficientemente grande, y no es necesario incluir la corrección de población finita el tamaño de muestra para un intervalo de una proporción es  
+$$ n = \frac{z^2pq}{d^2}  $$  
+
+con $q = (1-p) $
+Y si la correción de población finita no se puede ignorar  
+$$ n = \frac{Nz^2pq}{d^2(N-1) + z^2pq} $$
+Ambas fórmulas hacen uso de $p$ que representa la proporción de la población, y es una variable que es desconocida. Como en el caso de $\sigma$ Se puede hacer un estudio piloto para hacer una estimación de este parámetro. Y en ocasiones se tiene una idea de la proporción máxima de la población, y en eses caso se puede usar como el valor de $p$. O en un caso dado se puede tener un valor de $p$ blanco  que se quiere estudiar.
+
+## El intervalo de confianza para la varianza de una distribución distribuida normalmente  
+
+**Estimación puntual de la varianza** Como ya hemos comentado, para tner un bune estimador del valor central de un parámetro poblacional, este debe estar estimado libre de tendencias. Proponemos que un buen estimador de la varianza es el valor esperado para la varianza de la muestra $E(s^2) = \sigma^2$. Los dos valores de dispersión que conocemos son
+
+$$ \sigma^2 = \frac{\sum(x_i - \mu)^2}{N} \; y \; S^2 = \frac{\sum(x_i - \mu)^2}{N-1} $$  
+Si se estima el promedio de las varianzas de todas las posibles muestras de tamaño $n$ tomadas de una población se llega a la estimación de $s^2 = \sum(x_i - \bar{x})^2/(n-1)$.  
+
+
+## La distribución Chi-cuadrada
+
+Se tiene que para una distribución normal para una serie de muestras la cantidad $(n-1)s^2/\sigma^2$ sigue una distribución llamada *chi-cuadrada* $\chi^2$, con $n-1$ grados de libertad.  
+Para estimad un intervalo de confianza de la varianza poblacional, se puede usar esta distribución, y un intervalo $100(1-\alpha)$ pos ciento de la varianza se puede estimar a partir de 
+$$ \chi_{\alpha/2}^2 < \frac{(n-1)s^2}{\sigma^2} <\chi_{1-(\alpha/2)}^2 $$  
+que resulta en  
+$$ \frac{(n-1)s^2}{\chi_{1- (\alpha/2)}^2} < \sigma^2 < \frac{(n-1)s^2}{\chi_{\alpha/12}^2} $$  
+
+```{r}
+curve(dchisq(x, df = 1), from = 0, to = 20, main = "Distribución chi-2")
+curve(dchisq(x, df = 2), from = 0, to = 20, col = 2, add = TRUE)
+curve(dchisq(x, df = 3), from = 0, to = 20, col = 3, add = TRUE)
+curve(dchisq(x, df = 4), from = 0, to = 20, col = 4, add = TRUE)
+curve(dchisq(x, df = 5), from = 0, to = 20, col = 5, add = TRUE)
+```
+
+**Ejemplo** En un ejemplor de la efectividad de la dieta libre de gluten en parientes directos de pacientes con diabetes tipo-I, Hummel et al. pusieron a 7 sujetos a una dieta libre de gluten por 12 meses. Antes de la dieta, tomaron medidas de base de varios anticuerpos y autoanticuerpos, uno de ellos relacionado con diabetes el autoanticuerpo relacionado a insulina (IAA). Los niveles de IAA se midieron por medio de ensayos de radiobinding. Los niveles base de IAA de los siete sujetos en unidades base de IAA son:  
+$$ 9.7, 12.3, 11.2, 5.1, 24.8, 14.8, 17.7 $$
+Con estos datos queremos estimar la varianza de IAA en unidades de IAA de la población de donde se tomó esta muestra y construir el intervalo de confiannza al $95$ por ciento $(\alpha = .05)$ de dicha estimación.  
+Vamos a escribir una función para estimar intervalos de confianza usando la función `qchisq(z, df)` de R, que estima la distribución $\chi^2$, y la expresión para el intervalo:    
+$$ \frac{(n-1)s^2}{\chi_{1- (\alpha/2)}^2} < \sigma^2 < \frac{(n-1)s^2}{\chi_{\alpha/12}^2} $$
+*Respuesta*
+```{r}
+# Función "CI_sig" para estimar el intervalo de conviaza para la Varianza, a partir de una 
+# muestra tomada de una población que se asume está distribuída normalmente.
+#
+CI_sig <- function(x,alpha) {
+  sd_x <- sd(x)
+  n_x <- length(x)
+  lbs <- sqrt((n_x-1)*sd_x^2/qchisq((1-alpha/2), (n_x-1)))
+  las <- sqrt((n_x-1)*sd_x^2/qchisq(alpha/2, (n_x-1)))
+  print(c("Desviación estandar estimada"))
+  print(c(sd_x))
+  print(c("Intervalo de confianza de la desviación estándar"))
+  print(c(lbs, las))
+}
+
+# Ejemplo de Hummel
+IAA <- c(9.7,12.3,11.2,5.1,24.8,14.8,17.7)
+CI_sig(IAA, .05)
+```
+**Ejemplo** Veinte muestras de aire tomadas en el mismo lugar a lo largo de 6 meses mostraron las siguientes cantidades de partículas materiales suspendidas (microgramos por metro cubico de aire):
+68 22 36 32 42 24 28 38 30 44 28 27 28 43 45 50 79 74 57 21  
+Considere estas medidas como una muestra aleatoria normalmente distribuida, y construya un intervalo de confianza al 95 por ciento de la varianza de esta población de partículas suspendidas.  
+*Respuesta*  Vamos a usar la función `CI_sig(x, alpha = 0.05)` para estimar el intervalo de confianza.  
+```{r}
+ParSus <- c(68, 22, 36, 32, 42, 24, 28, 38, 30, 44, 28, 27, 28, 43, 45, 50, 79, 74, 57, 21)
+CI_sig(ParSus, .05)
+```
+
+## Intervalo de confinaza para la proporción de las varianzas de dos poblaciones  
+Es muy común que se quieran comparara las varinazas de dos poblaciones, esto es posible usando la expresión para la proporción $\sigma_1 / \sigma_2$, es claro que si las varianzas de las dos poblaciones son iguales esta proporción será igual a 1.
+
+**La distribución F.** Bajo propiedades específicas la relación matemática $(s_1^2/\sigma_1^2)/(s_2^2/\sigma_2^2)$ sigue una distribución $F$, que depende de dos grados de libertad, uno correspondiente a $(n_1 -1)$ y el otro $(n_2 - 1)$.  Hay que mencionar que al igual que la distribución $\chi^2$, la distribución $F_{\alpha, df_1, df_2}$ no es una distribución simétrica.  
+
+```{r}
+curve(df(x, 10, 50), from = 0, to = 10, main = "Distribución F")
+curve(df(x, 10, 10), from = 0, to = 10, col = 2, add = TRUE)
+curve(df(x, 10, 5), from = 0, to = 10, col = 3, add = TRUE)
+curve(df(x, 10, 3), from = 0, to = 10, col = 4, add = TRUE)
+curve(df(x, 10, 1), from = 0, to = 10, col = 5, add = TRUE)
+```
+
+El tema de la varianza es un tema muy importante cuando se quieren sacar conclusiones de medidas de valor central por medio de muestreo. Un conclusión muy importante es que cuando las varinazas de dos poblaciones son distintas no se deben comparar los promedios de las poblaciones, ya que se puede llegar a conclusiones erróneas.  
+
+Para estimar el intervalo de confianza de la proporción de las varianzas de dos poblaciones $\sigma_1^2/\sigma_2^2$ se usa la relación  
+$$ F_{\alpha/2} < \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} < F_{1-(\alpha/2)} $$  
+que después de despejar la relación para la proporcion de las varinzas de las poblaciones resulta en  
+$$ \frac{s_1^2/s_2^2}{F_{1-(\alpha/2)}} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2/s_2^2}{F_{\alpha/2}} $$
+
+Para el caso de la estimación de la proporción de la desviación estándar de muestras de dos poblaciones se puede usar la función en R `var.test()` que además de hacer una estimación del intervalo de confianza hace una medida de la probabilidad por $F$.
+
+**Ejemplo** Allen y Gross examinaron la fuerza del flexor del dedo gordo del pie de pacientes con fascitis plantar, una condición común en pacientes con problemas musculoesqueléticos. EL tratamiento de la fascia plantar es un tratamiento costoso y muchas veces poco efectivo.  Una de las medidas de base de los paciente fue su índice de masa corporal (BMI, por sus siglas en inglés). Para 16 de las mujeres del estudio, la desviación estándar para BMI fue de 8.1 y para los cuatro hombres en el estudio, la desviación estándar fue de 5.9. Queremos considerar un intervalo de confianza al 95% para la proporción de las desviaciones estándar de las poblaciones en el estudio.  
+*Respuesta* Los datos que tenemos son, $n_1 = 16$, y $n_2 =4$ con $s_1 = 8.1$ y $s_2 = 5.9$, para los grados de libertad de la función $\chi^2$ tenemos $df_1 = n_1 -1 = 15$ y $df_2 = n_2 -1 = 3$ y usando la ecuación para la proporción de las vatianzas $\sigma_1^2/\sigma_2^2$  
+```{r}
+# Para s_1/s_2, df2 = 15, df1 = 3
+s_prop <- (8.1)^2/(5.9)^2
+# s_prop/F(.975) < sigmas < s_prop/F(.025)
+LBI <- s_prop/qf(.975, 15, 3) 
+LAI <- s_prop/qf(.025, 15, 3)
+
+print(c(LBI, LAI))
+```
+
+Para obtener los valores críticos de $F_{(1-\alpha/2), df_1, df_2}$ o $F_{\alpha/2, df_1, df_2}$ se puede usar `qf(.975, df1, df2)` o `qf(.025, df1, df2)`.  
+
+**Ejemplo** El propósito del estudio de Moneim et al. fue examinar amputaciones del dedo índice por accidentes durante competencias de laso en rodeos. Los investigadores revisaron 16 casos de amputaciones de índice. De estás, 11 fueron amputaciones totales mientras 5 fueron parciales. El tiempo de isquemia es la longitud de tiempo de suministro de oxígeno insuficiente al índice amputado.  El tiempo de isquemia (en horas) para los sujetos que experimentaron amputación completa fueron:  
+`4.67, 10.5, 2.0, 3.18, 4.00, 3.5, 3.33, 5.32, 2.0, 4.25, 6.0`  
+Para las víctimas de amputación parcial, los tiempos de isquemia fueron:  
+`3.0, 10.25, 1.5, 5.22, 5.0`  
+Considere los dos grupos de datos como normalmente distribuidos y que representan a dos poblaciones independientes y construya el intervalo de confianza al 95% de la proporcion de las varianzas de las dos poblaciones.  
+*Respuesta* Se puede usar la fincion `var.test` de la librería de R o la pequeña función `PropVar_CI`
+
+```{r}
+com_am <- c(4.67, 10.5, 2.0, 3.18, 4.00, 3.5, 3.33, 5.32, 2.0, 4.25, 6.0)
+inc_am <- c(3.0, 10.25, 1.5, 5.22, 5.0)
+
+var.test(inc_am, com_am, conf.level = .95)
+```
+
+O equivalentemente usando la función `PropVar_CI` descrita a continuación:  
+```{r}
+# Proportion of Variance for two populations confidence interval
+# This small function estimates the confidence interval for the 
+# proportion of the variances estimated form two samples
+# 
+
+PropVar_CI <- function(x, y, alpha = 0.05) {
+  v_x <- var(x)
+  n_x <- length(x)
+  v_y <-var(y)
+  n_y <- length(y)
+  if (v_x > v_y) {
+    pro_v <- v_x/v_y
+    in_lim <- pro_v/qf((1-alpha/2), (n_x - 1), (n_y - 1))
+    su_lim <- pro_v/qf((alpha/2), (n_x - 1), (n_y - 1))
+  } else {
+    pro_v <- v_y/v_x
+    in_lim <- pro_v/qf((1-alpha/2), (n_y - 1), (n_x - 1))
+    su_lim <- pro_v/qf((alpha/2), (n_y - 1), (n_x - 1))
+  }
+  result <- IC_hydro
+  return(result)
+}
+
+com_am <- c(4.67, 10.5, 2.0, 3.18, 4.00, 3.5, 3.33, 5.32, 2.0, 4.25, 6.0)
+inc_am <- c(3.0, 10.25, 1.5, 5.22, 5.0)
+res <- PropVar_CI(com_am, inc_am, alpha = 0.05)
+print(c("Límite inferior", "Límite superior"))
+print(res)
+```
+
+

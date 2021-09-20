@@ -1,5 +1,5 @@
 ---
-title: "5 Estimación"
+title: "Estimación"
 author: "F. A. Barrios<br>ENES Juriquilla, UNAM<br>"
 date: "`r Sys.Date()`"
 output:
@@ -42,7 +42,7 @@ Se encontrará que de cada parámetro que se discuta, se pueden estimar dos tipo
 ## Estimador  
 Nos hemos referido a un valor único estimado como un estimado único, a esto nos referiremos como un estimador,  una fórmula para estimar un valor puntual de una variable aleatoria.  
 **Estimador** Un estimador, digamos, T, de un parámetro $\theta$ se dice que no está sesgado cuando $E(T)=\theta$.    
-El símbolo $E(T)$ se conoce como el *valor esperado de T*, para una población finita, $E(T)$ se obtienetomendo el valor promedio de $T$ de todas las muestras posibles de un tamaño dado que se puedan extraer de la población de interés. Es decir $E(T) = \mu_T$.  Como ya lo comentamos, el promedio de la distribución muestral de una variable $\bar{x}$ es igual a $\mu$, sabemos que $\bar{x}$ es un estimador no-sesgado de $\mu$.  
+El símbolo $E(T)$ se conoce como el *valor esperado de T*, para una población finita, $E(T)$ se obtiene tomando el valor promedio de $T$ de todas las muestras posibles de un tamaño dado que se puedan extraer de la población de interés. Es decir el valor esperado de $T$, es igual $E(T) = \mu_T$ al promedio de $T$ en la población.  Como ya lo comentamos, si el promedio de la distribución muestral de una variable $\bar{x}$ es igual al promedio $\mu$, sabemos que $\bar{x}$ es un estimador no-sesgado de $\mu$ en la población.  
 
 ## Población muestral y población blanco  
 **Definición** La población muestral es aquella de donde de extraen las muestras.  
@@ -50,7 +50,7 @@ El símbolo $E(T)$ se conoce como el *valor esperado de T*, para una población 
 Estas poblaciones pueden o no, ser la misma población. La estadística nos permite hacer inferencias de las poblaciones muestreadas, suponiendo que el muestreo fue hecho correctamente.  
 
 ## Intervalo de confianza para el promedio  
-En el tema anterior usamos el hecho de que una distribución normal tipificada es aquella con promedio $\mu=0$ y desviación estándar $\sigma = 1$ en donde para una muestra el promedio muestral $\mu_{\bar{x}}$ lo tomamos igual al promedio de la población $\mu$, y la varianza $\sigma_{\bar{x}}^2$ igual a $\sigma^2/n$. En donde para una distribución normal tipificada el 95% de los valores de la distribución de $\bar{x}$ están localizados dentro de los valores de una desviación estándar $\sigma_{\bar{x}}$ a la izquierda de cero (promedio $\bar{x}$) y a la derecha del cero otra desviación estándar.  
+En el tema anterior usamos el hecho de que una distribución normal tipificada es aquella con promedio $\mu=0$ y desviación estándar $\sigma = 1$ en donde para una muestra el promedio muestral $\mu_{\bar{x}}$ lo tomamos igual al promedio de la población $\mu$, y la varianza $\sigma_{\bar{x}}^2$ será igual a $\sigma^2/n$. En donde para una distribución normal tipificada resultará que el 95% de los valores de la distribución de $\bar{x}$ están localizados dentro de los valores de una desviación estándar $\sigma_{\bar{x}}$ a la izquierda de cero (promedio $\bar{x}$) y a la derecha del cero otra desviación estándar.  
 
 ```{r}
 curve(dnorm, from = -4.5, to = 4.5, main = "Distribución Normal Estándar")
@@ -59,7 +59,7 @@ abline(v= 2, lty = 2, col = 2)
 ```
 
 ## Componentes para estimar el intervalo  
-Cuando se estima un intervalo de confianza de una estadística que describe a un parámetro de la población se tiene, el valor central, el valor puntual de $\mu$ estimado, el valor al que el ancho del intervalo está canlulado, por lo general un factor de 2 errores estándar. Un valor $z$ conocido como el coeficiente de fiabilidad  
+Cuando se estima el intervalo de confianza de una estadística que describe a un parámetro de la población se cuenta con el valor central, un valor puntual de $\mu$ estimado, el valor al cual el ancho del intervalo está calculado, por lo general un factor de 2 errores estándar a cada lado del valor central. Estimado con un valor $z$ conocido como el `coeficiente de fiabilidad`  
 
 $$ \verb+estimador+ \pm (\verb+coeficiente de fiabilidad+) \times (\verb+error estándar+)$$  
 
@@ -67,25 +67,25 @@ En particular cuando el muestreo se hace de una población distribuida normalmen
 
 $$ \bar{x} \pm z_{(1 - \alpha/2)}\sigma_{\bar{x}} $$  
 
-en donde $z_{(1 - \alpha/2)}$ es el valor,a la izquierda, de $z$ en donde queda $1-\alpha/2$ y a la derecha $\alpha/2$ de la curva bajo la gráfica.  
+en donde $z_{(1 - \alpha/2)}$ es el valor,a la izquierda, de $z$ en donde queda $1-\alpha/2$ y a la derecha $\alpha/2$ del área bajo la curva de la gráfica de probabilidad (escala dada por el corte de probabilidad).  
 
 ## Interpretación del Intervalo de Confianza  
 
 La cantidad $1-\alpha$ en el caso más común $.95$ es llamado el *coeficiente de confianza* (o nivel de fiabilidad), y el intervalo $\bar{x} \pm z_{(1 - \alpha/2)}\sigma_{\bar{x}}$ es llamado el intervalo de confianza para $\mu$.
-*Interpretación práctica* Cuando un muestreo es tomado de una población distribuida normalmente con desviación estándar conocida, estamos $100(1-\alpha)$ por ciento confiados de que un único intervalo $\bar{x} \pm z_{(1 - \alpha/2)}\sigma_{\bar{x}}$, contengael promedio $\mu$ de la población.  
+*Interpretación práctica* Cuando un muestreo es tomado de una población distribuida normalmente con desviación estándar conocida, estamos $100(1-\alpha)\%$ confiados de que un único intervalo $\bar{x} \pm z_{(1 - \alpha/2)}\sigma_{\bar{x}}$, contenga el promedio $\mu$ de la población.  
 
-**Precisión** La cantidad obtenida al multiplicar el coeficiente de fiabilidad por el error estándar, es llamado la precisión de la estimación. Esta cantidad también es llamad **margen de error**.  
+**Precisión** La cantidad obtenida al multiplicar el *coeficiente de fiabilidad* por el error estándar, es llamado la precisión de la estimación. Esta cantidad también es llamad **margen de error**.  
 
-## Ejemplos
+## Ejemplos  
 
-1. Un fisioterapeuta deseaba estimar, con una confianza del 99 por ciento, la fuerza máxima de un músculo en particular, en un grupo de individuos.  Está dispuesto a aceptar que los registros de fuerza muscular están aproximadamente distribuidos en forma normal con una varianza de $144$.  Una muestra de $15$ sujetos que participaron en este experimento resultaron en un promedio de fuerza de $84.3$.
+1. Un fisioterapeuta deseaba estimar, con una confianza del 99 por ciento, la fuerza máxima de un músculo en particular, de un grupo de individuos.  Está dispuesto a aceptar que los registros de fuerza muscular están aproximadamente distribuidos en forma normal con una varianza de $144$.  Una muestra de $15$ sujetos que participaron en este experimento resultaron en un promedio de fuerza de $84.3$.  
 *Respuesta* Los elementos son: tenemos $\alpha=.01$, $z_{(1-.01/2)} \rightarrow \alpha/2 = .005$ si usamos R para obtener el valor de $z$ para la condición a la derecha de $\alpha/2 = .005$ usamos `qnorm(.005, lower.tail = FALSE)` y el intervalo es  
 ```{r}
 ( 84.3 + qnorm(.005, lower.tail = FALSE)*sqrt(144/15) )
 ( 84.3 - qnorm(.005, lower.tail = FALSE)*sqrt(144/15) )
 ```
 
-2. En el archivo `EXA_C06_S02_04.csv` se listan los valores de actividad (micromoles por minuto por gramo de tejido) de cierta enzima medida en tejido normal gástrico de 35 pacientes con carcinoma gástrico. Se quiere estimar el intervalo de confianza a 95 por ciento de confianza del promedio de la población.  Suponga que conocemos la varianza de la población es .36. No es necesario suponer que los valores de muestreo siguen una distribución normal, ya que el número de muestras es suficientemente grande 
+2. En el archivo `EXA_C06_S02_04.csv` se listan los valores de actividad (micromoles por minuto por gramo de tejido) de cierta enzima medida en tejido normal gástrico de 35 pacientes con carcinoma gástrico. Se quiere estimar el intervalo de confianza a 95 por ciento del promedio de la población.  Suponga que conocemos que la varianza de la población es .36. No es necesario suponer que los valores de muestreo siguen una distribución normal, ya que el número de muestras es suficientemente grande 
 
 ```{r}
 ensyme <- read_csv("DataSets/ch06_all/EXA_C06_S02_04.csv")
@@ -101,7 +101,7 @@ t.test(ensyme$ACTIVITY, alternative = c("two.sided"), var.equal = .36, conf.leve
 ```
 
 ## La distribución t
-Hasta ahora hemos estabecido los procedimientos par aestimar el intervalo de confianza de un proceso de muestreo, y en dicho proceso se ha dado por conocida la varianza de la población de donde se extrajeron las muestras.  Por lo geenral si no se tiene el promedio de la población es muy posible que tampoco se conozca a varianza, y por lo tanto se tendrá que estimar de la muestra. lo que genera un problema. Entre las herramientas con las que contamos para resolver este problema se sabe que la estadística  
+Hasta ahora hemos establecido los procedimientos par aestimar el intervalo de confianza de un proceso de muestreo, y en dicho proceso se ha dado por conocida la varianza de la población de donde se extrajeron las muestras.  Por lo geenral si no se tiene el promedio de la población es muy posible que tampoco se conozca a varianza, y por lo tanto se tendrá que estimar de la muestra. lo que genera un problema. Entre las herramientas con las que contamos para resolver este problema se sabe que la estadística  
 $$ z=\frac{\bar{x}-\mu}{\sigma/\sqrt{n}} $$
 está distribuida normalmente cuando la población está distribuida normalmente o que por lo menos está distribuida de forma parcialmente normal para valores grandes de $n$, independientemente de la distribución de la población. Se puede usar la desviación estándar de la muestra  
 $$ s = \sqrt{\sum_i^n{(x_i - \bar{x})^2}/(n-1)} $$
@@ -405,7 +405,7 @@ PropVar_CI <- function(x, y, alpha = 0.05) {
     in_lim <- pro_v/qf((1-alpha/2), (n_y - 1), (n_x - 1))
     su_lim <- pro_v/qf((alpha/2), (n_y - 1), (n_x - 1))
   }
-  result <- IC_hydro
+  result <- c(in_lim, su_lim)
   return(result)
 }
 

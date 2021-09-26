@@ -44,6 +44,11 @@ Tema 4 [Teoría del Muestreo](http://fabarrios.github.io/ProbEstad/DistribMuestr
 
 Tema 5 [Teoría de Estimación](https://fabarrios.github.io/ProbEstad/Estimacion/Estimacion.html).  
 
+Tema 6 Prueba de Hipótesis.  
+
+Tema 7 Correolación y Regresíon.  
+
+Tema 8 ANOVA.
 
 [Notas](https://fabarrios.github.io/ProbEstad/Notas/Notas).  
 

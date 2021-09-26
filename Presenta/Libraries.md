@@ -29,4 +29,5 @@ The easiest way to install is in RStudio, go to the Packages screen (at the righ
 | HSAUR3 | https://cran.r-project.org/web/packages/HSAUR/HSAUR.pdf |  
 | scales | https://scales.r-lib.org/ |  
 | survival | https://cran.r-project.org/web/packages/survival/survival.pdf |  
+| WRS2 | https://rdrr.io/cran/WRS2/ |  
 

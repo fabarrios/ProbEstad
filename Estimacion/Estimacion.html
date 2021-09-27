@@ -7,7 +7,7 @@
 
         <meta name="author" content="F. A. Barrios ENES Juriquilla, UNAM " />
     
-        <meta name="date" content="2021-09-20" />
+        <meta name="date" content="2021-09-26" />
     
     <title>Estimación</title>
 
@@ -217,7 +217,7 @@
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
                   <p class="author"><span class="glyphicon glyphicon-user"></span> F. A. Barrios<br>ENES Juriquilla, UNAM<br></p>
-                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2021-09-20</p>
+                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2021-09-26</p>
           </div>
    </div>
      
@@ -281,12 +281,12 @@ Estas poblaciones pueden o no, ser la misma población. La estadística nos perm
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>( <span class="fl">84.3</span> <span class="sc">+</span> <span class="fu">qnorm</span>(.<span class="dv">005</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">144</span><span class="sc">/</span><span class="dv">15</span>) )</span></code></pre></div>
 <pre><code>[1] 92.28092</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>( <span class="fl">84.3</span> <span class="sc">-</span> <span class="fu">qnorm</span>(.<span class="dv">005</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">144</span><span class="sc">/</span><span class="dv">15</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>( <span class="fl">84.3</span> <span class="sc">+</span> <span class="fu">qnorm</span>(.<span class="dv">005</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">144</span><span class="sc">/</span><span class="dv">15</span>) )</span></code></pre></div>
 <pre><code>[1] 76.31908</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>En el archivo <code>EXA_C06_S02_04.csv</code> se listan los valores de actividad (micromoles por minuto por gramo de tejido) de cierta enzima medida en tejido normal gástrico de 35 pacientes con carcinoma gástrico. Se quiere estimar el intervalo de confianza a 95 por ciento del promedio de la población. Suponga que conocemos que la varianza de la población es .36. No es necesario suponer que los valores de muestreo siguen una distribución normal, ya que el número de muestras es suficientemente grande</li>
+<li>En el archivo <code>EXA_C06_S02_04.csv</code> se listan los valores de actividad (micromoles por minuto por gramo de tejido) de cierta enzima medida en tejido normal gástrico de 35 pacientes con carcinoma gástrico. Se quiere estimar el intervalo de confianza a 95 por ciento del promedio de la población. Suponga que conocemos que la varianza de la población es 0.36. No es necesario suponer que los valores de muestreo siguen una distribución normal, ya que el número de muestras es suficientemente grande</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ensyme <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;DataSets/ch06_all/EXA_C06_S02_04.csv&quot;</span>)</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ensyme <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;DataSets/ch06_all/EXA_C06_S02_04.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">CI</span>(ensyme<span class="sc">$</span>ACTIVITY, <span class="at">ci=</span><span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>    upper      mean     lower 

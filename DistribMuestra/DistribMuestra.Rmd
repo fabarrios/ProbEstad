@@ -123,6 +123,7 @@ y
 $$ z_c = \frac{ \frac{x - .5}{n} - p}{ \sqrt{pq/n} }, \; para \; x > np $$  
 
 **Ejemplo** Los resultados de una elección mostraron que determinado candidato obtuvo 46% de los votos. Determine la probabilidad de que en una encuesta realizada a (a) 200 y (b) 1000 personas elegidas al azar de la población de votantes se haya obtenido una mayoría de votos a favor de este candidato.  
+
 *Respuesta* Tenemos que para que tenga la mayoría es el caso de $p > 0.5$, más "uno", para una población con $\hat{p} = .46$ con una muestra de $200$ lo calculamos con $\frac{1}{2n}$ que resulta en $0.0025$ para $n=200$ la probabilidad de una mayoría resulta en estimar $P(x \geq .5025)$ y para b se estima la mayoría con .5 más uno en una muestra de 1000, es decir: $\frac{1}{2(1000)}$ resulta en $P(x \geq .5005)$.  
 
 ```{r}
@@ -134,16 +135,34 @@ pnorm(0.5005, mean = .46, sd = sqrt(.46*(1-.46)/1000), lower.tail = FALSE)
 
 ```
 
+**Ejemplo** Resultados de la Encuesta Nacional de Salud y Nutrición, 1999-2000 (NHANES), mostraron que el 31 por ciento de los adultos estadounidenses de edades entre 20-74 son obesos (obesidad está definida con un índice de masa corporal mayor o igual a 30.0). Designaremos a esta proporción de la población como $p=.31$. Si de forma aleatoria seleccionamos a 150 individuos de esta población, cual es la probabilidad de que la proporción de la muestra que son obesos sea tan grande o más como .40?  
+
+*Respuesta* Nos piden $\hat{p} \geq .40$  $\hat{p} = .40$ y $p=.31$ con $\sigma_{\hat{p}}^2 = p(1-p)/n$  
+
+```{r}
+pnorm(.40, mean = .31, sd = sqrt(.31*.69/150), lower.tail = FALSE)
+```
+
+**Ejemplo** En un estudio del cuidado médico en mujeres afroamericanas de bajos recursos, se encontró que solo el 51 por ciento de estas mujeres contaron con cuidados prenatales adecuados. Supongamos que para una población similar de mujeres afroamericanas de bajos recursos el 51 por ciento tuvieron cuidados médicos adecuados, si 200 mujeres de esta población son seleccionadas al azar, cual es la probabilidad de que menos del 45 por ciento haya recibido cuidado prenatal adecuado?  
+
+*Respuesta* Nos preguntan la probabilidad de $P(\hat{p} \leq .45)$  
+
+```{r}
+pnorm(.45, mean = .51, sd = sqrt(.51*.49/200), lower.tail = TRUE)
+```
+
+
 ## Distribución de la muestra para la diferencia entre las proporciones de dos muestras.  
 
 Las características de la distribución para la diferencia $\hat{p_1} - \hat{p_2}$ se puede resumir de la siguiente forma; si muestras aleatorias independientes de tamaños $n_1$ y $n_2$, de variables (dicotómicas) son tomadas de dos poblaciones en donde las proporciones observadas de interés en cada población son $p_1$ y $p_2$, respectivamente, la distribución de la diferencia entre las proporciones, $\hat{p_1}-\hat{p_2}$, es aproximadamente normal con promedio  
 
 $$ \mu_{\hat{p_1}-\hat{p_2}} = p_1 - p_2 $$  
+
 y varianza  
 
 $$ \sigma_{\hat{p_1}-\hat{p_2}}^2 = \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2} $$  
-Para $n_1$ y $n_2$ grandes. Se consideran valores de $n$ para el muestreo tales que $n_1p_1, n_2p_2, n_1(1-p_1)$, y, $n_2(1-p_2)$ sean todas mayores que 5.  
-Para la construcción de la variable $z$ se tiene la transformación siguiente  
+
+Para $n_1$ y $n_2$ grandes. Se consideran valores de $n$ para el muestreo tales que $n_1p_1, n_2p_2, n_1(1-p_1)$, y, $n_2(1-p_2)$ sean todas mayores que 5. Para la construcción de la variable $z$ se tiene la transformación siguiente  
 
 $$ z = \frac{(\hat{p_1}-\hat{p_2})-(p_1 - p_2)}{\sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}} $$  
 
@@ -152,7 +171,8 @@ Si se hace un cálculo usando directamente la función `pnorm` de R, cómo puedo
 ## Ejemplos  
 
 1. Supongamos que tenemos dos poblaciones de individuos, la primera (1) tiene una condición que se considera  está relacionada con retraso mental, y la otra población (2) no experimenta dicha condición. La distribución de las calificaciones de inteligencia de ambas poblaciones se cree que están distribuidas de forma aproximadamente normal con desviación estándar de 20.  Suponga que se toma una muestra de 15 individuos de cada población y se estima el promedio de las calificaciones de inteligencia iguales a $X_1 = 92$ y $X_2 = 105$.  Si no hay una diferencia en las calificaciones verdaderas de las dos poblaciones, cuál es la probabilidad de observar una diferencia tan grande o mayor a $(X_1 - X_2)$?  
-*Respuesta* Si no hay diferencia entre los promedios de la población, la probabilidad de obtener la diferencia entre los promedios muestrales tan grande o más de 13, es  
+*Respuesta* Si no hay diferencia entre los promedios de la población, la probabilidad de obtener la diferencia entre los promedios muestrales tan grande o más de 13, es:  
+
 ```{r}
 pnorm((92 - 105), mean = 0, sd = sqrt(20^2/15 + 20^2/15), lower.tail = TRUE)
 ```
@@ -160,24 +180,13 @@ pnorm((92 - 105), mean = 0, sd = sqrt(20^2/15 + 20^2/15), lower.tail = TRUE)
 2. Suponga que se ah establecido que que para cierto tipo de usuario la longitud promedio de una visita a domicilio por un enfermero de salud pública es de 45 minutos con una desviación estándar de 15 minutos, y para un segundo tipo de usuario el promedio de la visita domiciliaria es de 30 minutos de duración con desviación estándar de 20 minutos.  Su un enfermero hace 35 visitas aleatorias a usuarios del primer tipo y 40 a usuarios del segundo tipo, cual es la probabilidad que el promedio de tiempo de visita domiciliaria entre los dos grupos sea de 20 o más minutos?  
 *Respuesta*  
 ```{r}
-pnorm( 20, mean = (45 - 30), sd = sqrt(15^2/35 + 20^2/40), lower.tail = FALSE)
+pnorm(20, mean = (45 - 30), sd = sqrt(15^2/35 + 20^2/40), lower.tail = FALSE)
 ```
 
-3. Resultados de la Encuesta Nacional de Salud y Nutrición, 1999-2000 (NHANES), mostraron que el 31 por ciento de los adultos estadounidenses de edades entre 20-74 son obesos (obesidad está definida con un índice de masa corporal mayor o igual a 30.0). Designaremos a esta proporción de la población como $p=.31$. Si de forma aleatoria seleccionamos a 150 individuos de esta población, cual es la probabilidad de que la proporción de la muestra que son obesos sea tan grande o más como .40?  
-*Respuesta* Nos piden $\hat{p} \geq .40$  $\hat{p} = .40$ y $p=.31$ con $\sigma_{\hat{p}}^2 = p(1-p)/n$  
-```{r}
-pnorm(.40, mean = .31, sd = sqrt(.31*.69/150), lower.tail = FALSE)
-```
+3. La encuesta Nacional de Salud de 1999, liberada en el 2003, se reportó que el 28 por ciento de los sujetos que se auto-identificaron como blancos, dijeron haber experimentado dolor de espalda baja durante los tres meses anteriores a la encuesta. Entre los sujetos de origen Hispano, 21 por ciento reportaron dolor de espalda baja. Supongamos que .28 y .21 son las proporciones de que las respectivas razas reporten dolor de espalda baja en los Estado Unidos.  Cuál es la probabilidad de que muestras aleatorias independientes de 100 sujetos tomados de cada población resulten en una diferencia $\hat{p_1}-\hat{p_2}$ tan grande o más que .10?  
 
-4. En un estudio del cuidado médico en mujeres afroamericanas de bajos recursos, se encontró que solo el 51 por ciento de estas mujeres contaron con cuidados prenatales adecuados. Supongamos que para una población similar de mujeres afroamericanas de bajos recursos el 51 por ciento tuvieron cuidados médicos adecuados, si 200 mujeres de esta población son seleccionadas al azar, cual es la probabilidad de que menos del 45 por ciento haya recibido cuidado prenatal adecuado?  
-*Respuesta* Nos preguntan la probabilidad de $P(\hat{p} \leq .45)$  
-```{r}
-pnorm(.45, mean = .51, sd = sqrt(.51*.49/200), lower.tail = TRUE)
-```
-
-
-5. La encuesta Nacional de Salud de 1999, liberada en el 2003, se reportó que el 28 por ciento de los sujetos que se auto-identificaron como blancos, dijeron haber experimentado dolor de espalda baja durante los tres meses anteriores a la encuesta. Entre los sujetos de origen Hispano, 21 por ciento reportaron dolor de espalda baja. Supongamos que .28 y .21 son las proporciones de que las respectivas razas reporten dolor de espalda baja en los Estado Unidos.  Cual es la probabilidad de que muestras aleatorias independientes de 100 sujetos tomados de cada población resulten en una diferencia $\hat{p_1}-\hat{p_2}$ tan grande o más que .10?  
 *Respuesta* La diferencia de los promedios de la población $\mu_{\hat{p_1} - \hat{p_2}} = .28 -.21 = .07$ y nos preguntan $P(\hat{p_1}-\hat{p_2} \geq .01)$  
+
 ```{r}
 pnorm(.10, mean = (.28-.21), sd = sqrt((.28)*(.72)/100 + (.21)*(.79)/100), lower.tail = FALSE)
 ```

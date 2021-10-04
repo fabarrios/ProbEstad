@@ -23,6 +23,7 @@ opts_chunk$set(echo=TRUE,
                warning=FALSE)
 opts_knit$set(width=75)
 ```
+
 # Distribucion de Muestras  
 La distribución de todos los valores posibles que puede tomar una "estadística", construidos a partir de muestras del mismo tamaño de muestra extraídas al azar de la misma población, es llamado la distribución de muestreo de esa "estadística", o distribución muestral.  
 
@@ -110,7 +111,8 @@ $$ z = \frac{ (\bar{X_1} - \bar{X_2}) - (\mu_1 - \mu_2) }{ \sqrt{ \frac{\sigma_1
 
 ## Distribución de la proporción muestral  
 
-Para una proporción $p$ medida de una población, se hace una estimación de las proporciones para una serie de muestras de tamaño $n$ y se calcula el promedio de las proporciones (observadas) $\hat{p}$.  Si el número de muestras es grande la distribución de la proporciones de las muestras es aproximadamente normalmente distribuida por virtud el teorema del valor central y el promedio de las proporciones $\mu_{\hat{p}}$ tenderá al valor de todas las posibles proporciones medidas de las muestras, la proporción $p$ y la varianza de la distribución $\sigma_{\hat{p}}^2$ sera igual a $pq/n$ con $q = (1-p)$y la transformada a $z$ es  
+Para una proporción $p$ medida de una población, se hace una estimación de las proporciones para una serie de muestras de tamaño $n$ y se calcula el promedio de las proporciones (observadas) $\hat{p}$.  Si el número de muestras es grande la distribución de la proporciones de las muestras es aproximadamente normalmente distribuida por virtud del teorema del valor central y el promedio de las proporciones $\mu_{\hat{p}}$ tenderá al valor de todas las posibles proporciones medidas de las muestras, la proporción $p$ y la varianza de la distribución $\sigma_{\hat{p}}^2$ será igual a $pq/n$ con $q = (1-p)$y la transformada a $z$ es  
+
 $$ z = \frac{ \hat{p} - p }{ \sqrt{ \frac{p(1-p)}{n} } } $$
 
 **Corrección para continuidad** La aproximación a la normalidad es mejorada con un ajuste para que una distribución discreta se ajuste con una continua. Se usan las transformaciones a  
@@ -120,16 +122,32 @@ y
 
 $$ z_c = \frac{ \frac{x - .5}{n} - p}{ \sqrt{pq/n} }, \; para \; x > np $$  
 
+**Ejemplo** Los resultados de una elección mostraron que determinado candidato obtuvo 46% de los votos. Determine la probabilidad de que en una encuesta realizada a (a) 200 y (b) 1000 personas elegidas al azar de la población de votantes se haya obtenido una mayoría de votos a favor de este candidato.  
+*Respuesta* Tenemos que para que tenga la mayoría es el caso de $p > 0.5$, más "uno", para una población con $\hat{p} = .46$ con una muestra de $200$ lo calculamos con $\frac{1}{2n}$ que resulta en $0.0025$ para $n=200$ la probabilidad de una mayoría resulta en estimar $P(x \geq .5025)$ y para b se estima la mayoría con .5 más uno en una muestra de 1000, es decir: $\frac{1}{2(1000)}$ resulta en $P(x \geq .5005)$.  
+
+```{r}
+# a) para P(x >= .5025)
+pnorm(0.5025, mean = .46, sd = sqrt(.46*(1-.46)/200), lower.tail = FALSE)
+
+# b) para P(x >= .5005)
+pnorm(0.5005, mean = .46, sd = sqrt(.46*(1-.46)/1000), lower.tail = FALSE)
+
+```
+
 ## Distribución de la muestra para la diferencia entre las proporciones de dos muestras.  
 
 Las características de la distribución para la diferencia $\hat{p_1} - \hat{p_2}$ se puede resumir de la siguiente forma; si muestras aleatorias independientes de tamaños $n_1$ y $n_2$, de variables (dicotómicas) son tomadas de dos poblaciones en donde las proporciones observadas de interés en cada población son $p_1$ y $p_2$, respectivamente, la distribución de la diferencia entre las proporciones, $\hat{p_1}-\hat{p_2}$, es aproximadamente normal con promedio  
-$$ \mu_{\hat{p_1}-\hat{p_2}} = p_1 - p_2 $$
+
+$$ \mu_{\hat{p_1}-\hat{p_2}} = p_1 - p_2 $$  
 y varianza  
-$$ \sigma_{\hat{p_1}-\hat{p_2}}^2 = \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n-2} $$
+
+$$ \sigma_{\hat{p_1}-\hat{p_2}}^2 = \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2} $$  
 Para $n_1$ y $n_2$ grandes. Se consideran valores de $n$ para el muestreo tales que $n_1p_1, n_2p_2, n_1(1-p_1)$, y, $n_2(1-p_2)$ sean todas mayores que 5.  
 Para la construcción de la variable $z$ se tiene la transformación siguiente  
+
 $$ z = \frac{(\hat{p_1}-\hat{p_2})-(p_1 - p_2)}{\sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}} $$  
-Si se hace un cálculo usando directamente la función `pnorm` de R, cómo puedo checar el resultado? Una posible forma es hacer la estimación de $z$ siguiendo la fórmula indicada dependiendo el problema, y sabemos que `pnorm(z)` por definición nos estimará $P(x \leq z)$, "cómo si fuera sacada directamente de una tabla", y se puede usar esta probabilidad o $(1 - p)$ dependiendo los que nos pregunta el problema, y este resuldado debe checar con el que se estima directamente.
+
+Si se hace un cálculo usando directamente la función `pnorm` de R, cómo puedo checar el resultado? Una posible forma es hacer la estimación de $z$ siguiendo la fórmula indicada dependiendo del problema, y sabemos que `pnorm(z)` por definición nos estimará $P(x \leq z)$, "cómo si fuera sacada directamente de una tabla", y se puede usar esta probabilidad o $(1 - p)$ dependiendo lo que nos pregunte el problema, y este resultado debe checar con el que se estima directamente.  
 
 ## Ejemplos  
 

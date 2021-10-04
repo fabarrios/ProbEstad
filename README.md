@@ -44,7 +44,7 @@ Tema 4 [Teoría del Muestreo](http://fabarrios.github.io/ProbEstad/DistribMuestr
 
 Tema 5 [Teoría de Estimación](https://fabarrios.github.io/ProbEstad/Estimacion/Estimacion.html).  
 
-Tema 6 Prueba de Hipótesis.  
+Tema 6 [Prueba de Hipótesis](https://fabarrios.github.io/ProbEstad/Hipotesis/Hipotesis.html).  
 
 Tema 7 Correolación y Regresíon.  
 

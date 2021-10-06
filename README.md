@@ -41,12 +41,13 @@ Tema 3 [Distribuciones de Probabilidad](http://fabarrios.github.io/ProbEstad/Dis
 Tarea 3 [Distribuciones de Probabilidad](https://fabarrios.github.io/ProbEstad/HW/HW_03).  
 
 Tema 4 [Teoría del Muestreo](http://fabarrios.github.io/ProbEstad/DistribMuestra/DistribMuestra.html).  
+Tarea 4 [Teoría del Muestreo](https://fabarrios.github.io/ProbEstad/HW/HW_04).
 
 Tema 5 [Teoría de Estimación](https://fabarrios.github.io/ProbEstad/Estimacion/Estimacion.html).  
 
 Tema 6 [Prueba de Hipótesis](https://fabarrios.github.io/ProbEstad/Hipotesis/Hipotesis.html).  
 
-Tema 7 Correolación y Regresíon.  
+Tema 7 Correlación y Regresíon.  
 
 Tema 8 ANOVA.
 

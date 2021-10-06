@@ -13,7 +13,7 @@ library(rmdformats)
 
 ## Global options
 options(max.print="80")
-opts_chunk$set(echo=FALSE,
+opts_chunk$set(echo=TRUE,
 	             cache=TRUE,
                prompt=FALSE,
                tidy=TRUE,
@@ -94,7 +94,6 @@ En este caso estamos probando la igualdad por lo que la probabilidad $p = 0.4402
 Circ <- read_csv("DataSets/ch07_all/EXA_C07_S02_05.csv")
 # El valor extremo de la estadística t
 qt(0.025, 14)
-
 # Región de rechazo extremos
 curve(dt(x, 14), from = -4.5, to = 4.5, main = "no-rechazo")
 abline(v=qt(0.025, 14), col = 2)
@@ -103,7 +102,7 @@ abline(v=qt(0.975, 14), col = 2)
 t.test(Circ, alternative = "two.sided", mu = 34.5, paired = FALSE, conf.level = 0.95)
 ```
 
-El valor de es muy pequeño, es decir que podemos descartar la hipótesis nula, y el promedio real no es igual a 34.5 cm. Del intervalo de confianza también podemos ver que el valor 34.5 no está dentro del intervalo de confianza estimado a $\alpha = 0.05$.  
+El valor de $p$ es muy pequeño, es decir que podemos descartar la hipótesis nula, y el promedio real no es igual a 34.5 cm. Del intervalo de confianza también podemos ver que el valor 34.5 no está dentro del intervalo de confianza estimado a $\alpha = 0.05$.  
 
 **Ejemplo** En un estudio de Thenprasiddhi et al. examinaron una muestra de 16 sujetos con glaucoma de ángulo abierto y defectos de campo unilaterales. Las edades (en años) de los sujetos están listadas en el código a continuación. Se puede concluir que el promedio de edad, a partir de esta muestra, puede ser menos de 60 años en la población de la que se extrajo la muestra? Usar $\alpha = .05$.  
 *Respuesta* En la forma en la que está planteada esta pregunta la hipótesis nula $H_0 > 60$.  Les decir la hipótesis alternativa es la pregunta, $H_A \leq 60$ y para la llamada a la función `t.test()` usaremos `alternative = less`, y con el nivel de confianza de `conf.level = 0.95` ya que nos pidieron $\alpha = .05$.  

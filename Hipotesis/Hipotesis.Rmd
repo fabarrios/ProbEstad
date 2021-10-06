@@ -82,16 +82,19 @@ $$ t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} $$
 *Respuesta* Se propone $H_0: \mu = 15$ y se hace la prueba $t$.  
 ```{r}
 time_MRI <- read_csv("DataSets/ch07_all/EXA_C07_S02_03.csv")
-t_MRI <- time_MRI$DAYS
+time_MRI
 
+t_MRI <- time_MRI$DAYS
 t.test(t_MRI, alternative = "two.sided", mu = 15, paired = FALSE, conf.level = 0.95)
 ```
+
 En este caso estamos probando la igualdad por lo que la probabilidad $p = 0.4402$ de cometer un error al descartar la hipótesis nula es mayor al valor que estamos definiendo $p = 0.05$ para cumplir con un porcentaje del 95. Es decir no podemos descartar la hipótesis nula, es posible que el promedio si sea de 15. Además no se puede descartar que el promedio de la población sea de 15, ya que está incluido en el intervalo de confianza que la prueba $t$ estimó para el promedio $IC = [8.7250, 17.8631]$.  
 
 **Ejemplo** A continuación se listan los datos de la circunferencia de la cabeza (en centímetros) al nacer, de 15 infantes, queremos probar si el promedio es igual a 34.5 cm, $H_0: \mu = 34.5$ por lo tanto la hipótesis alternativa es $H_A: \mu \neq 34.5$ (Datos en EXA_C07_S02_05.cvs).  
 
 ```{r}
 Circ <- read_csv("DataSets/ch07_all/EXA_C07_S02_05.csv")
+Circ
 # El valor extremo de la estadística t
 qt(0.025, 14)
 # Región de rechazo extremos
@@ -143,6 +146,8 @@ la que para $H_0$ cierta, está distribuida como una $t$ de Student con $n_1 + n
 ```{r}
 # Tam et al. data
 SCI_con <- read_csv("DataSets/ch07_all/EXA_C07_S03_02.csv")
+SCI_con
+
 boxplot(SCI_con$CONTROL, SCI_con$SCI, xlab = "Grupo", ylab = "Presión medida")
 t.test(SCI_con$CONTROL, SCI_con$SCI, alternative = "less", mu = 0,  var.equal = TRUE, conf.level = .95)
 ```
@@ -165,12 +170,20 @@ Para una prueba de dos lados, se rechaza $H_0$ si el valor estimado de $t'$ es m
 ```{r}
 # Edad a la que pudieron caminar solos
 Infants <- read_csv("DataSets/ch07_all/EXR_C07_S03_10.csv")
+Infants
+tail(Infants)
+
 boxplot(Age ~ factor(Group), data =  Infants, ylab = "Edad (meses)")
+
 # Para hacer vos vectores con muestras de población a y b
 Infants_A <- (filter(Infants, Group == 1))
 Infants_B <- (filter(Infants, Group == 2))
+
 # Dos colas para comparar igualdad
 t.test(Infants_A$Age, Infants_B$Age, alternative = "two.sided", mu = 0,  var.equal = FALSE, conf.level = .95)
+
+# Ahora usando la misma formula que usamos para llamar al boxplot()
+t.test(Age ~ factor(Group), data =  Infants, alternative = "two.sided", mu = 0,  var.equal = FALSE, conf.level = .95)
 ```
 
 Otra  
@@ -190,7 +203,9 @@ en donde $\bar{d}$ es la media de las diferencias de los pares de muestras, $\mu
 *Respuesta* Si la cirugía incrementa la función biliar, esto es incrementa GBEF, $\mu_{POSTOP} > \mu_{PREOP}$, es decir queremos demostrar que la diferencia en GBEL es positiva. Por lo tanto, la hipótesis nula es que $H_0: \mu_{POSTOP - PREOP} \leq 0$ y por lo tanto $H_A: \mu_{POSTOP - PREOP} > 0$
 
 ```{r}
-GBEF <- read_csv("DataSets/ch07_all/EXA_C07_S04_01.csv")
+GBEF <- read_csv("DataSets/ch07_all/EXA_C07_S04_01.csv", show_col_types = FALSE)
+GBEF
+
 boxplot(GBEF$POSTOP, GBEF$PREOP, xlab = "POSTOP, PREOP", ylab = "Función biliar")
 t.test(GBEF$POSTOP, GBEF$PREOP, alternative = "greater", mu=0, paired = TRUE, var.equal = TRUE, conf.level = 0.95)
 ```
@@ -200,7 +215,9 @@ E.D. Jones estudió los efectos de la terapia de recuerdo de eventos pasados, en
 *solución*  Si suponemos que la diferencia $H_0: Pre - Post < 0$, tal que $H_A: Pre - Post \geq 0$  
 
 ```{r}
-GDS <- read_csv("DataSets/ch07_all/EXr_C07_S04_01.csv")
+GDS <- read_csv("DataSets/ch07_all/EXr_C07_S04_01.csv", show_col_types = FALSE)
+GDS
+
 boxplot(GDS$Pre, GDS$Post, ylab = "Depresión estimada (GDS)")
 t.test(GDS$Pre, GDS$Post, alternative = "greater", paired = TRUE, var.equal = TRUE, conf.level = 0.99)
 ```

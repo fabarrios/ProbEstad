@@ -200,14 +200,25 @@ en donde $\bar{d}$ es la media de las diferencias de los pares de muestras, $\mu
 
 **Ejemplo** Morton et al. examinaron la función de la vesícula biliar, después de una cirugía que se usa para detener que el contenido del estómago fluya de regreso al esófago, en pacientes con reflujo gastroesofágico. Los autores midieron la función biliar por medio de la fracción de descarga biliar(GBEF) antes y después de la cirugía. La idea de la cirugía es incrementar la GBEF, que se mide en porcentaje. Los datos están listados en EXA_C07_S04_01, estos datos son suficientes para concluir que la GBEF se incrementa con la cirugía?  
 
-*Respuesta* Si la cirugía incrementa la función biliar, esto es incrementa GBEF, $\mu_{POSTOP} > \mu_{PREOP}$, es decir queremos demostrar que la diferencia en GBEL es positiva. Por lo tanto, la hipótesis nula es que $H_0: \mu_{POSTOP - PREOP} \leq 0$ y por lo tanto $H_A: \mu_{POSTOP - PREOP} > 0$
+*Respuesta* Si la cirugía incrementa la función biliar, esto es incrementa GBEF, $\mu_{POSTOP} > \mu_{PREOP}$, es decir queremos demostrar que la diferencia en GBEL (PREOP - POSTOP) es negativa. Por lo tanto, la hipótesis nula es que $H_0: \mu_{PREOP - POSTOP} \leq 0$ y por lo tanto $H_A: \mu_{PREOP - POSTOP} > 0$
 
 ```{r}
 GBEF <- read_csv("DataSets/ch07_all/EXA_C07_S04_01.csv", show_col_types = FALSE)
 GBEF
 
-boxplot(GBEF$POSTOP, GBEF$PREOP, xlab = "POSTOP, PREOP", ylab = "Función biliar")
-t.test(GBEF$POSTOP, GBEF$PREOP, alternative = "greater", mu=0, paired = TRUE, var.equal = TRUE, conf.level = 0.95)
+boxplot(GBEF$PREOP, GBEF$POSTOP, xlab = "PREOP, POSTOP", ylab = "Función biliar")
+t.test(GBEF$PREOP, GBEF$POSTOP, alternative = "less", mu=0, paired = TRUE, var.equal = TRUE, conf.level = 0.95)
+
+# Para hacer una prueba t usando notación de fórmula GBEF ~ Condition
+# Se necesitan alargar los datos
+
+GBEF_long <- GBEF %>% 
+  pivot_longer(cols = everything(), names_to = "Condition", values_to = "GBEF")
+
+# y estar seguros que Condition es un factor en el orden adecuado
+GBEF_long <- GBEF_long %>% mutate( Condition = Condition %>% fct_relevel("PREOP", "POSTOP"))
+boxplot(GBEF ~ Condition, data = GBEF_long, ylab = "Función biliar")
+t.test(GBEF ~ Condition, data = GBEF_long, alternative = "less", mu=0, paired = TRUE, var.equal = TRUE, conf.level = 0.95)
 ```
 
 E.D. Jones estudió los efectos de la terapia de recuerdo de eventos pasados, en mujeres mayores con depresión. Estudió 15 mujeres de 60 años o mayores, viviendo por 3 o más meses en residencia asistida (residencia de adultos mayores) de largo plazo.  Para este estudio la depresión se midió por medio de "Geriatric Depression Scale" (GDS). Escores más altos significan mayores estados de depresión. Las participantes recibieron terapia de recuerdo de eventos pasados como tratamiento de largo plazo, el cual usa fotografías familiares, cuadernos de notas, y objetos personales que traigan memorias, como objetos para estimular memorias y conversaciones entre otros miembros del grupo.  Las medidas previas y posteriores al tratamiento se listan en el archivo EXR_C07_S04_01.csv.  Se puede concluir usando estos datos, que los sujetos que participaron en terapia de recuerdos, en promedio, tienen un decremento en sus calificaciones de depresión de acuerdo con GDS? Usar $\alpha = .01$   

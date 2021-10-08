@@ -21,8 +21,8 @@ Para variables paramétricas, tenemos `mean(x)` media y `sd(x)` desviación est�
 |  !=  |  not equal to  |  
 |  <  | less than  |  
 |  >  |  greater than  |  
-|  ≤  |  less than or equal to  |
-|  ≥  |  greater than or equal to  |
+|  <=  |  less than or equal to  |
+|  >=  |  greater than or equal to  |
 |  &  |  AND  |  
 |  \| |  OR  |  
 

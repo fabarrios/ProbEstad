@@ -1,0 +1,133 @@
+---
+title: "Correlación y Regresión"
+author: "F.A. Barrios"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::robobook:
+    highlight: kate
+---
+
+
+```{r setup, include=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="80")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=80)
+```
+
+```{r}
+# Set working directory
+setwd("~/Dropbox/GitHub/ProbEstad")
+
+library(tidyverse)
+library(rcompanion)
+```
+
+## Introducción  
+Uno de los temas más utilizados en el análisis de datos en la actualidad se deriva de dos procesos, el de *Correlación* y el de *Regresión Lineal*.  Estas dos metodologías aunque están relacionadas son diferentes y se usan para propósitos distintos.  
+**Regresión** La regresión es un análisis útil para estimar y analizar la relación entre variables y establecer modelos que permitan hacer predicciones o estimar valores de variables en valores correspondientes de otra variable. Las ideas de regresión fueron introducidas originalmente por el científico ingles Sir Francis Galton (1822-1911).  
+**Correlación** El análisis de correlación es aquel que nos permite medir la fuerza de relación entre variables.  Cuando se estima la correlación de una serie de variables, estamos interesados en calcular el grado de *correlación* entre variables. Este análisis y el termino que lo describe también fue introducido por Galton en 1888.  
+
+## Modelo de Regresión Lineal Simple  
+El modelo más típico de regresión es el que relaciona dos variables a una linea recta, por eso se llama regresión lineal.  Supuestos que se usan en el modelo simple de regresión lineal.  En este modelo por lo general se tienen solo dos variables $Y$ y $X$.  La variable $X$ por lo general se usa para referirse a la *variable independiente*,  ya que generalmente los valores de esta variable están controlados por el investigador.  Para cada valor de $X$ hay uno o varios valores de $Y$, que por lo general son obtenidos a partir de medidas experimentales. La variable $Y$ es llamada la variable dependiente.  Por lo general nos referimos a una regresión de $Y$ por $X$. En el el caso de la regresión lineal se hacen las siguientes suposiciones:  
+
+1. Los valores de la variable independiente $X$ se suponen fijos, son valores predeterminados considerados no aleatorios.  
+2. La variable $X$ se considera medida sin error.
+3. Para cada valor de $X$ hay una sub-población de valores $Y$, en los que se puede hacer procesos de inferencia con medidas de estimación de hipótesis.  
+4. Las varianzas de las diferentes sub-poblaciones de $Y$ se consideran iguales $\sigma^2$.  
+5. Todos los promedios de cada sub-población de $Y$ se localizan sobre la misma linea recta. Esto es lo que se conoce como la *suposición de linealidad*, que puede ser expresada como $\mu_{y|x} = \beta_0 + \beta_1 x$, donde $\mu_{y|x}$ es le promedio de la subpoblación de $Y$ para un valor particular de $X$ y $\beta_0$ y $\beta_1$ son los coeficientes de regresión de la población.  La interpretación geométrica de $\beta_0$ y $\beta_1$ es la intersección de la recta con el eje de las $y$ y la pendiente del modelo, respectivamente.  
+6. Los valores de $Y$ son estadísticamente independientes. Esto significa que cada muestra de valores de $Y$ que se toman en un punto $X$ son independientes de la muestra que se tome en cualquier otro valor de $X$.  
+
+## La linea de mínimos cuadrados  
+El método más usado para estimar el modelo lineal (la línea que mejor describe los puntos ajustados) es llamado *mínimos cuadrados*, para este punto recordemos que la ecuación de la línea recta es: $y = m x + b_0$.  
+
+## Expresiones para estimar la línea recta de mínimos cuadrados  
+Las equaciones para estimar la línea recta por mínios cuadrados ara un conunto de datos $Y = y_1, y_2, \dots, y_n$ y $X = x_1, x_2, \dots, x_n$, con promedios $\bar{y}$ y $\bar{x}$, respectivamente y $\hat{\beta}_0$ y $\hat{\beta}_1$ son los valores estimados para la intersección con el eje $y$, $\beta_0$ y la pendiente de la recta $\beta_1$.  
+$$ \hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2} $$  
+
+$$ \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} $$  
+**Ejemplo** Deprès et al. establecieron que la topografía del tejido adiposo (AT) está asociada con complicaciones metabólicas consideradas como un riesgo par la enfermedad cardiovascular. Es importante, establecieron en dicho trabajo, medir la cantidad de tejido adiposo itraabdominal como parte de la evaluación de riesgo individual de enfermedad cardiovascular. Tomografía computarizada (CT), la única técnica que puede medir de forma precisa y confiable la cantidad de AT intraabdominal profunda, sin embargo, es costosa y expone al sujeto a radiación ionizante (rayos X), además es una técnica que no es accesible a todos los médicos.  Deprès y sus colegas condujeron su estudio para desarrollar ecuaciones que predigan la cantidad de AT intraabdominal profunda a partir de medidas antropométricas simples.  Sus sujetos de estudio fueron hombres adultos de entre 18 y 42 años de edad, sin enfermedad de desorden metabólico que requiriera medicación.  Entre las medidas tomadas a cada sujeto estuvieron la de TA intraabdominal profunda por CT y la circunferencia de la cintura, listadas en el archivo `EXA_C09_S-03_01.csv`.  La pregunta es; que tan bien se puede estimar la cantidad de TA intraabdominal profunda partir se la medida de la circunferencia de la cintura.  Como la medida de AT intraabdominal profunda es la variable a evaluar y hacer predicciones, se considera la variable dependiente.  La variable de la circunferencia de la cintura se tomará como la medida independiente.  
+
+```{r}
+Waist <- read_csv("DataSets/ch09_all/EXA_C09_S03_01.csv")
+
+plot(Y ~ X, data = Waist, pch = 20, xlab = "Circunferencia de cintura (cm)", ylab = "área de TA intraabdominal profunda")
+# mean lines for y and x.
+abline(v = mean(Waist$X), col = 2, lty = 2)
+abline(h = mean(Waist$Y), col = 2, lty = 2)
+# Estimation of the linear model
+Waist_lm <- lm(Y ~ X, data = Waist)
+summary(Waist_lm)
+# plot of the estimated linear model
+abline(a = -215.98, b = 3.4589, col = 6)
+```
+
+## Estimación del Coeficiente de Determinación de la Población  
+Siempre es importante preguntarnos si la recta ajustada es una buena representación de los datos, es decir que tan buen trabajo hizo el ajuste al modelo lineal. Para es to evaluamos la ecuación de la regresión basada en los datos de la muestra ($\tilde{y}_i$), el resultado es llamado el **coeficiente de determinación** de la muestra, $r^2$.  
+$$ r^2 = \frac{\sum(\hat{y}_i - \bar{y})^2}{\sum(y_i - \bar{y})^2}  $$  
+Esta R-cuadrada es calculada directamente de los cuadrados de la diferencias de la $y_i$ estimadas por el modelo en cada punto $x_i$ comparados con los cuadrados de los datos originales $y_i$ (en R es llamada Miltiple R-squared).  El coeficiente de determinación de la muestra mide la "calidad" (que tan cerca) está la equación de regresión a los valores observados originales.  
+
+El coeficiente de determinación de la muestra es una estimado puntual de $\rho^2$ el Coeficiente de Determinación de la Población. El Coeficiente de determinación de la población $\rho^2$ tiene la misma función relativa a la población que $r^2$ tiene a la muestra.  Este, muestra cual proporción de la variación de la población en $Y$ es explicada por la regresión de $Y$ en $X$. Un estimador sin sesgo de $\rho^2$ está dado por  
+$$ \tilde{r}^2 = 1 - \frac{\sum(y_i - \hat{y}_i)^2/(n-2)}{\sum(y_i - \bar{y})^2/(n-1)} $$
+Esta es la cantidad llamada R-sq (en R es la llamada Adjusted R-squared).  
+
+**Ejemplo**Los escores listados en EXR_C09_S03_02.csv, muestran las evaluaciones de la enfermera (X) y del médico (Y) para la condición de 10 pacientes al momento de admisión de un centro de trauma. Muestra una gráfica de los puntos y estime la regresión lineal.  
+```{r}
+Scores <- read_csv("DataSets/ch09_all/EXR_C09_S03_02.csv")
+# X enfermera, Y médico
+plot(Y ~ X, data = Scores, pch = 20, xlab = "Eval. enfermera", ylab = "Eval. médico")
+abline(v = mean(Scores$X), col = 2, lty = 2)
+abline(h = mean(Scores$Y), col = 2, lty = 2)
+# MinSqr 
+Scores_lm <- lm(Y ~ X, data = Scores)
+summary(Scores_lm)
+# plot of the linear model for Scores
+abline(a = Scores_lm$coefficients[1], b = Scores_lm$coefficients[2], col = 6)
+```
+
+## Correlación  
+Comentamos que el problema de regresión, se tiene una variable respuesta (variable dependiente) $Y$, aleatoria (posiblemente distribuida de forma normal) que generalmente representa la medida experimental y los datos de estudio que serán ajustados, a un modelo lineal que responde a una variable independiente $X$.  Para el caso de dos variables aleatorias (con distribuciones normales) $Y$ y $X$, surge la pregunta; ¿Cual es la relación entre las dos variables, como es la variación de ellas, están relacionadas en cuanto a su variación?.  Cuando las dos variables son aleatorias se dice que se tiene un *modelo de correlación*, se tienen dos variables que varían conjuntamente en lo que se conoce como una distribución conjunta, si esta distribución es normal se dice que es una distribución normal bivariada. E inferencias se pueden hacer basados en muestreo de cada variable.  
+# Suposiciónes del modelo de correlación  
+A continuación listamos las suposiciones necesarias para hacer inferencias de una población a partir de muestreo de una distribución bivariada:  
+1. Para cada valor de $X$ hay una subpoblación normalmente distribuida de valores de $Y$.  
+2. Para cada valor de $Y$ hay una subpoblación normalmente distribuida de valores de $X$.  
+3. La distribución conjunta de $X$ y $Y$ es una distribución normal bivariada.  
+4. Las subpoblaciones de valores de $Y$ tienen la misma varianza.  
+5. Las subpoblaciones de valores de $X$ tienen la misma varianza.  
+
+# El coeficiente de correlación  
+La distribución bivariada normal tiene cinco parámetros, $\sigma_x, \sigma_y, \mu_x, \mu_y, $ y $\rho$. Los cuatro primeros son las varianza de $X$ y $Y$ y sus respectivas medias respectivas y $\rho$ es el coeficiente de correlación de la población, que mide la fuerza de la relación lineal entre las variables $Y$ y $X$.  Por lo general estamos interesados en determinar si $\rho \neq 0$, esto es. si $Y$ y $X$ están linealmente correlacionadas.  Como $\rho$ es por o general desconocido, es necesario extraer muestras de las poblaciones para estimas el valor de $r$ y determinar el valor de $\rho$. Una hipótesis nula muy utilizada es $H_0: \rho = 0 | H_A: \rho \neq 0$.  
+El valor de r se puede estimar por:  
+$$ r = \frac{n \sum x_i y_i - (\sum x_i)(\sum y_i)}{\sqrt{n \sum x_i^2 - (\sum x_i)^2} \sqrt{n \sum y_i^2 - ( \sum y_i)^2}} $$  
+**Ejemplo** El propósito del estudio de Kwast-Rabben y colaboradores, fue analizar los potenciales somatosensoriales evocados (SEPs) y su interrelación seguida de la estimulación de los dígitos I, III y V de la mano. Los investigadores querían establecer un antecedente para criterio de referencia en una población control. Por lo tanto se reclutaron sujetos control sanos para el estudio. Para un futuro este estudio podría ser importante ya que los SEPs se podrían usar para establecer disturbios funcionales en pacientes con sospecha de lesión en la raíz cervical que presentan dolor, y síntomas sensoriales.  En el estudio se estimularon los dedos con una intensidad por debajo del punto de dolor.  Las respuestas medulares se registraron con electrodos fijos adheridos con crema adherente a la piel del sujeto. Una de las relaciones de interés fue la correlación entre la estatura del sujeto (cm) y la latencia medular pico (Cv) del SEP. Los datos obtenidos se muestran en `EXA_C09_S07_01.csv`.  
+
+```{r}
+SEP <- read_csv("DataSets/ch09_all/EXA_C09_S07_01.csv")
+plot(CV ~ HEIGHT, data = SEP, pch = 20, xlab = "Estatura (cm)", ylab = "Latencia pico (Cv)")
+# cor.test(HEIGHT, CV, alternative = c("two.sided"), method = c("pearson"), conf.level = 0.95)
+cor.test(~ HEIGHT + CV, data = SEP, alternative = c("two.sided"), method = c("pearson"), conf.level = 0.95)
+
+```
+
+El propósito del estudio de Brown y Presley fue caracterizar la hepatitis A aguda, en pacientes mayores de 40 años.  Revisaron en forma retrospectiva los registros de 20 pacientes que fueron diagnosticados con hepatitis A aguda, que no fueron hospitalizados. De interés fue el hecho que se usó la edad (en años) para predecir los niveles de bilirrubina (mg/dl). Los datos colectados están en `EXR_C09_S07_01.csv`.  
+
+```{r}
+Hepa <- read_csv("DataSets/ch09_all/EXR_C09_S07_01.csv")
+plot(BILI ~ AGE, data = Hepa, pch = 20, xlab = "Edad (años)", ylab = "Nivel de Bilirrubina (mg/dl)")
+cor.test(~ AGE + BILI, data = Hepa, alternative = c("two.sided"), method = c("pearson"), conf.level = 0.95)
+# Linear model
+Hepa_lm <- lm(BILI ~ AGE, data = Hepa)
+abline(a = Hepa_lm$coefficients[1], b = Hepa_lm$coefficients[2], col = 2)
+summary(Hepa_lm)
+```
+
+

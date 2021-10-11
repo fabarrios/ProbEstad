@@ -81,7 +81,7 @@ $$ t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} $$
 **Ejemplo** Nakamura et al. estudiaron sujetos con desgarre de ligamento colateral medial (MCL) y ligamento  cruzado anterior (ACL). Entre febrero de 1995 y diciembre de 1997, 17 pacientes consecutivos con lesiones agudas de ACL y grado III MCL fueron tratados por el mismo médico del centro de investigación. Una de las variables de interés fue la longitud de tiempo en días entre la fecha de la lesión y la primer imagen por resonancia magnética (MRI). Los datos están listados en EXA_C07_S02_03.csv. Queremos saber si podemos concluir que el número promedio de días entre la lesión y la primer resonancia magnética **no es 15 días** en la población representada por los datos de esta muestra.    
 *Respuesta* Se propone $H_0: \mu = 15$ y se hace la prueba $t$.  
 ```{r}
-time_MRI <- read_csv("DataSets/ch07_all/EXA_C07_S02_03.csv")
+time_MRI <- read_csv("DataSets/ch07_all/EXA_C07_S02_03.csv", show_col_types = FALSE)
 time_MRI
 
 t_MRI <- time_MRI$DAYS
@@ -93,7 +93,7 @@ En este caso estamos probando la igualdad por lo que la probabilidad $p = 0.4402
 **Ejemplo** A continuación se listan los datos de la circunferencia de la cabeza (en centímetros) al nacer, de 15 infantes, queremos probar si el promedio es igual a 34.5 cm, $H_0: \mu = 34.5$ por lo tanto la hipótesis alternativa es $H_A: \mu \neq 34.5$ (Datos en EXA_C07_S02_05.cvs).  
 
 ```{r}
-Circ <- read_csv("DataSets/ch07_all/EXA_C07_S02_05.csv")
+Circ <- read_csv("DataSets/ch07_all/EXA_C07_S02_05.csv", show_col_types = FALSE)
 Circ
 # El valor extremo de la estadística t
 qt(0.025, 14)
@@ -145,7 +145,7 @@ la que para $H_0$ cierta, está distribuida como una $t$ de Student con $n_1 + n
 
 ```{r}
 # Tam et al. data
-SCI_con <- read_csv("DataSets/ch07_all/EXA_C07_S03_02.csv")
+SCI_con <- read_csv("DataSets/ch07_all/EXA_C07_S03_02.csv", show_col_types = FALSE)
 SCI_con
 
 boxplot(SCI_con$CONTROL, SCI_con$SCI, xlab = "Grupo", ylab = "Presión medida")
@@ -169,7 +169,7 @@ Para una prueba de dos lados, se rechaza $H_0$ si el valor estimado de $t'$ es m
 
 ```{r}
 # Edad a la que pudieron caminar solos
-Infants <- read_csv("DataSets/ch07_all/EXR_C07_S03_10.csv")
+Infants <- read_csv("DataSets/ch07_all/EXR_C07_S03_10.csv", show_col_types = FALSE)
 Infants
 tail(Infants)
 

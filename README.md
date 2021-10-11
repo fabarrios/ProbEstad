@@ -48,7 +48,7 @@ Tarea 5 [Teoría de la Estimación](https://fabarrios.github.io/ProbEstad/HW/HW_
 
 Tema 6 [Prueba de Hipótesis](https://fabarrios.github.io/ProbEstad/Hipotesis/Hipotesis.html).  
 
-Tema 7 Correlación y Regresíon.  
+Tema 7 [Correlación y Regresíon](https://fabarrios.github.io/ProbEstad/CorrRegres/CorrRegres.html).  
 
 Tema 8 ANOVA.
 

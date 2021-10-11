@@ -3,7 +3,7 @@ title: "Correlación y Regresión"
 author: "F.A. Barrios"
 date: "`r Sys.Date()`"
 output:
-  rmdformats::robobook:
+  rmdformats::readthedown:
     highlight: kate
 ---
 

@@ -200,7 +200,7 @@ en donde $\bar{d}$ es la media de las diferencias de los pares de muestras, $\mu
 
 **Ejemplo** Morton et al. examinaron la función de la vesícula biliar, después de una cirugía que se usa para detener que el contenido del estómago fluya de regreso al esófago, en pacientes con reflujo gastroesofágico. Los autores midieron la función biliar por medio de la fracción de descarga biliar(GBEF) antes y después de la cirugía. La idea de la cirugía es incrementar la GBEF, que se mide en porcentaje. Los datos están listados en EXA_C07_S04_01, estos datos son suficientes para concluir que la GBEF se incrementa con la cirugía?  
 
-*Respuesta* Si la cirugía incrementa la función biliar, esto es incrementa GBEF, $\mu_{POSTOP} > \mu_{PREOP}$, es decir queremos demostrar que la diferencia en GBEL (PREOP - POSTOP) es negativa. Por lo tanto, la hipótesis nula es que $H_0: \mu_{PREOP - POSTOP} \leq 0$ y por lo tanto $H_A: \mu_{PREOP - POSTOP} > 0$
+*Respuesta* Si la cirugía incrementa la función biliar, esto es incrementa GBEF, $\mu_{POSTOP} > \mu_{PREOP}$, es decir queremos demostrar que la diferencia en GBEL (PREOP - POSTOP) es negativa. Por lo tanto, la hipótesis nula es que $H_0: \mu_{PREOP - POSTOP} > 0$ y por lo tanto $H_A: \mu_{PREOP - POSTOP} \leq 0$
 
 ```{r}
 GBEF <- read_csv("DataSets/ch07_all/EXA_C07_S04_01.csv", show_col_types = FALSE)

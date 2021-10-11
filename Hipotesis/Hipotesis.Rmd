@@ -233,7 +233,7 @@ boxplot(GDS$Pre, GDS$Post, ylab = "Depresión estimada (GDS)")
 t.test(GDS$Pre, GDS$Post, alternative = "greater", paired = TRUE, var.equal = TRUE, conf.level = 0.99)
 ```
 
-Ejemplo de comparación de los datos de depresión de adultos mayores. se van a transformar los datos de tabla a formato "largo" por un comando de `pivot_longer()`. Y se usará la librería `ggstatsplot` para graficar los datos y los resultados de la prueba t.  
+Ejemplo de comparación de los datos de depresión de adultos mayores, se van a transformar los datos de tabla a formato "largo" por un comando de `pivot_longer()`. Y se usará la librería `ggstatsplot` para graficar los datos y los resultados de la prueba $t$.  Uno de los parámetros estimados por `ggwithinstats` es el tamaño del efecto por $\hat{g}_{Hedge's}$ que se puede explicar como: la estadística g de Hedge expresa la diferencia entre los promedios de las poblaciones en unidades de la desviación estándar combinada (pooled standard deviation).
 
 ```{r}
 library(ggstatsplot)
@@ -246,8 +246,7 @@ GDS_long <- GDS_long %>% mutate( Condition = Condition %>% fct_relevel("Pre", "P
 
 ggwithinstats(
   data = GDS_long, x = Condition, y = GDS, 
-  title = "Diferencia de estado de depresión", 
-  subtitle = "Geriatric Depression Scale (GDS)", results.subtitle = TRUE, 
+  title = "Diferencia en el estado de depresión", 
   plot.type = "violin", 
   type = "parametric", 
   pairwise.comparisons = TRUE, 

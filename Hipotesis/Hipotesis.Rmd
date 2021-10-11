@@ -233,6 +233,31 @@ boxplot(GDS$Pre, GDS$Post, ylab = "Depresión estimada (GDS)")
 t.test(GDS$Pre, GDS$Post, alternative = "greater", paired = TRUE, var.equal = TRUE, conf.level = 0.99)
 ```
 
+Ejemplo de comparación de los datos de depresión de adultos mayores. se van a transformar los datos de tabla a formato "largo" por un comando de `pivot_longer()`. Y se usará la librería `ggstatsplot` para graficar los datos y los resultados de la prueba t.  
+
+```{r}
+library(ggstatsplot)
+
+GDS_long <- GDS %>% 
+  pivot_longer(cols = everything(), names_to = "Condition", values_to = "GDS")
+
+# trasformación a factor y re-level
+GDS_long <- GDS_long %>% mutate( Condition = Condition %>% fct_relevel("Pre", "Post"))
+
+ggwithinstats(
+  data = GDS_long, x = Condition, y = GDS, 
+  title = "Diferencia de estado de depresión", 
+  subtitle = "Geriatric Depression Scale (GDS)", results.subtitle = TRUE, 
+  plot.type = "violin", 
+  type = "parametric", 
+  pairwise.comparisons = TRUE, 
+  pairwise.display = "significant", 
+  p.adjust.method = "holm", 
+  conf.level = 0.99, 
+  var.equal = TRUE)
+
+```
+
 ##  Prueba de la proporcion de varianzas
 
 En la prueba de la varinaza de dos poblaciones se estima la proporción de varianzas para determinar si as varianzas son iguales o no para decidir que prueba para la $t$ de Student se puede usar.  En R se cuenta con una prueba de varianza, a partir de dos muestras que nos permite contestar esta pregunta. Es la función `var.test`.  

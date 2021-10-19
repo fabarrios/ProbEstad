@@ -101,10 +101,10 @@ summary(Scores_lm)
 abline(a = Scores_lm$coefficients[1], b = Scores_lm$coefficients[2], col = 6)
 ```
 
-## Correlación  
+# Correlación  
 Comentamos que el problema de regresión, se tiene una variable respuesta (variable dependiente) $Y$, aleatoria (posiblemente distribuida de forma normal) que generalmente representa la medida experimental y los datos de estudio que serán ajustados, a un modelo lineal que responde a una variable independiente $X$.  Para el caso de dos variables aleatorias (con distribuciones normales) $Y$ y $X$, surge la pregunta; ¿Cual es la relación entre las dos variables, como es la variación de ellas, están relacionadas en cuanto a su variación?  Cuando las dos variables son aleatorias se dice que se tiene un *modelo de correlación*, se tienen dos variables que varían conjuntamente en lo que se conoce como una distribución conjunta, si esta distribución es normal se dice que es una distribución normal bivariada. E inferencias se pueden hacer basados en muestreo de cada variable.  
 
-# Suposiciónes del modelo de correlación  
+## Suposiciónes del modelo de correlación  
 A continuación listamos las suposiciones necesarias para hacer inferencias de una población a partir de muestreo de una distribución bivariada:  
 1. Para cada valor de $X$ hay una subpoblación normalmente distribuida de valores de $Y$.  
 2. Para cada valor de $Y$ hay una subpoblación normalmente distribuida de valores de $X$.  
@@ -112,7 +112,7 @@ A continuación listamos las suposiciones necesarias para hacer inferencias de u
 4. Las subpoblaciones de valores de $Y$ tienen la misma varianza.  
 5. Las subpoblaciones de valores de $X$ tienen la misma varianza.  
 
-# El coeficiente de correlación  
+## El coeficiente de correlación  
 La distribución bivariada normal que describe estos datos tiene cinco parámetros: $\sigma_x, \sigma_y, \mu_x, \mu_y,$ y $\rho$. Los cuatro primeros son las varianza de $X$ y $Y$ y sus respectivas medias respectivas y $\rho$ es el coeficiente de correlación de la población, que mide la fuerza de la relación lineal entre las variables $Y$ y $X$.  Por lo general estamos interesados en determinar si $\rho \neq 0$, esto es. si $Y$ y $X$ están linealmente correlacionadas.  Como $\rho$ es por o general desconocido, es necesario extraer muestras de las poblaciones para estimas el valor de $r$ y determinar el valor de $\rho$. Una hipótesis nula muy utilizada es $H_0: \rho = 0 | H_A: \rho \neq 0$.  
 El valor de r se puede estimar por:  
 

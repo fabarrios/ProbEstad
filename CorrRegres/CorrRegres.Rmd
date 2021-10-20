@@ -65,6 +65,7 @@ Waist <- read_csv("DataSets/ch09_all/EXA_C09_S03_01.csv", show_col_types = FALSE
 Waist
 
 plot(Y ~ X, data = Waist, pch = 20, xlab = "Circunferencia de cintura (cm)", ylab = "área de TA intraabdominal profunda")
+
 # mean lines for y and x.
 abline(v = mean(Waist$X), col = 2, lty = 2)
 abline(h = mean(Waist$Y), col = 2, lty = 2)

@@ -47,6 +47,8 @@ Tema 5 [Teoría de la Estimación](https://fabarrios.github.io/ProbEstad/Estimac
 Tarea 5 [Teoría de la Estimación](https://fabarrios.github.io/ProbEstad/HW/HW_05).  
 
 Tema 6 [Prueba de Hipótesis](https://fabarrios.github.io/ProbEstad/Hipotesis/Hipotesis.html).  
+Tema 6 [Problemas Resueltos](https://fabarrios.github.io/ProbEstad/tStudentExa/tStudentExa.html).  
+Tarea 5 [Teoría de Hipótesis](https://fabarrios.github.io/ProbEstad/HW/HW_06).  
 
 Tema 7 [Correlación y Regresíon](https://fabarrios.github.io/ProbEstad/CorrRegres/CorrRegres.html).  
 

@@ -90,17 +90,33 @@ Esta es la cantidad llamada R-sq (en R es la llamada Adjusted R-squared).
 
 **Ejemplo**Los escores listados en EXR_C09_S03_02.csv, muestran las evaluaciones de la enfermera (X) y del médico (Y) para la condición de 10 pacientes al momento de admisión de un centro de trauma. Muestra una gráfica de los puntos y estime la regresión lineal.  
 
+*Solución* primero resolveremos el modelo en forma general estimando los dos parámetros de ajuste de mínimos cuadrados, el término independiente (intersección con el eje $y$) $\beta_0$ y el segundo término o pendiente $\beta_1$ con el modelo lineal Y ~ X. Posteriormente estimaremos el modelo "sin el término independiente", forzaremos que el modelo en R estime sin el coeficiente $\beta_0$, Y ~ X - 1.  En la gráfica el modelo lineal completo es la línea roja y el modelo que pasa por el origen es la línea azul.  
+
 ```{r}
 Scores <- read_csv("DataSets/ch09_all/EXR_C09_S03_02.csv")
+Scores
+
 # X enfermera, Y médico
 plot(Y ~ X, data = Scores, pch = 20, xlab = "Eval. enfermera", ylab = "Eval. médico")
 abline(v = mean(Scores$X), col = 2, lty = 2)
 abline(h = mean(Scores$Y), col = 2, lty = 2)
+
 # MinSqr 
 Scores_lm <- lm(Y ~ X, data = Scores)
 summary(Scores_lm)
+
+# Good example for forcing the model to set beta_0 =0
+Scores_lm_0 <- lm(Y ~ X - 1, data = Scores)
+summary(Scores_lm_0)
+
 # plot of the linear model for Scores
-abline(a = Scores_lm$coefficients[1], b = Scores_lm$coefficients[2], col = 6)
+abline(a = Scores_lm$coefficients[1], b = Scores_lm$coefficients[2], col = 2)
+abline(a = 0, b = Scores_lm_0$coefficients, col = 4)
+
+# Error plots for lm in R
+plot(Scores_lm)
+# Error plots for the second model
+plot(Scores_lm_0)
 ```
 
 # Correlación  
@@ -115,7 +131,7 @@ A continuación listamos las suposiciones necesarias para hacer inferencias de u
 5. Las subpoblaciones de valores de $X$ tienen la misma varianza.  
 
 ## El coeficiente de correlación  
-La distribución bivariada normal que describe estos datos tiene cinco parámetros: $\sigma_x, \sigma_y, \mu_x, \mu_y,$ y $\rho$. Los cuatro primeros son las varianza de $X$ y $Y$ y sus respectivas medias respectivas y $\rho$ es el coeficiente de correlación de la población, que mide la fuerza de la relación lineal entre las variables $Y$ y $X$.  Por lo general estamos interesados en determinar si $\rho \neq 0$, esto es. si $Y$ y $X$ están linealmente correlacionadas.  Como $\rho$ es por o general desconocido, es necesario extraer muestras de las poblaciones para estimas el valor de $r$ y determinar el valor de $\rho$. Una hipótesis nula muy utilizada es $H_0: \rho = 0 | H_A: \rho \neq 0$.  
+La distribución bivariada normal que describe estos datos tiene cinco parámetros: $\sigma_x, \sigma_y, \mu_x, \mu_y,$ y $\rho$. Los cuatro primeros son las varianza de $X$ y $Y$ y sus respectivas medias respectivas y $\rho$ es el coeficiente de correlación de la población, que mide la fuerza de la relación lineal entre las variables $Y$ y $X$.  Por lo general estamos interesados en determinar si $\rho \neq 0$, esto es. si $Y$ y $X$ están linealmente correlacionadas.  Como $\rho$ es por o general desconocido, es necesario extraer muestras de las poblaciones para estimas el valor de $r$ y determinar el valor de $\rho$. Una hipótesis nula muy utilizada es $H_0: \rho = 0 \space | H_A: \rho \neq 0$.  
 El valor de r se puede estimar por:  
 
 $$ r = \frac{n \sum x_i y_i - (\sum x_i)(\sum y_i)}{\sqrt{n \sum x_i^2 - (\sum x_i)^2} \sqrt{n \sum y_i^2 - ( \sum y_i)^2}} $$  

@@ -52,7 +52,7 @@ Tarea 6 [Teoría de Hipótesis](https://fabarrios.github.io/ProbEstad/HW/HW_06).
 
 Tema 7 [Correlación y Regresíon](https://fabarrios.github.io/ProbEstad/CorrRegres/CorrRegres.html).  
 
-Tema 8 ANOVA.
+Tema 8 [ANOVA](https://fabarrios.github.io/ProbEstad/ANOVA/ANOVA.html).
 
 [Notas](https://fabarrios.github.io/ProbEstad/Notas/Notas).  
 

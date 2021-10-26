@@ -145,6 +145,7 @@ emmeans(Rev.8.22_lm_int, trt.vs.ctrl ~ SIZE + SIDE)
 # With rstatix
 Rev.8.22_aov <- anova_test(data = Rev.8.22, SCORES ~ factor(SIZE) + factor(SIDE))
 get_anova_table(Rev.8.22_aov)
+# Post hoc
 emmeans_test(Rev.8.22, SCORES ~ SIZE, p.adjust.method = "fdr")
 ```
 
@@ -153,9 +154,12 @@ emmeans_test(Rev.8.22, SCORES ~ SIZE, p.adjust.method = "fdr")
 ```{r}
 Rev.8.18 <- read.csv("DataSets/ch08_all/REV_C08_18_mod.csv")
 boxplot(Measure ~ factor(site) + factor(Geometry), data = Rev.8.18)
+
+#
 Rev.8.18_lm <- lm(Measure ~ factor(site) + factor(Geometry), data = Rev.8.18)
 S(Rev.8.18_lm)
-# Pairwise
+
+# Pairwise post hoc
 emmeans(Rev.8.18_lm, pairwise ~ site + Geometry)
 ```
 
@@ -172,13 +176,16 @@ ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + geom_boxplot() +
 Exa8.4.1 %>% 
   group_by(Time) %>% 
   identify_outliers(Assessment)
+
 # Test normal distribution
 Exa8.4.1 %>% 
   group_by(Time) %>% 
   shapiro_test(Assessment)
+
 # ANOVA test from the rstatix package
 Exa8.4.1_aov <- anova_test(data = Exa8.4.1, dv = Assessment, wid = Subject, within = Time)
 get_anova_table(Exa8.4.1_aov)
+
 # Pairwise comparisons
 emmeans_test(Exa8.4.1, Assessment ~ Time, p.adjust.method = "fdr")
 # # # # # # # # # # # # # # # # # # # 

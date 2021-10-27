@@ -1,5 +1,5 @@
 ---
-title: "Permutación y Correlación Ejemplos"
+title: "Regresión y Correlación Ejemplos"
 author: "F.A. Barrios"
 date: "`r Sys.Date()`"
 output:

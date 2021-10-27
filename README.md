@@ -51,6 +51,8 @@ Tema 6 [Problemas Resueltos](https://fabarrios.github.io/ProbEstad/tStudentExa/t
 Tarea 6 [Teoría de Hipótesis](https://fabarrios.github.io/ProbEstad/HW/HW_06).  
 
 Tema 7 [Correlación y Regresíon](https://fabarrios.github.io/ProbEstad/CorrRegres/CorrRegres.html).  
+Tema 7 [Problemas Resueltos](https://fabarrios.github.io/ProbEstad/PermCorrExa/PermCorrExa.html).  
+Tarea 7 [Correlación y Regresíon](https://fabarrios.github.io/ProbEstad/HW/HW_07).  
 
 Tema 8 [ANOVA](https://fabarrios.github.io/ProbEstad/ANOVA/ANOVA.html).
 

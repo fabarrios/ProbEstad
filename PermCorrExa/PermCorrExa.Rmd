@@ -1,0 +1,57 @@
+---
+title: "Permutación y Correlación Ejemplos"
+author: "F.A. Barrios"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::robobook:
+    highlight: kate
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+knitr::opts_chunk$set(cache = TRUE)
+
+## Global options
+options(max.print="80")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=80)
+```
+
+```{r}
+library(tidyverse)
+```
+
+Ejemplos resueltos de Permutación y Correlación, tomados de los problemas del capítulo 9 del Daniel.  
+
+**Ejemplo** Dean Parmalee wished to know if the year-end grades assigned to Wright State University Medical School students are predictive of their second-year board scores. The following table shows, for 89 students, the year-end score (AVG, in percent of 100) and the score on the second-year medical board examination (BOARD). Table in REV_C09_17.csv. Perform a complete regression analysis with AVG as the independent variable. Let α = .05 for all tests.  
+*Respuesta* Describir los datos. Correr el modelo lineal para Board ~ AVG con $\alpha = 0.05$.  
+
+```{r}
+Scores <- read_csv("DataSets/ch09_all/REV_C09_17.csv", show_col_types = FALSE)
+Scores
+
+ggplot(Scores, aes(x = AVG, y = BOARD)) +
+  geom_point() +
+  geom_hline(aes(yintercept = mean(BOARD)), linetype = "dashed", color = "red") +
+  geom_vline(aes(xintercept = mean(AVG)), linetype = "dashed", color = "red")
+
+Scores_lm <- lm(BOARD ~ AVG, data = Scores)
+summary(Scores_lm)
+
+ggplot(Scores, aes(x = AVG, y = BOARD)) +
+  geom_point() +
+  geom_hline(aes(yintercept = mean(BOARD)), linetype = "dashed", color = "red") +
+  geom_vline(aes(xintercept = mean(AVG)), linetype = "dashed", color = "red") +
+  geom_abline(aes(intercept = Scores_lm$coefficients[1], slope = Scores_lm$coefficients[2]), color = "blue")
+
+plot(Scores_lm)
+```

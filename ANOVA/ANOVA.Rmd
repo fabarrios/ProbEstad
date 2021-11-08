@@ -26,9 +26,6 @@ opts_knit$set(width=80)
 
 ```{r}
 # Set working directory
-setwd("~/Dropbox/GitHub/ProbEstad")
-
-library(rcompanion)
 library(car)
 library(emmeans)
 library(hrbrthemes)
@@ -43,14 +40,14 @@ Uno de los procesos más usados para comparar diferentes "tratamientos" sobre un
 
 ## ANOVA Modelos de una via  (One-Way ANOVA)  
 
-Carne proveniente de caza, entre otras aquellas del venado de cola-blanca, y ardilla gris, son usadas como alimento or familias, cazadores y otros individuos por razones culturales, personales, o de salud. EN un estudio de Holben et al. estimó el contenido de selenio de carne de venado cola-blanca libre (venison), y ardilla gris (squirrel) obtenidos de una región de baja concentración de selenio en EEUU.  Estos contenidos de selenio fueron también comparados con concentraciones de carne de ganado producido en la misma región (RRB) y en una región externa (NRRB). Nos interesa saber si la concentración de selenio $(\mu g/100g)$ es distinta en los grupos de carne. (EXA_C08_S02_01.csv).
+Carne proveniente de caza, entre otras aquellas del venado de cola-blanca, y ardilla gris, son usadas como alimento or familias, cazadores y otros individuos por razones culturales, personales, o de salud. En un estudio de Holben et al. estimó el contenido de selenio de carne de venado cola-blanca libre (venison), y ardilla gris (squirrel) obtenidos de una región de baja concentración de selenio en EEUU.  Estos contenidos de selenio fueron también comparados con concentraciones de carne de ganado producido en la misma región (RRB) y en una región externa (NRRB). Nos interesa saber si la concentración de selenio $(\mu g/100g)$ es distinta en los grupos de carne. (EXA_C08_S02_01.csv).
 
 La hipótesis nula de este modelo es que todos los promedios poblacionales (cada promedio de la población de cada caso) son iguales entre ellos $\mu_1 = \mu_2 = \mu_3 \dots = \mu_n$, y la hipótesis alternativa es que "por lo menos uno de ellos es distinto".
 
 ```{r}
 # Exa_C08_S02_01 One-way
 #
-Exa8.2.1 <- read_csv(file="DataSets/ch08_all/EXA_C08_S02_01mod.csv")
+Exa8.2.1 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXA_C08_S02_01mod.csv", show_col_types = FALSE)
 boxplot(Selenium ~ Group, data = Exa8.2.1)
 ggplot(data = Exa8.2.1, aes(x = Group, y = Selenium)) + geom_boxplot()
 Exa8.2.1_lm <- lm(Selenium ~ Group, data = Exa8.2.1)
@@ -72,7 +69,8 @@ plot(TukeyHSD(Exa8.2.1_aov))
 # Patients suffering from rheumatic diseases or osteoporosis often suffer critical loss in bone
 # mineral density (BMD).
 #
-EXR8.2.2 <- read_csv(file="DataSets/ch08_all/EXR_C08_S02_02.csv", show_col_types = FALSE)
+EXR8.2.2 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXR_C08_S02_02.csv", show_col_types = FALSE)
+
 boxplot(BMD ~ factor(GROUP), data = EXR8.2.2)
 Exr2_2.aov <- aov(BMD ~ factor(GROUP), data=EXR8.2.2)
 summary(Exr2_2.aov)
@@ -91,24 +89,28 @@ emmeans(Exr2_2_lm, pairwise ~ GROUP)
 emmeans(Exr2_2_lm, trt.vs.ctrl ~ GROUP)
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Exr 8.2.3
-Exr8.2.3 <- read_csv(file="DataSets/ch08_all/EXR_C08_S02_03.csv")
+Exr8.2.3 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXR_C08_S02_03.csv", show_col_types = FALSE)
 
 Exr3.aov <- aov(calcium ~ Group, data=Exr8.2.3)
 summary(Exr3.aov)
 TukeyHSD(Exr3.aov)
 
 ```
+
 ## ANOVA de dos vías  
+
 **Ejemplos two-way ANOVA** En un estudio de efectos pulmonares en conejillos de Indias, Lacroix et al. expuso a 18 conejillos de Indias sensibilizados con albúmina y 18 no-sensibilizados con aire regular, benzaldehido y acetildehido.  Al final de la exposición los conejillos de Indias fueron anesteciados y la respuesta a alergias medida por lavado broncoalveolar (BAL). La tabla de resultados se muestra en REV_C08_16 y muestra la cuenta de células alveolares $(\times 10^6)$ por grupo de tratamiento (aire, benzaldehido y acetildehido) y sensibilizados a albúmina.  Pruebe por las diferencias en a) entre sensibilizados y no sensibilizados por albúmina, b) entre los tres tratamientos. Sea $\alpha=.05$ en todas las pruebas.  
 
 ```{r}
-Rev8.16 <- read_csv("DataSets/ch08_all/REV_C08_16.csv")
+Rev8.16 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/REV_C08_16.csv", show_col_types = FALSE)
 boxplot(Count ~ factor(Treat) + factor(Sens), data = Rev8.16)
 boxplot(Count ~ factor(Sens) + factor(Treat), data = Rev8.16)
 #
 Rev8.16_M <- Rev8.16 %>% mutate( Treat = case_when( Treat == "Air" ~ "1Air", Treat == "Act" ~ "2Act", Treat == "Benz" ~ "3Benz"))
+
 Rev8.16_aov <- aov(Count ~ factor(Sens) + factor(Treat), data = Rev8.16)
 summary(Rev8.16_aov)
+
 #
 # With car Anova
 Rev8.16_lm <- lm(Count ~ factor(Sens) + factor(Treat), data = Rev8.16_M)
@@ -125,8 +127,9 @@ emmeans(Rev8.16_lm_int, trt.vs.ctrl ~ Sens + Treat)
 ```
 
 **Ejemplo** El interés del estudio de Hartman-Maeir et al. fue estimar los perfiles del déficit de concienciación entre pacientes con infarto cerebral que están en rehabilitación. Estudió 35 pacientes con lesiones por infarto en el hemisferio derecho y 19 pacientes con lesiones en el hemisferio izquierdo.  Además agrupó las lesiones por su tamaño como: 2 = 1-3 cm, 3 =3-5cm, y 4 = 5 cm o más grandes. Una de las medidas importantes fue la calificación de la concienciación por su propia limitación. Las calificaciones tuvieron un rango de 8 a 24, con una calificación más alta significando mayor concienciación (REV_C08_22.csv). Pruebe la diferencia por tamaño de lesión y lado de hemisferio, sea $\alpha = .05$.  
+
 ```{r}
-Rev.8.22 <- read_csv("DataSets/ch08_all/REV_C08_22.csv")
+Rev.8.22 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/REV_C08_22.csv", show_col_types = FALSE)
 
 boxplot(SCORES ~ factor(SIDE) + factor(SIZE), data = Rev.8.22)
 boxplot(SCORES ~ factor(SIZE) + factor(SIDE), data = Rev.8.22)
@@ -134,6 +137,7 @@ boxplot(SCORES ~ factor(SIZE) + factor(SIDE), data = Rev.8.22)
 Rev.8.22_lm <- lm(SCORES ~ factor(SIZE) + factor(SIDE), data = Rev.8.22)
 Anova(Rev.8.22_lm)
 S(Rev.8.22_lm)
+
 # contrasts
 emmeans(Rev.8.22_lm, pairwise ~ SIDE + SIZE)
 
@@ -152,7 +156,7 @@ emmeans_test(Rev.8.22, SCORES ~ SIZE, p.adjust.method = "fdr")
 **Ejemplo 18** The effects of thermal pollution on Corbicula fluminea (Asiatic clams) at three different geographical locations were analyzed by John Brooker (REV_C08_18). Sample data on clam shell length, width, and height are displayed in the following table. Determine if there is a significant difference in mean length, height, or width (measured in mm) of the clam shell at the three different locations by performing three analyses. What inferences can be made from your results? What are the assumptions underlying your inferences? What are the target populations?  
 
 ```{r}
-Rev.8.18 <- read.csv("DataSets/ch08_all/REV_C08_18_mod.csv")
+Rev.8.18 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/REV_C08_18_mod.csv", show_col_types = FALSE)
 boxplot(Measure ~ factor(site) + factor(Geometry), data = Rev.8.18)
 
 #
@@ -166,11 +170,12 @@ emmeans(Rev.8.18_lm, pairwise ~ site + Geometry)
 **Ejemplo** Licciardone et al. examined subjects with chronic, nonspecific low back pain. In this study, 18 of the subjects completed a survey questionnaire assessing physical functioning at baseline, and after 1, 3, and 6 months. Table (EXA_C08_S04_01) shows the data for these subjects who received a sham treatment that appeared to be genuine osteopathic manipulation. Higher values indicate better physical functioning. The goal of the experiment was to determine if subjects would report improvement over time even though the treatment they received would provide minimal improvement. We wish to know if there is a difference in the mean survey values among the four points in time.  
 
 ```{r}
-Exa8.4.1 <- read.csv("DataSets/ch08_all/EXA_C08_S04_01mod.csv")
+Exa8.4.1 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXA_C08_S04_01mod.csv", show_col_types = FALSE)
 
-ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + geom_boxplot() + 
-     scale_fill_viridis(discrete = TRUE, alpha=0.6) +
-     geom_jitter(color="red", size=0.8, alpha=0.3)
+ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + 
+  geom_boxplot() + 
+  scale_fill_viridis(discrete = TRUE, alpha = 0.6) +
+  geom_jitter(height = .2, width = .2, color = "blue", alpha = 0.6)
 
 # Find outliers (extreme if present)
 Exa8.4.1 %>% 
@@ -188,15 +193,18 @@ get_anova_table(Exa8.4.1_aov)
 
 # Pairwise comparisons
 emmeans_test(Exa8.4.1, Assessment ~ Time, p.adjust.method = "fdr")
+
 # # # # # # # # # # # # # # # # # # # 
 # Now with the R basic anova function, how to make a repeated measures
-ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + geom_boxplot() + 
+ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + 
+  geom_boxplot() + 
   scale_fill_viridis(discrete = TRUE, alpha=0.9) +
-  geom_jitter(color="red", size=1., alpha=1.)
+  geom_jitter(height = .2, width = .2, color = "blue", alpha=.6)
 
 Exa8.4.1_mod <- aov( Assessment ~ factor(Time) + Error(factor(Subject)), data = Exa8.4.1 )
 #
 summary(Exa8.4.1_mod)
+
 # emmeans(Exa8.4.1_mod, pairwise ~ Time)
 # emmeans(Exa8.4.1_mod, trt.vs.crtl ~ Time)
 

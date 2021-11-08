@@ -26,7 +26,7 @@ opts_knit$set(width=80)
 
 ```{r}
 # Set working directory
-setwd("~/Dropbox/GitHub/ProbEstad2021")
+setwd("~/Dropbox/GitHub/ProbEstad")
 
 library(rcompanion)
 library(car)
@@ -72,7 +72,7 @@ plot(TukeyHSD(Exa8.2.1_aov))
 # Patients suffering from rheumatic diseases or osteoporosis often suffer critical loss in bone
 # mineral density (BMD).
 #
-EXR8.2.2 <- read_csv(file="DataSets/ch08_all/EXR_C08_S02_02.csv")
+EXR8.2.2 <- read_csv(file="DataSets/ch08_all/EXR_C08_S02_02.csv", show_col_types = FALSE)
 boxplot(BMD ~ factor(GROUP), data = EXR8.2.2)
 Exr2_2.aov <- aov(BMD ~ factor(GROUP), data=EXR8.2.2)
 summary(Exr2_2.aov)
@@ -83,7 +83,7 @@ EXR8.2.2_M <- EXR8.2.2 %>% mutate(GROUP = case_when(GROUP == 1 ~ "RA", GROUP == 
 
 ggplot( data = EXR8.2.2_M, aes(x = GROUP, y = BMD) )  + geom_boxplot() + 
   scale_fill_viridis(discrete = TRUE, alpha=0.6) +
-  geom_jitter(color="blue", size=0.6, alpha=0.7) + theme_ipsum()
+  geom_jitter(height= .2, width = .2, color="blue", alpha=0.6) + theme_ipsum()
 #
 Exr2_2_lm <- lm(BMD ~ factor(GROUP), data=EXR8.2.2_M)
 S(Exr2_2_lm)

@@ -26,9 +26,9 @@ opts_knit$set(width=80)
 
 ```{r}
 # Set working directory
+library(hrbrthemes)
 library(car)
 library(emmeans)
-library(hrbrthemes)
 library(viridis)
 library(rstatix)
 library(tidyverse)
@@ -118,6 +118,22 @@ Learn
 #
 plot(Rate ~ Age + Method, data = Learn)
 
+```
+
+Para las gráficas de cajas ejecutadas por un ggplot (o boxplot) es necesario mandar por separado cada grupo en la variable predictora (o independiente), o separar dos páneles, uno por cada grupo.
+
+```{r}
+# For the Age group
+
+ggplot(data = Learn, aes(x = Age, y = Rate) )  + geom_boxplot() + 
+  scale_fill_viridis(discrete = TRUE, alpha=0.6) +
+  geom_jitter(height= .2, width = .2, color="blue", alpha=0.6) + theme_ipsum()
+
+# For the Rate group
+ggplot(data = Learn, aes(x = Age, y = Rate) )  + geom_boxplot() + 
+  scale_fill_viridis(discrete = TRUE, alpha=0.6) +
+  geom_jitter(height= .2, width = .2, color="blue", alpha=0.6) + theme_ipsum()
+
 # now the ANOVA model
 Rate_aov = aov(Rate ~ Method + Age, data = Learn)
 summary(Rate_aov)
@@ -134,7 +150,9 @@ abline(v=0, col=2)
 
 ```{r}
 Rev8.16 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/REV_C08_16.csv", show_col_types = FALSE)
-boxplot(Count ~ factor(Treat) + factor(Sens), data = Rev8.16)
+boxplot(Count ~ factor(Treat), data = Rev8.16)
+boxplot(Count ~ factor(Sens), data = Rev8.16)
+
 boxplot(Count ~ factor(Sens) + factor(Treat), data = Rev8.16)
 #
 Rev8.16_M <- Rev8.16 %>% mutate( Treat = case_when( Treat == "Air" ~ "1Air", Treat == "Act" ~ "2Act", Treat == "Benz" ~ "3Benz"))

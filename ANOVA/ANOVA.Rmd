@@ -99,6 +99,37 @@ TukeyHSD(Exr3.aov)
 
 ## ANOVA de dos vías  
 
+Del ejemplo 8.3.1 de Daniel para un ANOVA de dos vías:  
+A physical therapist wished to compare three methods for teaching patients to use a certain prosthetic device. He felt that the rate of learning would be different for patients of different ages and wished to design an experiment in which the influence of age could be taken into account.  
+
+```{r}
+# Build a table, index by index since
+# Two-Way ANOVA EXAMPLE 8.3.1 has NO-data file, therefore we make the example table.
+#
+
+Learn <- tibble(
+  Age = factor(rep(c(1,2,3,4,5), 3)),
+  Method = factor(rep(1:3,c(5,5,5))),
+  Rate = c(7,8,9,10,11,9,9,9,9,12,10,10,12,12,14)
+  )
+
+Learn
+
+#
+plot(Rate ~ Age + Method, data = Learn)
+
+# now the ANOVA model
+Rate_aov = aov(Rate ~ Method + Age, data = Learn)
+summary(Rate_aov)
+
+layout(matrix(c(1,2), nrow=2, ncol=1, byrow=TRUE))
+TukeyHSD(Rate_aov)
+
+plot(TukeyHSD(Rate_aov))
+abline(v=0, col=2)
+
+```
+
 **Ejemplos two-way ANOVA** En un estudio de efectos pulmonares en conejillos de Indias, Lacroix et al. expuso a 18 conejillos de Indias sensibilizados con albúmina y 18 no-sensibilizados con aire regular, benzaldehido y acetildehido.  Al final de la exposición los conejillos de Indias fueron anesteciados y la respuesta a alergias medida por lavado broncoalveolar (BAL). La tabla de resultados se muestra en REV_C08_16 y muestra la cuenta de células alveolares $(\times 10^6)$ por grupo de tratamiento (aire, benzaldehido y acetildehido) y sensibilizados a albúmina.  Pruebe por las diferencias en a) entre sensibilizados y no sensibilizados por albúmina, b) entre los tres tratamientos. Sea $\alpha=.05$ en todas las pruebas.  
 
 ```{r}
@@ -166,6 +197,11 @@ S(Rev.8.18_lm)
 # Pairwise post hoc
 emmeans(Rev.8.18_lm, pairwise ~ site + Geometry)
 ```
+
+## ANOVA Modelos de medidas repetidas   
+
+Los modelos de medidas repetidas son aquellos en los que la misma variable es medida en los mismos sujetos en dos o más ocasiones.  En donde las ocaciones pueden significar condiciones distintas como diferentes tratamientos o diferentes puntos de tiempo.  
+Las ventajas de usar este tipo de modelos se han mencionado y son que permiten controlar variables relacionadas con el sujeto y no con el estudio que se está desarrollado .
 
 **Ejemplo** Licciardone et al. examined subjects with chronic, nonspecific low back pain. In this study, 18 of the subjects completed a survey questionnaire assessing physical functioning at baseline, and after 1, 3, and 6 months. Table (EXA_C08_S04_01) shows the data for these subjects who received a sham treatment that appeared to be genuine osteopathic manipulation. Higher values indicate better physical functioning. The goal of the experiment was to determine if subjects would report improvement over time even though the treatment they received would provide minimal improvement. We wish to know if there is a difference in the mean survey values among the four points in time.  
 

@@ -130,7 +130,7 @@ ggplot(data = Learn, aes(x = Age, y = Rate) )  + geom_boxplot() +
   geom_jitter(height= .2, width = .2, color="blue", alpha=0.6) + theme_ipsum()
 
 # For the Rate group
-ggplot(data = Learn, aes(x = Age, y = Rate) )  + geom_boxplot() + 
+ggplot(data = Learn, aes(x = Method, y = Rate) )  + geom_boxplot() + 
   scale_fill_viridis(discrete = TRUE, alpha=0.6) +
   geom_jitter(height= .2, width = .2, color="blue", alpha=0.6) + theme_ipsum()
 

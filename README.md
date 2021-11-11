@@ -59,5 +59,5 @@ Tarea 8 [ANOVA](https://fabarrios.github.io/ProbEstad/HW/HW_08).
 
 [Notas](https://fabarrios.github.io/ProbEstad/Notas/Notas).  
 
-Proyectos finales.  
+[Proyectos finales](https://fabarrios.github.io/ProbEstad/Proyectos/Proyectos.html).  
 

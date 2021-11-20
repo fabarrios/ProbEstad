@@ -81,3 +81,8 @@ The purpose of a study by Halligan et al. was to evaluate diurnal variation in b
 1. Draw a scatter diagram of the data and plot the equation.  
 2. Compute r and test for significance at the .05 level. Find the p value.  
 
+## Proyecto final 14  
+Another variable of interest in the study by Reiss et al. (A-3) (see Exercise 9.3.4) was partial thromboplastin (aPTT), the standard test used to monitor heparin anticoagulation. Use the data in EXR_C09_S07_02.csv to examine the correlation between aPTT levels as measured by the CoaguCheck point-of-care assay and standard laboratory hospital assay in 90 subjects receiving heparin alone, heparin with warfarin, and warfarin and exoenoxaparin.  
+1. Draw a scatter diagram of the data and plot the equation for each of the cases.  
+2. Compute r and test for significance at the .05 level. Find the p value of the models.  
+

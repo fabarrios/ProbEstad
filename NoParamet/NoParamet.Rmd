@@ -1,0 +1,67 @@
+---
+title: "ANalisis no paramétrico"
+author: "F.A. Barrios, ENESj"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="80")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=FALSE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=80)
+```
+
+```{r}
+library(tidyverse)
+library(coin)
+library(rstatix)
+library(ggpubr)
+```
+
+## Cuando usar estimación no-parametrica  
+
+La estimación no paramétrica es usada para sustituir estimaciones basadas en la suposición de que las muestras de datos que estamos analizando fueron tomadas de poblaciones que responden a una distribución normal,  es decir las muestras presetnan una distribución aproximada a la normal, y se usa la media commo medida central de nuestras poblaciones para estimar sus diferencias. Además otra suposición importante es la homocedasticidad (igualdad de varianzas en las poblaciones). Se sabe que cuando alguna de estas dos suposiciones, normalidad y homocedasticidad, no se cumplen, esto puede resultar en conclusioines erroneas de nuestras estimaciones. Un posible origen de este problema es resultado de una escala "devil" al medir muestros datos. En estos casos se usan estimaciones que no están basadas en distribuciones de probabilidad, y las medidas centrales se basan en la mediana. Varias de estas técnicas están basadas en la categorización de los datos y estimación de estadísticas realcionadas con la mediana.  
+
+## Prueba de categorización de signo Wilcoxon para una muestra.  
+
+Esta prueba de Wilcoxon se una para determinar si una muestra no sigue una distribución no paremétrica o fue medida en uan escala dévil y se queire determinar si la mediana de la población toma algún valor hipotético o es igual a algún estándar.  Para usar esta prueba su supone que los datos están distribuidos cerca de la mediana.  
+
+**Ejemplo C13_S03_1*
+  Researchers wished to know if instruction in personal care and grooming would improve the appearance of mentally challenged girls. In a school for the mentally challenged, 10 girls selected at random received special instruction in personal care and grooming. Two weeks after completion of the course of instruction, the girls were interviewed by a nurse and a social worker who assigned each girl a score based on her general appearance. The investigators believed that the scores achieved the level of an ordinal scale. They felt that although a score of, say, 8 represented a better appearance than a score of 6, they were unwilling to say that the difference between scores of 6 and 8 was equal to the difference between, say, scores of 8 and 10; or that the difference between scores of 6 and 8 represented twice as much improvement as the difference between scores of 5 and 6. The scores are shown in the following Table. We wish to know if we can conclude that the median score of the population from which we assume this sample to have been drawn is different from 5.
+```{r}
+# Tabla de calificaciones de apariencia de 10 niñas en escuela para suetos con capacidades especiales
+Apariencia <- tibble( 
+  Sujeto = c(1,2,3,4,5,6,7,8,9,10), 
+  Calif = c(4,5,8,8,9,6,10,7,6,6) 
+  )
+
+Apariencia
+# Estimamos la mediana y el rango intercuartil 
+Apariencia %>% get_summary_stats(Calif, type = "median_iqr")
+
+# Gráfica con los datos
+ggboxplot(
+  Apariencia$Calif, width = 0.5, add = c("mean", "jitter"), 
+  ylab = "Calificación", xlab = FALSE
+  )
+
+# La prueba de Wilcoxon se corre usando rstatix, que usa la librería coin
+calif.test <- Apariencia %>% wilcox_test(Calif ~ 1, mu = 5, alternative = "two.sided")
+calif.test
+# El tamaño del efecto se obtiene con:
+Apariencia %>%  wilcox_effsize(Calif ~ 1, mu = 5)
+
+```
+

@@ -195,7 +195,11 @@
     <div id="toc">
       <ul>
       <li><a href="#cuando-usar-estimación-no-parametrica">Cuando usar estimación no-parametrica</a></li>
-      <li><a href="#prueba-de-categorización-de-signo-wilcoxon-para-una-muestra.">Prueba de categorización de signo Wilcoxon para una muestra.</a></li>
+      <li><a href="#prueba-de-signo-wilcoxon-categorizada-para-una-muestra.">Prueba de signo Wilcoxon categorizada para una muestra.</a></li>
+      <li><a href="#prueba-mann-whitney">Prueba Mann-Whitney</a></li>
+      <li><a href="#prueba-no-paramétrica-para-comparar-dos-poblaciones-prueba-u-mann-whitney.">Prueba no paramétrica para comparar dos poblaciones (Prueba U Mann-Whitney).</a></li>
+      <li><a href="#prueba-de-wilcoxon-para-dos-muestras-pareadas.">Prueba de Wilcoxon para dos muestras pareadas.</a></li>
+      <li><a href="#section"></a></li>
       </ul>
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
@@ -210,20 +214,15 @@
    
 <!-- Don't indent these lines or it will mess pre blocks indentation --> 
 <div id="main">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(coin)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <div id="cuando-usar-estimación-no-parametrica" class="section level2">
 <h2>Cuando usar estimación no-parametrica</h2>
-<p>La estimación no paramétrica es usada para sustituir estimaciones basadas en la suposición de que las muestras de datos que estamos analizando fueron tomadas de poblaciones que responden a una distribución normal, es decir las muestras presetnan una distribución aproximada a la normal, y se usa la media commo medida central de nuestras poblaciones para estimar sus diferencias. Además otra suposición importante es la homocedasticidad (igualdad de varianzas en las poblaciones). Se sabe que cuando alguna de estas dos suposiciones, normalidad y homocedasticidad, no se cumplen, esto puede resultar en conclusioines erroneas de nuestras estimaciones. Un posible origen de este problema es resultado de una escala “devil” al medir muestros datos. En estos casos se usan estimaciones que no están basadas en distribuciones de probabilidad, y las medidas centrales se basan en la mediana. Varias de estas técnicas están basadas en la categorización de los datos y estimación de estadísticas realcionadas con la mediana.</p>
+<p>La estimación no paramétrica es usada para sustituir estimaciones basadas en la suposición de que las muestras de datos que estamos analizando fueron tomadas de poblaciones que responden a una distribución normal, es decir las muestras presetnan una distribución aproximada a la normal, y se usa la media commo medida central de nuestras poblaciones para estimar sus diferencias. Además otra suposición importante es la homocedasticidad (igualdad de varianzas en las poblaciones). Se sabe que cuando alguna de estas dos suposiciones, normalidad y homocedasticidad, no se cumplen, esto puede resultar en conclusioines erroneas de nuestras estimaciones. Un posible origen de este problema es resultado de una escala “devil” al medir muestros datos. En estos casos se usan estimaciones que no están basadas en distribuciones de probabilidad, y las medidas centrales se basan en la mediana. Varias de estas técnicas están basadas en la categorización de los datos y estimación de estadísticas realcionadas con la mediana. Como comentario, en el caso de los algoritmos de R y en lo general se debe tener un mínimo de datos, en este caso por lo menos 6 para que las funciones no marquen un error.</p>
 </div>
-<div id="prueba-de-categorización-de-signo-wilcoxon-para-una-muestra." class="section level2">
-<h2>Prueba de categorización de signo Wilcoxon para una muestra.</h2>
+<div id="prueba-de-signo-wilcoxon-categorizada-para-una-muestra." class="section level2">
+<h2>Prueba de signo Wilcoxon categorizada para una muestra.</h2>
 <p>Esta prueba de Wilcoxon se una para determinar si una muestra no sigue una distribución no paremétrica o fue medida en uan escala dévil y se queire determinar si la mediana de la población toma algún valor hipotético o es igual a algún estándar. Para usar esta prueba su supone que los datos están distribuidos cerca de la mediana.</p>
-<p>**Ejemplo C13_S03_1* Researchers wished to know if instruction in personal care and grooming would improve the appearance of mentally challenged girls. In a school for the mentally challenged, 10 girls selected at random received special instruction in personal care and grooming. Two weeks after completion of the course of instruction, the girls were interviewed by a nurse and a social worker who assigned each girl a score based on her general appearance. The investigators believed that the scores achieved the level of an ordinal scale. They felt that although a score of, say, 8 represented a better appearance than a score of 6, they were unwilling to say that the difference between scores of 6 and 8 was equal to the difference between, say, scores of 8 and 10; or that the difference between scores of 6 and 8 represented twice as much improvement as the difference between scores of 5 and 6. The scores are shown in the following Table. We wish to know if we can conclude that the median score of the population from which we assume this sample to have been drawn is different from 5.</p>
+<p><strong>Ejemplo C13_S03_1</strong> Researchers wished to know if instruction in personal care and grooming would improve the appearance of mentally challenged girls. In a school for the mentally challenged, 10 girls selected at random received special instruction in personal care and grooming. Two weeks after completion of the course of instruction, the girls were interviewed by a nurse and a social worker who assigned each girl a score based on her general appearance. The investigators believed that the scores achieved the level of an ordinal scale. They felt that although a score of, say, 8 represented a better appearance than a score of 6, they were unwilling to say that the difference between scores of 6 and 8 was equal to the difference between, say, scores of 8 and 10; or that the difference between scores of 6 and 8 represented twice as much improvement as the difference between scores of 5 and 6. The scores are shown in the following Table. We wish to know if we can conclude that the median score of the population from which we assume this sample to have been drawn is different from 5.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de calificaciones de apariencia de 10 niñas en escuela para suetos con capacidades especiales</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Apariencia <span class="ot">&lt;-</span> <span class="fu">tibble</span>( </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sujeto =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>), </span>
@@ -269,6 +268,108 @@
   .y.   group1 group2     effsize     n magnitude
 * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt; &lt;ord&gt;    
 1 Calif 1      null model   0.764    10 large    </code></pre>
+<p>Por lo que podemos concluír que la mediana no es igual a <span class="math inline">\(5\)</span>, y que el “efecto” estadístico para llegar a esta conclusión es “grande”, esto último estimado por la función de <code>wilcox_effsize</code>.</p>
+</div>
+<div id="prueba-mann-whitney" class="section level2">
+<h2>Prueba Mann-Whitney</h2>
+<p>La prueba no paramétrica que sustituye a la prueba t para la comparación de dos poblaciones, tiene varios nombres; Mann-Whitney U, Wilcoxon-Mann-Whitney o prueba Wilcoxon para dos muestas. En R la llamada de la funcion es a travez de la prueba de Wilcoxon <code>wilcox_test</code>.<br />
+Para usar esta prueba se deben cumplir las condiciones básicas de muestreo aleatorio, para obtenener las muestras poblacionales que se van a usar, y además<br />
+1. La escala de medicion de las muestras por lo menos debe ser ordinal.<br />
+2. La varable de análisis debe ser contínua.<br />
+3. Si las poblaciones son diferentes solo son diferentes con respecto a sus medianas.<br />
+Cuando estas suposiciones se cumplen se puede probar la hipótesis nula <span class="math inline">\(H_0\)</span> que supone que las poblaciones tienen medianas iguales, en contra de tres hipótesis alternativas <span class="math inline">\(H_A\)</span> posibles: (1) Las poblaciones tiene medianas distintas (opción “two.sided”), (2) La mediana de la “primera población” es mayor (opción “greater”), (3) La mediana de la “primera población” es menor (opción “less).</p>
+</div>
+<div id="prueba-no-paramétrica-para-comparar-dos-poblaciones-prueba-u-mann-whitney." class="section level1">
+<h1>Prueba no paramétrica para comparar dos poblaciones (Prueba U Mann-Whitney).</h1>
+<p>Esta prueba nos permite comparar dos poblaciones por sus medianas, se supone que los datos están cercanos en cada población a sus medianas y la cantidad de datos de cada muestra pueden ser distintas. Si las muestras resultan diferentes solo podemos concluír que son diferentes en sus medianas.</p>
+</div>
+<div id="prueba-de-wilcoxon-para-dos-muestras-pareadas." class="section level1">
+<h1>Prueba de Wilcoxon para dos muestras pareadas.</h1>
+<p>Cuando los datos a analizar están pareados, es decir dos observaciones por medida (o sujeto) un buen sustituto para una prueba t cuando los datos cumplen con las suposiciones de la prueba t, es la prueba de signo pareada de Wilcoxon.<br />
+<strong>Ejemplo C13.S06.01</strong> A researcher designed an experiment to assess the effects of prolonged inhalation of cadmium oxide. Fifteen laboratory animals served as experimental subjects while 10 similar animals served as controls. The variable of interest was hemoglobin level following the experiment. The results are shown in EXA_C13_S06_01. We wish to know if we can conclude that prolonged inhalation of cadmium oxide reduces hemoglobin level.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Exa13.<span class="fl">6.1</span> <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file=</span><span class="st">&quot;~/Dropbox/GitHub/ProbEstad/DataSets/ch13_all/EXA_C13_S06_01.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Exa13.<span class="fl">6.1</span> <span class="co"># tibble de X y Y de los niveles de hemoglobina.</span></span></code></pre></div>
+<pre><code># A tibble: 15 × 2
+       X     Y
+   &lt;dbl&gt; &lt;dbl&gt;
+ 1  14.4  17.4
+ 2  14.2  16.2
+ 3  13.8  17.1
+ 4  16.5  17.5
+ 5  14.1  15  
+ 6  16.6  16  
+ 7  15.9  16.9
+ 8  15.6  15  
+ 9  14.1  16.3
+10  15.3  16.8
+11  15.7  NA  
+12  16.7  NA  
+13  13.7  NA  
+14  15.3  NA  
+15  14    NA  </code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Ca_O <span class="ot">&lt;-</span> Exa13.<span class="fl">6.1</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>( <span class="at">Exposed =</span> X, <span class="at">Control =</span> Y)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Se alargan los datos</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>Ca_O_long <span class="ot">&lt;-</span> Ca_O <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;Exposed&quot;</span>, <span class="st">&quot;Control&quot;</span>) , <span class="at">names_to =</span> <span class="st">&quot;Group&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;HemoglobinLevel&quot;</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>Ca_O_long <span class="ot">&lt;-</span> Ca_O_long <span class="sc">%&gt;%</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Group =</span> Group <span class="sc">%&gt;%</span> <span class="fu">fct_relevel</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Exposed&quot;</span>))</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># para ver las medianas de cada muestra</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>Ca_O_long <span class="sc">%&gt;%</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Group) <span class="sc">%&gt;%</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_summary_stats</span>(HemoglobinLevel, <span class="at">type =</span> <span class="st">&quot;median_iqr&quot;</span>)</span></code></pre></div>
+<pre><code># A tibble: 2 × 5
+  Group   variable            n median   iqr
+  &lt;fct&gt;   &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 Control HemoglobinLevel    10   16.6   1  
+2 Exposed HemoglobinLevel    15   15.3   1.7</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Box plot con la nube de puntos</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># HemoPlot &lt;- ggboxplot(</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  Ca_O_long, x = &quot;Group&quot;, y = &quot;HemoglobinLevel&quot;, </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  ylab = &quot;Hemoglobin level in blood&quot;, xlab = &quot;Groups&quot;, add = &quot;jitter&quot;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  )</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>Ca_O_stat.test <span class="ot">&lt;-</span> Ca_O_long <span class="sc">%&gt;%</span> </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox_test</span>(HemoglobinLevel <span class="sc">~</span> Group) <span class="sc">%&gt;%</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_significance</span>()</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>Ca_O_long <span class="sc">%&gt;%</span> <span class="fu">wilcox_effsize</span>(HemoglobinLevel <span class="sc">~</span> Group)</span></code></pre></div>
+<pre><code># A tibble: 1 × 7
+  .y.             group1  group2  effsize    n1    n2 magnitude
+* &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
+1 HemoglobinLevel Control Exposed   0.555    15    15 large    </code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfica &quot;nice&quot; de cajas y puntos con tamaño de efecto y tipo de corrección</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Ca_O_stat.test <span class="ot">&lt;-</span> Ca_O_stat.test <span class="sc">%&gt;%</span> <span class="fu">add_xy_position</span>(<span class="at">x =</span> <span class="st">&quot;Group&quot;</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># HemoPlot +</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  stat_pvalue_manual(Ca_O_stat.test, tip.length = 0) +</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#  labs(subtitle = get_test_label(Ca_O_stat.test, detailed = TRUE))</span></span></code></pre></div>
+</div>
+<div id="section" class="section level1">
+<h1></h1>
+<p><strong>Ejemplo C13.S03.2</strong> A dental research team wished to know if teaching people how to brush their teeth would be beneficial. Twelve pairs of patients seen in a dental clinic were obtained by carefully matching on such factors as age, sex, intelligence, and initial oral hygiene scores. One member of each pair received instruction on how to brush his or her teeth and on other oral hygiene matters. Six months later, all 24 subjects were examined and assigned an oral hygiene score by a dental hygienist unaware of which subjects had received the instruction. A low score indicates a high level of oral hygiene. The results are shown in EXA_C13_S03_02.csv.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Exa13.<span class="fl">3.2</span> <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file=</span><span class="st">&quot;~/Dropbox/GitHub/ProbEstad/DataSets/ch13_all/EXA_C13_S03_02.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>Exa13.<span class="fl">3.2</span></span></code></pre></div>
+<pre><code># A tibble: 12 × 3
+    PAIR     X     Y
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     1   1.5   2  
+ 2     2   2     2  
+ 3     3   3.5   4  
+ 4     4   3     2.5
+ 5     5   3.5   4  
+ 6     6   2.5   3  
+ 7     7   2     3.5
+ 8     8   1.5   3  
+ 9     9   1.5   2.5
+10    10   2     2.5
+11    11   3     2.5
+12    12   2     2.5</code></pre>
 </div>
 </div>
 

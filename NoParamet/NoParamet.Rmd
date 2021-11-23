@@ -25,21 +25,18 @@ opts_knit$set(width=80)
 
 ```{r}
 library(tidyverse)
-library(coin)
-library(rstatix)
-library(ggpubr)
+
 ```
 
 ## Cuando usar estimación no-parametrica  
 
-La estimación no paramétrica es usada para sustituir estimaciones basadas en la suposición de que las muestras de datos que estamos analizando fueron tomadas de poblaciones que responden a una distribución normal,  es decir las muestras presetnan una distribución aproximada a la normal, y se usa la media commo medida central de nuestras poblaciones para estimar sus diferencias. Además otra suposición importante es la homocedasticidad (igualdad de varianzas en las poblaciones). Se sabe que cuando alguna de estas dos suposiciones, normalidad y homocedasticidad, no se cumplen, esto puede resultar en conclusioines erroneas de nuestras estimaciones. Un posible origen de este problema es resultado de una escala "devil" al medir muestros datos. En estos casos se usan estimaciones que no están basadas en distribuciones de probabilidad, y las medidas centrales se basan en la mediana. Varias de estas técnicas están basadas en la categorización de los datos y estimación de estadísticas realcionadas con la mediana.  
+La estimación no paramétrica es usada para sustituir estimaciones basadas en la suposición de que las muestras de datos que estamos analizando fueron tomadas de poblaciones que responden a una distribución normal,  es decir las muestras presetnan una distribución aproximada a la normal, y se usa la media commo medida central de nuestras poblaciones para estimar sus diferencias. Además otra suposición importante es la homocedasticidad (igualdad de varianzas en las poblaciones). Se sabe que cuando alguna de estas dos suposiciones, normalidad y homocedasticidad, no se cumplen, esto puede resultar en conclusioines erroneas de nuestras estimaciones. Un posible origen de este problema es resultado de una escala "devil" al medir muestros datos. En estos casos se usan estimaciones que no están basadas en distribuciones de probabilidad, y las medidas centrales se basan en la mediana. Varias de estas técnicas están basadas en la categorización de los datos y estimación de estadísticas realcionadas con la mediana. Como comentario, en el caso de los algoritmos de R y en lo general se debe tener un mínimo de datos, en este caso por lo menos 6 para que las funciones no marquen un error.
 
-## Prueba de categorización de signo Wilcoxon para una muestra.  
+## Prueba de signo Wilcoxon categorizada para una muestra.  
 
 Esta prueba de Wilcoxon se una para determinar si una muestra no sigue una distribución no paremétrica o fue medida en uan escala dévil y se queire determinar si la mediana de la población toma algún valor hipotético o es igual a algún estándar.  Para usar esta prueba su supone que los datos están distribuidos cerca de la mediana.  
 
-**Ejemplo C13_S03_1*
-  Researchers wished to know if instruction in personal care and grooming would improve the appearance of mentally challenged girls. In a school for the mentally challenged, 10 girls selected at random received special instruction in personal care and grooming. Two weeks after completion of the course of instruction, the girls were interviewed by a nurse and a social worker who assigned each girl a score based on her general appearance. The investigators believed that the scores achieved the level of an ordinal scale. They felt that although a score of, say, 8 represented a better appearance than a score of 6, they were unwilling to say that the difference between scores of 6 and 8 was equal to the difference between, say, scores of 8 and 10; or that the difference between scores of 6 and 8 represented twice as much improvement as the difference between scores of 5 and 6. The scores are shown in the following Table. We wish to know if we can conclude that the median score of the population from which we assume this sample to have been drawn is different from 5.
+**Ejemplo C13_S03_1** Researchers wished to know if instruction in personal care and grooming would improve the appearance of mentally challenged girls. In a school for the mentally challenged, 10 girls selected at random received special instruction in personal care and grooming. Two weeks after completion of the course of instruction, the girls were interviewed by a nurse and a social worker who assigned each girl a score based on her general appearance. The investigators believed that the scores achieved the level of an ordinal scale. They felt that although a score of, say, 8 represented a better appearance than a score of 6, they were unwilling to say that the difference between scores of 6 and 8 was equal to the difference between, say, scores of 8 and 10; or that the difference between scores of 6 and 8 represented twice as much improvement as the difference between scores of 5 and 6. The scores are shown in the following Table. We wish to know if we can conclude that the median score of the population from which we assume this sample to have been drawn is different from 5.  
 ```{r}
 # Tabla de calificaciones de apariencia de 10 niñas en escuela para suetos con capacidades especiales
 Apariencia <- tibble( 
@@ -64,4 +61,73 @@ calif.test
 Apariencia %>%  wilcox_effsize(Calif ~ 1, mu = 5)
 
 ```
+Por lo que podemos concluír que la mediana no es igual a $5$, y que el "efecto" estadístico para llegar a esta conclusión es "grande", esto último estimado por la función de `wilcox_effsize`.  
 
+## Prueba Mann-Whitney  
+
+La prueba no paramétrica que sustituye a la prueba t para la comparación de dos poblaciones, tiene varios nombres; Mann-Whitney U, Wilcoxon-Mann-Whitney o prueba Wilcoxon para dos muestas. En R la llamada de la funcion es a travez de la prueba de Wilcoxon `wilcox_test`.  
+Para usar esta prueba se deben cumplir las condiciones básicas de muestreo aleatorio, para obtenener las muestras poblacionales que se van a usar, y además  
+1. La escala de medicion de las muestras por lo menos debe ser ordinal.  
+2. La varable de análisis debe ser contínua.  
+3. Si las poblaciones son diferentes solo son diferentes con respecto a sus medianas.  
+Cuando estas suposiciones se cumplen se puede probar la hipótesis nula $H_0$ que supone que las poblaciones tienen medianas iguales, en contra de tres hipótesis alternativas $H_A$ posibles: (1) Las poblaciones tiene medianas distintas (opción "two.sided"), (2) La mediana de la "primera población" es mayor (opción "greater"), (3) La mediana de la "primera población" es menor (opción "less).  
+
+# Prueba no paramétrica para comparar dos poblaciones (Prueba  U Mann-Whitney).  
+
+Esta prueba nos permite comparar dos poblaciones por sus medianas, se supone que los datos están cercanos en cada población a sus medianas y la cantidad de datos de cada muestra pueden ser distintas. Si las muestras resultan diferentes solo podemos concluír que son diferentes en sus medianas.
+
+# Prueba de Wilcoxon para dos muestras pareadas.  
+
+Cuando los datos a analizar están pareados, es decir dos observaciones por medida (o sujeto) un buen sustituto para una prueba t cuando los datos cumplen con las suposiciones de la prueba t, es la prueba de signo pareada de Wilcoxon.  
+**Ejemplo C13.S06.01** A researcher designed an experiment to assess the effects of prolonged inhalation of cadmium oxide. Fifteen laboratory animals served as experimental subjects while 10 similar animals served as controls. The variable of interest was hemoglobin level following the experiment. The results are shown in EXA_C13_S06_01. We wish to know if we can conclude that prolonged inhalation of cadmium oxide reduces hemoglobin level.  
+
+```{r}
+Exa13.6.1 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch13_all/EXA_C13_S06_01.csv", show_col_types = FALSE)
+
+Exa13.6.1 # tibble de X y Y de los niveles de hemoglobina.
+
+Ca_O <- Exa13.6.1 %>% 
+  rename( Exposed = X, Control = Y)
+
+# Se alargan los datos
+Ca_O_long <- Ca_O %>%
+  pivot_longer(cols = c("Exposed", "Control") , names_to = "Group", values_to = "HemoglobinLevel")
+
+Ca_O_long <- Ca_O_long %>% 
+  mutate( Group = Group %>% fct_relevel("Control", "Exposed"))
+
+# para ver las medianas de cada muestra
+Ca_O_long %>%
+  group_by(Group) %>%
+  get_summary_stats(HemoglobinLevel, type = "median_iqr")
+
+# Box plot con la nube de puntos
+# HemoPlot <- ggboxplot(
+#  Ca_O_long, x = "Group", y = "HemoglobinLevel", 
+#  ylab = "Hemoglobin level in blood", xlab = "Groups", add = "jitter"
+#  )
+
+Ca_O_stat.test <- Ca_O_long %>% 
+  wilcox_test(HemoglobinLevel ~ Group) %>%
+  add_significance()
+
+Ca_O_long %>% wilcox_effsize(HemoglobinLevel ~ Group)
+
+# Gráfica "nice" de cajas y puntos con tamaño de efecto y tipo de corrección
+Ca_O_stat.test <- Ca_O_stat.test %>% add_xy_position(x = "Group")
+
+# HemoPlot +
+#  stat_pvalue_manual(Ca_O_stat.test, tip.length = 0) +
+#  labs(subtitle = get_test_label(Ca_O_stat.test, detailed = TRUE))
+```
+
+
+# 
+**Ejemplo C13.S03.2** A dental research team wished to know if teaching people how to brush their teeth would be beneficial. Twelve pairs of patients seen in a dental clinic were obtained by carefully matching on such factors as age, sex, intelligence, and initial oral hygiene scores. One member of each pair received instruction on how to brush his or her teeth and on other oral hygiene matters. Six months later, all 24 subjects were examined and assigned an oral hygiene score by a dental hygienist unaware of which subjects had received the instruction. A low score indicates a high level of oral hygiene. The results are shown in EXA_C13_S03_02.csv.  
+
+```{r}
+Exa13.3.2 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch13_all/EXA_C13_S03_02.csv", show_col_types = FALSE)
+
+Exa13.3.2
+
+```

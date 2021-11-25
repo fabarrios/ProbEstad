@@ -73,6 +73,7 @@ Para usar esta prueba se deben cumplir las condiciones básicas de muestreo alea
 1. La escala de medicion de las muestras por lo menos debe ser ordinal.  
 2. La varable de análisis debe ser contínua.  
 3. Si las poblaciones son diferentes solo son diferentes con respecto a sus medianas.  
+
 Cuando estas suposiciones se cumplen se puede probar la hipótesis nula $H_0$ que supone que las poblaciones tienen medianas iguales, en contra de tres hipótesis alternativas $H_A$ posibles: (1) Las poblaciones tiene medianas distintas (opción "two.sided"), (2) La mediana de la "primera población" es mayor (opción "greater"), (3) La mediana de la "primera población" es menor (opción "less).  
 
 ### Prueba no paramétrica para comparar dos poblaciones (Prueba  U Mann-Whitney).  
@@ -106,14 +107,19 @@ HemoPlot <- ggboxplot(
 Ca_O_long, x = "Group", y = "HemoglobinLevel", 
 ylab = "Hemoglobin level in blood", xlab = "Groups", add = "jitter"
 )
+# se muestra la gráfica
+HemoPlot
 
 Ca_O_stat.test <- Ca_O_long %>% 
   wilcox_test(HemoglobinLevel ~ Group) %>%
   add_significance()
 
+# Imprimimos la tabla para ver el resultado de la prueba 
+Ca_O_stat.test
+# Se estima el tamaño del afecto depués de tomar o desechar la Ho
 Ca_O_long %>% wilcox_effsize(HemoglobinLevel ~ Group)
 
-# Gráfica "nice" de cajas y puntos con tamaño de efecto y tipo de corrección
+# Gráfica con resultado de la prueba de cajas y puntos con tamaño de efecto y tipo de corrección
 Ca_O_stat.test <- Ca_O_stat.test %>% add_xy_position(x = "Group")
 
 HemoPlot +
@@ -147,9 +153,11 @@ Hygiene_long <- Hygiene_long %>%
 Hygiene_long <- Hygiene_long %>% 
   mutate( Group = Group %>% fct_relevel("Uninstructed", "Instructed") )
 
-HyPlot <- ggpaired(Hygiene_long, x = "Group", y = "HygieneScore", 
-                   id = "PAIR", 
-                   ylab = "Hygiene Score", xlab = "Groups", color = "blue")
+# En este caso por la forma en que está pareada la muestra una gráfica de cajas
+HyPlot <- ggboxplot(
+  Hygiene_long, x = "Group", y = "HygieneScore", add = "jitter",
+  ylab = "Hygiene Score", xlab = "Groups", color = "blue"
+)
 # mostramos la gráfica
 HyPlot
 
@@ -166,4 +174,140 @@ HyPlot +
   stat_pvalue_manual(Hygiene_stat.test, tip.length = 0) +
   labs(subtitle = get_test_label(Hygiene_stat.test, detailed= TRUE))
 
+```
+
+**Ejercicio 13.3.2**Determining the effects of grapefruit juice on pharmacokinetics of oral digoxin (a drug often prescribed for heart ailments) was the goal of a study by Parker et al. Seven healthy nonsmoking volunteers participated in the study. Subjects took digoxin with water for 2 weeks, no digoxin for 2 weeks, and digoxin with grapefruit juice for 2 weeks. The average peak plasma digoxin concentration (Cmax) when subjects took digoxin with water is given in the first column of the table in EXR_C13_S03_02.csv. The second column gives the Cmax concentration when subjects took digoxin with grapefruit juice. May we conclude on the basis of these data that the Cmax concentration is higher when digoxin is taken with grapefruit juice? Let $\alpha = .5$.  
+
+```{r}
+Exr13.3.2 <- tibble(
+  Subject = c(1, 2, 3, 4, 5, 6, 7),
+  H2O = c(2.34, 2.46, 1.87, 3.09, 5.59, 4.05, 6.21),
+  Juice = c(3.03, 3.46, 1.97, 3.81, 3.07, 2.62, 3.44)
+)
+
+Exr13.3.2
+
+Pharma_long <- Exr13.3.2 %>% 
+  pivot_longer(cols = c("H2O", "Juice") , names_to = "Group", values_to = "dioxinConcen")
+
+Pharma_long <- Pharma_long %>% 
+  mutate( Group = Group %>% fct_relevel("H2O", "Juice") )
+
+# Estimamos la gráfica con las direcciones de la oncentración
+PharmaPlot <- ggpaired(
+  Pharma_long, x = "Group", y = "dioxinConcen",
+  order = c("H2O", "Juice"),
+  ylab = "Dioxin Concentration in Blood", xlab = "Groups", color = "blue"
+)
+# mostramos la gráfica
+PharmaPlot
+
+Pharma_stat.test <- Pharma_long  %>%
+  wilcox_test(dioxinConcen ~ Group, paired = TRUE, alternative = "less") %>%
+  add_significance()
+Pharma_stat.test
+
+Pharma_long  %>% 
+  wilcox_effsize(dioxinConcen ~ Group, paired = TRUE)
+
+```
+
+Como podemos ver del valor de $p$ no podemos desechar la hipótesis nula, y la conclusión es que no son diferentes las pobalciones de donde se extrajeron las muestas.  No hay diferencia entre el uso de agua y jugo de toronja.
+
+
+## Prueba Kruskal Wallis  
+
+EL sustituto no paramétrico de la prueba ANOVA de una vía, es la prueba categórica de Kruskal-Wallis, el proceso se aplica a $n_1, n_2, \dots, n_k$ observaciones de $k$ muestras que combinadas son una serie ordenada de mayor a menor, de tamaño $n$. Posteriormente las observacones se les categoriza; se les asigna un rango a partir de $1$ que se le asigna a la observación más pequeña, hasta oservación $n$, a la que se le asigna el rango mayor.  Cuando una o más observaciones se repiten se les asigna el promedio del rango a cada una. Posteriormente, los rangos asignados a cada una de las $k$ observaciones se suman por separado en k-esimas sumas de rangos. Y se calcula la estadística de prueba:
+$$ H = \frac{12}{n(n+1)} \sum_{j-1}^{k} \frac{R_{j}^2}{n_j} - 3(n+1)  $$  
+con $k$ número de uestras, $n_j$ número de observaciones en la j-esima muestra, $n$ número total de observaciones compbinadas, $R_j$ la suma de rangos de las observaciones de la j-esima muestra.  
+La hipótesis nula es que las medidas centrales del todas las muestas están alineadas (son "iguales").  
+
+**Ejemplo 13.8.1** In a study of pulmonary effects on guinea pigs, Lacroix et al. exposed ovalbumin (OA)-sensitized guinea pigs to regular air, benzaldehyde, or acetaldehyde. At the end of exposure, the guinea pigs were anesthetized and allergic responses were assessed in bronchoalveolar lavage (BAL). One of the outcome variables examined was the count of eosinophil cells, a type of white blood cell that can increase with allergies. The table in the problem gives the eosinophil cell count (× 106) for the three treatment groups.  
+
+```{r}
+OAsensit <- tibble(
+  Air = c(12.22, 28.44, 28.13, 38.69, 54.91),
+  Benzaldehyde = c(3.86, 4.05, 6.47, 21.12, 3.33),
+  Acetaldehyde = c(54.36, 27.87, 66.81, 46.27, 30.19) )
+
+OAsensit_long <- OAsensit %>%
+  pivot_longer(cols = c("Air", "Benzaldehyde", "Acetaldehyde") , names_to = "Group", values_to = "EosinophilCount")
+
+OAsensit_long <- OAsensit_long %>% 
+  mutate( Group = Group %>% fct_relevel("Air", "Benzaldehyde", "Acetaldehyde") )
+
+# Estimación de las medianas y sus cuartiles
+OAsensit_long %>%
+  group_by(Group) %>%
+  get_summary_stats(EosinophilCount, type = "median_iqr")
+
+# Una gráfica de barras
+ggboxplot(OAsensit_long, x = "Group", y = "EosinophilCount", add = "jitter" )
+
+OAsensit_stat.test <- OAsensit_long %>%
+  kruskal_test(EosinophilCount ~ Group)
+OAsensit_stat.test
+# y estimación del tamano del efecto la etha
+OAsensit_long %>% kruskal_effsize(EosinophilCount ~ Group)
+
+```
+Una vez que se determina si hay un efecto, que no todas las medianas son iguales, se debe determinar en donde está el efecto (cual o culaes medianas).  Del resultado de la estimación de Kruskal-Wallis se sabe que hay un efecto entre los grupos pero no se sabe entre que grupos hay diferencias.  Por lo general una prueba de Kruscal-Wallis significativa se sigue de una prueba de Dunn para estimar diferencias por pares y determinar entre que grupos está la diferencia.  Es posible también usar una prueba de Wilcoxon entre pares y hacer una correccion por medidas multiples.  
+
+```{r}
+# Comparación por pares de Dunn
+pwc <- OAsensit_long %>% 
+  dunn_test(EosinophilCount ~ Group, p.adjust.method = "bonferroni") 
+pwc
+
+# o una prueba de Wilcoxon por pares y corrección
+pwc2 <- OAsensit_long %>% 
+  wilcox_test(EosinophilCount ~ Group, p.adjust.method = "bonferroni")
+pwc2
+
+# Grafica con error y subtítulo con valores de la estimación
+pwc <- pwc %>% add_xy_position(x = "Group")
+ggboxplot(OAsensit_long, x = "Group", y = "EosinophilCount") +
+  stat_pvalue_manual(pwc, hide.ns = TRUE) +
+  labs(
+    subtitle = get_test_label(OAsensit_stat.test, detailed = TRUE),
+    caption = get_pwc_label(pwc)
+    )
+
+```
+
+Ejemplo con más de tres muestras y muestras de datos grandes.  En el caso de que las muestras tengan varios datos (muestras "grandes") hay que ajustar la estimación. Este tipo de estimación es ajustado en forma automática en las funciones de R.  
+
+**Ejemplo 13.8.2** Table in EXA_C13_S08_02.csv shows the net book value of equipment capital per bed for a sample of hospitals from each of five types of hospitals. We wish to determine, by means of the Kruskal–Wallis test, if we can conclude that the average net book value of equipment capital per bed differs among the five types of hospitals. The ranks of the 41 values, along with the sum of ranks for each sample, are shown in the file table.
+
+```{r}
+Exa13.8.2 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch13_all/EXA_C13_S08_02.csv", show_col_types = FALSE)
+
+Exa13.8.2
+Hosp_long <- Exa13.8.2 %>% 
+  pivot_longer(cols = A:E, names_to = "Type", values_to = "Value", values_drop_na = TRUE)
+
+Hosp_long <- Hosp_long %>% 
+  mutate(Type = Type %>% fct_relevel("A","B","C","D","E"))
+
+Hosp_long %>% group_by(Type) %>% 
+  get_summary_stats(Value, type = "median_iqr")
+
+ggboxplot(Hosp_long, x = "Type", y = "Value", add = "jitter" )
+
+Hosp_stat.test <- Hosp_long %>%
+  kruskal_test(Value ~ Type)
+Hosp_stat.test
+
+# Comparación Dunn por pares para determinar en donde estan las diferencias
+Hosp_pwc <- Hosp_long %>% 
+  dunn_test(Value ~ Type, p.adjust.method = "bonferroni") 
+Hosp_pwc
+
+Hosp_pwc <- Hosp_pwc %>% add_xy_position(x = "Type")
+ggboxplot(Hosp_long, x = "Type", y = "Value") +
+  stat_pvalue_manual(Hosp_pwc, hide.ns = TRUE) +
+  labs(
+    subtitle = get_test_label(Hosp_stat.test, detailed = TRUE),
+    caption = get_pwc_label(Hosp_pwc)
+    )
 ```

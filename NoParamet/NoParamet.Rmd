@@ -345,3 +345,32 @@ pwc <- ElectStim_long %>%
 pwc
 ```
 
+**Ejercicio 13.9.1 ** The table in EXR_C13_S09_01 shows the scores made by nine randomly selected student nurses on final examinations in three subject areas. Test the null hypothesis that student nurses constituting the population from which the sample was drawn perform equally well in all three subject areas against the alternative hypothesis that they perform better in, at least, one area. Let $\alpha = .05$.  
+
+```{r}
+Exr13.9.1 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch13_all/EXR_C13_S09_01.csv", show_col_types = FALSE)
+
+Exr13.9.1
+
+Nurses_long <- Exr13.9.1 %>% 
+  pivot_longer(cols = c("FUND", "PHYS", "ANAT"), names_to = "Areas", values_to = "Grades")
+
+Nurses_long <- Nurses_long %>% mutate(Areas = Areas %>% fct_relevel("FUND", "PHYS", "ANAT"))
+
+Nurses_long %>%
+ group_by(Areas) %>%
+ get_summary_stats(Grades, type = "median_iqr")
+
+Nurses_stat.test <- Nurses_long %>%
+ friedman_test(Grades ~ Areas | SUBJ)
+
+Nurses_stat.test
+
+Nurses_long %>% friedman_effsize(Grades ~ Areas | SUBJ)
+
+Nurses_stat.test_EffSize <- Nurses_long %>% 
+  wilcox_test(Grades ~ Areas, paired = TRUE, p.adjust.method = "bonferroni")
+Nurses_stat.test_EffSize
+
+```
+Se puede concluir que de la prueba Friedman, hay diferencias en las calificaciones entre las materias de estudio de las enfermeras, sin embargo al estimar la prueba para el tamaño del efecto, esté es moderado (0.481) ya que no llega al .5. Además al estimar la prueba de Wilcoxon por pares y corrección de Bonferroni las diferencias entre las áreas no resultan significativas.  La tendencia está entre la diferencia de Fundamentales y Fisiología.

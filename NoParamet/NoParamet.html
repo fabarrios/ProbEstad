@@ -668,6 +668,59 @@ La hipótesis nula es que las medidas centrales del todas las muestras están al
 1 Preference A      B          9     9       3.5 0.023 0.07  ns          
 2 Preference A      C          9     9      24.5 0.851 1     ns          
 3 Preference B      C          9     9      42   0.021 0.062 ns          </code></pre>
+<p><strong>Ejercicio 13.9.1 </strong> The table in EXR_C13_S09_01 shows the scores made by nine randomly selected student nurses on final examinations in three subject areas. Test the null hypothesis that student nurses constituting the population from which the sample was drawn perform equally well in all three subject areas against the alternative hypothesis that they perform better in, at least, one area. Let <span class="math inline">\(\alpha = .05\)</span>.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>Exr13.<span class="fl">9.1</span> <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file=</span><span class="st">&quot;~/Dropbox/GitHub/ProbEstad/DataSets/ch13_all/EXR_C13_S09_01.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>Exr13.<span class="fl">9.1</span></span></code></pre></div>
+<pre><code># A tibble: 9 × 4
+   SUBJ  FUND  PHYS  ANAT
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1    98    95    77
+2     2    95    71    79
+3     3    76    80    91
+4     4    95    81    84
+5     5    83    77    80
+6     6    99    70    93
+7     7    82    80    87
+8     8    75    72    81
+9     9    88    81    83</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>Nurses_long <span class="ot">&lt;-</span> Exr13.<span class="fl">9.1</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;FUND&quot;</span>, <span class="st">&quot;PHYS&quot;</span>, <span class="st">&quot;ANAT&quot;</span>), <span class="at">names_to =</span> <span class="st">&quot;Areas&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Grades&quot;</span>)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>Nurses_long <span class="ot">&lt;-</span> Nurses_long <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Areas =</span> Areas <span class="sc">%&gt;%</span> <span class="fu">fct_relevel</span>(<span class="st">&quot;FUND&quot;</span>, <span class="st">&quot;PHYS&quot;</span>, <span class="st">&quot;ANAT&quot;</span>))</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>Nurses_long <span class="sc">%&gt;%</span></span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(Areas) <span class="sc">%&gt;%</span></span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">get_summary_stats</span>(Grades, <span class="at">type =</span> <span class="st">&quot;median_iqr&quot;</span>)</span></code></pre></div>
+<pre><code># A tibble: 3 × 5
+  Areas variable     n median   iqr
+  &lt;fct&gt; &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 FUND  Grades       9     88    13
+2 PHYS  Grades       9     80     9
+3 ANAT  Grades       9     83     7</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>Nurses_stat.test <span class="ot">&lt;-</span> Nurses_long <span class="sc">%&gt;%</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">friedman_test</span>(Grades <span class="sc">~</span> Areas <span class="sc">|</span> SUBJ)</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>Nurses_stat.test</span></code></pre></div>
+<pre><code># A tibble: 1 × 6
+  .y.        n statistic    df      p method       
+* &lt;chr&gt;  &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;        
+1 Grades     9      8.67     2 0.0131 Friedman test</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>Nurses_long <span class="sc">%&gt;%</span> <span class="fu">friedman_effsize</span>(Grades <span class="sc">~</span> Areas <span class="sc">|</span> SUBJ)</span></code></pre></div>
+<pre><code># A tibble: 1 × 5
+  .y.        n effsize method    magnitude
+* &lt;chr&gt;  &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;ord&gt;    
+1 Grades     9   0.481 Kendall W moderate </code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>Nurses_stat.test_EffSize <span class="ot">&lt;-</span> Nurses_long <span class="sc">%&gt;%</span> </span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox_test</span>(Grades <span class="sc">~</span> Areas, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>Nurses_stat.test_EffSize</span></code></pre></div>
+<pre><code># A tibble: 3 × 9
+  .y.    group1 group2    n1    n2 statistic     p p.adj p.adj.signif
+* &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
+1 Grades FUND   PHYS       9     9        41 0.033 0.098 ns          
+2 Grades FUND   ANAT       9     9        31 0.342 1     ns          
+3 Grades PHYS   ANAT       9     9         8 0.097 0.291 ns          </code></pre>
+<p>Se puede concluir que de la prueba Friedman, hay diferencias en las calificaciones entre las materias de estudio de las enfermeras, sin embargo al estimar la prueba para el tamaño del efecto, esté es moderado (0.481) ya que no llega al .5. Además al estimar la prueba de Wilcoxon por pares y corrección de Bonferroni las diferencias entre las áreas no resultan significativas. La tendencia está entre la diferencia de Fundamentales y Fisiología.</p>
 </div>
 </div>
 

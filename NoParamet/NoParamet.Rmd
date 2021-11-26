@@ -311,11 +311,12 @@ ggboxplot(Hosp_long, x = "Type", y = "Value", add = "jitter") +
     caption = get_pwc_label(Hosp_pwc)
     )
 ```
-## Prueba Friedman  
 
-El sustituto no paramétrico de la prueba ANOVA de dos vías es la prueba de Fredman, en la que se calcula la estadística $\chi_r^2$ para estimar la probabilidad. En este caso se tienen $n$ bloques y $k$ tratamientos. Para estimar la estadística se suman las categorías de cada variable estas son las $R_j$ la la estadística de Friedman $\chi_r^2$ se estima con  
+## Prueba de Friedman  
+
+El sustituto no paramétrico de la prueba ANOVA de dos vías es la prueba de Friedman, en la que se calcula la estadística $\chi_r^2$ para estimar la probabilidad. En este caso se tienen $n$ bloques y $k$ tratamientos. Para estimar la estadística se suman las categorías de cada variable estas son las $R_j$ la la estadística de Friedman $\chi_r^2$ se estima con  
 $$ \chi_r^2 = \frac{12}{nk(k+1)} \sum_{j=1}^k (R_j)^2 - 3n(k+1) $$
-Para el caso de la prueba de Friedman, la W de Kendall se usa para estimar el tamaño del efecto en la prueba Friedman. El coeficiente W de Kendal toma valores entre $0$ (indicando no relación alguna) y $1$ (indicando una relación perfecta), que sigue la indicacion de Cohen de valores entre 0.1 - 0.3 como efecto pequeño, 0.3 - 0.5 para efecto moderado y mayor a 0.5 para un efecto grande. Usando `friedman_effectsize`. Para hacer el *post hoc* con comparaciones múltiples corregidas por Bonferroni usando la prueba de signo categorizada de Wilcoxon para identificar que tratamiento es diferente.  
+Para el caso de la prueba de Friedman, la W de Kendall se usa para estimar el tamaño del efecto. El coeficiente W de Kendall toma valores entre $0$ (indicando no relación alguna) y $1$ (indicando una relación perfecta), que sigue la indicación de Cohen de valores entre 0.1 - 0.3 como efecto pequeño, 0.3 - 0.5 para efecto moderado y mayor a 0.5 para un efecto grande, en R se usa `friedman_effectsize`. Para hacer el *post hoc* con comparaciones múltiples corregidas por Bonferroni se usa la prueba de signo categorizada de Wilcoxon para identificar que tratamiento es diferente.  
 
 **Example 13.9.1** A physical therapist conducted a study to compare three models of low-volt electrical stimulators. Nine other physical therapists were asked to rank the stimulators in order of preference. A rank of 1 indicates first preference. The results are shown in EXA_C13_S09_01.csv. We wish to know if we can conclude that the models are not preferred equally.  
 

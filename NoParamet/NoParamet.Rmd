@@ -292,7 +292,7 @@ Hosp_long <- Hosp_long %>%
 Hosp_long %>% group_by(Type) %>% 
   get_summary_stats(Value, type = "median_iqr")
 
-ggboxplot(Hosp_long, x = "Type", y = "Value", add = "jitter" )
+ggboxplot(Hosp_long, x = "Type", y = "Value", add = "jitter", fill = "Type" )
 
 Hosp_stat.test <- Hosp_long %>%
   kruskal_test(Value ~ Type)
@@ -304,7 +304,7 @@ Hosp_pwc <- Hosp_long %>%
 Hosp_pwc
 
 Hosp_pwc <- Hosp_pwc %>% add_xy_position(x = "Type")
-ggboxplot(Hosp_long, x = "Type", y = "Value", add = "jitter") +
+ggboxplot(Hosp_long, x = "Type", y = "Value", add = "jitter", fill = "Type") +
   stat_pvalue_manual(Hosp_pwc, hide.ns = TRUE) +
   labs(
     subtitle = get_test_label(Hosp_stat.test, detailed = TRUE),

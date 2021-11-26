@@ -7,7 +7,7 @@
 
         <meta name="author" content="F.A. Barrios, ENESj" />
     
-        <meta name="date" content="2021-11-24" />
+        <meta name="date" content="2021-11-25" />
     
     <title>Análisis no paramétrico</title>
 
@@ -202,7 +202,7 @@
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
                   <p class="author"><span class="glyphicon glyphicon-user"></span> F.A. Barrios, ENESj</p>
-                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2021-11-24</p>
+                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2021-11-25</p>
           </div>
    </div>
      
@@ -218,12 +218,12 @@
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
 <div id="cuando-usar-estimación-no-paramétrica" class="section level2">
 <h2>Cuando usar estimación no-paramétrica</h2>
-<p>La estimación no paramétrica es usada para sustituir estimaciones basadas en la suposición de que las muestras de datos que estamos analizando fueron tomadas de poblaciones que responden a una distribución normal, es decir las muestras presentan una distribución aproximada a la normal o normal, y se usa la media como medida central de nuestras poblaciones para estimar sus diferencias. Además otra suposición importante es la homocedasticidad (igualdad de varianzas en las poblaciones).<br />
-Se sabe que cuando alguna de estas dos suposiciones, normalidad y homocedasticidad, no se cumplen, esto puede resultar en conclusioines erroneas de nuestras estimaciones. Un posible origen de este problema es resultado de una escala “devil” al medir muestros datos. En estos casos se usan estimaciones que no están basadas en distribuciones de probabilidad, y las medidas centrales se basan en la mediana. Varias de estas técnicas están basadas en la categorización de los datos y estimación de estadísticas realcionadas con la mediana. Como comentario, en el caso de los algoritmos de R y en lo general se debe tener un mínimo de datos, en este caso por lo menos 6 para que las funciones no marquen un error.</p>
+<p>La estimación no paramétrica es usada para sustituir estimaciones basadas en la suposición de que las muestras de datos que estamos analizando fueron tomadas de poblaciones que responden a una distribución normal, es decir las muestras presentan una distribución aproximada a la normal o normal, y se usa la media como medida central de muestras poblaciones para estimar sus diferencias. Además otra suposición importante es la homocedasticidad (igualdad de varianzas en las poblaciones).<br />
+Se sabe que cuando alguna de estas dos suposiciones, normalidad y homocedasticidad, no se cumplen, esto puede resultar en conclusiones erróneas de nuestras estimaciones. Un posible origen de este problema es resultado de una escala “débil” al medir nuestros datos. En estos casos se usan estimaciones que no están basadas en distribuciones de probabilidad, y las medidas centrales se basan en la mediana. Varias de estas técnicas están basadas en la categorización de los datos y estimación de estadísticas relacionadas con la mediana. Como comentario, en el caso de los algoritmos de R y en lo general se debe tener un mínimo de datos, en este caso por lo menos 6 para que las funciones no marquen un error.</p>
 </div>
 <div id="prueba-de-signo-wilcoxon-categorizada-para-una-muestra." class="section level2">
 <h2>Prueba de signo Wilcoxon categorizada para una muestra.</h2>
-<p>Esta prueba de Wilcoxon se una para determinar si una muestra no sigue una distribución no paremétrica o fue medida en uan escala dévil y se queire determinar si la mediana de la población toma algún valor hipotético o es igual a algún estándar. Para usar esta prueba su supone que los datos están distribuidos cerca de la mediana.</p>
+<p>Esta prueba de Wilcoxon se una para determinar si una muestra no sigue una distribución no paramétrica o fue medida en una escala débil y se quiere determinar si la mediana de la población toma algún valor hipotético o es igual a algún estándar. Para usar esta prueba su supone que los datos están distribuidos cerca de la mediana.</p>
 <p><strong>Ejemplo C13_S03_1</strong> Researchers wished to know if instruction in personal care and grooming would improve the appearance of mentally challenged girls. In a school for the mentally challenged, 10 girls selected at random received special instruction in personal care and grooming. Two weeks after completion of the course of instruction, the girls were interviewed by a nurse and a social worker who assigned each girl a score based on her general appearance. The investigators believed that the scores achieved the level of an ordinal scale. They felt that although a score of, say, 8 represented a better appearance than a score of 6, they were unwilling to say that the difference between scores of 6 and 8 was equal to the difference between, say, scores of 8 and 10; or that the difference between scores of 6 and 8 represented twice as much improvement as the difference between scores of 5 and 6. The scores are shown in the following Table. We wish to know if we can conclude that the median score of the population from which we assume this sample to have been drawn is different from 5.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de calificaciones de apariencia de 10 niñas en escuela para suetos con capacidades especiales</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Apariencia <span class="ot">&lt;-</span> <span class="fu">tibble</span>( </span>
@@ -274,10 +274,10 @@ Se sabe que cuando alguna de estas dos suposiciones, normalidad y homocedasticid
 </div>
 <div id="prueba-mann-whitney" class="section level2">
 <h2>Prueba Mann-Whitney</h2>
-<p>La prueba no paramétrica que sustituye a la prueba t para la comparación de dos poblaciones, tiene varios nombres; Mann-Whitney U, Wilcoxon-Mann-Whitney o prueba Wilcoxon para dos muestas. En R la llamada de la funcion es a travez de la prueba de Wilcoxon <code>wilcox_test</code>.<br />
-Para usar esta prueba se deben cumplir las condiciones básicas de muestreo aleatorio, para obtenener las muestras poblacionales que se van a usar, y además<br />
-1. La escala de medicion de las muestras por lo menos debe ser ordinal.<br />
-2. La varable de análisis debe ser contínua.<br />
+<p>La prueba no paramétrica que sustituye a la prueba t para la comparación de dos poblaciones, tiene varios nombres; Mann-Whitney U, Wilcoxon-Mann-Whitney o prueba Wilcoxon para dos muestas. En R la llamada de la función es a través de la prueba de Wilcoxon <code>wilcox_test</code>.<br />
+Para usar esta prueba se deben cumplir las condiciones básicas de muestreo aleatorio, para obtener las muestras poblacionales que se van a usar, y además<br />
+1. La escala de medición de las muestras por lo menos debe ser ordinal.<br />
+2. La variable de análisis debe ser continua.<br />
 3. Si las poblaciones son diferentes solo son diferentes con respecto a sus medianas.</p>
 <p>Cuando estas suposiciones se cumplen se puede probar la hipótesis nula <span class="math inline">\(H_0\)</span> que supone que las poblaciones tienen medianas iguales, en contra de tres hipótesis alternativas <span class="math inline">\(H_A\)</span> posibles: (1) Las poblaciones tiene medianas distintas (opción “two.sided”), (2) La mediana de la “primera población” es mayor (opción “greater”), (3) La mediana de la “primera población” es menor (opción “less).</p>
 <div id="prueba-no-paramétrica-para-comparar-dos-poblaciones-prueba-u-mann-whitney." class="section level3">
@@ -342,7 +342,7 @@ Para usar esta prueba se deben cumplir las condiciones básicas de muestreo alea
   .y.             group1  group2     n1    n2 statistic       p p.signif
 * &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   
 1 HemoglobinLevel Control Exposed    10    15       125 0.00601 **      </code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se estima el tamaño del afecto depués de tomar o desechar la Ho</span></span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se estima el tamaño del afecto después de tomar o desechar la Ho</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Ca_O_long <span class="sc">%&gt;%</span> <span class="fu">wilcox_effsize</span>(HemoglobinLevel <span class="sc">~</span> Group)</span></code></pre></div>
 <pre><code># A tibble: 1 × 7
   .y.             group1  group2  effsize    n1    n2 magnitude
@@ -444,7 +444,7 @@ Para usar esta prueba se deben cumplir las condiciones básicas de muestreo alea
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>Pharma_long <span class="ot">&lt;-</span> Pharma_long <span class="sc">%&gt;%</span> </span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Group =</span> Group <span class="sc">%&gt;%</span> <span class="fu">fct_relevel</span>(<span class="st">&quot;H2O&quot;</span>, <span class="st">&quot;Juice&quot;</span>) )</span>
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimamos la gráfica con las direcciones de la oncentración</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimamos la gráfica con las direcciones de la concentración</span></span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>PharmaPlot <span class="ot">&lt;-</span> <span class="fu">ggpaired</span>(</span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  Pharma_long, <span class="at">x =</span> <span class="st">&quot;Group&quot;</span>, <span class="at">y =</span> <span class="st">&quot;dioxinConcen&quot;</span>,</span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">order =</span> <span class="fu">c</span>(<span class="st">&quot;H2O&quot;</span>, <span class="st">&quot;Juice&quot;</span>),</span>
@@ -467,14 +467,14 @@ Para usar esta prueba se deben cumplir las condiciones básicas de muestreo alea
   .y.          group1 group2 effsize    n1    n2 magnitude
 * &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;ord&gt;    
 1 dioxinConcen H2O    Juice    0.256     7     7 small    </code></pre>
-<p>Como podemos ver del valor de <span class="math inline">\(p\)</span> no podemos desechar la hipótesis nula, y la conclusión es que no son diferentes las pobalciones de donde se extrajeron las muestas. No hay diferencia entre el uso de agua y jugo de toronja.</p>
+<p>Como podemos ver del valor de <span class="math inline">\(p\)</span> no podemos desechar la hipótesis nula, y la conclusión es que no son diferentes las poblaciones de donde se extrajeron las muestras. No hay diferencia entre el uso de agua y jugo de toronja.</p>
 </div>
 </div>
 <div id="prueba-kruskal-wallis" class="section level2">
 <h2>Prueba Kruskal Wallis</h2>
-<p>EL sustituto no paramétrico de la prueba ANOVA de una vía, es la prueba categórica de Kruskal-Wallis, el proceso se aplica a <span class="math inline">\(n_1, n_2, \dots, n_k\)</span> observaciones de <span class="math inline">\(k\)</span> muestras que combinadas son una serie ordenada de mayor a menor, de tamaño <span class="math inline">\(n\)</span>. Posteriormente las observacones se les categoriza; se les asigna un rango a partir de <span class="math inline">\(1\)</span> que se le asigna a la observación más pequeña, hasta oservación <span class="math inline">\(n\)</span>, a la que se le asigna el rango mayor. Cuando una o más observaciones se repiten se les asigna el promedio del rango a cada una. Posteriormente, los rangos asignados a cada una de las <span class="math inline">\(k\)</span> observaciones se suman por separado en k-esimas sumas de rangos. Y se calcula la estadística de prueba: <span class="math display">\[ H = \frac{12}{n(n+1)} \sum_{j-1}^{k} \frac{R_{j}^2}{n_j} - 3(n+1)  \]</span><br />
-con <span class="math inline">\(k\)</span> número de uestras, <span class="math inline">\(n_j\)</span> número de observaciones en la j-esima muestra, <span class="math inline">\(n\)</span> número total de observaciones compbinadas, <span class="math inline">\(R_j\)</span> la suma de rangos de las observaciones de la j-esima muestra.<br />
-La hipótesis nula es que las medidas centrales del todas las muestas están alineadas (son “iguales”).</p>
+<p>EL sustituto no paramétrico de la prueba ANOVA de una vía, es la prueba categórica de Kruskal-Wallis, el proceso se aplica a <span class="math inline">\(n_1, n_2, \dots, n_k\)</span> observaciones de <span class="math inline">\(k\)</span> muestras que combinadas son una serie ordenada de mayor a menor, de tamaño <span class="math inline">\(n\)</span>. Posteriormente las observaciones se les categoriza; se les asigna un rango a partir de <span class="math inline">\(1\)</span> que se le asigna a la observación más pequeña, hasta observación <span class="math inline">\(n\)</span>, a la que se le asigna el rango mayor. Cuando una o más observaciones se repiten se les asigna el promedio del rango a cada una. Posteriormente, los rangos asignados a cada una de las <span class="math inline">\(k\)</span> observaciones se suman por separado en k-esimas sumas de rangos. Y se calcula la estadística de prueba: <span class="math display">\[ H = \frac{12}{n(n+1)} \sum_{j-1}^{k} \frac{R_{j}^2}{n_j} - 3(n+1)  \]</span><br />
+con <span class="math inline">\(k\)</span> número de uestras, <span class="math inline">\(n_j\)</span> número de observaciones en la j-esima muestra, <span class="math inline">\(n\)</span> número total de observaciones combinadas, <span class="math inline">\(R_j\)</span> la suma de rangos de las observaciones de la j-esima muestra.<br />
+La hipótesis nula es que las medidas centrales del todas las muestras están alineadas (son “iguales”).</p>
 <p><strong>Ejemplo 13.8.1</strong> In a study of pulmonary effects on guinea pigs, Lacroix et al. exposed ovalbumin (OA)-sensitized guinea pigs to regular air, benzaldehyde, or acetaldehyde. At the end of exposure, the guinea pigs were anesthetized and allergic responses were assessed in bronchoalveolar lavage (BAL). One of the outcome variables examined was the count of eosinophil cells, a type of white blood cell that can increase with allergies. The table in the problem gives the eosinophil cell count (× 106) for the three treatment groups.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>OAsensit <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Air =</span> <span class="fu">c</span>(<span class="fl">12.22</span>, <span class="fl">28.44</span>, <span class="fl">28.13</span>, <span class="fl">38.69</span>, <span class="fl">54.91</span>),</span>
@@ -487,7 +487,7 @@ La hipótesis nula es que las medidas centrales del todas las muestas están ali
 <span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>OAsensit_long <span class="ot">&lt;-</span> OAsensit_long <span class="sc">%&gt;%</span> </span>
 <span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Group =</span> Group <span class="sc">%&gt;%</span> <span class="fu">fct_relevel</span>(<span class="st">&quot;Air&quot;</span>, <span class="st">&quot;Benzaldehyde&quot;</span>, <span class="st">&quot;Acetaldehyde&quot;</span>) )</span>
 <span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimación de las medianas y sus cuartiles</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimación de las medianas y sus cuantiles</span></span>
 <span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>OAsensit_long <span class="sc">%&gt;%</span></span>
 <span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Group) <span class="sc">%&gt;%</span></span>
 <span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_summary_stats</span>(EosinophilCount, <span class="at">type =</span> <span class="st">&quot;median_iqr&quot;</span>)</span></code></pre></div>
@@ -507,13 +507,13 @@ La hipótesis nula es que las medidas centrales del todas las muestas están ali
   .y.                 n statistic    df      p method        
 * &lt;chr&gt;           &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;         
 1 EosinophilCount    15      9.14     2 0.0104 Kruskal-Wallis</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># y estimación del tamano del efecto la etha</span></span>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># y estimación del tamaño del efecto la etha</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>OAsensit_long <span class="sc">%&gt;%</span> <span class="fu">kruskal_effsize</span>(EosinophilCount <span class="sc">~</span> Group)</span></code></pre></div>
 <pre><code># A tibble: 1 × 5
   .y.                 n effsize method  magnitude
 * &lt;chr&gt;           &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;ord&gt;    
 1 EosinophilCount    15   0.595 eta2[H] large    </code></pre>
-<p>Una vez que se determina si hay un efecto, que no todas las medianas son iguales, se debe determinar en donde está el efecto (cual o culaes medianas). Del resultado de la estimación de Kruskal-Wallis se sabe que hay un efecto entre los grupos pero no se sabe entre que grupos hay diferencias. Por lo general una prueba de Kruscal-Wallis significativa se sigue de una prueba de Dunn para estimar diferencias por pares y determinar entre que grupos está la diferencia. Es posible también usar una prueba de Wilcoxon entre pares y hacer una correccion por medidas multiples.</p>
+<p>Una vez que se determina si hay un efecto, que no todas las medianas son iguales, se debe determinar en donde está el efecto (cual o cuales medianas). Del resultado de la estimación de Kruskal-Wallis se sabe que hay un efecto entre los grupos pero no se sabe entre que grupos hay diferencias. Por lo general una prueba de Kruskal-Wallis significativa se sigue de una prueba de Dunn para estimar diferencias por pares y determinar entre que grupos está la diferencia. Es posible también usar una prueba de Wilcoxon entre pares y hacer una corrección por medidas múltiples.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparación por pares de Dunn</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>pwc <span class="ot">&lt;-</span> OAsensit_long <span class="sc">%&gt;%</span> </span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dunn_test</span>(EosinophilCount <span class="sc">~</span> Group, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) </span>

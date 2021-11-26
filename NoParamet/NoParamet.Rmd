@@ -32,12 +32,12 @@ library(ggpubr)
 
 ## Cuando usar estimación no-paramétrica  
 
-La estimación no paramétrica es usada para sustituir estimaciones basadas en la suposición de que las muestras de datos que estamos analizando fueron tomadas de poblaciones que responden a una distribución normal, es decir las muestras presentan una distribución aproximada a la normal o normal, y se usa la media como medida central de nuestras poblaciones para estimar sus diferencias. Además otra suposición importante es la homocedasticidad (igualdad de varianzas en las poblaciones).  
-Se sabe que cuando alguna de estas dos suposiciones, normalidad y homocedasticidad, no se cumplen, esto puede resultar en conclusioines erroneas de nuestras estimaciones. Un posible origen de este problema es resultado de una escala "devil" al medir muestros datos. En estos casos se usan estimaciones que no están basadas en distribuciones de probabilidad, y las medidas centrales se basan en la mediana. Varias de estas técnicas están basadas en la categorización de los datos y estimación de estadísticas realcionadas con la mediana. Como comentario, en el caso de los algoritmos de R y en lo general se debe tener un mínimo de datos, en este caso por lo menos 6 para que las funciones no marquen un error.
+La estimación no paramétrica es usada para sustituir estimaciones basadas en la suposición de que las muestras de datos que estamos analizando fueron tomadas de poblaciones que responden a una distribución normal, es decir las muestras presentan una distribución aproximada a la normal o normal, y se usa la media como medida central de muestras poblaciones para estimar sus diferencias. Además otra suposición importante es la homocedasticidad (igualdad de varianzas en las poblaciones).  
+Se sabe que cuando alguna de estas dos suposiciones, normalidad y homocedasticidad, no se cumplen, esto puede resultar en conclusiones erróneas de nuestras estimaciones. Un posible origen de este problema es resultado de una escala "débil" al medir nuestros datos. En estos casos se usan estimaciones que no están basadas en distribuciones de probabilidad, y las medidas centrales se basan en la mediana. Varias de estas técnicas están basadas en la categorización de los datos y estimación de estadísticas relacionadas con la mediana. Como comentario, en el caso de los algoritmos de R y en lo general se debe tener un mínimo de datos, en este caso por lo menos 6 para que las funciones no marquen un error.
 
 ## Prueba de signo Wilcoxon categorizada para una muestra.  
 
-Esta prueba de Wilcoxon se una para determinar si una muestra no sigue una distribución no paremétrica o fue medida en uan escala dévil y se queire determinar si la mediana de la población toma algún valor hipotético o es igual a algún estándar.  Para usar esta prueba su supone que los datos están distribuidos cerca de la mediana.  
+Esta prueba de Wilcoxon se una para determinar si una muestra no sigue una distribución no paramétrica o fue medida en una escala débil y se quiere determinar si la mediana de la población toma algún valor hipotético o es igual a algún estándar.  Para usar esta prueba su supone que los datos están distribuidos cerca de la mediana.  
 
 **Ejemplo C13_S03_1** Researchers wished to know if instruction in personal care and grooming would improve the appearance of mentally challenged girls. In a school for the mentally challenged, 10 girls selected at random received special instruction in personal care and grooming. Two weeks after completion of the course of instruction, the girls were interviewed by a nurse and a social worker who assigned each girl a score based on her general appearance. The investigators believed that the scores achieved the level of an ordinal scale. They felt that although a score of, say, 8 represented a better appearance than a score of 6, they were unwilling to say that the difference between scores of 6 and 8 was equal to the difference between, say, scores of 8 and 10; or that the difference between scores of 6 and 8 represented twice as much improvement as the difference between scores of 5 and 6. The scores are shown in the following Table. We wish to know if we can conclude that the median score of the population from which we assume this sample to have been drawn is different from 5.  
 ```{r}
@@ -68,10 +68,10 @@ Por lo que podemos concluír que la mediana no es igual a $5$, y que el "efecto"
 
 ## Prueba Mann-Whitney  
 
-La prueba no paramétrica que sustituye a la prueba t para la comparación de dos poblaciones, tiene varios nombres; Mann-Whitney U, Wilcoxon-Mann-Whitney o prueba Wilcoxon para dos muestas. En R la llamada de la funcion es a travez de la prueba de Wilcoxon `wilcox_test`.  
-Para usar esta prueba se deben cumplir las condiciones básicas de muestreo aleatorio, para obtenener las muestras poblacionales que se van a usar, y además  
-1. La escala de medicion de las muestras por lo menos debe ser ordinal.  
-2. La varable de análisis debe ser contínua.  
+La prueba no paramétrica que sustituye a la prueba t para la comparación de dos poblaciones, tiene varios nombres; Mann-Whitney U, Wilcoxon-Mann-Whitney o prueba Wilcoxon para dos muestas. En R la llamada de la función es a través de la prueba de Wilcoxon `wilcox_test`.  
+Para usar esta prueba se deben cumplir las condiciones básicas de muestreo aleatorio, para obtener las muestras poblacionales que se van a usar, y además  
+1. La escala de medición de las muestras por lo menos debe ser ordinal.  
+2. La variable de análisis debe ser continua.  
 3. Si las poblaciones son diferentes solo son diferentes con respecto a sus medianas.  
 
 Cuando estas suposiciones se cumplen se puede probar la hipótesis nula $H_0$ que supone que las poblaciones tienen medianas iguales, en contra de tres hipótesis alternativas $H_A$ posibles: (1) Las poblaciones tiene medianas distintas (opción "two.sided"), (2) La mediana de la "primera población" es mayor (opción "greater"), (3) La mediana de la "primera población" es menor (opción "less).  
@@ -116,7 +116,7 @@ Ca_O_stat.test <- Ca_O_long %>%
 
 # Imprimimos la tabla para ver el resultado de la prueba 
 Ca_O_stat.test
-# Se estima el tamaño del afecto depués de tomar o desechar la Ho
+# Se estima el tamaño del afecto después de tomar o desechar la Ho
 Ca_O_long %>% wilcox_effsize(HemoglobinLevel ~ Group)
 
 # Gráfica con resultado de la prueba de cajas y puntos con tamaño de efecto y tipo de corrección
@@ -193,7 +193,7 @@ Pharma_long <- Exr13.3.2 %>%
 Pharma_long <- Pharma_long %>% 
   mutate( Group = Group %>% fct_relevel("H2O", "Juice") )
 
-# Estimamos la gráfica con las direcciones de la oncentración
+# Estimamos la gráfica con las direcciones de la concentración
 PharmaPlot <- ggpaired(
   Pharma_long, x = "Group", y = "dioxinConcen",
   order = c("H2O", "Juice"),
@@ -212,15 +212,15 @@ Pharma_long  %>%
 
 ```
 
-Como podemos ver del valor de $p$ no podemos desechar la hipótesis nula, y la conclusión es que no son diferentes las pobalciones de donde se extrajeron las muestas.  No hay diferencia entre el uso de agua y jugo de toronja.
+Como podemos ver del valor de $p$ no podemos desechar la hipótesis nula, y la conclusión es que no son diferentes las poblaciones de donde se extrajeron las muestras.  No hay diferencia entre el uso de agua y jugo de toronja.
 
 
 ## Prueba Kruskal Wallis  
 
-EL sustituto no paramétrico de la prueba ANOVA de una vía, es la prueba categórica de Kruskal-Wallis, el proceso se aplica a $n_1, n_2, \dots, n_k$ observaciones de $k$ muestras que combinadas son una serie ordenada de mayor a menor, de tamaño $n$. Posteriormente las observacones se les categoriza; se les asigna un rango a partir de $1$ que se le asigna a la observación más pequeña, hasta oservación $n$, a la que se le asigna el rango mayor.  Cuando una o más observaciones se repiten se les asigna el promedio del rango a cada una. Posteriormente, los rangos asignados a cada una de las $k$ observaciones se suman por separado en k-esimas sumas de rangos. Y se calcula la estadística de prueba:
+EL sustituto no paramétrico de la prueba ANOVA de una vía, es la prueba categórica de Kruskal-Wallis, el proceso se aplica a $n_1, n_2, \dots, n_k$ observaciones de $k$ muestras que combinadas son una serie ordenada de mayor a menor, de tamaño $n$. Posteriormente las observaciones se les categoriza; se les asigna un rango a partir de $1$ que se le asigna a la observación más pequeña, hasta observación $n$, a la que se le asigna el rango mayor.  Cuando una o más observaciones se repiten se les asigna el promedio del rango a cada una. Posteriormente, los rangos asignados a cada una de las $k$ observaciones se suman por separado en k-esimas sumas de rangos. Y se calcula la estadística de prueba:
 $$ H = \frac{12}{n(n+1)} \sum_{j-1}^{k} \frac{R_{j}^2}{n_j} - 3(n+1)  $$  
-con $k$ número de uestras, $n_j$ número de observaciones en la j-esima muestra, $n$ número total de observaciones compbinadas, $R_j$ la suma de rangos de las observaciones de la j-esima muestra.  
-La hipótesis nula es que las medidas centrales del todas las muestas están alineadas (son "iguales").  
+con $k$ número de uestras, $n_j$ número de observaciones en la j-esima muestra, $n$ número total de observaciones combinadas, $R_j$ la suma de rangos de las observaciones de la j-esima muestra.  
+La hipótesis nula es que las medidas centrales del todas las muestras están alineadas (son "iguales").  
 
 **Ejemplo 13.8.1** In a study of pulmonary effects on guinea pigs, Lacroix et al. exposed ovalbumin (OA)-sensitized guinea pigs to regular air, benzaldehyde, or acetaldehyde. At the end of exposure, the guinea pigs were anesthetized and allergic responses were assessed in bronchoalveolar lavage (BAL). One of the outcome variables examined was the count of eosinophil cells, a type of white blood cell that can increase with allergies. The table in the problem gives the eosinophil cell count (× 106) for the three treatment groups.  
 
@@ -236,7 +236,7 @@ OAsensit_long <- OAsensit %>%
 OAsensit_long <- OAsensit_long %>% 
   mutate( Group = Group %>% fct_relevel("Air", "Benzaldehyde", "Acetaldehyde") )
 
-# Estimación de las medianas y sus cuartiles
+# Estimación de las medianas y sus cuantiles
 OAsensit_long %>%
   group_by(Group) %>%
   get_summary_stats(EosinophilCount, type = "median_iqr")
@@ -247,11 +247,11 @@ ggboxplot(OAsensit_long, x = "Group", y = "EosinophilCount", add = "jitter" )
 OAsensit_stat.test <- OAsensit_long %>%
   kruskal_test(EosinophilCount ~ Group)
 OAsensit_stat.test
-# y estimación del tamano del efecto la etha
+# y estimación del tamaño del efecto la etha
 OAsensit_long %>% kruskal_effsize(EosinophilCount ~ Group)
 
 ```
-Una vez que se determina si hay un efecto, que no todas las medianas son iguales, se debe determinar en donde está el efecto (cual o culaes medianas).  Del resultado de la estimación de Kruskal-Wallis se sabe que hay un efecto entre los grupos pero no se sabe entre que grupos hay diferencias.  Por lo general una prueba de Kruscal-Wallis significativa se sigue de una prueba de Dunn para estimar diferencias por pares y determinar entre que grupos está la diferencia.  Es posible también usar una prueba de Wilcoxon entre pares y hacer una correccion por medidas multiples.  
+Una vez que se determina si hay un efecto, que no todas las medianas son iguales, se debe determinar en donde está el efecto (cual o cuales medianas).  Del resultado de la estimación de Kruskal-Wallis se sabe que hay un efecto entre los grupos pero no se sabe entre que grupos hay diferencias.  Por lo general una prueba de Kruskal-Wallis significativa se sigue de una prueba de Dunn para estimar diferencias por pares y determinar entre que grupos está la diferencia.  Es posible también usar una prueba de Wilcoxon entre pares y hacer una corrección por medidas múltiples.  
 
 ```{r}
 # Comparación por pares de Dunn

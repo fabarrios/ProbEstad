@@ -242,7 +242,7 @@ OAsensit_long %>%
   get_summary_stats(EosinophilCount, type = "median_iqr")
 
 # Una gráfica de barras
-ggboxplot(OAsensit_long, x = "Group", y = "EosinophilCount", add = "jitter" )
+ggboxplot(OAsensit_long, x = "Group", y = "EosinophilCount", add = "jitter", fill = "Group")
 
 OAsensit_stat.test <- OAsensit_long %>%
   kruskal_test(EosinophilCount ~ Group)
@@ -266,7 +266,7 @@ pwc2
 
 # Grafica con error y subtítulo con valores de la estimación
 pwc <- pwc %>% add_xy_position(x = "Group")
-ggboxplot(OAsensit_long, x = "Group", y = "EosinophilCount") +
+ggboxplot(OAsensit_long, x = "Group", y = "EosinophilCount", fill = "Group") +
   stat_pvalue_manual(pwc, hide.ns = TRUE) +
   labs(
     subtitle = get_test_label(OAsensit_stat.test, detailed = TRUE),

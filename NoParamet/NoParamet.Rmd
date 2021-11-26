@@ -217,7 +217,7 @@ Como podemos ver del valor de $p$ no podemos desechar la hipótesis nula, y la c
 
 ## Prueba Kruskal Wallis  
 
-EL sustituto no paramétrico de la prueba ANOVA de una vía, es la prueba categórica de Kruskal-Wallis, el proceso se aplica a $n_1, n_2, \dots, n_k$ observaciones de $k$ muestras que combinadas son una serie ordenada de mayor a menor, de tamaño $n$. Posteriormente las observaciones se les categoriza; se les asigna un rango a partir de $1$ que se le asigna a la observación más pequeña, hasta observación $n$, a la que se le asigna el rango mayor.  Cuando una o más observaciones se repiten se les asigna el promedio del rango a cada una. Posteriormente, los rangos asignados a cada una de las $k$ observaciones se suman por separado en k-esimas sumas de rangos. Y se calcula la estadística de prueba:
+El sustituto no paramétrico de la prueba ANOVA de una vía, es la prueba categórica de Kruskal-Wallis, el proceso se aplica a $n_1, n_2, \dots, n_k$ observaciones de $k$ muestras que combinadas son una serie ordenada de mayor a menor, de tamaño $n$. Posteriormente las observaciones se les categoriza; se les asigna un rango a partir de $1$ que se le asigna a la observación más pequeña, hasta observación $n$, a la que se le asigna el rango mayor.  Cuando una o más observaciones se repiten se les asigna el promedio del rango a cada una. Posteriormente, los rangos asignados a cada una de las $k$ observaciones se suman por separado en k-esimas sumas de rangos. Y se calcula la estadística de prueba:
 $$ H = \frac{12}{n(n+1)} \sum_{j-1}^{k} \frac{R_{j}^2}{n_j} - 3(n+1)  $$  
 con $k$ número de uestras, $n_j$ número de observaciones en la j-esima muestra, $n$ número total de observaciones combinadas, $R_j$ la suma de rangos de las observaciones de la j-esima muestra.  
 La hipótesis nula es que las medidas centrales del todas las muestras están alineadas (son "iguales").  
@@ -304,10 +304,43 @@ Hosp_pwc <- Hosp_long %>%
 Hosp_pwc
 
 Hosp_pwc <- Hosp_pwc %>% add_xy_position(x = "Type")
-ggboxplot(Hosp_long, x = "Type", y = "Value") +
+ggboxplot(Hosp_long, x = "Type", y = "Value", add = "jitter") +
   stat_pvalue_manual(Hosp_pwc, hide.ns = TRUE) +
   labs(
     subtitle = get_test_label(Hosp_stat.test, detailed = TRUE),
     caption = get_pwc_label(Hosp_pwc)
     )
 ```
+## Prueba Friedman  
+
+El sustituto no paramétrico de la prueba ANOVA de dos vías es la prueba de Fredman, en la que se calcula la estadística $\chi_r^2$ para estimar la probabilidad. En este caso se tienen $n$ bloques y $k$ tratamientos. Para estimar la estadística se suman las categorías de cada variable estas son las $R_j$ la la estadística de Friedman $\chi_r^2$ se estima con  
+$$ \chi_r^2 = \frac{12}{nk(k+1)} \sum_{j=1}^k (R_j)^2 - 3n(k+1) $$
+Para el caso de la prueba de Friedman, la W de Kendall se usa para estimar el tamaño del efecto en la prueba Friedman. El coeficiente W de Kendal toma valores entre $0$ (indicando no relación alguna) y $1$ (indicando una relación perfecta), que sigue la indicacion de Cohen de valores entre 0.1 - 0.3 como efecto pequeño, 0.3 - 0.5 para efecto moderado y mayor a 0.5 para un efecto grande. Usando `friedman_effectsize`. Para hacer el *post hoc* con comparaciones múltiples corregidas por Bonferroni usando la prueba de signo categorizada de Wilcoxon para identificar que tratamiento es diferente.  
+
+**Example 13.9.1** A physical therapist conducted a study to compare three models of low-volt electrical stimulators. Nine other physical therapists were asked to rank the stimulators in order of preference. A rank of 1 indicates first preference. The results are shown in EXA_C13_S09_01.csv. We wish to know if we can conclude that the models are not preferred equally.  
+
+```{r}
+Exa13.9.1 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch13_all/EXA_C13_S09_01.csv", show_col_types = FALSE)
+Exa13.9.1
+
+ElectStim_long <- Exa13.9.1 %>% 
+  pivot_longer(cols = A:C, names_to = "Stimulator", values_to = "Preference")
+
+ElectStim_long <- ElectStim_long %>% 
+  mutate(Stimulator = Stimulator %>% fct_relevel("A","B","C"))
+
+ElectStim_long %>% 
+  group_by(Stimulator) %>% 
+  get_summary_stats(Preference, type = "median_iqr")
+
+ElectStim_stat.test <- ElectStim_long %>% 
+  friedman_test(Preference ~ Stimulator | THERAPIST)
+ElectStim_stat.test
+
+ElectStim_long %>% friedman_effsize(Preference ~ Stimulator | THERAPIST)
+
+pwc <- ElectStim_long %>% 
+  wilcox_test(Preference ~ Stimulator, paired = TRUE, p.adjust.method = "bonferroni")
+pwc
+```
+

@@ -1,13 +1,9 @@
 # Probabilidad y Estadística  
-## Licenciatura en Tecnología  
-## Semestre 2022-I, ENES Juriquilla
-### Universidad Nacional Autónoma de México  
+## Universidad Nacional Autónoma de México  
+### ENES Juriquilla  
 
 Profesor: Fernando A Barrios, PhD  
-barrios@inb.unam.mx  
-
-Curso 2022-I, 9 de agosto de 2021 al 26 de noviembre de 2021.  
-Exámenes, 29 de noviembre - 10 de diciembre de 2021  
+barrios@inb.unam.mx   
 
 El **objetivo general** de esta materia es que: El alumno aplicará los conceptos y la metodología básicos de la teoría de la probabilidad y la estadística, para analizar algunos experimentos aleatorios que ocurren en la naturaleza y la sociedad, resaltando los correspondientes a estudios biomédicos. Se estudiarán varias pruebas estadísticas, paramétricas como no paramétricas, y se solucionarán problemas por medio de R. En la primera parte del curso se presentarán métodos para la gracifación y visualización de datos en genral.  
 El uso del lenguage [R](https://www.r-project.org/about.html) es **obligatorio** para el desarrollo del curso, la solución de las tareas y presentación de los trabajos. El material de clase se desarrollará en [RStudio](https://rstudio.com/products/rstudio/) se recomienda que se use RStudio, pero se puede usar la interface  de R. Se recomienda usar la última versión publicada de R (del repositorio [CRAN](https://cran.r-project.org/)) no se recomienda usar versiones beta y no es necesario actualizar la versión de R durante el semestre a menos que se encuentre un "bug" importante por el que se recomiende actalizar la versión.    

@@ -1,0 +1,30 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  rmdformats::robobook:
+    highlight: kate
+---
+
+```{r setup, include=FALSE}
+## Global options
+knitr::opts_chunk$set(cache = TRUE)
+```
+# Prueba de Independencia
+
+Para la prueba de independencia en variables categóricas se pueden haceer varias estimaciones usando tablas de contingencia y par aestimar la independecnia entre variables se puede usar la prieba $\chi^2$, esta prueba estábasada en la distribución de $\chi^2$ definida por:
+
+$$
+\chi^2 = \sum_{i=1}^{k} \frac{(\verb+OBSERVADO - ESPERADO+)^2}{\verb+ESPERADO+}
+$$
+La distrubución $\chi^2$ como prueba de independencia.  
+Como ejemplo: el uso del cinturón de seguridad en el auto, se compara el uso del cinturón de seguridad en el auto comparando si el hecho del que los padres de menores usen el cinturón de seguridad esto resulte en que los menores tamibién usen el cinturón de seguridad.  
+Se genera una tabla de contingencia  
+
+
+
+```{r}
+library(vcd)
+library(tidyverse)
+```
+

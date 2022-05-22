@@ -1,0 +1,71 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  rmdformats::robobook:
+    highlight: kate
+---
+
+```{r setup, include=FALSE}
+## Global options
+knitr::opts_chunk$set(cache = TRUE)
+```
+
+```{r}
+library(vcd)
+library(gmodels)
+library(tidyverse)
+```
+# Tablas de frecuencia y contingencia
+
+Para generar tablas de frecuencia, R tiene varias herramientas, en particular podemos trabajar con `table`, `xtab`, `prop.table` y `margin.tables`. Iniciaremos con ejemplos de tablas de variables categóricas.  Usaremos los datos de R en la librería `vcd`.
+
+## Tablas de una via  
+La forma más directa para generar una tabla de variables en R es con el comando `table()` usaremos los datos en `Arthritis`. Sabemos que tiene las variables: Treatment. Sex, and Improved, todas variables categóricas.
+
+```{r}
+head(Arthritis)
+
+mytable <- with(Arthritis, table(Improved))
+mytable
+# for percentage table
+prop.table(mytable)*100
+
+```
+
+## Tablas de dos-vias  
+
+Como ejemplo: datos del estado de California en el uso del cinturón de seguridad en el auto, se compara el uso del cinturón de seguridad en el auto comparando si el hecho del que los padres de menores usen el cinturón de seguridad esto resulte en que los menores también usen el cinturón de seguridad.  
+
+Se genera una tabla de contingencia:  
+```{r}
+CalB_child <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch12_all/CaliforniaBuckleChild.csv", show_col_types = FALSE)
+# to build a two-way table
+BuckleChild <- xtabs(~ Parent + Child, data=CalB_child)
+head(BuckleChild)
+```
+
+La repuesta parece obvia, pero se puede usar la $\chi^2$ para demostrar la correlación. Estas tablas de contingencia se pueden tabular otras propiedades de los datos, podemos estimar las distribuciones marginales.  Resultados de proporción `prop.table()` y de   de frecuencia.  
+
+```{r}
+addmargins(BuckleChild)
+# porportions with respect to the first variable Parent
+prop.table(BuckleChild, 1)
+addmargins(prop.table(BuckleChild))
+```
+
+# Prueba de Independencia
+
+Para la prueba de independencia en variables categóricas se pueden hacer varias estimaciones usando tablas de contingencia y para estimar la independencia entre variables se puede usar la prueba $\chi^2$, esta prueba está basada en la distribución de $\chi^2$ definida por:  
+
+$$
+\chi^2 = \sum_{i=1}^{k} \frac{(\verb+OBSERVADO - ESPERADO+)^2}{\verb+ESPERADO+}
+$$
+
+La distribución $\chi^2$ como prueba de independencia.  
+
+
+
+
+
+

@@ -10,21 +10,43 @@ output:
 ## Global options
 knitr::opts_chunk$set(cache = TRUE)
 ```
+
+```{r}
+library(vcd)
+library(gmodels)
+library(tidyverse)
+```
+# Tablas de frecuencia y contongencia
+
+Para generar tablas de frecuencia, R tiene varias herramientas, en particular podemos trabajar con `table`, `xtab`, `prop.table` y `margin.tables`. Iniciaremos con ejemplos de tablas de variables categóricas.  Usaremos los datos de R en la librería `vcd`.
+
+## Tablas de una via  
+La forma más directa para generar una tabla de variables en R es con el comando `table()` usaremos los datos en `Arthritis`. Sabemos que tiene las variables: Treatment. Sex, and Improved, todas variables categóricas.
+
+```{r}
+head(Arthritis)
+
+mytable <- with(Arthritis, table(Improved))
+mytable
+# for percentage table
+prop.table(mytable)*100
+
+```
+
+## Tablas de dos-vias
+
 # Prueba de Independencia
 
-Para la prueba de independencia en variables categóricas se pueden haceer varias estimaciones usando tablas de contingencia y par aestimar la independecnia entre variables se puede usar la prieba $\chi^2$, esta prueba estábasada en la distribución de $\chi^2$ definida por:
+Para la prueba de independencia en variables categóricas se pueden hacer varias estimaciones usando tablas de contingencia y para estimar la independencia entre variables se puede usar la prueba $\chi^2$, esta prueba está basada en la distribución de $\chi^2$ definida por:
 
 $$
 \chi^2 = \sum_{i=1}^{k} \frac{(\verb+OBSERVADO - ESPERADO+)^2}{\verb+ESPERADO+}
 $$
 La distrubución $\chi^2$ como prueba de independencia.  
 Como ejemplo: el uso del cinturón de seguridad en el auto, se compara el uso del cinturón de seguridad en el auto comparando si el hecho del que los padres de menores usen el cinturón de seguridad esto resulte en que los menores tamibién usen el cinturón de seguridad.  
+
 Se genera una tabla de contingencia  
 
 
 
-```{r}
-library(vcd)
-library(tidyverse)
-```
 

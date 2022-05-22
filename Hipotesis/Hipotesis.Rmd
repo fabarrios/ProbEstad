@@ -1,0 +1,268 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+---
+
+
+```{r setup, include=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="80")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=80)
+```
+
+```{r}
+setwd("~/Dropbox/GitHub/ProbEstad")
+# To set the working directory realtive to the user's dir
+
+library(tidyverse)
+library(Rmisc)
+library(rcompanion)
+```
+
+# Prueba de Hipótesis  
+La prueba de hipótesis es una ayuda al investigador para alcanzar una conclusión relacionada a una población basada en una muestra tomada de dicha población. 
+
+**Definición** Una hipótesis puede definirse como una declaración a cerca de una o más poblaciones.  
+
+Clases de hipótesis, se puede decir que existen dos clases de hipótesis, las hipótesis de investigación y las hipótesis estadísticas.  
+
+*Las hipótesis de investigación es una suposición que motiva la investigación.*  
+
+Generalmente las hipótesis de investigación en su proceso experimental y de análisis de los datos relacionados con la parte experimental dan lugar a una (o varias) hipótesis estadísticas, que son necesarias para desarrollar la estimación de parámetros relacionados con las poblaciones estudiadas.  
+*Las hipótesis estadísticas son hipótesis que están expresadas de tal forma que pueden ser evaluadas por medio de técnicas estadísticas adecuadas.*  
+
+**Pasos para la Prueba de Hipótesis**, por motivos de conveniencia la prueba de hipótesis será presentada en un procedimiento de diez pasos.  
+
+1. **Datos**. El tipo de datos es importante que se conozca para poder determinar que tipo de pruebas se pueden usar.  
+
+2. **Supuestos**. Como ya se vio en el tema pasado de Estimación, dependiendo de la suposiciones que se hacen es necesario usar diferentes métodos de estimación, como lo son las distribuciones probabilísticas de los datos que ese están analizando, entre otros.  
+
+3. **Hipótesis**. Hay dos hipótesis estadísticas involucradas con la prueba de hipótesis, y las dos deben de estar expresadas de forma explícita. La *hipótesis nula*, la hipótesis que se va a probar, designada por el símbolo $H_0$. Generalmente la hipótesis nula es aquella que se establece para ser desechada. La hipótesis nula es la que se rechaza o acepta. Si la hipótesis nula no se rechaza, se puede decir que los datos en los que la prueba está basada no dan suficiente evidencia para rechazarla. Y la segunda hipótesis es la *hipótesis alternativa* que es la declaración que se considerará como verdadera si se rechaza la hipótesis nula.  Por lo general la hipótesis alternativa y la hipótesis e investigación son la misma. Se describe con el símbolo $H_A$.  
+
+4. **Estadística de prueba** La prueba estadística es la estadística que se puede correr con los datos de la muestra.  La prueba estadística es un método de prueba para tomar una decisión. La formula general para una prueba de hipótesis:  
+
+  
+$$ \verb+estadística de prueba+ = \frac{\verb+estadística relevante - parámetro hipótetisado+}{\verb+error estándar de la estadística relvante+} $$
+como ejemplo  
+$$ z = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}} $$
+
+5. **Distribución de la estadística de prueba** el punto clave de la estadística de prueba es la distribución de probabilidad de la estadística que se va a estimar.  
+
+6. **Regla de decisión** la región de rechazo o aceptación se determinan a partir de los valores críticos de la estadística de prueba.  Se rechaza la hipótesis nula si un valor de la prueba entra al rango de los valores de rechazo. Los valores del rango de rechazo se estiman con base en el **nivel de significancia** que se decidió usar en la prueba estadística. Se usa la definición para el nivel de significancia $\alpha$ como una probabilidad, de hecho es la probabilidad de rechazar la verdadera hipótesis nula.  
+
+7. **Estimación de la estadística de prueba**, a partir de los datos de muestreo que se tienen se estima la estadística de prueba.  
+
+8. **Decisión estadística**, esta decisión consiste en rechazar o aceptar la hipótesis nula $H_0$.  
+
+9. **Conclusión** Si $H_0$ se rechaza, se concluye que $H_A$ es verdadera, y si $H_0$ no se rechaza, se concluye que $H_0$ puede ser verdadera.  
+
+10. **valor $p$** el valor $p$ es el número (probabilidad) que nos indica que tan poco probables son los valores de nuestra muestra, dada la hipótesis nula. Este valor $p$ es la probabilidad de que el valor estimado para la estadística de prueba sea por lo menos tan extremo como el especificado por la estadística de prueba cuando la hipótesis nula es verdadera. El valor $p$ es el valor *más pequeño* que toma $\alpha$ cuando se puede descartar la hipótesis nula.  
+
+**Los tipos de error** El error que se comete cuando una hipótesis nula verdadera es descartada se llama *error tipo I*, El *error tipo II* se comete cuando una hipótesis nula falsa se acepta (no es rechazada). La probabilidad de cometer un *error tipo II* se expresa por $\beta$. 
+
+## Prueba de hipótesis con muestreo de una población normalemente distribuída, cuando no se conoce la varianza.   
+Por los general la varianza de una población es desconocida, y se tiene que estimar a partir de la muestra. Para muestras grandes se puede usar la prueba de hipótesis basada en el valor de $z$, pero para muestras pequeñas se puede usar la expresión de $t$ para la estadística de prueba con la hipótesis nula a probar $H_0: \mu = \mu_0$   
+
+$$ t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} $$  
+
+**Ejemplo** Nakamura et al. estudiaron sujetos con desgarre de ligamento colateral medial (MCL) y ligamento  cruzado anterior (ACL). Entre febrero de 1995 y diciembre de 1997, 17 pacientes consecutivos con lesiones agudas de ACL y grado III MCL fueron tratados por el mismo médico del centro de investigación. Una de las variables de interés fue la longitud de tiempo en días entre la fecha de la lesión y la primer imagen por resonancia magnética (MRI). Los datos están listados en EXA_C07_S02_03.csv. Queremos saber si podemos concluir que el número promedio de días entre la lesión y la primer resonancia magnética **no es 15 días** en la población representada por los datos de esta muestra.    
+*Respuesta* Se propone $H_0: \mu = 15$ y se hace la prueba $t$.  
+```{r}
+time_MRI <- read_csv("DataSets/ch07_all/EXA_C07_S02_03.csv", show_col_types = FALSE)
+time_MRI
+
+t_MRI <- time_MRI$DAYS
+t.test(t_MRI, alternative = "two.sided", mu = 15, paired = FALSE, conf.level = 0.95)
+```
+
+En este caso estamos probando la igualdad por lo que la probabilidad $p = 0.4402$ de cometer un error al descartar la hipótesis nula es mayor al valor que estamos definiendo $p = 0.05$ para cumplir con un porcentaje del 95. Es decir no podemos descartar la hipótesis nula, es posible que el promedio si sea de 15. Además no se puede descartar que el promedio de la población sea de 15, ya que está incluido en el intervalo de confianza que la prueba $t$ estimó para el promedio $IC = [8.7250, 17.8631]$.  
+
+**Ejemplo** A continuación se listan los datos de la circunferencia de la cabeza (en centímetros) al nacer, de 15 infantes, queremos probar si el promedio es igual a 34.5 cm, $H_0: \mu = 34.5$ por lo tanto la hipótesis alternativa es $H_A: \mu \neq 34.5$ (Datos en EXA_C07_S02_05.cvs).  
+
+```{r}
+Circ <- read_csv("DataSets/ch07_all/EXA_C07_S02_05.csv", show_col_types = FALSE)
+Circ
+# El valor extremo de la estadística t
+qt(0.025, 14)
+# Región de rechazo extremos
+curve(dt(x, 14), from = -4.5, to = 4.5, main = "no-rechazo")
+abline(v=qt(0.025, 14), col = 2)
+abline(v=qt(0.975, 14), col = 2)
+
+t.test(Circ, alternative = "two.sided", mu = 34.5, paired = FALSE, conf.level = 0.95)
+```
+
+El valor de $p$ es muy pequeño, es decir que podemos descartar la hipótesis nula, y el promedio real no es igual a 34.5 cm. Del intervalo de confianza también podemos ver que el valor 34.5 no está dentro del intervalo de confianza estimado a $\alpha = 0.05$.  
+
+**Ejemplo** En un estudio de Thenprasiddhi et al. examinaron una muestra de 16 sujetos con glaucoma de ángulo abierto y defectos de campo unilaterales. Las edades (en años) de los sujetos están listadas en el código a continuación. Se puede concluir que el promedio de edad, a partir de esta muestra, puede ser menos de 60 años en la población de la que se extrajo la muestra? Usar $\alpha = .05$.  
+*Respuesta* En la forma en la que está planteada esta pregunta la hipótesis nula $H_0 > 60$.  Les decir la hipótesis alternativa es la pregunta, $H_A \leq 60$ y para la llamada a la función `t.test()` usaremos `alternative = less`, y con el nivel de confianza de `conf.level = 0.95` ya que nos pidieron $\alpha = .05$.  
+
+```{r}
+glaucoma_age <- c(62,62,68,48,51,60,51,57,57,41,62,50,53,34,62,61)
+hist(glaucoma_age)
+t.test(glaucoma_age, alternative = "less", mu = 60, paired = FALSE, conf.level = 0.95)
+```
+
+el resultado muestra una $p = 0.01874$ que es menor a $.05$ por lo que si podemos descartar la hipótesis nula y concluir que el verdadero promedio es menor a $\mu < 60$. Además del intervalo de confianza a un solo lado (izquierda) es menor a $58.82$. El valor estimado de la muestra es $54.94$.  
+
+## Prueba de hipótesis: La diferencia entre los promedios de dos poblaciones.  
+La prueba de hipótesis para la diferencia entre los promedios de dos poblaciones, es probablemente una de las pruebas estadísticas más usadas, ya que permite comparar los promedios de las poblaciones y llegar a conclusiones. Y los casos posibles de la hipótesis nula se pueden generalizar en estas tres declaraciones:  
+1. $H_0 : \mu_1 - \mu_2 = 0, H_A: \mu_1 - \mu_2 \neq 0$  
+2. $H_0 : \mu_1 - \mu_2 \geq 0, H_A: \mu_1 - \mu_2 < 0$  
+3. $H_0 : \mu_1 - \mu_2 \leq 0, H_A: \mu_1 - \mu_2 > 0$  
+
+### Para muestras tomadas de poblaciones normalemte distribuídas, con sus varianzas conocidas.  
+Del tema de Estimación sabemos que la estadística que describe este problema es  
+
+$$ z = \frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)_0}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} }} $$  
+
+Cómo ya se discutió durante el tema de Estimación, por lo general no se conoce la varinaza de las poblaciones compradas y por lo tanto se usa la expresión para estimar la varianza a partir de las muestras usando $s^2$.  
+**Muestreo de poblaciones normalmente distribuidas : Varianza poblacional desconocida** Este problema lo resolvemos con las ecuaciones de $t$, recordamos que en general tenemos dos casos: para varianzas poblacionales iguales y varinzas poblacionales distintas.  
+*Varianza poblacional igual* cuando las varianzas de las poblaciones a comparar se supone son iguales. Se estima una varianza conjunta,  
+
+$$ s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 -1)s_2^2}{n_1 + n_2 - 2}  $$  
+
+y la prueba estadística para comparar los promedios poblacionales es  
+
+$$ t = \frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)_0}{\sqrt{\frac{s_p^2}{n_1} + \frac{s_p^2}{n_2} }} $$  
+
+la que para $H_0$ cierta, está distribuida como una $t$ de Student con $n_1 + n_2 - 2$ grados de libertad.  
+
+**Ejemplo** En un estudio de Tam et al. se investigó la maniobrabilidad en silla de ruedas de individuos con una lesión en la espina dorsal baja (SCI) y en controles sanos (C). Los sujetos usaron una silla de ruedas modificada con un asiento rígido para facilitar las medidas experimentales. Las medidas de presión en la interfase se hicieron con un cojín sensor de presión de alta resolución con una resolución espacial de cuatro sensores por centímetro cuadrado, fijo a la superficie rígida del asiento. Durante las condiciones estáticas para la posición de sentado, las presiones promedio se registraron abajo de las tuberosidades isquiáticas (la parte baja de los huesos de la pelvis).Los datos de las medidas de la tuberosidad isquiática izquierda (en mmHg) para los grupo control y SCI se listan en el archivo EXA_C07_S03_02.csv.  Queremos saber si podemos concluir, con base en estos datos, que en general los sujetos sanos presentan menor presión que los sujetos SCI.  
+
+```{r}
+# Tam et al. data
+SCI_con <- read_csv("DataSets/ch07_all/EXA_C07_S03_02.csv", show_col_types = FALSE)
+SCI_con
+
+boxplot(SCI_con$CONTROL, SCI_con$SCI, xlab = "Grupo", ylab = "Presión medida")
+t.test(SCI_con$CONTROL, SCI_con$SCI, alternative = "less", mu = 0,  var.equal = TRUE, conf.level = .95)
+```
+
+** Varianzas poblacionales diferentes** Cuando dos muestras independientes se han extraído de dos poblaciones normalmente distribuías con varianzas desconocidas y diferentes, la prueba estadística para probar $H_0: \mu_1 = \mu_2$ es  
+
+$$ t' = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)_0}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} }} $$  
+
+el valor crítico para $t'$ para un nivel $\alpha$ de significancia y una prueba de dos colas es  
+
+$$ t'_{1-\alpha/2} = \frac{w_1t_1 + w_2t_2}{w_1 + w_2} $$  
+
+donde $w_1 = s_1^2/n_1$, $w_2 = s_2^2/n_2$, $t_1 = t_{1-(\alpha/2)}$ para $n_1 - 1$ grados de libertad, y $t_2 = t_{1-(\alpha/2)}$ con $n_2 -1$ grados de libertad.  El valor crítico de $t'$ para una prueba de un solo lado se calcula con $t'_{1-\alpha}$ en la ecuación anterior con $t_1 = t_{1-\alpha}$ para $n_1 - 1$ grados de libertad y $t_2 = t_{1-\alpha}$ para $n_2 - 1$ grados de libertad.  
+
+Para una prueba de dos lados, se rechaza $H_0$ si el valor estimado de $t'$ es mayor que el valor crítico de la ecuación anterior para $t'$ o menor que el valor negativo.  
+
+**Ejemplo** Investigadores querían saber si podrían concluir que dos poblaciones de infantes se distinguen con respecto a la edad a la que caminaron por primera vez solos. Los datos en el archivo EXR_C07_S03_10.csv, contienen la edad en meses de las dos muestras de las poblaciones a la que los niños caminaron solos por primera vez. Usar $\alpha = .05$.  A que conclusión llegaron los investigadores?  
+*Respuesta* Se va a proponer la hipótesis nula $H_0: \mu_1 = \mu_2 \; \; -> \mu_1 - \mu2 = 0$.  
+
+```{r}
+# Edad a la que pudieron caminar solos
+Infants <- read_csv("DataSets/ch07_all/EXR_C07_S03_10.csv", show_col_types = FALSE)
+Infants
+tail(Infants)
+
+boxplot(Age ~ factor(Group), data =  Infants, ylab = "Edad (meses)")
+
+# Para hacer vos vectores con muestras de población a y b
+Infants_A <- (filter(Infants, Group == 1))
+Infants_B <- (filter(Infants, Group == 2))
+
+# Dos colas para comparar igualdad
+t.test(Infants_A$Age, Infants_B$Age, alternative = "two.sided", mu = 0,  var.equal = FALSE, conf.level = .95)
+
+# Ahora usando la misma formula que usamos para llamar al boxplot()
+t.test(Age ~ factor(Group), data =  Infants, alternative = "two.sided", mu = 0,  var.equal = FALSE, conf.level = .95)
+```
+
+Otra  
+Se puede ver que el valor de $p$ está por debajo del valor de alfa propuesto, por lo tanto se puede descartar la hipótesis nula, además del intervalos de confianza para el valor de $\mu_1 - \mu_2$ no contiene al cero.  
+
+## Comparaciones pareadas (t-pareada).  
+
+Una forma frecuentemente empleada para medir la efectividad de algún tratamiento o procedimiento experimental es el uso de observaciones pareadas. Lo que se conoce como una prueba por comparación pareada.  
+Es estas pruebas en lugar de hacer uso de medidas independientes se hace uso de la diferencia entre pares de observaciones $d_i$, como variable de interés. Cuando una muestra de $n$ diferencias estimadas de $n$ pares de medidas, constituye una muestra de una variable normalemente distribuida con la prueba estadística para comparar con el promedio de la diferencia de la población.  
+
+$$ t = \frac{\bar{d} - \mu_{d_0}}{s_{\bar{d}}} $$  
+
+en donde $\bar{d}$ es la media de las diferencias de los pares de muestras, $\mu_{d_0}$ es la media hipotetizada de la diferencia en la población, $s_{\bar{d}} = s_d/\sqrt{n}$, con $n$ en número de diferencias de pares en la muestra, y $s_d$ es la desviación estandár de las diferencias en la muestra. Cuando $H_0$ es cierta, la estadistica de prueba se distribuye como una $t$ de Student con $n-1$ grados de libertad.  
+
+**Ejemplo** Morton et al. examinaron la función de la vesícula biliar, después de una cirugía que se usa para detener que el contenido del estómago fluya de regreso al esófago, en pacientes con reflujo gastroesofágico. Los autores midieron la función biliar por medio de la fracción de descarga biliar(GBEF) antes y después de la cirugía. La idea de la cirugía es incrementar la GBEF, que se mide en porcentaje. Los datos están listados en EXA_C07_S04_01, estos datos son suficientes para concluir que la GBEF se incrementa con la cirugía?  
+
+*Respuesta* Si la cirugía incrementa la función biliar, esto es incrementa GBEF, $\mu_{POSTOP} > \mu_{PREOP}$, es decir queremos demostrar que la diferencia en GBEL (PREOP - POSTOP) es negativa. Por lo tanto, la hipótesis nula es que $H_0: \mu_{PREOP - POSTOP} > 0$ y por lo tanto $H_A: \mu_{PREOP - POSTOP} \leq 0$
+
+```{r}
+GBEF <- read_csv("DataSets/ch07_all/EXA_C07_S04_01.csv", show_col_types = FALSE)
+GBEF
+
+boxplot(GBEF$PREOP, GBEF$POSTOP, xlab = "PREOP, POSTOP", ylab = "Función biliar")
+t.test(GBEF$PREOP, GBEF$POSTOP, alternative = "less", mu=0, paired = TRUE, var.equal = TRUE, conf.level = 0.95)
+
+# Para hacer una prueba t usando notación de fórmula GBEF ~ Condition
+# Se necesitan alargar los datos
+
+GBEF_long <- GBEF %>% 
+  pivot_longer(cols = everything(), names_to = "Condition", values_to = "GBEF")
+
+# y estar seguros que Condition es un factor en el orden adecuado
+GBEF_long <- GBEF_long %>% mutate( Condition = Condition %>% fct_relevel("PREOP", "POSTOP"))
+boxplot(GBEF ~ Condition, data = GBEF_long, ylab = "Función biliar")
+t.test(GBEF ~ Condition, data = GBEF_long, alternative = "less", mu=0, paired = TRUE, var.equal = TRUE, conf.level = 0.95)
+```
+
+E.D. Jones estudió los efectos de la terapia de recuerdo de eventos pasados, en mujeres mayores con depresión. Estudió 15 mujeres de 60 años o mayores, viviendo por 3 o más meses en residencia asistida (residencia de adultos mayores) de largo plazo.  Para este estudio la depresión se midió por medio de "Geriatric Depression Scale" (GDS). Escores más altos significan mayores estados de depresión. Las participantes recibieron terapia de recuerdo de eventos pasados como tratamiento de largo plazo, el cual usa fotografías familiares, cuadernos de notas, y objetos personales que traigan memorias, como objetos para estimular memorias y conversaciones entre otros miembros del grupo.  Las medidas previas y posteriores al tratamiento se listan en el archivo EXR_C07_S04_01.csv.  Se puede concluir usando estos datos, que los sujetos que participaron en terapia de recuerdos, en promedio, tienen un decremento en sus calificaciones de depresión de acuerdo con GDS? Usar $\alpha = .01$   
+
+*solución*  Si suponemos que la diferencia $H_0: Pre - Post < 0$, tal que $H_A: Pre - Post \geq 0$  
+
+```{r}
+GDS <- read_csv("DataSets/ch07_all/EXr_C07_S04_01.csv", show_col_types = FALSE)
+GDS
+
+boxplot(GDS$Pre, GDS$Post, ylab = "Depresión estimada (GDS)")
+t.test(GDS$Pre, GDS$Post, alternative = "greater", paired = TRUE, var.equal = TRUE, conf.level = 0.99)
+```
+
+Ejemplo de comparación de los datos de depresión de adultos mayores, se van a transformar los datos de tabla a formato "largo" por un comando de `pivot_longer()`. Y se usará la librería `ggstatsplot` para graficar los datos y los resultados de la prueba $t$.  Uno de los parámetros estimados por `ggwithinstats` es el tamaño del efecto por $\hat{g}_{Hedge's}$ que se puede explicar como: la estadística g de Hedge expresa la diferencia entre los promedios de las poblaciones en unidades de la desviación estándar combinada (pooled standard deviation).
+
+```{r}
+library(ggstatsplot)
+
+GDS_long <- GDS %>% 
+  pivot_longer(cols = everything(), names_to = "Condition", values_to = "GDS")
+
+# trasformación a factor y re-level
+GDS_long <- GDS_long %>% mutate( Condition = Condition %>% fct_relevel("Pre", "Post"))
+
+ggwithinstats(
+  data = GDS_long, x = Condition, y = GDS, 
+  title = "Diferencia en el estado de depresión", 
+  plot.type = "violin", 
+  type = "parametric", 
+  pairwise.comparisons = TRUE, 
+  pairwise.display = "significant", 
+  p.adjust.method = "holm", 
+  conf.level = 0.99, 
+  var.equal = TRUE)
+
+```
+
+##  Prueba de la proporcion de varianzas
+
+En la prueba de la varinaza de dos poblaciones se estima la proporción de varianzas para determinar si as varianzas son iguales o no para decidir que prueba para la $t$ de Student se puede usar.  En R se cuenta con una prueba de varianza, a partir de dos muestras que nos permite contestar esta pregunta. Es la función `var.test`.  
+**Ejemplo** Si tomamos los datos en EXA_C07_S03_02.csv, podemos preguntar si podemos o no suponer que las varianzas son iguales o distintas y revisar nuestra llamada a la función `t.test`.  
+
+```{r}
+var.test(SCI_con$CONTROL, SCI_con$SCI, ratio = 1, alternative = "two.sided", conf.level = .95)
+```
+

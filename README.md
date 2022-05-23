@@ -55,7 +55,7 @@ Tarea 8 [ANOVA](https://fabarrios.github.io/ProbEstad/HW/HW_08).
 
 Tema 9 [Análisis no paramétrico](https://fabarrios.github.io/ProbEstad/NoParamet/NoParamet.html).  
 
-Tema 10 [Analisis de Frecuencias](https://fabarrios.github.io/ProbEstad/Chi_sq/Chi_sq.html).
+Tema 10 [Análisis de Frecuencias](https://fabarrios.github.io/ProbEstad/Chi_sq/Chi_sq.html).
 
 [Notas](https://fabarrios.github.io/ProbEstad/Notas/Notas).  
 

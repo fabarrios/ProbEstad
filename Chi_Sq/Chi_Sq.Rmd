@@ -39,9 +39,9 @@ Como ejemplo: datos del estado de California en el uso del cinturón de segurida
 
 Se genera una tabla de contingencia:  
 ```{r}
-CalB_child <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch12_all/CaliforniaBuckleChild.csv", show_col_types = FALSE)
+Buckle_child <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch12_all/CaliforniaBuckleChild.csv", show_col_types = FALSE)
 # to build a two-way table
-BuckleChild <- xtabs(~ Parent + Child, data=CalB_child)
+BuckleChild <- xtabs(~ Parent + Child, data=Buckle_child)
 head(BuckleChild)
 ```
 
@@ -54,6 +54,16 @@ prop.table(BuckleChild, 1)
 addmargins(prop.table(BuckleChild))
 ```
 
+Para calcular la probabilidad parcial de la distribución de infantes con el cinturon de seguridad abrochado de la tabla con los marginales podemos estimar los siguientes parciales:  
+$n_r$ número de renglones (el número de niveles $r$)  
+$n_c$ número de columnas (número de niveles $c$)  
+$Y_{ij}$ variable aleatoria de acuerdo a la frecuencia de celda $i,j$  
+$p_{ij}$ la probabilidad de la celda $i,j$  
+Las probabilidades marginales son: $P_i^r$, $P_j^c$, son la probabilidad marginal igual a la suma de las probabilidades por renglǿn $p_i^r = p_{i1} + p_{i2} + \dots + p_{in_r}$.  
+La hipótesis nula es que la **variable columna es independiente de la variable renglón**, es decir: $H_0: p_{ij} = p_i^r p_j^c$.  
+La hipótesis nula se expresa como $H_0: \verb+las variables son independientes+$ y la hipótesis alternativa es $H_A: \verb+las variables no son independientes+$.  
+Por ejemplo de la tabla `addmargins(BuckleChild)` se obtienen valores estimados de probabilidad $\hat p$.  
+
 # Prueba de Independencia
 
 Para la prueba de independencia en variables categóricas se pueden hacer varias estimaciones usando tablas de contingencia y para estimar la independencia entre variables se puede usar la prueba $\chi^2$, esta prueba está basada en la distribución de $\chi^2$ definida por:  
@@ -62,10 +72,23 @@ $$
 \chi^2 = \sum_{i=1}^{k} \frac{(\verb+OBSERVADO - ESPERADO+)^2}{\verb+ESPERADO+}
 $$
 
-La distribución $\chi^2$ como prueba de independencia.  
+La distribución $\chi^2$ como prueba de independencia.  Si usamos la cantidad esperada por celda como $n\hat{p}_{ij}$ se puede escribir como $R_iC_j/n$ con $R_i$ la suma del renglón *(i)*, y $C_j$ la suma de la columna *(j)* y se puede escribir la estadística $\chi^2$ como:  
+$$
+\chi^2 = \sum_{i=1}^{n_r} \sum_{j=1}^{n_c} \frac{(Y_{ij} - n\hat{p}_{ij})^2}{n \hat{p}_{ij}}
+$$
+con $\chi^2$ con $(n_r - 1)(n_c - 1)$ grados de libertad.  Esta estadística estima la componente para la celda.  Para R la independencia de la variable renglón contra la variable columna una tabla ya "formada" se puede usar la prueba `chisq.test()` también la función `fisher.test()`.  
 
+```{r}
+chisq.test(BuckleChild)
+fisher.test(BuckleChild)
 
+# From SAS and SPSS the gmodels library have a CrossTable that does all in one step
+CrossTable(BuckleChild, chisq = TRUE, fisher = TRUE)
+```
 
+Si se tiene suficiente evidencia para desechar la hipótesis nula de independencia entre las variables, entonces la atención se turna en estimar una medida de asociación entre dichas variables. La función `assocstats()` de la librería `vcd` se puede usar para estimar los parámetros phi, de contingencia y de Cramer.  En general a mayor valor de estos índices se tiene una mayor asociación.
 
-
-
+```{r}
+# Association tests parameters
+assocstats(BuckleChild)
+```

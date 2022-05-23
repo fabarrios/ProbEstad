@@ -1,5 +1,6 @@
 ---
-title: ""
+title: "Analisis de frecuencias"
+auhor: "F.A. Barrios, Ph.D."
 date: "`r Sys.Date()`"
 output:
   rmdformats::robobook:

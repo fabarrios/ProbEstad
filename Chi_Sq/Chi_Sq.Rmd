@@ -101,14 +101,18 @@ assocstats(BuckleChild)
 ```{r}
 FolicAcid <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch12_all/EXA_C12_S04_01.csv", show_col_types = FALSE)
 
+# to build a two-way table, race vs folic acid
 FA_table <- xtabs(~ Race + FolicAcid, data = FolicAcid)
 FA_tabSimp <- table(FolicAcid$Race, FolicAcid$FolicAcid)
+head(FA_table)
+head(FA_tabSimp)
 
 # to estimate the marginal values of the table
 addmargins(FA_table)
 # porportions with respect to the first variable Race
 prop.table(FA_table, 1)
 addmargins(prop.table(FA_table))
+addmargins(prop.table(FA_tabSimp))
 
 # Independence tests
 chisq.test(FA_table)

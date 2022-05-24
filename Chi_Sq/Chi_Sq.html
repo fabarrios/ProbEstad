@@ -2130,48 +2130,67 @@ race are independent</strong>. The data appear in
 EXA_C12_S04_01.csv”</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>FolicAcid <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;~/Dropbox/GitHub/ProbEstad/DataSets/ch12_all/EXA_C12_S04_01.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>FA_table <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span> Race <span class="sc">+</span> FolicAcid, <span class="at">data =</span> FolicAcid)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>FA_tabSimp <span class="ot">&lt;-</span> <span class="fu">table</span>(FolicAcid<span class="sc">$</span>Race, FolicAcid<span class="sc">$</span>FolicAcid)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># to estimate the marginal values of the table</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(FA_table)</span></code></pre></div>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to build a two-way table, race vs folic acid</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>FA_table <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span> Race <span class="sc">+</span> FolicAcid, <span class="at">data =</span> FolicAcid)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>FA_tabSimp <span class="ot">&lt;-</span> <span class="fu">table</span>(FolicAcid<span class="sc">$</span>Race, FolicAcid<span class="sc">$</span>FolicAcid)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(FA_table)</span></code></pre></div>
+<pre><code>##        FolicAcid
+## Race     No Yes
+##   Black  41  15
+##   Other  14   7
+##   White 299 260</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(FA_tabSimp)</span></code></pre></div>
+<pre><code>##        
+##          No Yes
+##   Black  41  15
+##   Other  14   7
+##   White 299 260</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to estimate the marginal values of the table</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(FA_table)</span></code></pre></div>
 <pre><code>##        FolicAcid
 ## Race     No Yes Sum
 ##   Black  41  15  56
 ##   Other  14   7  21
 ##   White 299 260 559
 ##   Sum   354 282 636</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># porportions with respect to the first variable Race</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(FA_table, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># porportions with respect to the first variable Race</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(FA_table, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##        FolicAcid
 ## Race           No       Yes
 ##   Black 0.7321429 0.2678571
 ##   Other 0.6666667 0.3333333
 ##   White 0.5348837 0.4651163</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">prop.table</span>(FA_table))</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">prop.table</span>(FA_table))</span></code></pre></div>
 <pre><code>##        FolicAcid
 ## Race            No        Yes        Sum
 ##   Black 0.06446541 0.02358491 0.08805031
 ##   Other 0.02201258 0.01100629 0.03301887
 ##   White 0.47012579 0.40880503 0.87893082
 ##   Sum   0.55660377 0.44339623 1.00000000</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Independence tests</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(FA_table)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">prop.table</span>(FA_tabSimp))</span></code></pre></div>
+<pre><code>##        
+##                 No        Yes        Sum
+##   Black 0.06446541 0.02358491 0.08805031
+##   Other 0.02201258 0.01100629 0.03301887
+##   White 0.47012579 0.40880503 0.87893082
+##   Sum   0.55660377 0.44339623 1.00000000</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Independence tests</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(FA_table)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  FA_table
 ## X-squared = 9.0913, df = 2, p-value = 0.01061</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(FA_table)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(FA_table)</span></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
 ## 
 ## data:  FA_table
 ## p-value = 0.009282
 ## alternative hypothesis: two.sided</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To estimate the SAS type contingency table estimations</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CrossTable</span>(FA_table, <span class="at">prop.t =</span> <span class="cn">TRUE</span>, <span class="at">prop.chisq =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">chisq =</span> <span class="cn">TRUE</span>, <span class="at">fisher =</span> <span class="cn">TRUE</span>, <span class="at">format =</span> <span class="fu">c</span>(<span class="st">&quot;SAS&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To estimate the SAS type contingency table estimations</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CrossTable</span>(FA_table, <span class="at">prop.t =</span> <span class="cn">TRUE</span>, <span class="at">prop.chisq =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">chisq =</span> <span class="cn">TRUE</span>, <span class="at">fisher =</span> <span class="cn">TRUE</span>, <span class="at">format =</span> <span class="fu">c</span>(<span class="st">&quot;SAS&quot;</span>))</span></code></pre></div>
 <pre><code>## 
 ##  
 ##    Cell Contents
@@ -2228,7 +2247,7 @@ EXA_C12_S04_01.csv”</p>
 ## p =  0.009281515 
 ## 
 ## </code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">assocstats</span>(FA_table)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">assocstats</span>(FA_table)</span></code></pre></div>
 <pre><code>##                     X^2 df  P(&gt; X^2)
 ## Likelihood Ratio 9.4808  2 0.0087352
 ## Pearson          9.0913  2 0.0106135

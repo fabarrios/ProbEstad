@@ -87,9 +87,37 @@ fisher.test(BuckleChild)
 CrossTable(BuckleChild, chisq = TRUE, fisher = TRUE)
 ```
 
-Si se tiene suficiente evidencia para desechar la hipótesis nula de independencia entre las variables, entonces la atención se turna en estimar una medida de asociación entre dichas variables. La función `assocstats()` de la librería `vcd` se puede usar para estimar los parámetros phi, de contingencia y de Cramer.  En general a mayor valor de estos índices se tiene una mayor asociación.
+Si se tiene suficiente evidencia para desechar la hipótesis nula de independencia entre las variables, entonces la atención se turna en estimar una medida de asociación entre dichas variables. La función `assocstats()` de la librería `vcd` se puede usar para estimar los parámetros $\phi$, de contingencia y de Cramer.  En general a mayor valor de estos índices se tiene una mayor asociación.
 
 ```{r}
 # Association tests parameters
 assocstats(BuckleChild)
 ```
+
+### Ejemplo ácido fólico durante el embarazo
+
+"In 1992, the U.S. Public Health Service and the Centers for Disease Control and Prevention recommended that all women of childbearing age consume $400 \mu g$ of folic acid daily to reduce the risk of having a pregnancy that is affected by a neural tube defect such as spina bifida or anencephaly. In a study by Stepanuk et al., 693 pregnant women called a teratology information service about their use of folic acid supplementation. The researchers wished to determine if preconceptional **use of folic acid and race are independent**. The data appear in EXA_C12_S04_01.csv"
+
+```{r}
+FolicAcid <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch12_all/EXA_C12_S04_01.csv", show_col_types = FALSE)
+
+FA_table <- xtabs(~ Race + FolicAcid, data = FolicAcid)
+FA_tabSimp <- table(FolicAcid$Race, FolicAcid$FolicAcid)
+
+# to estimate the marginal values of the table
+addmargins(FA_table)
+# porportions with respect to the first variable Race
+prop.table(FA_table, 1)
+addmargins(prop.table(FA_table))
+
+# Independence tests
+chisq.test(FA_table)
+fisher.test(FA_table)
+
+# To estimate the SAS type contingency table estimations
+CrossTable(FA_table, prop.t = TRUE, prop.chisq = TRUE, 
+           chisq = TRUE, fisher = TRUE, format = c("SAS"))
+assocstats(FA_table)
+```
+
+Dados los valores de *p*, resultado de la pruebas de independencia (y de la tabla `CrossTable`) podemos rechazar la hipótesis nula $H_0$, y por lo tanto podemos concluir que hay una relación entre la raza y el uso durante el embarazo de ácido fólico. Aunque el efecto no es grande, como resultado de los valores bajos de los coeficientes de contingencia y Cramer V.

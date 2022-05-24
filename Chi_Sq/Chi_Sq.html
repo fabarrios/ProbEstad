@@ -6,7 +6,7 @@
     <meta name="generator" content="pandoc" />
 
     
-        <meta name="date" content="2022-05-22" />
+        <meta name="date" content="2022-05-23" />
     
     <title>Analisis de frecuencias</title>
 
@@ -1861,7 +1861,7 @@ src: url(data:application/font-sfnt;base64,AAEAAAARAQAABAAQR0RFRgs+Cz8AAjwQAAAAQ
         </nav>
         <ul class="authors">
           <li class="divider"></li>
-                               <li><span><i class="glyphicon glyphicon-calendar"></i> 2022-05-22</span></li>
+                               <li><span><i class="glyphicon glyphicon-calendar"></i> 2022-05-23</span></li>
                   </ul>     
       </div>
       <div class="book-body fixed">
@@ -2104,8 +2104,9 @@ también la función <code>fisher.test()</code>.</p>
 independencia entre las variables, entonces la atención se turna en
 estimar una medida de asociación entre dichas variables. La función
 <code>assocstats()</code> de la librería <code>vcd</code> se puede usar
-para estimar los parámetros phi, de contingencia y de Cramer. En general
-a mayor valor de estos índices se tiene una mayor asociación.</p>
+para estimar los parámetros <span class="math inline">\(\phi\)</span>,
+de contingencia y de Cramer. En general a mayor valor de estos índices
+se tiene una mayor asociación.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Association tests parameters</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">assocstats</span>(BuckleChild)</span></code></pre></div>
 <pre><code>##                     X^2 df   P(&gt; X^2)
@@ -2115,6 +2116,134 @@ a mayor valor de estos índices se tiene una mayor asociación.</p>
 ## Phi-Coefficient   : 0.695 
 ## Contingency Coeff.: 0.571 
 ## Cramer&#39;s V        : 0.695</code></pre>
+<div id="ejemplo-ácido-fólico-durante-el-embarazo" class="section level3">
+<h3>Ejemplo ácido fólico durante el embarazo</h3>
+<p>“In 1992, the U.S. Public Health Service and the Centers for Disease
+Control and Prevention recommended that all women of childbearing age
+consume <span class="math inline">\(400 \mu g\)</span> of folic acid
+daily to reduce the risk of having a pregnancy that is affected by a
+neural tube defect such as spina bifida or anencephaly. In a study by
+Stepanuk et al., 693 pregnant women called a teratology information
+service about their use of folic acid supplementation. The researchers
+wished to determine if preconceptional <strong>use of folic acid and
+race are independent</strong>. The data appear in
+EXA_C12_S04_01.csv”</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>FolicAcid <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;~/Dropbox/GitHub/ProbEstad/DataSets/ch12_all/EXA_C12_S04_01.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>FA_table <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span> Race <span class="sc">+</span> FolicAcid, <span class="at">data =</span> FolicAcid)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>FA_tabSimp <span class="ot">&lt;-</span> <span class="fu">table</span>(FolicAcid<span class="sc">$</span>Race, FolicAcid<span class="sc">$</span>FolicAcid)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># to estimate the marginal values of the table</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(FA_table)</span></code></pre></div>
+<pre><code>##        FolicAcid
+## Race     No Yes Sum
+##   Black  41  15  56
+##   Other  14   7  21
+##   White 299 260 559
+##   Sum   354 282 636</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># porportions with respect to the first variable Race</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(FA_table, <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##        FolicAcid
+## Race           No       Yes
+##   Black 0.7321429 0.2678571
+##   Other 0.6666667 0.3333333
+##   White 0.5348837 0.4651163</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">prop.table</span>(FA_table))</span></code></pre></div>
+<pre><code>##        FolicAcid
+## Race            No        Yes        Sum
+##   Black 0.06446541 0.02358491 0.08805031
+##   Other 0.02201258 0.01100629 0.03301887
+##   White 0.47012579 0.40880503 0.87893082
+##   Sum   0.55660377 0.44339623 1.00000000</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Independence tests</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(FA_table)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  FA_table
+## X-squared = 9.0913, df = 2, p-value = 0.01061</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(FA_table)</span></code></pre></div>
+<pre><code>## 
+##  Fisher&#39;s Exact Test for Count Data
+## 
+## data:  FA_table
+## p-value = 0.009282
+## alternative hypothesis: two.sided</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To estimate the SAS type contingency table estimations</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CrossTable</span>(FA_table, <span class="at">prop.t =</span> <span class="cn">TRUE</span>, <span class="at">prop.chisq =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">chisq =</span> <span class="cn">TRUE</span>, <span class="at">fisher =</span> <span class="cn">TRUE</span>, <span class="at">format =</span> <span class="fu">c</span>(<span class="st">&quot;SAS&quot;</span>))</span></code></pre></div>
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## | Chi-square contribution |
+## |           N / Row Total |
+## |           N / Col Total |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  636 
+## 
+##  
+##              | FolicAcid 
+##         Race |        No |       Yes | Row Total | 
+## -------------|-----------|-----------|-----------|
+##        Black |        41 |        15 |        56 | 
+##              |     3.100 |     3.892 |           | 
+##              |     0.732 |     0.268 |     0.088 | 
+##              |     0.116 |     0.053 |           | 
+##              |     0.064 |     0.024 |           | 
+## -------------|-----------|-----------|-----------|
+##        Other |        14 |         7 |        21 | 
+##              |     0.457 |     0.574 |           | 
+##              |     0.667 |     0.333 |     0.033 | 
+##              |     0.040 |     0.025 |           | 
+##              |     0.022 |     0.011 |           | 
+## -------------|-----------|-----------|-----------|
+##        White |       299 |       260 |       559 | 
+##              |     0.474 |     0.595 |           | 
+##              |     0.535 |     0.465 |     0.879 | 
+##              |     0.845 |     0.922 |           | 
+##              |     0.470 |     0.409 |           | 
+## -------------|-----------|-----------|-----------|
+## Column Total |       354 |       282 |       636 | 
+##              |     0.557 |     0.443 |           | 
+## -------------|-----------|-----------|-----------|
+## 
+##  
+## Statistics for All Table Factors
+## 
+## 
+## Pearson&#39;s Chi-squared test 
+## ------------------------------------------------------------
+## Chi^2 =  9.091262     d.f. =  2     p =  0.01061347 
+## 
+## 
+##  
+## Fisher&#39;s Exact Test for Count Data
+## ------------------------------------------------------------
+## Alternative hypothesis: two.sided
+## p =  0.009281515 
+## 
+## </code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">assocstats</span>(FA_table)</span></code></pre></div>
+<pre><code>##                     X^2 df  P(&gt; X^2)
+## Likelihood Ratio 9.4808  2 0.0087352
+## Pearson          9.0913  2 0.0106135
+## 
+## Phi-Coefficient   : NA 
+## Contingency Coeff.: 0.119 
+## Cramer&#39;s V        : 0.12</code></pre>
+<p>Dados los valores de <em>p</em>, resultado de la pruebas de
+independencia (y de la tabla <code>CrossTable</code>) podemos rechazar
+la hipótesis nula <span class="math inline">\(H_0\)</span>, y por lo
+tanto podemos concluir que hay una relación entre la raza y el uso
+durante el embarazo de ácido fólico. Aunque el efecto no es grande, como
+resultado de los valores bajos de los coeficientes de contingencia y
+Cramer V.</p>
+</div>
 </div>
 
    

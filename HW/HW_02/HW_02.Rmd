@@ -1,0 +1,45 @@
+---
+title: "Tarea Probabilidad"
+author: "F. A. Barrios<br>ENES Juriquilla, UNAM<br>"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::html_clean:
+    highlight: kate
+---
+
+
+```{r setup, include=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=FALSE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+
+In a study of violent victimization of women and men Porcerelli et al. collected information from 679 women and 345 men aged 18 to 64 years at several family practice centers in the metropolitan Detroit area. Patients filled out a health history questionnaire that included a question about victimization. The table 1 shows the sample subjects cross-classified by sex and the type of violent victimization reported. The victimization categories are defined as no victimization, partner victimization (and not by others), victimization by persons other than partners (fiends, family members, or strangers), and those who reported multiple victimization.  
+
+$$\begin{array}{lcccc}
+   & {\verb+No Victimization+} & {\verb+Partners+} & {\verb+Nonpartners+} & {\verb+Multiple Victimization+} & {\verb+Total+} \\
+  \verb+Women+ & 611 & 34 & 16 & 18 & 679 \\
+  \verb+Men+ & 308 & 10 & 17 & 10 & 345 \\
+  \hline
+  \verb+Total+ & 919 & 44 & 33 & 28 & 1024
+\end{array} $$
+
+(a) Suppose we pick a subject at random from this group. What is the probability that this subject be will be a woman?  
+(b) What do we call the probability in part a?  
+(c) Show how to calculate the probability asked for in part a by two additional methods.  
+(d) If we pick a subject at random, what is the probability that the subject will be a woman and have experienced partner abuse?  
+(e) What do we call the probability calculated in part d?  
+(f) Suppose we piked a man at random. Knowing this information, what is the probability that he experienced abuse from non-partners ?  
+(g) What do we call the probability in part (f) ?  
+(h) Suppose we pick a subject at random. What is the probabilidad that it is a man or someone who experienced abuse form a partner ?
+(i) What do we call the method by which you obtained the probability in part h ?  

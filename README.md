@@ -44,14 +44,14 @@ Tarea 5 [Teoría de la Estimación](https://fabarrios.github.io/ProbEstad/HW/HW_
 
 Tema 6 [Prueba de Hipótesis](https://fabarrios.github.io/ProbEstad/Hipotesis/Hipotesis.html).  
 Tema 6 [Problemas Resueltos](https://fabarrios.github.io/ProbEstad/tStudentExa/tStudentExa.html).  
-Tarea 6 [Prueba de Hipótesis](https://fabarrios.github.io/ProbEstad/HW/HW_06).  
+<!-- Tarea 6 [Prueba de Hipótesis](https://fabarrios.github.io/ProbEstad/HW/HW_06).  -->
 
 Tema 7 [Correlación y Regresíon](https://fabarrios.github.io/ProbEstad/CorrRegres/CorrRegres.html).  
 Tema 7 [Problemas Resueltos](https://fabarrios.github.io/ProbEstad/PermCorrExa/PermCorrExa.html).  
-Tarea 7 [Correlación y Regresíon](https://fabarrios.github.io/ProbEstad/HW/HW_07).  
+<!-- Tarea 7 [Correlación y Regresíon](https://fabarrios.github.io/ProbEstad/HW/HW_07).  -->
 
 Tema 8 [ANOVA](https://fabarrios.github.io/ProbEstad/ANOVA/ANOVA.html).  
-Tarea 8 [ANOVA](https://fabarrios.github.io/ProbEstad/HW/HW_08).  
+<!-- Tarea 8 [ANOVA](https://fabarrios.github.io/ProbEstad/HW/HW_08).  -->
 
 Tema 9 [Análisis no paramétrico](https://fabarrios.github.io/ProbEstad/NoParamet/NoParamet.html).  
 

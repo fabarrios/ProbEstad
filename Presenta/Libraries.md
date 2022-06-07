@@ -4,11 +4,11 @@ The easiest way to install is in RStudio, go to the Packages screen (at the righ
 
 | Library | site |  
 | ------- | ---- |  
-| tidyverse | https://www.tidyverse.org/ |  
-| car | https://cran.r-project.org/web/packages/car/index.html |  
-| survival | https://cran.r-project.org/web/packages/survival/survival.pdf |  
-| survminer | https://rpkgs.datanovia.com/survminer/index.html |  
-| coin | https://rdrr.io/cran/coin/ |  
+| tidyverse | [https://www.tidyverse.org/](https://www.tidyverse.org/) |  
+| car | [https://cran.r-project.org/web/packages/car/index.html](https://cran.r-project.org/web/packages/car/index.html) |  
+| survival | [https://cran.r-project.org/web/packages/survival/survival.pdf](https://cran.r-project.org/web/packages/survival/index.html) |  
+| survminer | [https://rpkgs.datanovia.com/survminer/index.html](https://rpkgs.datanovia.com/survminer/index.html) |  
+| coin | [https://rdrr.io/cran/coin/](https://rdrr.io/cran/coin/) |  
 | emmeans | https://cran.r-project.org/web/packages/emmeans/emmeans.pdf |  
 | rms | https://hbiostat.org/R/rms/ |  
 | Hmisc | https://hbiostat.org/R/Hmisc/ |  

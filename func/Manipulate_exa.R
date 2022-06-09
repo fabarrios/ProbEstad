@@ -6,6 +6,7 @@ data("CO2") # This is a regular dataframe
 CO2
 
 CO2tib <- as_tibble(CO2)
+
 newCO2tib <- CO2tib %>% 
               select(1:3, 5) %>%
               filter(uptake > 16) %>%
@@ -15,4 +16,4 @@ newCO2tib <- CO2tib %>%
               arrange(CV)
 
 # results in a tibble
-dataCO2tib
+newCO2tib

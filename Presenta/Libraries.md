@@ -16,11 +16,11 @@ The easiest way to install is in RStudio, go to the Packages screen (at the righ
 | ggnetwork | [https://cran.r-project.org/web/packages/ggnetwork/vignettes/ggnetwork.html](https://briatte.github.io/ggnetwork/)  |  
 | multcomp | [https://multcomp.r-forge.r-project.org/](https://multcomp.r-forge.r-project.org/)  |  
 | remotes | [https://github.com/r-lib/remotes](https://github.com/r-lib/remotes)  |  
-| HSAUR2 | https://cran.r-project.org/web/packages/HSAUR/HSAUR.pdf |  
-| HSAUR3 | https://cran.r-project.org/web/packages/HSAUR/HSAUR.pdf |  
-| UsingR | https://cran.r-project.org/web/packages/UsingR/UsingR.pdf |  
-| DT | https://rstudio.github.io/DT/  |  
-| modetest | https://www.rdocumentation.org/packages/multimode/versions/1.5/topics/modetest |  
+| HSAUR2 | [https://cran.r-project.org/web/packages/HSAUR/HSAUR.pdf](https://cran.r-project.org/web/packages/HSAUR/HSAUR.pdf) |  
+| HSAUR3 |   |  
+| UsingR | [https://cran.r-project.org/web/packages/UsingR/UsingR.pdf](https://cran.r-project.org/web/packages/UsingR/UsingR.pdf) |  
+| DT | [https://rstudio.github.io/DT/](https://rstudio.github.io/DT/)  |  
+| modeest | [https://www.rdocumentation.org/packages/multimode/versions/1.5/topics/modetest](https://rdrr.io/cran/modeest/) |  
 | rcompanion | https://rcompanion.org/handbook/ |  
 | Rmisc | https://rdrr.io/cran/Rmisc/f/README.md  |  
 | gmodels | https://cran.r-project.org/web/packages/gmodels/gmodels.pdf |  

@@ -35,25 +35,25 @@ Hay material de consulta en español, y entre otros hay un libro digital de R y 
 ## Instalación 
 Como ya lo comentamos, el prograna R es un proyecto muy importante de "open code", "open access" y "open science", goza de una popularidad
 extraordinaria, en particular en la comunidad académica mundial. Es de distribución abierta y por lo tanto tiene una
-licencia de distribución pública, además cuneta con una inmensa cantidad de paquetes desarrollados para diferentes proyectos, y 
-cuenta con una importante cantidad de documentos públicos de ayuda. Como estos que se apuntan en este documento.
+licencia de distribución pública, además cuenta con una inmensa cantidad de paquetes desarrollados para diferentes proyectos, y además con una 
+importante cantidad de documentos públicos de ayuda. Algunos de estos documentos de ayuda se apuntan en esta página.
 Se les recomienda bajar e instalar la última versión de R [CRAN](https://cran.r-project.org/) en donde encontrarán las distribuciónes 
-para Windows, Mac, y LINUX (Fedora, UBUNTU). Y para la interface gráfica instalar la ultima verisión libre de 
-[RStudio desktop](https://www.rstudio.com/products/rstudio/).
+para Windows, Mac, y LINUX (Fedora, UBUNTU, etc). Y para la interface gráfica, hay que instalar la ultima verisión libre (hay una versión de paga) 
+de [RStudio desktop](https://www.rstudio.com/products/rstudio/).
 
 ## Librerias (packetes de R)  
 Como ya se a dicho el elenguaje R cuenta con una cantidad de paquetes muy grande, que aumentan las capacidades del lenguaje original 
-y permiten respondet a necesidades de todo tipo.  
+y permiten responder a necesidades de todo tipo.  
 Aquí enlisto una pequeña lista de [paquetes de R](https://fabarrios.github.io/ProbEstad/Presenta/Libraries) que más usamos en el curso.
 
 ## Material en Inglés  
 La realidad es que al ser un proyecto global de "open code, open access, open science" el material de trabajo y ayuda para R por 
-lo general está en inglés, es decir el material es en su gran mayoría en inglés, por lo que los invitamos a hacer un esfuerzo para 
+lo general está en inglés, es decir el material es en su gran mayoría está editado en inglés, por lo que los invitamos a hacer un esfuerzo para 
 trabajar los materiales relacionados en inglés, uno de estos sitios sin duda es la página principal de [CRAN](https://cran.r-project.org/). 
 Y entre otras favoritas está la página abierta de documentación de [R package documentation](https://rdrr.io/) que tiene una
-serie muy importante de recirsos para localizar packetes, sus manuales y documentos de R en general.
-La página de R-coder está muy buena y muy adecuada para el nivel del curso que estamos dando, se las recomiendo mucho 
-[R-coder](https://r-coder.com/r-introduction/). Esta ´¨ltima página tiene una versión en español por ser editada por grupo de español, pero les recomiendo que hagan un esfuerzo y se acostrumbren a la documentación en inglés. Continuaré revisando material en la red para hacer recomendaciones de este 
+serie muy importante de recursos para localizar packetes, sus manuales y documentos de R en general.
+La página de R-coder está muy bien estructurada y adecuada por sus ejemplos, para el nivel del curso que estamos dando, se las recomiendo mucho 
+[R-coder](https://r-coder.com/r-introduction/). Esta última página tiene una versión en español por ser editada por grupo de español, pero les recomiendo que hagan un esfuerzo y se acostrumbren a la documentación en inglés. Continuaré revisando material en la red para hacer recomendaciones de este 
 y otros sitios. Les sugiero que también ustedes hagan búsquedas de material referente a R.  Hay una cantidad muy importante de información 
 y ejemplos del uso de R. Por ejemplo una página muy interesante para aprender a hacer gráficas con 
 [ggplot](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html), entre otras. En particular la página de `rstatix` está
@@ -65,4 +65,5 @@ que hablaremos mucho de la idea de usar "pipelines" o tuberias en el uso de R.
 La [liga](http://www.upm.es/sfs/Rectorado/Gabinete%20del%20Rector/Notas%20de%20Prensa/2015/05/documentos/Instrucciones%20de%20instalaci%C3%B3n%20de%20R%20y%20RStudio.pdf), contine una serie de instrucciones, paso a paso en español, para instalar la última versión de R y RStudio en
 los sistemas Windows, LINUX (diferentes distribuciones, como UBUNTU entre otros) y MacOS. Y en esta liga hay un [vidéo de instalación](https://www.youtube.com/watch?v=1WXgaa2Spp0), que se puede consultar. Y la página al libro de [Introducción a R](https://bookdown.org/matiasandina/R-intro/) antes mencionada.
 
-En mi página de GitHub hay copias de material en pdf, que es de acceso público, como un manual de introducción a R en español que bajé de CRAN.  
+Además, en mi página de GitHub hay copias de material en pdf, que es de acceso público, como un manual de introducción a R en español que bajé de CRAN. Que ustedes pueden bajar y usar si las encuentran interesantes.
+

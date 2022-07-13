@@ -30,6 +30,7 @@ por eso lo tengo listado en los libros de texto antes de la bibliografía más g
 Hay otros materiales de empresas que se han dedicado a la publicación de libros que tienen versiones en papel así como verisiónes 
 digitales abiertas y si encuentran el material presentado de interés se puede pagar su acceso completo (sin restricción), como el libro de 
 [R in Action](https://livebook.manning.com/book/r-in-action-third-edition/copyright-2020-manning-publications/v-8/5), por ejemplo.  
+Hay material de consulta en español, y entre otros hay un libro digital de R y estadística en la liga [Introduccion a R](https://bookdown.org/matiasandina/R-intro/), de todas formas invito a los estudinates que no dominan el inglés a hacer un esfuerzo por practicarlo y trabajar con material editado en inglés ya que en un tema técnico simpre se encontrará que el dominió del inglés es una herramienta necesaria.
 
 ## Instalación 
 Como ya lo comentamos, el prograna R es un proyecto muy importante de "open code", "open access" y "open science", goza de una popularidad
@@ -52,8 +53,7 @@ trabajar los materiales relacionados en inglés, uno de estos sitios sin duda es
 Y entre otras favoritas está la página abierta de documentación de [R package documentation](https://rdrr.io/) que tiene una
 serie muy importante de recirsos para localizar packetes, sus manuales y documentos de R en general.
 La página de R-coder está muy buena y muy adecuada para el nivel del curso que estamos dando, se las recomiendo mucho 
-[R-coder](https://r-coder.com/r-introduction/). Tiene una versión en español por uqe sale de un grupo de España, pero les recomiendo que 
-hagan un esfuerzo y se acostrumbren a la documentación en inglés. Continuaré revisando material en la red para hacer recomendaciones de este 
+[R-coder](https://r-coder.com/r-introduction/). Esta ´¨ltima página tiene una versión en español por ser editada por grupo de español, pero les recomiendo que hagan un esfuerzo y se acostrumbren a la documentación en inglés. Continuaré revisando material en la red para hacer recomendaciones de este 
 y otros sitios. Les sugiero que también ustedes hagan búsquedas de material referente a R.  Hay una cantidad muy importante de información 
 y ejemplos del uso de R. Por ejemplo una página muy interesante para aprender a hacer gráficas con 
 [ggplot](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html), entre otras. En particular la página de `rstatix` está
@@ -63,6 +63,6 @@ que hablaremos mucho de la idea de usar "pipelines" o tuberias en el uso de R.
 
 ## Ligas en español  
 La [liga](http://www.upm.es/sfs/Rectorado/Gabinete%20del%20Rector/Notas%20de%20Prensa/2015/05/documentos/Instrucciones%20de%20instalaci%C3%B3n%20de%20R%20y%20RStudio.pdf), contine una serie de instrucciones, paso a paso en español, para instalar la última versión de R y RStudio en
-los sistemas Windows, LINUX (diferentes distribuciones, como UBUNTU entre otros) y MacOS. Y en esta liga hay un [vidéo de instalación](https://www.youtube.com/watch?v=1WXgaa2Spp0), que se puede consultar.  
+los sistemas Windows, LINUX (diferentes distribuciones, como UBUNTU entre otros) y MacOS. Y en esta liga hay un [vidéo de instalación](https://www.youtube.com/watch?v=1WXgaa2Spp0), que se puede consultar. Y la página al libro de [Introducción a R](https://bookdown.org/matiasandina/R-intro/0 antes mencionada.
 
 En mi página de GitHub hay copias de material en pdf, que es de acceso público, como un manual de introducción a R en español que bajé de CRAN.  

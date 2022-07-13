@@ -63,6 +63,6 @@ que hablaremos mucho de la idea de usar "pipelines" o tuberias en el uso de R.
 
 ## Ligas en español  
 La [liga](http://www.upm.es/sfs/Rectorado/Gabinete%20del%20Rector/Notas%20de%20Prensa/2015/05/documentos/Instrucciones%20de%20instalaci%C3%B3n%20de%20R%20y%20RStudio.pdf), contine una serie de instrucciones, paso a paso en español, para instalar la última versión de R y RStudio en
-los sistemas Windows, LINUX (diferentes distribuciones, como UBUNTU entre otros) y MacOS. Y en esta liga hay un [vidéo de instalación](https://www.youtube.com/watch?v=1WXgaa2Spp0), que se puede consultar. Y la página al libro de [Introducción a R](https://bookdown.org/matiasandina/R-intro/0 antes mencionada.
+los sistemas Windows, LINUX (diferentes distribuciones, como UBUNTU entre otros) y MacOS. Y en esta liga hay un [vidéo de instalación](https://www.youtube.com/watch?v=1WXgaa2Spp0), que se puede consultar. Y la página al libro de [Introducción a R](https://bookdown.org/matiasandina/R-intro/) antes mencionada.
 
 En mi página de GitHub hay copias de material en pdf, que es de acceso público, como un manual de introducción a R en español que bajé de CRAN.  

@@ -11,14 +11,14 @@ El uso del lenguage [R](https://www.r-project.org/about.html) es **obligatorio**
 Algunos detalles del curso y cómo se **calificará** están en la página de [Presentación](https://fabarrios.github.io/ProbEstad/Presenta/Presenta.html), además algunas ligas para encontrar las distribuciones de R y RStudio así como otras ligas útiles las encontrarán en la página de [Introducción](https://fabarrios.github.io/ProbEstad/Presenta/Intro).  
 
 **Bibliografía:**  
-Crawley, M.J. (2005) Statistics An Introduction using R, John Wiley & Sons Ltd.  
+Crawley, M.J. (2015) Statistics An Introduction using R, John Wiley & Sons Ltd. 2o Edition.  
 Harrison, E. & Pius, R. (2021) R for Health Data Science, CRC Press, Taylor and Francis Group.  
 Daniel, W.W. (2009) Biostatistics. A Foundation for Analysis in the Health Sciences, Wiley, 9th Edition.  
   
 Referencia:  
-Holmes, S. & Huber W. (2019) Modern Statistics for Modern Biology, Cambridge University Press.  
 Kabacoff, R.I. (2021) R in Action (3rd edition), MEAP.  
 Verzani, J. (2005) Using R for Introductory Statistics, Chapman & Hall/CRC Press.  
+Holmes, S. & Huber W. (2019) Modern Statistics for Modern Biology, Cambridge University Press.  
 Hothorn, T. & Everitt, B.S. (2014) A Handbook of Statistical Analyses Using R (3rd edition), Chapman & Hall/CRC Press.  
 Fox, J. & Weisberg, S. (2019) An R Companion to Applied Regression (3rd edition), SAGE.  
 Harrell, F.E. (2015) Regression Modeling Strategies (2nd edition), Springer Series in Statistics, Springer.  

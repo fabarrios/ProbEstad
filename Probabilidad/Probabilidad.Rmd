@@ -26,7 +26,7 @@ opts_knit$set(width=75)
 ```
 
 # Probabilidad  
-Al hablar de probabilidad se habla de la posibilidad de que suceda un evento, y en esta sección hablaremos de la posibilidad de ocurrencia de un evento relacionado con la frecuencia relativa de ese evento relacionada con el número total de eventos de nuestra muestra.  Cuando eventos tienen una frecuencia relativa igual se dice que estos eventos tienen una posibilidad de ocurrencia igual o son equivalentes.
+Al hablar de probabilidad se habla de la posibilidad de que suceda un evento, y en esta sección hablaremos de la posibilidad de ocurrencia de un evento relacionado con la frecuencia relativa de ese evento, relacionada con el número total de eventos de nuestra muestra.  Cuando eventos tienen una frecuencia relativa igual se dice que estos eventos tienen una posibilidad de ocurrencia igual o son equivalentes.
 
 **Definición** Se dice que si un evento puede ocurrir de $N$ formas mutuamente excluyentes e igualmente posibles, y $m$ de estas formas poseen una característica $E$, la probabilidad de que ocurra $E$ es igual a $m/N$.  
 Si definimos $P(E)$ como la "Probabilidad de E" de la definición anterior podemos expresar
@@ -63,20 +63,20 @@ $$\begin{array}{lccc}
 
 **Pregunta** si tomamos a una persona de este grupo, cual es la probabilidad de que esta persona sea menor o tenga 18 años?  
 
-**Respuesta** Este es un grupo de 318 sujetos (muestra) y de la muestra completa, menores o de 18 son 141 (como menores o de 18 es excluyente de mayores a 18), la probabilidad es el número de sujetos en (debut Temprano)/total de sujetos de la muestra  
+**Respuesta** Este es un grupo de 318 sujetos (muestra) y de la muestra completa, menores o de 18 son 141 (como menores o de 18 es excluyente de mayores a 18), la probabilidad es el número de sujetos en (Temprano, $\leq$ 18)/total de sujetos de la muestra  
 
 $$ P(E) =141/318 = 0.4434 $$  
 
 ## Probabilidad Condicional  
 Cuando la probabilidad se calcula con la frecuencia de un sub-grupo del total de la muestra como la escala, la probabilidad es *condicional*, en este ejemplo que acabamos de estimar, se puede decir que la probabilidad es incondicional ya que se usó el total de la muestra para estimar la probabilidad. Pero si restringimos la escala (el tamaño del denominador) para estimar la probabilidad se dice que es una *probabilidad marginal* ya que los totales marginales de la muestra son los que se usan.  
-**Pregunta** Supongamos que escogemos un sujeto de la muestra de los 318 sujetos y resulta que es de 18 años o más joven pertenece a la columna $(E)$, Cual es la probabilidad de que este sujeto pertenezca a una familia que no tiene historial de Trastornos Afectivos $(A)$?  
-**Respuesta** Se dice que la probabilidad de que el sujeto pertenezca a que su familia no tenga historial de Trastornos Afectivos $(A)$ y además sea de 18 o menos años $(E)$, se escribe como $P(A \mid E)$ "Probabilidad de A *dado* E" y la probabilidad condicional es A para 18 (28) de todos los de 18 (141), entonces  
+**Pregunta** Supongamos que escogemos un sujeto de la muestra de los 318 sujetos y resulta que es de 18 años **o más joven** (esto es, pertenece a la columna $(E)$), Cual es la probabilidad de que este sujeto pertenezca a una familia que no tiene historial de Trastornos Afectivos $(A)$?  
+**Respuesta** Se dice que la probabilidad de que el sujeto pertenezca a que su familia no tenga historial de Trastornos Afectivos $(A)$ y además sea de 18 o menos años $(E)$, se escribe como $P(A \mid E)$ "Probabilidad de A *dado* E" y la probabilidad condicional es A para $\leq$ 18 (28) de todos los de la columna $(E)$ (que son $\leq$ 18) (141), entonces  
 
 $$P(A \mid E) = 28/141 = .1986$$  
 
 ## Probabilidad conjunta  
-Algunas veces se quiere estimar la probabilidad de escoger a un sujeto de una muestra pero que tenga dos características de la muestra (se no son mutuamente excluyentes) y es el caso de la *probabilidad conjunta*  
-**Pregunta** Cual es la probabilidad de escoger a un sujeto de los 318 que pertenece a la clasificación debut Temprano (18 años o menos) $(E)$ y que es de una familia que no tiene historial de Trastornos Afectivos $(A)$  
+Algunas veces se quiere estimar la probabilidad de escoger a un sujeto de una muestra pero que tenga dos características de la muestra (que no son mutuamente excluyentes), es el caso de la *probabilidad conjunta*.   
+**Pregunta** Cual es la probabilidad de escoger a un sujeto de los 318 que pertenece a la clasificación debut Temprano (18 años o menos) columna $(E)$ y que es de una familia que no tiene historial de Trastornos Afectivos $(A)$  
 **Repuesta** La probabilidad que estamos buscando se escribe cómo $P(E \cap A)$ que significa *E y A* (intersección) $E \cap A$ indica la *condición conjunta* de las dos condiciones $E$ y $A$ de la selección de TODA la muestra (318), la "intersección de la columna E y el renglón A de toda la muestra"  
 
 $$ P(E \cap A) = 28/318 = 0.0881$$  
@@ -99,7 +99,7 @@ $$ P(A \mid B) = \frac{P(A \cap B)}{P(B)} ,\hspace{10pt} P(B) \neq 0 $$
 
 ## Regla de la adición  
 
-Cuando dos eventos **no son mutuamente excluyentes** la probabilidad se calcula por medio de la regla de la adición  
+Cuando dos eventos **no son mutuamente excluyentes** la probabilidad se calcula por medio de la regla de la adición.  
 **Definición** Dados dos eventos $A$ y $B$, la probabilidad de que el evento $A$, o el evento $B$, o los dos ocurran es igual a la probabilidad de que el evento $A$ ocurra más la probabilidad de que el evento $B$ ocurra, menos la probabilidad de que los eventos ocurran en forma simultanea.  
 
 $$ P(A \cup B) = P(A) + P(B) - P(A \cap B) $$

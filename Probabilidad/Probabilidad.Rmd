@@ -63,14 +63,14 @@ $$\begin{array}{lccc}
 
 **Pregunta** si tomamos a una persona de este grupo, cual es la probabilidad de que esta persona sea menor o tenga 18 años?  
 
-**Respuesta** Este es un grupo de 318 sujetos (muestra) y de la muestra completa, menores o de 18 son 141 (como menores o de 18 es excluyente de mayores a 18), la probabilidad es el número de sujetos en (Temprano, $\leq$ 18)/total de sujetos de la muestra  
+**Respuesta** Este es un grupo de 318 sujetos (muestra) y de la muestra completa, menores o de 18 son 141 (como menores o de 18 es excluyente de mayores a 18), la probabilidad es el número de sujetos en (Temprano, $\leq 18$)/total de sujetos de la muestra  
 
 $$ P(E) =141/318 = 0.4434 $$  
 
 ## Probabilidad Condicional  
 Cuando la probabilidad se calcula con la frecuencia de un sub-grupo del total de la muestra como la escala, la probabilidad es *condicional*, en este ejemplo que acabamos de estimar, se puede decir que la probabilidad es incondicional ya que se usó el total de la muestra para estimar la probabilidad. Pero si restringimos la escala (el tamaño del denominador) para estimar la probabilidad se dice que es una *probabilidad marginal* ya que los totales marginales de la muestra son los que se usan.  
 **Pregunta** Supongamos que escogemos un sujeto de la muestra de los 318 sujetos y resulta que es de 18 años **o más joven** (esto es, pertenece a la columna $(E)$), Cual es la probabilidad de que este sujeto pertenezca a una familia que no tiene historial de Trastornos Afectivos $(A)$?  
-**Respuesta** Se dice que la probabilidad de que el sujeto pertenezca a que su familia no tenga historial de Trastornos Afectivos $(A)$ y además sea de 18 o menos años $(E)$, se escribe como $P(A \mid E)$ "Probabilidad de A *dado* E" y la probabilidad condicional es A para $\leq$ 18 (28) de todos los de la columna $(E)$ (que son $\leq$ 18) (141), entonces  
+**Respuesta** Se dice que la probabilidad de que el sujeto pertenezca a que su familia no tenga historial de Trastornos Afectivos $(A)$ y además sea de 18 o menos años $(E)$, se escribe como $P(A \mid E)$ "Probabilidad de A *dado* E" y la probabilidad condicional es A para $\leq 18$ (28) de todos los de la columna $(E)$ (que son $\leq 18$) (141), entonces  
 
 $$P(A \mid E) = 28/141 = .1986$$  
 

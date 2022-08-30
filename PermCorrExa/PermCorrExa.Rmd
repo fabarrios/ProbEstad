@@ -1,0 +1,128 @@
+---
+title: "Regresión y Correlación Ejemplos"
+author: "F.A. Barrios"
+date: "`r Sys.Date()`"
+output:
+  rmdformats::robobook:
+    highlight: kate
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+knitr::opts_chunk$set(cache = TRUE)
+
+## Global options
+options(max.print="80")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=80)
+```
+
+```{r}
+library(tidyverse)
+```
+
+Ejemplos resueltos de Permutación y Correlación, tomados de los problemas del capítulo 9 del Daniel.  
+
+**Ejemplo** Dean Parmalee wished to know if the year-end grades assigned to Wright State University Medical School students are predictive of their second-year board scores. The following table shows, for 89 students, the year-end score (AVG, in percent of 100) and the score on the second-year medical board examination (BOARD). Table in REV_C09_17.csv. Perform a complete regression analysis with AVG as the independent variable. Let α = .05 for all tests.  
+*Respuesta* Describir los datos. Correr el modelo lineal para Board ~ AVG con $\alpha = 0.05$.  
+
+```{r}
+Scores <- read_csv("DataSets/ch09_all/REV_C09_17.csv", show_col_types = FALSE)
+Scores
+
+ggplot(Scores, aes(x = AVG, y = BOARD)) +
+  geom_point() +
+  geom_hline(aes(yintercept = mean(BOARD)), linetype = "dashed", color = "red") +
+  geom_vline(aes(xintercept = mean(AVG)), linetype = "dashed", color = "red")
+
+Scores_lm <- lm(BOARD ~ AVG, data = Scores)
+summary(Scores_lm)
+confint(Scores_lm)
+
+ggplot(Scores, aes(x = AVG, y = BOARD)) +
+  geom_point() +
+  geom_hline(aes(yintercept = mean(BOARD)), linetype = "dashed", color = "red") +
+  geom_vline(aes(xintercept = mean(AVG)), linetype = "dashed", color = "red") +
+  geom_abline(aes(intercept = Scores_lm$coefficients[1], slope = Scores_lm$coefficients[2]), color = "blue")
+
+plot(Scores_lm)
+```
+
+**Ejemplo** The data in REV_C09_25.csv were collected during an experiment in which laboratory animals were inoculated with a pathogen. The variables are time in hours after inocuation and temperature in degrees Celsius. Find the simple linear regression equation and test $H_0 : \beta_2 = 0$. Also test $H_0 : \rho = 0$ and construct a 95% confidence interval for $\rho$. Construct the 95% prediction interval for the temperature at 50 hours after inoculation. Let $\alpha = .05$ for all the tests.
+
+*Respuesta* Vamos a estimar el modelo lineal `lm` para determinar que podemos desechar la hipótesis nula $H_0 : \beta_2 = 0$, es decir $H_a : \beta_2 \ne 0$ es decir que si existe el modelo y la pendiente $\beta_2$ es diferente de cero. Para hacer la prueba de hipótesis de $\rho$ estimaremos la prueba de correlación a un nivel del .05.  
+
+```{r}
+Temp <- read_csv("DataSets/ch09_all/REV_C09_25.csv", show_col_types = FALSE)
+Temp
+
+ggplot(Temp, aes(x = TIME, y = TEMP)) +
+  geom_point(color = "green") +
+  geom_hline(aes(yintercept = mean(TEMP)), linetype = "dashed", color = "red") +
+  geom_vline(aes(xintercept = mean(TIME)), linetype = "dashed", color = "red")
+
+Temp_lm <- lm(TEMP ~ TIME, data = Temp)
+summary(Temp_lm)
+# Para estimar los intervalos de confianza de los parámetros estimados del modelo
+confint(Temp_lm, level = 0.95)
+
+# Para estimar una respuesta del modelo en un punto dado, TIME 50 hrs, y su intervalo de confianza al 95%
+new_TIME <- data.frame(TIME = 50)
+predict(Temp_lm, newdata = new_TIME, interval = "confidence", level = 0.95)
+
+ggplot(Temp, aes(x = TIME, y = TEMP)) +
+  geom_point(color = "green") +
+  geom_hline(aes(yintercept = mean(TEMP)), linetype = "dashed", color = "red") +
+  geom_vline(aes(xintercept = mean(TIME)), linetype = "dashed", color = "red") +
+  geom_smooth(method = lm, color = "blue")
+  
+# test Ho : rho = 0 and construct a 95% confidence interval for rho.
+cor.test(Temp$TIME, Temp$TEMP, level = .95)
+
+```
+
+**Ejemplo** Reiss et al. compared point-of-care and standard hospital laboratory assays for monitoring patients receiving a single anticoagulant or a regimen consisting of a combination of anticoagulants. It is quite common when comparing two measuring techniques, to use regression analysis in which one variable is used to predict another. In the present study, the researchers obtained measures of international normalized ratio (INR) by assay of capillary and venous blood samples collected from 90 subjects taking warfarin. INR, used especially when patients are receiving warfarin, measures the clotting ability of the blood. Point-of-care testing for INR was conducted with the CoaguChek assay product. Hospital testing was done with standard hospital laboratory assays. The authors used the hospital assay INR level to predict the CoaguChek INR level. The measurements are given in EXR_C09_S03_04.csv.  
+
+*Respuesta* Nos piden desarrollar un modelo lineal para probar las medidas de CoaguCheck (variable respuesta) en función de las medidas del laboratorio del hospital (predictores para INR). Y probar si podemos desechar la hipótesis nula $H_0 : \beta_2 =0$ para el modelo `Y(CoaguCheck) ~ X(Hospital)`.  Estimaremos los parámetros del modelo y calcularemos los intervalos de confianza al 95% de los parámetros estimados. La gráfica del modelo lineal incluye el intervalo de error del modelo ajustado.  
+
+```{r}
+INR <- read_csv("DataSets/ch09_all/EXR_C09_S03_04.csv", show_col_types = FALSE)
+INR
+
+INR <- INR %>% 
+  rename( CoaguCheck = Y, Hospital = X)
+
+ggplot(INR, aes(x = Hospital, y = CoaguCheck)) +
+  geom_point(color = "green") +
+  geom_hline(aes(yintercept = mean(CoaguCheck)), linetype = "dashed", color = "red") +
+  geom_vline(aes(xintercept = mean(Hospital)), linetype = "dashed", color = "red")
+
+INR_lm <- lm(CoaguCheck ~ Hospital, data = INR)
+summary(INR_lm)
+
+confint(INR_lm, level = 0.95)
+
+ggplot(INR, aes(x = Hospital, y = CoaguCheck)) +
+  geom_point(color = "green") +
+  geom_smooth(method = lm, color = "blue")
+
+```
+
+**Ejemplo**Another variable of interest in the study by Reiss et al. (see last example) was partial thromboplastin (aPTT), the standard test used to monitor heparin anticoagulation. Use the data in the following table to examine the correlation between aPTT levels as measured by the CoaguCheck point-of-care assay and standard laboratory hospital assay in 90 subjects receiving heparin alone, heparin with warfarin, and warfarin and exoenoxaparin table EXR_C09_S07_02.csv.  
+*Respuesta* Para probar si es posible desechar la hipótesis nula $H_0 : \rho = 0$ se corre la prueba de correlación de los datos de aPTT.  
+
+```{r}
+aPTT <- read_csv("DataSets/ch09_all/EXR_C09_S07_02.csv", show_col_types = FALSE)
+aPTT
+
+cor.test(aPTT$HOSP, aPTT$COAGU, method = "pearson", conf.level = 0.95)
+```

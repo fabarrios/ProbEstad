@@ -42,7 +42,7 @@ $$ \mu = \sum{xp(x)} $$
 $$ \sigma^2 = \sum{(x-\mu)^2 p(x)} = \sum{x^2 p(x) - \mu^2} $$  
 
 ## Ejemplo de distribución de una variable aleatoria discreta  
-En un articulo de Holben et al. estudiaron el estado de seguridad alimenticia de familias en la región de los Appalaches, al sur del estado de Ohio.  El propósito del estudio fue examinar la proporción de desnutrición en familias con niños en el programa local de "Head Start" en Athens Ohio.  En su encuesta incluyeron preguntas de U.S. Household Food Sequirity y además preguntaron en cuantos programas de ayuda de alimentos participaban. Se quiere construir la distribución de probabilidades del número de programas en que los sujetos participan.  
+En un articulo de Holben et al. estudiaron el estado de seguridad alimenticia de familias en la región de los Appalaches, al sur del estado de Ohio.  El propósito del estudio fue examinar la proporción de desnutrición en familias con niños en el programa local de "Head Start" en Athens Ohio.  En su encuesta incluyeron preguntas de U.S. Household Food Security y además preguntaron en cuantos programas de ayuda de alimentos participaban. Se quiere construir la distribución de probabilidades del número de programas en que los sujetos participan.  
 Tabla con el número de programas de asistencia en que participan familias  
 $$\begin{array}{cc}
   {\verb+Numero de programas+} & {\verb+Frecuencia+} \\
@@ -117,15 +117,16 @@ Un **Proceso de Bernoulli** es una secuencia de ensayos de Bernoulli. Y cumple c
 Definición: La **Combinación** de $n$ objetos tomados de $x$ a la vez, es un subconjunto desordenado de $x$ objetos tomados de $n$ de ellos.  El número de posibles combinaciones de $n$ objetos tomados de $x$ formas está dado por  
 $$ _nC_x = \frac{n!}{x!(n-x)!}$$
 en donde $x!$ es el factorial de $x$, definido como el producto de números enteros desde $x$ hasta $1$, es decir $x! = x(x-1)(x-2) \dots (1)$.  Entonces de un proceso de Bernoulli se tiene que la probabilidad de obtener exactamente $x$ éxitos en $n$ ensayos es:  
-$$ f(x) =  _nC_x p^x (1-p)^{n-x} \hspace {20pt} para \; x = 0, 1, 2, \dots , n $$
+$$ f(x) =  _{n}C_{x} p^x (1-p)^{n-x} \hspace {20pt} para \; x = 0, 1, 2, \dots , n $$
 $$ f(x) = 0, \hspace {20pt} de\; otra\; forma.$$
-Esta expresión es la **Distribución Binomial**, en general os valores de $p(x)$ para una distribución Binomial, se pueden estimar a partir de tablas de valores de $p$, pero en R se calculan con la familia de funciones `dbinom, pbinom, qbinom y rbinom`.  
+Esta expresión es la **Distribución Binomial**, en general los valores de $p(x)$ para una distribución Binomial, se pueden estimar a partir de tablas de valores de $p$, pero en R se calculan con la familia de funciones `dbinom, pbinom, qbinom y rbinom`.  
 Los parámetros de una distribución binomial son dos: n y p, son suficientes para estimar la distribución binomial. Y la expresión para el promedio y varianza de una distribución binomial están dados por: $\mu = np$ y $\sigma^2 = np(1-p) = npq$.  
-Como lo mencionamos en R se usa la funciona `dbinom` para estimar el valor de la probabilidad em un punto $x$ del valor de la variable aleatoria, la distribución se estima con `pbinom` y resultados por cuartil se usa `qbinom`. Además para obtener un conjunto de números estimados de tal forma que estén distribuidos siguiendo una binomial se usa `rbinom`.  
+Como lo mencionamos en R se usa la funciona `dbinom` para estimar el valor de la probabilidad en un punto $x$ del valor de la variable aleatoria, la distribución se estima con `pbinom` y resultados por cuartil se usa `qbinom`. Además para obtener un conjunto de números estimados de tal forma que estén distribuidos siguiendo una binomial se usa `rbinom`.  
 Para calcular la función de probabilidad binomial para un conjunto de valores, $x_i$, un número de ensayos $n$ y una probabilidad de éxito $p$ se puede hacer uso de la función `dbinom`.  
 
-*Ejemplo* Se analizaron los registros de nacimientos del NC State Center for Health Statistics para el año 2001, se encontró que el 85.8 por ciento de los embarazos tuvieron un parto a término 37 semanas o después. Con este dato podemos determinar que la probabilidad de nacimiento a término es de $p =.858$.  Si de estos registros escogemos de forma aleatoria cinco, cual es la probabilidad que exactamente tres de ellos sean nacimientos a término?  
-*Respuesta:* tenemos que $p = .858$ probabilidad a término, $q = (1-p) = (1-.858) = .142$  
+*Ejemplo* Se analizaron los registros de nacimientos del NC State Center for Health Statistics para el año 2001, se encontró que el 85.8 por ciento de los embarazos tuvieron un parto a término de 37 semanas. Con este dato podemos determinar que la probabilidad de nacimiento a término es de $p =.858$.  Si de estos registros escogemos de forma aleatoria cinco, cual es la probabilidad que exactamente tres de ellos sean nacimientos a término?  
+*Respuesta:* tenemos que $p = .858$ probabilidad a término. ( $q = (1-p) = (1-.858) = .142$ )  
+
 ```{r}
 dbinom(3, 5, .858) # x = 3, de una muestra de 5, y p = .858 a término
 ```

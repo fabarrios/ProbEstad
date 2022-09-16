@@ -37,7 +37,7 @@ Tema 3 [Distribuciones de Probabilidad](http://fabarrios.github.io/ProbEstad/Dis
 Tarea 3 [Distribuciones de Probabilidad](https://fabarrios.github.io/ProbEstad/HW/HW_03).  
 
 Tema 4 [Teoría del Muestreo](http://fabarrios.github.io/ProbEstad/DistribMuestra/DistribMuestra.html).  
-Tarea 4 [Teoría del Muestreo](https://fabarrios.github.io/ProbEstad/HW/HW_04).
+Tarea 4 [Teoría del Muestreo](https://fabarrios.github.io/ProbEstad/HW/HW_04.html).
 
 Tema 5 [Teoría de la Estimación](https://fabarrios.github.io/ProbEstad/Estimacion/Estimacion.html).  
 Tarea 5 [Teoría de la Estimación](https://fabarrios.github.io/ProbEstad/HW/HW_05).  

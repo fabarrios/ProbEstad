@@ -25,7 +25,7 @@ opts_knit$set(width=75)
 ```
 
 # Tarea Probabilidad y Estadística (Tema IV)  
-## Órtesis y Prótesis ENES Juriquilla, abril 2021  
+## Lic. en Tecnología ENES Juriquilla  
 ## F.A. Barrios  
 ### Teoría del muestreo  
 

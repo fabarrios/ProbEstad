@@ -24,7 +24,7 @@ opts_knit$set(width=75)
 ```
 
 # Tarea Probabilidad y Estadística (Tema V)  
-## Órtesis y Prótesis ENES Juriquilla, mayo 2021  
+## Lic. Tecnología ENES Juriquilla  
 ## F.A. Barrios  
 ### Teoría de la estimación
 

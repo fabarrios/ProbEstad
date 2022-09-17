@@ -4,8 +4,8 @@ library(tidyverse)
 
 NCBIRTH800 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch02_all/LDS_C02_NCBIRTH800.csv", show_col_types = FALSE)
 NCBIRTH_sht <- NCBIRTH800 %>% select(mage, weeks, gained, tounces, tgrams)
-
 summary(NCBIRTH_sht)
+
 sd(NCBIRTH_sht$mage, na.rm = TRUE)
 sd(NCBIRTH_sht$weeks, na.rm = TRUE)
 sd(NCBIRTH_sht$gained, na.rm = TRUE)
@@ -70,3 +70,28 @@ NCBIRTH800 %>% drop_na(marital) %>%
   geom_boxplot() +
   geom_jitter(alpha = 0.25, position = position_jitter(0.15)) +
   theme_bw()
+
+# 2 Probabilidad
+# Tabla de resultados de examen y preparatoria a la que se asistió
+220/1000
+# resp 0.22
+500/1000
+# resp 0.5
+55/1000
+# resp 0.055
+55/500
+# resp 0.11
+390/1000 + 500/1000 - 300/1000
+# resp 0.59
+300/1000
+# resp 0.3
+390/1000
+# resp 0.39
+390/1000
+# resp 0.39
+65/390
+# resp 0.1666667
+390/1000 + 200/1000 - 70/1000
+# resp 0.52
+300/500
+# resp 0.6

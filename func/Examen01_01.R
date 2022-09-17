@@ -18,13 +18,13 @@ NCBIRTH_sht %>% ggplot(aes(x=mage)) +
   theme_bw()
 
 NCBIRTH_sht %>% ggplot(aes(x=weeks)) +
-  geom_histogram(binwidth = 2, color = 4) +
-  geom_freqpoly(binwidth = 2, color =2 ) +
+  geom_histogram(binwidth = 10, color = 4) +
+  geom_freqpoly(binwidth = 10, color = hist2 ) +
   theme_bw()
 
 NCBIRTH_sht %>% ggplot(aes(x=gained)) +
   geom_histogram(binwidth = 2, color = 4) +
-  geom_freqpoly(binwidth = 2, color =2 ) +
+  geom_freqpoly(binwidth = 2, color = 2 ) +
   theme_bw()
 
 NCBIRTH_sht %>% ggplot(aes(x=tounces)) +

@@ -40,7 +40,7 @@ Tema 4 [Teoría del Muestreo](http://fabarrios.github.io/ProbEstad/DistribMuestr
 Tarea 4 [Teoría del Muestreo](https://fabarrios.github.io/ProbEstad/HW/HW_04/HW_04.html).
 
 Tema 5 [Teoría de la Estimación](https://fabarrios.github.io/ProbEstad/Estimacion/Estimacion.html).  
-Tarea 5 [Teoría de la Estimación](https://fabarrios.github.io/ProbEstad/HW/HW_05.html).  
+Tarea 5 [Teoría de la Estimación](https://fabarrios.github.io/ProbEstad/HW/HW_05/HW_05.html).  
 
 Tema 6 [Prueba de Hipótesis](https://fabarrios.github.io/ProbEstad/Hipotesis/Hipotesis.html).  
 Tema 6 [Problemas Resueltos](https://fabarrios.github.io/ProbEstad/tStudentExa/tStudentExa.html).  

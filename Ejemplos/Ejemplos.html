@@ -1521,6 +1521,8 @@ src: url(data:application/font-sfnt;base64,AAEAAAARAQAABAAQR0RFRgs+Cz8AAjwQAAAAQ
         <nav role="navigation" id="toc">
           <ul>
           <li><a href="#distribución-binomial" id="toc-distribución-binomial">Distribución Binomial</a></li>
+          <li><a href="#distribusión-de-poisson" id="toc-distribusión-de-poisson">Distribusión de
+          Poisson</a></li>
           </ul>
         </nav>
         <ul class="authors">
@@ -1558,12 +1560,16 @@ se selecciona una muestra simple de 20 adultos estadounidenses y
 suponemos que la probabilidad de que a cada uno de ellos se les ha dicho
 que tienen hipertensión es de .24, encuentre la probabilidad que el
 número de personas en la muestra a quienes se les ha dicho que tienen
-hipertención son:</li>
+hipertención son:<br />
+</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>exactamente tres</li>
-<li>tres o más</li>
-<li>menos que tres</li>
+<li>exactamente tres<br />
+</li>
+<li>tres o más<br />
+</li>
+<li>menos que tres<br />
+</li>
 <li>entre tres y siete, inclusivo.</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from R manual: dbinom gives the density, pbinom gives the distribution function, qbinom gives the </span></span>
@@ -1580,6 +1586,79 @@ hipertención son:</li>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># d) betweem three and seven inclusive: P(3 &lt;= p &lt;= 7), n= 20, p=.24</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">7</span>, <span class="dv">20</span>, .<span class="dv">24</span>, <span class="at">lower.tail =</span>  T) <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">2</span>, <span class="dv">20</span>, .<span class="dv">24</span>, <span class="at">lower.tail =</span> T)</span></code></pre></div>
 <pre><code>## [1] 0.8079609</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>De estos mismos datos del Centro Nacional de Estadísticas en Salud,
+y de la misma muestra, cual es la probabilidad de que de los 20 sujetos
+interrogados a 20 les hayan dicho que tienen hipertensión?<br />
+</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">20</span>, <span class="dv">20</span>, .<span class="dv">24</span>)</span></code></pre></div>
+<pre><code>## [1] 4.019989e-13</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Haciendo referencia a estos mismos datos del problema 1. Suponga que
+seleciopnamos una muestra aleatoria de cinco adultos, cual es la
+probabilidad de que de esta muestra, que el número de sujetos a quienes
+les han dicho que tienen hipertensión:<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>cero<br />
+</li>
+<li>más de uno<br />
+</li>
+<li>entre uno y tres, inclusive<br />
+</li>
+<li>dos o menos<br />
+</li>
+<li>cinco</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a) zero subject P(p=0) </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="fl">0.24</span>)</span></code></pre></div>
+<pre><code>## [1] 0.2535525</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(1&gt;=1)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="fl">0.24</span>, <span class="at">lower.tail =</span> F) </span></code></pre></div>
+<pre><code>## [1] 0.3461014</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="fl">0.24</span>, <span class="at">lower.tail =</span> T)</span></code></pre></div>
+<pre><code>## [1] 0.3461014</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c) P(1&lt;=p&lt;=3)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="fl">0.24</span>, <span class="at">lower.tail =</span> T) <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="fl">0.24</span>, <span class="at">lower.tail =</span>  T)</span></code></pre></div>
+<pre><code>## [1] 0.7330437</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># d) P(p&lt;=2)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="fl">0.24</span>, <span class="at">lower.tail =</span> T)</span></code></pre></div>
+<pre><code>## [1] 0.9067488</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># E) P(p=5)</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">0.24</span>)</span></code></pre></div>
+<pre><code>## [1] 0.0007962624</code></pre>
+</div>
+<div id="distribusión-de-poisson" class="section level2">
+<h2>Distribusión de Poisson</h2>
+<ol style="list-style-type: decimal">
+<li>Si el número promedio de accidentes serios por año en una fabrica
+grande (en la que el número de empleados se mantiene constante) es
+cinco, encuentre la probabilidad de que en este año habrá:<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>exactamente siete accidentes<br />
+</li>
+<li>diez o más accidentes<br />
+</li>
+<li>ningún accidente<br />
+</li>
+<li>menos de cinco accidentes</li>
+</ol>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P(p=7)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dpois</span>(<span class="dv">7</span>, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.1044449</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P(p&gt;=10)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ppois</span>(<span class="dv">9</span>, <span class="dv">5</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<pre><code>## [1] 0.03182806</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P(p=0)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dpois</span>(<span class="dv">0</span>, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.006737947</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P(p&lt;5)</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ppois</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="at">lower.tail =</span> T)</span></code></pre></div>
+<pre><code>## [1] 0.4404933</code></pre>
 </div>
 
    

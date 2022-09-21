@@ -15,7 +15,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 Ejemplos de Daniel 9 ed. capítulo 4.  
 
-1.  Basado en datos obtenidos por el Centro Nacional de Estadísticas en Salud hechos públicos por medio de la base de datos de Nuestras de Adultos, un estimado del porcentaje de adultos que en algún punto de su vida se les informará que tienen hipertensión es de 23.53 por ciento. Si se selecciona una muestra simple de 20 adultos estadounidenses y suponemos que la probabilidad de que a cada uno de ellos se les ha dicho que tienen hipertensión es de .24, encuentre la probabilidad que el número de personas en la muestra a quienes se les ha dicho que tienen hipertención son:  
+1.  Basado en datos obtenidos por el Centro Nacional de Estadísticas en Salud, hechos públicos por medio de la base de datos de Nuestras de Adultos, un estimado del porcentaje de adultos que en algún punto de su vida se les informará que tienen hipertensión es de 23.53 por ciento. Si se selecciona una muestra simple de 20 adultos estadounidenses y suponemos que la probabilidad de que a cada uno de ellos se les ha dicho que tienen hipertensión es de .24, encuentre la probabilidad que el número de personas en la muestra a quienes se les ha dicho que tienen hipertención son:  
 a)  exactamente tres  
 b)  tres o más  
 c)  menos que tres  
@@ -24,6 +24,7 @@ d)  entre tres y siete, inclusivo.
 ```{r}
 # from R manual: dbinom gives the density, pbinom gives the distribution function, qbinom gives the 
 # quantile function and rbinom generates random deviates.
+
 # a) Exactly 3 will be told: P(p = 3) n= 20, p= .24
 dbinom(3, 20, 0.24)
 
@@ -38,13 +39,13 @@ pbinom(7, 20, .24, lower.tail =  T) - pbinom(2, 20, .24, lower.tail = T)
 
 ```
 
-2.  De estos mismos datos del Centro Nacional de Estadísticas en Salud, y de la misma muestra, cual es la probabilidad de que de los 20 sujetos interrogados a 20 les hayan dicho que tienen hipertensión?\
+2.  De estos mismos datos del Centro Nacional de Estadísticas en Salud, y de la misma muestra, cual es la probabilidad de que de los 20 sujetos interrogados a 20 les hayan dicho que tienen hipertensión?  
 
 ```{r}
 dbinom(20, 20, .24)
 ```
 
-3.  Haciendo referencia a estos mismos datos del problema 1. Suponga que seleciopnamos una muestra aleatoria de cinco adultos, cual es la probabilidad de que de esta muestra, que el número de sujetos a quienes les han dicho que tienen hipertensión:  
+3.  Haciendo referencia a estos mismos datos del problema 1. Suponga que selecionamos una muestra aleatoria de cinco adultos, cual es la probabilidad de que de esta muestra, que el número de sujetos a quienes les han dicho que tienen hipertensión:  
 a)  cero  
 b)  más de uno  
 c)  entre uno y tres, inclusive  
@@ -55,7 +56,7 @@ e)  cinco
 # a) zero subject P(p=0) 
 dbinom(0, 5, 0.24)
 
-# b) P(1>=1)
+# b) P(1>1)
 pbinom(1, 5, 0.24, lower.tail = F) 
 1 - pbinom(1, 5, 0.24, lower.tail = T)
 

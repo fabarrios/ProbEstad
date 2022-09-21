@@ -6,7 +6,7 @@
     <meta name="generator" content="pandoc" />
 
     
-        <meta name="date" content="2022-09-20" />
+        <meta name="date" content="2022-09-21" />
     
     <title>Ejemplos Distribuciones de Probabilidad</title>
 
@@ -1527,7 +1527,7 @@ src: url(data:application/font-sfnt;base64,AAEAAAARAQAABAAQR0RFRgs+Cz8AAjwQAAAAQ
         </nav>
         <ul class="authors">
           <li class="divider"></li>
-                               <li><span><i class="glyphicon glyphicon-calendar"></i> 2022-09-20</span></li>
+                               <li><span><i class="glyphicon glyphicon-calendar"></i> 2022-09-21</span></li>
                   </ul>     
       </div>
       <div class="book-body fixed">
@@ -1553,7 +1553,7 @@ src: url(data:application/font-sfnt;base64,AAEAAAARAQAABAAQR0RFRgs+Cz8AAjwQAAAAQ
 <p>Ejemplos de Daniel 9 ed. capítulo 4.</p>
 <ol style="list-style-type: decimal">
 <li>Basado en datos obtenidos por el Centro Nacional de Estadísticas en
-Salud hechos públicos por medio de la base de datos de Nuestras de
+Salud, hechos públicos por medio de la base de datos de Nuestras de
 Adultos, un estimado del porcentaje de adultos que en algún punto de su
 vida se les informará que tienen hipertensión es de 23.53 por ciento. Si
 se selecciona una muestra simple de 20 adultos estadounidenses y
@@ -1574,8 +1574,9 @@ hipertención son:<br />
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from R manual: dbinom gives the density, pbinom gives the distribution function, qbinom gives the </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># quantile function and rbinom generates random deviates.</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># a) Exactly 3 will be told: P(p = 3) n= 20, p= .24</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">3</span>, <span class="dv">20</span>, <span class="fl">0.24</span>)</span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># a) Exactly 3 will be told: P(p = 3) n= 20, p= .24</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">3</span>, <span class="dv">20</span>, <span class="fl">0.24</span>)</span></code></pre></div>
 <pre><code>## [1] 0.148378</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># b) 3 or more will be told: P(p &gt;= 3) n= 20, p= .24</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="fl">0.24</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
@@ -1589,14 +1590,13 @@ hipertención son:<br />
 <ol start="2" style="list-style-type: decimal">
 <li>De estos mismos datos del Centro Nacional de Estadísticas en Salud,
 y de la misma muestra, cual es la probabilidad de que de los 20 sujetos
-interrogados a 20 les hayan dicho que tienen hipertensión?<br />
-</li>
+interrogados a 20 les hayan dicho que tienen hipertensión?</li>
 </ol>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">20</span>, <span class="dv">20</span>, .<span class="dv">24</span>)</span></code></pre></div>
 <pre><code>## [1] 4.019989e-13</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Haciendo referencia a estos mismos datos del problema 1. Suponga que
-seleciopnamos una muestra aleatoria de cinco adultos, cual es la
+selecionamos una muestra aleatoria de cinco adultos, cual es la
 probabilidad de que de esta muestra, que el número de sujetos a quienes
 les han dicho que tienen hipertensión:<br />
 </li>
@@ -1615,7 +1615,7 @@ les han dicho que tienen hipertensión:<br />
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a) zero subject P(p=0) </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="fl">0.24</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2535525</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(1&gt;=1)</span></span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(1&gt;1)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="fl">0.24</span>, <span class="at">lower.tail =</span> F) </span></code></pre></div>
 <pre><code>## [1] 0.3461014</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="fl">0.24</span>, <span class="at">lower.tail =</span> T)</span></code></pre></div>

@@ -34,8 +34,8 @@ Tema 2 [Probabilidad](https://fabarrios.github.io/ProbEstad/Probabilidad/Probabi
 Tarea 2 [Probabilidad](https://fabarrios.github.io/ProbEstad/HW/HW_02).  
 
 Tema 3 [Distribuciones de Probabilidad](http://fabarrios.github.io/ProbEstad/DistribProb/DistribProb.html).  
-Tema 3 [Probemas Resueltos](https://fabarrios.github.io/ProbEstad/Ejemplos/Ejemplos.html).  
 Tarea 3 [Distribuciones de Probabilidad](https://fabarrios.github.io/ProbEstad/HW/HW_03).  
+Tema 3 [Probemas Resueltos](https://fabarrios.github.io/ProbEstad/Ejemplos/Ejemplos.html).  
 
 Tema 4 [Teoría del Muestreo](http://fabarrios.github.io/ProbEstad/DistribMuestra/DistribMuestra.html).  
 Tarea 4 [Teoría del Muestreo](https://fabarrios.github.io/ProbEstad/HW/HW_04/HW_04.html).

@@ -21,7 +21,7 @@ a mammogram in the past 2 years cross-classified with marital status.
 
 We select at random a subject who had a mammogram. What is the probability that she is divorced or separated?  
 
-``` {r}
+``` r
 459/2142
 ```
 
@@ -31,7 +31,7 @@ We select at random a subject who had a mammogram and learn that she is
 Hispanic. With that information, what is the probability that she is
 married?
 
-``` {r}
+``` r
 319/578
 ```
 
@@ -40,7 +40,7 @@ married?
 We select at random a subject who had a mammogram. What is the
 probability that she is non-Hispanic and divorced or separated?
 
-``` {r}
+``` r
 329/2142
 ```
 
@@ -49,7 +49,7 @@ probability that she is non-Hispanic and divorced or separated?
 We select at random a subject who had a mammogram. What is the
 probability that she is Hispanic or she is widowed?
 
-``` {r}
+``` r
 578/2142 + 490/2142 - 88/2142
 ```
 
@@ -58,7 +58,7 @@ probability that she is Hispanic or she is widowed?
 We select at random a subject who had mammogram. What is the probability
 that she is not married?
 
-``` {r}
+``` r
 1 - (1075/2142)
 ```
 
@@ -163,11 +163,10 @@ ppois(6, 13, lower.tail = T)
 
     ## [1] 0.02588692
 
-4.  If the total cholesterol values for a certain population are
-    approximately normally distributed with a mean of 200 mg/100 ml and
-    a standard deviation of 20 mg/100 ml, find the probability that an
-    individual picked at random from this population will have a
-    cholesterol value:
+
+If the total cholesterol values for a certain population are approximately normally distributed with a mean of 200 mg/100 ml and
+a standard deviation of 20 mg/100 ml, find the probability that an individual picked at random from this population will have a
+cholesterol value:
 
 Between 180 and 200 mg/100 ml
 

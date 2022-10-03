@@ -27,7 +27,7 @@ opts_knit$set(width=85)
 ```{r}
 # setwd("~/Dropbox/GitHub/ProbEstad2021")
 # To set the working directory realtive to the user's dir
-
+library(rcompanion)
 library(tidyverse)
 
 ```
@@ -87,7 +87,7 @@ La cantidad $1-\alpha$ en el caso más común $.95$ es llamado el *coeficiente d
 2. En el archivo `EXA_C06_S02_04.csv` se listan los valores de actividad (micromoles por minuto por gramo de tejido) de cierta enzima medida en tejido normal gástrico de 35 pacientes con carcinoma gástrico. Se quiere estimar el intervalo de confianza a 95 por ciento del promedio de la población.  Suponga que conocemos que la varianza de la población es 0.36. No es necesario suponer que los valores de muestreo siguen una distribución normal, ya que el número de muestras es suficientemente grande 
 
 ```{r}
-ensyme <- read_csv("DataSets/ch06_all/EXA_C06_S02_04.csv", col_names = TRUE, show_col_types = FALSE)
+ensyme <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch06_all/EXA_C06_S02_04.csv", col_names = TRUE, show_col_types = FALSE)
 #
 CI(ensyme$ACTIVITY, ci=0.95)
 # Estimado con función de rcompanion
@@ -198,10 +198,10 @@ Frecuentemente es necesario estimar el intervalo de confianza de la diferencia d
 
 $$ (\bar{x}_1 - \bar{x}_2) \pm z_{1-\alpha/2} \sqrt{ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} } $$
 
-**La distribución t y la diferencia entre promedios** Cuando se quiere estimar la diferencia entre los promedios de dos poblaciones y no se conoce la varianza de las poblaciones, es necesario estimar la varianza de las poblaciones a partir de las **varianzas de las muestras** y se puede usar la distribución t para estimar el valor de confiabilidad. En lo general se tendrán dos posibilidades, que las varianzas de las poblaciones que se estudian tengan igual o diferentes varianzas.
+**La distribución t y la diferencia entre promedios** Cuando se quiere estimar la diferencia entre los promedios de dos poblaciones y no se conoce la varianza de las poblaciones, es necesario estimar la varianza de las poblaciones a partir de las **varianzas de las muestras** y se puede usar la distribución t para estimar el valor de confiabilidad. En lo general se tendrán dos posibilidades, que las varianzas de las poblaciones que se estudian tengan igual o diferentes varianzas.  
 
-*Para varianzas iguales* Si se puede suponer que la varianza de las poblaciones es igual y se quiere estimar la diferencia del promedio de las poblaciones se puede usar lo que se conoce como un *valor combinado* de las varinazas (pooled estimte).  
-El valor combinado se estima por la siguiente equación  
+*Para varianzas iguales* Si se puede suponer que la varianza de las poblaciones es igual y se quiere estimar la diferencia del promedio de las poblaciones se puede usar lo que se conoce como un *valor combinado* de las varinazas (pooled estimate).  
+El valor combinado se estima por la siguiente ecuación  
 $$ s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 -2} $$  
 El error estándar del valor combinado es  
 $$ s_{\bar{x}_1 - \bar{x}_2} = \sqrt{ \frac{s_p^2}{n_1} + \frac{s_p^2}{n_2} } $$
@@ -209,7 +209,8 @@ y el intervalo de confianza al $100(1-\alpha)$ por ciento para $\mu_1 - \mu_2$ e
 $$ (\bar{x}_1 - \bar{x}_2) \pm t_{(1-\alpha/2)} \sqrt{ \frac{s_p^2}{n_1} + \frac{s_p^2}{n_2} }  $$
 
 El número de grados de libertad para estimar el valor de t para usar en la estimación del intervalos esta dado por $df = n_1 + n_2 -2$.  
-*ejemplo* El propócito del estudio de Granholm et al. fue determinar la efectividad del tratamiento integrado por el programa ambulatorio integrado de doble diagnóstico para pacientes de salud mental. Los investigadores estaban evaluando problemas de abuso de sustancias entre pacientes con desorden mental severo.  Una tabla retrospectiva de revisión se llevó a cabo en 50 pacientes consecutivos referidos a un programa. Una de las variables usadas en dicho programa fue el número de días de internamiento por el desorden psiquiátrico durante el año que siguió al programa.  Entre 18 pacientes con esquizofrenia, el promedio el numero promedio de días de tratamiento fue de 4.7 con una desviación estándar de 9.3. Para 10 pacientes con desorden bipolar el promedio de días de tratamiento psiquiátrico fue de 8.8 con desviación estándar de 11.5. Queremos construir un intervalo de confianza del 95 por ciento de la diferencia entre los promedios de estas poblaciones.  
+
+*ejemplo* El propósito del estudio de Granholm et al. fue determinar la efectividad del tratamiento integrado por el programa ambulatorio integrado de doble diagnóstico para pacientes de salud mental. Los investigadores estaban evaluando problemas de abuso de sustancias entre pacientes con desorden mental severo.  Una tabla retrospectiva de revisión se llevó a cabo en 50 pacientes consecutivos referidos a un programa. Una de las variables usadas en dicho programa fue el número de días de internamiento por el desorden psiquiátrico durante el año que siguió al programa.  Entre 18 pacientes con esquizofrenia, el promedio el numero promedio de días de tratamiento fue de 4.7 con una desviación estándar de 9.3. Para 10 pacientes con desorden bipolar el promedio de días de tratamiento psiquiátrico fue de 8.8 con desviación estándar de 11.5. Queremos construir un intervalo de confianza del 95 por ciento de la diferencia entre los promedios de estas poblaciones.  
 
 ```{r}
 # Intervalo conf. con t
@@ -224,9 +225,9 @@ sd_p <- ( (muestra.n1 - 1)*muestra.sd1^2 + (muestra.n2 - 1)*muestra.sd2^2 )/(mue
 # error estándar
 serr_p <- sqrt( sd_p/muestra.n1 + sd_p/muestra.n2)
 # coef. conf.
-alpha = 0.05
-grados.lib = muestra.n1 + muestra.n2 - 2
-(t.score = qt(p=alpha/2, df = grados.lib, lower.tail=FALSE))
+alpha <- 0.05
+grados.lib <- muestra.n1 + muestra.n2 - 2
+(t.score <- qt(p=alpha/2, df = grados.lib, lower.tail=FALSE))
 # Intervalo
 marg.error <- t.score * serr_p
 #
@@ -246,6 +247,7 @@ $$ (\verb+coeficiente de fiabilidad+) \times (\verb+error estándar+) $$
 
 
 la extensión total del intervalo de confianza es dos veces este factor, y este parámetro se puede entender como el estimador del margen de error. Para un error estándar, incrementar la fiabilidad, implica un coeficiente de fiabilidad mayor, pero esto resulta en un intervalo más ancho.  Cómo el margen de error está dado por $\sigma/\sqrt{n}$ y $\sigma$ es constante para una población, esto implica y la única forma de reducir el error estándar es adquiriendo una muestra mayor $n$ más grande.  
+
 Supongamos que queremos un intervalo que se extienda $d$ unidades a cada lado del estimador  
 $$ d = (\verb+coeficiente de fiabilidad+) \times (\verb+error estándar+) $$
 Si el muestreo se toma con sustitución de una población infinita, o de una población suficientemente grande, que permita ignorar la corrección de población finita, la ecuación para $d$ es  
@@ -268,10 +270,11 @@ Cuando la corrección para población finita puede ser ignorada está última ec
 
 ## Estimación del tamaño de muestra para estimaciones de proporciones  
 Cuando se está trabajando con estimación de proporciones de una población y el muestreo se toma sin sustitución de una población infinita, o de una población suficientemente grande, y no es necesario incluir la corrección de población finita el tamaño de muestra para un intervalo de una proporción es  
+
 $$ n = \frac{z^2pq}{d^2}  $$  
 
-con $q = (1-p) $
-Y si la correción de población finita no se puede ignorar  
+con $q = (1-p)$, Y si la corrección de población finita no se puede ignorar  
+
 $$ n = \frac{Nz^2pq}{d^2(N-1) + z^2pq} $$
 Ambas fórmulas hacen uso de $p$ que representa la proporción de la población, y es una variable que es desconocida. Como en el caso de $\sigma$ Se puede hacer un estudio piloto para hacer una estimación de este parámetro. Y en ocasiones se tiene una idea de la proporción máxima de la población, y en eses caso se puede usar como el valor de $p$. O en un caso dado se puede tener un valor de $p$ blanco  que se quiere estudiar.
 
@@ -286,9 +289,12 @@ Si se estima el promedio de las varianzas de todas las posibles muestras de tama
 ## La distribución Chi-cuadrada
 
 Se tiene que para una distribución normal para una serie de muestras la cantidad $(n-1)s^2/\sigma^2$ sigue una distribución llamada *chi-cuadrada* $\chi^2$, con $n-1$ grados de libertad.  
-Para estimad un intervalo de confianza de la varianza poblacional, se puede usar esta distribución, y un intervalo $100(1-\alpha)$ pos ciento de la varianza se puede estimar a partir de 
+Para estimad un intervalo de confianza de la varianza poblacional, se puede usar esta distribución, y un intervalo $100(1-\alpha)$ pos ciento de la varianza se puede estimar a partir de  
+
 $$ \chi_{\alpha/2}^2 < \frac{(n-1)s^2}{\sigma^2} <\chi_{1-(\alpha/2)}^2 $$  
+
 que resulta en  
+
 $$ \frac{(n-1)s^2}{\chi_{1- (\alpha/2)}^2} < \sigma^2 < \frac{(n-1)s^2}{\chi_{\alpha/12}^2} $$  
 
 ```{r}
@@ -299,11 +305,14 @@ curve(dchisq(x, df = 4), from = 0, to = 20, col = 4, add = TRUE)
 curve(dchisq(x, df = 5), from = 0, to = 20, col = 5, add = TRUE)
 ```
 
-**Ejemplo** En un ejemplor de la efectividad de la dieta libre de gluten en parientes directos de pacientes con diabetes tipo-I, Hummel et al. pusieron a 7 sujetos a una dieta libre de gluten por 12 meses. Antes de la dieta, tomaron medidas de base de varios anticuerpos y autoanticuerpos, uno de ellos relacionado con diabetes el autoanticuerpo relacionado a insulina (IAA). Los niveles de IAA se midieron por medio de ensayos de radiobinding. Los niveles base de IAA de los siete sujetos en unidades base de IAA son:  
+**Ejemplo** En un ejemplo de la efectividad de la dieta libre de gluten en parientes directos de pacientes con diabetes tipo-I, Hummel et al. pusieron a 7 sujetos a una dieta libre de gluten por 12 meses. Antes de la dieta, tomaron medidas de base de varios anticuerpos y autoanticuerpos, uno de ellos relacionado con diabetes el autoanticuerpo relacionado a insulina (IAA). Los niveles de IAA se midieron por medio de ensayos de radiobinding. Los niveles base de IAA de los siete sujetos en unidades base de IAA son:  
+
 $$ 9.7, 12.3, 11.2, 5.1, 24.8, 14.8, 17.7 $$
 Con estos datos queremos estimar la varianza de IAA en unidades de IAA de la población de donde se tomó esta muestra y construir el intervalo de confiannza al $95$ por ciento $(\alpha = .05)$ de dicha estimación.  
-Vamos a escribir una función para estimar intervalos de confianza usando la función `qchisq(z, df)` de R, que estima la distribución $\chi^2$, y la expresión para el intervalo:    
+Vamos a escribir una función para estimar intervalos de confianza usando la función `qchisq(z, df)` de R, que estima la distribución $\chi^2$, y la expresión para el intervalo:  
+
 $$ \frac{(n-1)s^2}{\chi_{1- (\alpha/2)}^2} < \sigma^2 < \frac{(n-1)s^2}{\chi_{\alpha/12}^2} $$
+
 *Respuesta*
 ```{r}
 # Función "CI_sig" para estimar el intervalo de conviaza para la Varianza, a partir de una 
@@ -324,9 +333,11 @@ CI_sig <- function(x,alpha) {
 IAA <- c(9.7,12.3,11.2,5.1,24.8,14.8,17.7)
 CI_sig(IAA, .05)
 ```
+
 **Ejemplo** Veinte muestras de aire tomadas en el mismo lugar a lo largo de 6 meses mostraron las siguientes cantidades de partículas materiales suspendidas (microgramos por metro cubico de aire):
 68 22 36 32 42 24 28 38 30 44 28 27 28 43 45 50 79 74 57 21  
 Considere estas medidas como una muestra aleatoria normalmente distribuida, y construya un intervalo de confianza al 95 por ciento de la varianza de esta población de partículas suspendidas.  
+
 *Respuesta*  Vamos a usar la función `CI_sig(x, alpha = 0.05)` para estimar el intervalo de confianza.  
 ```{r}
 ParSus <- c(68, 22, 36, 32, 42, 24, 28, 38, 30, 44, 28, 27, 28, 43, 45, 50, 79, 74, 57, 21)
@@ -357,6 +368,7 @@ Para el caso de la estimación de la proporción de la desviación estándar de 
 
 **Ejemplo** Allen y Gross examinaron la fuerza del flexor del dedo gordo del pie de pacientes con fascitis plantar, una condición común en pacientes con problemas musculoesqueléticos. EL tratamiento de la fascia plantar es un tratamiento costoso y muchas veces poco efectivo.  Una de las medidas de base de los paciente fue su índice de masa corporal (BMI, por sus siglas en inglés). Para 16 de las mujeres del estudio, la desviación estándar para BMI fue de 8.1 y para los cuatro hombres en el estudio, la desviación estándar fue de 5.9. Queremos considerar un intervalo de confianza al 95% para la proporción de las desviaciones estándar de las poblaciones en el estudio.  
 *Respuesta* Los datos que tenemos son, $n_1 = 16$, y $n_2 =4$ con $s_1 = 8.1$ y $s_2 = 5.9$, para los grados de libertad de la función $\chi^2$ tenemos $df_1 = n_1 -1 = 15$ y $df_2 = n_2 -1 = 3$ y usando la ecuación para la proporción de las vatianzas $\sigma_1^2/\sigma_2^2$  
+
 ```{r}
 # Para s_1/s_2, df2 = 15, df1 = 3
 s_prop <- (8.1)^2/(5.9)^2
@@ -370,11 +382,16 @@ print(c(LBI, LAI))
 Para obtener los valores críticos de $F_{(1-\alpha/2), df_1, df_2}$ o $F_{\alpha/2, df_1, df_2}$ se puede usar `qf(.975, df1, df2)` o `qf(.025, df1, df2)`.  
 
 **Ejemplo** El propósito del estudio de Moneim et al. fue examinar amputaciones del dedo índice por accidentes durante competencias de laso en rodeos. Los investigadores revisaron 16 casos de amputaciones de índice. De estás, 11 fueron amputaciones totales mientras 5 fueron parciales. El tiempo de isquemia es la longitud de tiempo de suministro de oxígeno insuficiente al índice amputado.  El tiempo de isquemia (en horas) para los sujetos que experimentaron amputación completa fueron:  
+
 `4.67, 10.5, 2.0, 3.18, 4.00, 3.5, 3.33, 5.32, 2.0, 4.25, 6.0`  
+
 Para las víctimas de amputación parcial, los tiempos de isquemia fueron:  
+
 `3.0, 10.25, 1.5, 5.22, 5.0`  
+
 Considere los dos grupos de datos como normalmente distribuidos y que representan a dos poblaciones independientes y construya el intervalo de confianza al 95% de la proporcion de las varianzas de las dos poblaciones.  
-*Respuesta* Se puede usar la fincion `var.test` de la librería de R o la pequeña función `PropVar_CI`
+
+*Respuesta* Se puede usar la funcion `var.test` de la librería de R o la pequeña función `PropVar_CI`
 
 ```{r}
 com_am <- c(4.67, 10.5, 2.0, 3.18, 4.00, 3.5, 3.33, 5.32, 2.0, 4.25, 6.0)

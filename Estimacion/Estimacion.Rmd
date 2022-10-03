@@ -25,12 +25,11 @@ opts_knit$set(width=85)
 ```
 
 ```{r}
-setwd("~/Dropbox/GitHub/ProbEstad2021")
+# setwd("~/Dropbox/GitHub/ProbEstad2021")
 # To set the working directory realtive to the user's dir
 
 library(tidyverse)
-library(Rmisc)
-library(rcompanion)
+
 ```
 # Estimación  
 El proceso de hacer una estimación, es aquel que nos permite calcular, a partir de una muestra, alguna estadística que es una aproximación al valor real del parámetro de la población de donde la muestra fue tomada.  
@@ -145,9 +144,9 @@ muestra.n <- 19
 muestra.sd <- 130.9
 muestra.se <- muestra.sd/sqrt(muestra.n)
 # coef. conf.
-alpha = 0.05
-grados.lib = muestra.n - 1
-(t.score = qt(p=alpha/2, df = grados.lib, lower.tail=FALSE))
+alpha <- 0.05
+grados.lib <- muestra.n - 1
+(t.score <- qt(p=alpha/2, df = grados.lib, lower.tail=FALSE))
 # Intervalo
 marg.error <- t.score * muestra.se
 #
@@ -170,36 +169,36 @@ $$ \begin{array}{lcccc}
 ```{r}
 # a
 muestra.n <- 15
-alpha = 0.05
-grados.lib = muestra.n - 1
-(t.score = qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
+alpha <- 0.05
+grados.lib <- muestra.n - 1
+(t.score <- qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
 
 #b
 muestra.n <- 24
-alpha = 0.01
-grados.lib = muestra.n - 1
-(t.score = qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
+alpha <- 0.01
+grados.lib <- muestra.n - 1
+(t.score <- qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
 
 #c
 muestra.n <- 8
-alpha = 0.1
-grados.lib = muestra.n - 1
-(t.score = qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
+alpha <- 0.1
+grados.lib <- muestra.n - 1
+(t.score <- qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
 
 #d
 muestra.n <- 30
-alpha = 0.05
-grados.lib = muestra.n - 1
-(t.score = qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
+alpha <- 0.05
+grados.lib <- muestra.n - 1
+(t.score <- qt(p = alpha/2, df = grados.lib, lower.tail=FALSE))
 ```
 
 ## Intervalo de confianza para la diferencia entre el promedio de dos poblaciones  
 
-Frecuentemente es necesario estimar el intervalo de confianza de la diferencia del promedio de dos poblaciones.  De cada una de las poblaciones se extrae una muestra aleatoria, y de estas muestras se estima la media $\bar{x}_1$ y $\bar{x}_2$ y que la diferencia $\bar{x}_1-\bar{x}_2$ es el estimador para $\mu_1 - \mu_2$. La varianza del estimador es estimada por $(\sigma_1^2/n_1)+(\sigma_2^2/n_2)$. Cuando las varianzas de las poblaciones se conocen el intervalo de confianza al $100(1-\alpha)$ por ciento de la diferencia $\mu_1-\mu_2$ es  
+Frecuentemente es necesario estimar el intervalo de confianza de la diferencia del promedio de dos poblaciones.  De cada una de las poblaciones se extrae una muestra aleatoria, y de estas muestras se estima la media $\bar{x}_1$ y $\bar{x}_2$, en donde la diferencia $\bar{x}_1-\bar{x}_2$ es el estimador para $\mu_1 - \mu_2$. La varianza del estimador es estimada por $(\sigma_1^2/n_1)+(\sigma_2^2/n_2)$. Cuando las varianzas de las poblaciones se conocen el intervalo de confianza al $100(1-\alpha)$ por ciento de la diferencia $\mu_1-\mu_2$ es  
 
 $$ (\bar{x}_1 - \bar{x}_2) \pm z_{1-\alpha/2} \sqrt{ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} } $$
 
-**La distribución t y la diferencia entre promedios** Cuando se quiere estimar la diferencia entre los promedios de dos poblaciones y no se conoce la varianza de las poblaciones, es necesario estimar la varianza de las poblaciones a partir de las varianzas de las muestras y se puede usar la distribución t para estimar el valor de confiabilidad. En lo general se tendrán dos posibilidades, que las varianzas de las poblaciones que se estudian tengan igual o diferentes varianzas.
+**La distribución t y la diferencia entre promedios** Cuando se quiere estimar la diferencia entre los promedios de dos poblaciones y no se conoce la varianza de las poblaciones, es necesario estimar la varianza de las poblaciones a partir de las **varianzas de las muestras** y se puede usar la distribución t para estimar el valor de confiabilidad. En lo general se tendrán dos posibilidades, que las varianzas de las poblaciones que se estudian tengan igual o diferentes varianzas.
 
 *Para varianzas iguales* Si se puede suponer que la varianza de las poblaciones es igual y se quiere estimar la diferencia del promedio de las poblaciones se puede usar lo que se conoce como un *valor combinado* de las varinazas (pooled estimte).  
 El valor combinado se estima por la siguiente equación  

@@ -1,18 +1,14 @@
 Examen02
 ================
 
-## Segundo Parcial
+## Segundo Parcial.  
 
-### Lic. Tecnología, ENESj
+### Lic. Tecnología, ENESj.  
 
-1.  Coughlin et al. examined the breast and cervical screening practices
-    of Hispanic and non-Hispanic women in counties that approximate the
-    U.S. southern border region. The study used data from the Behavioral
-    Risk Factor Surveillance System surveys of adults age 18 years or
-    older conducted in 1999 and 2000. The table below reports the number
-    of observations of Hispanic and non-Hispanic women who had received
-    a mammogram in the past 2 years cross-classified with marital
-    status.
+Coughlin et al. examined the breast and cervical screening practices of Hispanic and non-Hispanic women in counties that approximate the 
+U.S. southern border region. The study used data from the Behavioral Risk Factor Surveillance System surveys of adults age 18 years or
+older conducted in 1999 and 2000. The table below reports the number of observations of Hispanic and non-Hispanic women who had received 
+a mammogram in the past 2 years cross-classified with marital status.  
 
 | Marital Status                                 | Hispanic | Non-Hispanic | Total |
 |:-----------------------------------------------|:--------:|:------------:|:-----:|
@@ -22,8 +18,8 @@ Examen02
 | Never Married or Living As an Unmarried Couple |    41    |      95      |  136  |
 | Total                                          |   578    |     1564     | 2142  |
 
-We select at random a subject who had a mammogram. What is the
-probability that she is divorced or separated?
+
+We select at random a subject who had a mammogram. What is the probability that she is divorced or separated?  
 
 ``` r
 459/2142
@@ -68,13 +64,11 @@ that she is not married?
 
     ## [1] 0.4981326
 
-2.  Coughlin et al. estimated the percentage of women living in border
-    counties along the southern United States with Mexico (designated
-    counties in California, Arizona, New Mexico, and Texas) who have
-    less than a high school education to be 18.7. Assume the
-    corresponding probability is .19. Suppose that we select three women
-    at random. Find the probability that the number with less than a
-    high-school education is:
+
+Coughlin et al. estimated the percentage of women living in border counties along the southern United States with Mexico (designated
+counties in California, Arizona, New Mexico, and Texas) who have less than a high school education to be 18.7. Assume the corresponding 
+probability is .19. Suppose that we select three women at random. Find the probability that the number with less than a high-school 
+education is:
 
 Exactly zero
 
@@ -124,11 +118,10 @@ dbinom(3, 3, .19)
 
     ## [1] 0.006859
 
-3.  In a certain population an average of 13 new cases of esophageal
-    cancer are diagnosed each year. If the annual incidence of
-    esophageal cancer follows a Poisson distribution, find the
-    probability that in a given year, the number of newly diagnosed
-    cases of esophageal cancer will be:
+
+In a certain population an average of 13 new cases of esophageal cancer are diagnosed each year. If the annual incidence of
+esophageal cancer follows a Poisson distribution, find the probability that in a given year, the number of newly diagnosed
+cases of esophageal cancer will be:
 
 Exactly 10
 
@@ -170,11 +163,10 @@ ppois(6, 13, lower.tail = T)
 
     ## [1] 0.02588692
 
-4.  If the total cholesterol values for a certain population are
-    approximately normally distributed with a mean of 200 mg/100 ml and
-    a standard deviation of 20 mg/100 ml, find the probability that an
-    individual picked at random from this population will have a
-    cholesterol value:
+
+If the total cholesterol values for a certain population are approximately normally distributed with a mean of 200 mg/100 ml and
+a standard deviation of 20 mg/100 ml, find the probability that an individual picked at random from this population will have a
+cholesterol value:
 
 Between 180 and 200 mg/100 ml
 

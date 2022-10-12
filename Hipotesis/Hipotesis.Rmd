@@ -28,7 +28,6 @@ setwd("~/Dropbox/GitHub/ProbEstad")
 # To set the working directory realtive to the user's dir
 
 library(tidyverse)
-library(Rmisc)
 library(rcompanion)
 ```
 
@@ -42,6 +41,7 @@ Clases de hipótesis, se puede decir que existen dos clases de hipótesis, las h
 *Las hipótesis de investigación es una suposición que motiva la investigación.*  
 
 Generalmente las hipótesis de investigación en su proceso experimental y de análisis de los datos relacionados con la parte experimental dan lugar a una (o varias) hipótesis estadísticas, que son necesarias para desarrollar la estimación de parámetros relacionados con las poblaciones estudiadas.  
+
 *Las hipótesis estadísticas son hipótesis que están expresadas de tal forma que pueden ser evaluadas por medio de técnicas estadísticas adecuadas.*  
 
 **Pasos para la Prueba de Hipótesis**, por motivos de conveniencia la prueba de hipótesis será presentada en un procedimiento de diez pasos.  
@@ -53,7 +53,6 @@ Generalmente las hipótesis de investigación en su proceso experimental y de an
 3. **Hipótesis**. Hay dos hipótesis estadísticas involucradas con la prueba de hipótesis, y las dos deben de estar expresadas de forma explícita. La *hipótesis nula*, la hipótesis que se va a probar, designada por el símbolo $H_0$. Generalmente la hipótesis nula es aquella que se establece para ser desechada. La hipótesis nula es la que se rechaza o acepta. Si la hipótesis nula no se rechaza, se puede decir que los datos en los que la prueba está basada no dan suficiente evidencia para rechazarla. Y la segunda hipótesis es la *hipótesis alternativa* que es la declaración que se considerará como verdadera si se rechaza la hipótesis nula.  Por lo general la hipótesis alternativa y la hipótesis e investigación son la misma. Se describe con el símbolo $H_A$.  
 
 4. **Estadística de prueba** La prueba estadística es la estadística que se puede correr con los datos de la muestra.  La prueba estadística es un método de prueba para tomar una decisión. La formula general para una prueba de hipótesis:  
-
   
 $$ \verb+estadística de prueba+ = \frac{\verb+estadística relevante - parámetro hipótetisado+}{\verb+error estándar de la estadística relvante+} $$
 como ejemplo  
@@ -71,7 +70,7 @@ $$ z = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}} $$
 
 10. **valor $p$** el valor $p$ es el número (probabilidad) que nos indica que tan poco probables son los valores de nuestra muestra, dada la hipótesis nula. Este valor $p$ es la probabilidad de que el valor estimado para la estadística de prueba sea por lo menos tan extremo como el especificado por la estadística de prueba cuando la hipótesis nula es verdadera. El valor $p$ es el valor *más pequeño* que toma $\alpha$ cuando se puede descartar la hipótesis nula.  
 
-**Los tipos de error** El error que se comete cuando una hipótesis nula verdadera es descartada se llama *error tipo I*, El *error tipo II* se comete cuando una hipótesis nula falsa se acepta (no es rechazada). La probabilidad de cometer un *error tipo II* se expresa por $\beta$. 
+**Los tipos de error** El error que se comete cuando una hipótesis nula verdadera es descartada se llama *error tipo I*, El *error tipo II* se comete cuando una hipótesis nula falsa se acepta (no es rechazada). La probabilidad de cometer un *error tipo II* se expresa por $\beta$.  
 
 ## Prueba de hipótesis con muestreo de una población normalemente distribuída, cuando no se conoce la varianza.   
 Por los general la varianza de una población es desconocida, y se tiene que estimar a partir de la muestra. Para muestras grandes se puede usar la prueba de hipótesis basada en el valor de $z$, pero para muestras pequeñas se puede usar la expresión de $t$ para la estadística de prueba con la hipótesis nula a probar $H_0: \mu = \mu_0$   
@@ -80,12 +79,13 @@ $$ t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} $$
 
 **Ejemplo** Nakamura et al. estudiaron sujetos con desgarre de ligamento colateral medial (MCL) y ligamento  cruzado anterior (ACL). Entre febrero de 1995 y diciembre de 1997, 17 pacientes consecutivos con lesiones agudas de ACL y grado III MCL fueron tratados por el mismo médico del centro de investigación. Una de las variables de interés fue la longitud de tiempo en días entre la fecha de la lesión y la primer imagen por resonancia magnética (MRI). Los datos están listados en EXA_C07_S02_03.csv. Queremos saber si podemos concluir que el número promedio de días entre la lesión y la primer resonancia magnética **no es 15 días** en la población representada por los datos de esta muestra.    
 *Respuesta* Se propone $H_0: \mu = 15$ y se hace la prueba $t$.  
+
 ```{r}
 time_MRI <- read_csv("DataSets/ch07_all/EXA_C07_S02_03.csv", show_col_types = FALSE)
 time_MRI
 
-t_MRI <- time_MRI$DAYS
-t.test(t_MRI, alternative = "two.sided", mu = 15, paired = FALSE, conf.level = 0.95)
+d_MRI <- time_MRI$DAYS
+t.test(d_MRI, alternative = "two.sided", mu = 15, paired = FALSE, conf.level = 0.95)
 ```
 
 En este caso estamos probando la igualdad por lo que la probabilidad $p = 0.4402$ de cometer un error al descartar la hipótesis nula es mayor al valor que estamos definiendo $p = 0.05$ para cumplir con un porcentaje del 95. Es decir no podemos descartar la hipótesis nula, es posible que el promedio si sea de 15. Además no se puede descartar que el promedio de la población sea de 15, ya que está incluido en el intervalo de confianza que la prueba $t$ estimó para el promedio $IC = [8.7250, 17.8631]$.  
@@ -113,6 +113,9 @@ El valor de $p$ es muy pequeño, es decir que podemos descartar la hipótesis nu
 ```{r}
 glaucoma_age <- c(62,62,68,48,51,60,51,57,57,41,62,50,53,34,62,61)
 hist(glaucoma_age)
+
+# Using ggplot
+
 t.test(glaucoma_age, alternative = "less", mu = 60, paired = FALSE, conf.level = 0.95)
 ```
 

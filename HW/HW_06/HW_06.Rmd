@@ -1,0 +1,25 @@
+---
+title: "HW_06"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Tarea Probabilidad y Estadística (Tema V)  
+## Lic. Tecnología ENES Juriquilla  
+## F.A. Barrios  
+### Prueba de Hipótesis  
+
+1. Vitacca et al. Conducted a study to determine whether the supine position or sitting position worsen static, forced expiratory flows and measurements of lung mechanics. Subjects were aged persons living in a nursing home who were clinically stable and without clinical evidence of cardiorespiratory diseases. Among the data collected were the following FEV percent values for subjects in sitting and supine postures in REV_C07_46.csv.  
+ - perform a statistical analysis of the data (including hypothesis testing and confidence interval construction) that you think would yield useful information for the researchers.  
+ - State all assumptions that are necessary to validate your analysis.  
+ - Find p values for all computed test statistics.  
+
+2. Montner et al. conducted studies to test the effects of glycerol-enhanced hyper-hydration (GEH) on endurance in cycling performance. The 11 subjects, ages 22-40 years, regularly cycled at least 75 miles per week. The data in REV_C07_41.csv are the pre-exercise urine output volumes (ml) following ingestion of glycerol and water.  
+ - perform a statistical analysis of the data (including hypothesis testing and confidence interval construction) that you think would yield useful information for the researchers.  
+ - State all assumptions that are necessary to validate your analysis.  
+ - Find p values for all computed test statistics.  
+
+3. Some researchers have observed a grater airway resistance in smokers than in non-smokers. Suppose a study, conducted to compare the percent of bracheobronchial retention of particles in smoking-discordant monozygotic twins, yielded the results in REV_C07_29.csv. Do these data support the hypothesis that tracheobronchial clearance is slower in smokers? Let alpha = 0.05 and determine the p value for this test.  

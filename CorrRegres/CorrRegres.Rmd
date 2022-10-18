@@ -25,9 +25,7 @@ opts_knit$set(width=80)
 ```
 
 ```{r}
-# Set working directory
-setwd("~/Dropbox/GitHub/ProbEstad")
-
+# Packages used
 library(tidyverse)
 library(rcompanion)
 ```
@@ -39,7 +37,7 @@ Uno de los temas más utilizados en el análisis de datos en la actualidad se de
 **Correlación** El análisis de correlación es aquel que nos permite medir la fuerza de relación entre variables.  Cuando se estima la correlación de una serie de variables, estamos interesados en calcular el grado de *correlación* entre variables. Este análisis y el termino que lo describe también fue introducido por Galton en 1888.  
 
 # Modelo de Regresión Lineal Simple  
-El modelo más típico de regresión es el que relaciona dos variables a una linea recta, por eso se llama regresión lineal.  Supuestos que se usan en el modelo simple de regresión lineal.  En este modelo por lo general se tienen solo dos variables $Y$ y $X$.  La variable $X$ por lo general se usa para referirse a la *variable independiente*,  ya que generalmente los valores de esta variable están controlados por el investigador.  Para cada valor de $X$ hay uno o varios valores de $Y$, que por lo general son obtenidos a partir de medidas experimentales. La variable $Y$ es llamada la variable dependiente.  Por lo general nos referimos a una regresión de $Y$ por $X$. En el el caso de la regresión lineal se hacen las siguientes suposiciones:  
+El modelo más típico de regresión es el que relaciona dos variables a una linea recta, por eso se llama regresión lineal. Supuestos que se usan en el modelo simple de regresión lineal.  En este modelo por lo general se tienen solo dos variables $Y$ y $X$.  La variable $X$ por lo general se usa para referirse a la *variable independiente*,  ya que generalmente los valores de esta variable están controlados por el investigador.  Para cada valor de $X$ hay uno o varios valores de $Y$, que por lo general son obtenidos a partir de medidas experimentales. La variable $Y$ es llamada la variable dependiente. Por lo general nos referimos a una regresión de $Y$ por $X$. En el el caso de la regresión lineal se hacen las siguientes suposiciones:  
 
 1. Los valores de la variable independiente $X$ se suponen fijos, son valores predeterminados considerados no aleatorios.  
 2. La variable $X$ se considera medida sin error.
@@ -61,7 +59,7 @@ $$ \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} $$
 **Ejemplo** Deprès et al. establecieron que la topografía del tejido adiposo (AT) está asociada con complicaciones metabólicas consideradas como un riesgo par la enfermedad cardiovascular. Es importante, establecieron en dicho trabajo, medir la cantidad de tejido adiposo itraabdominal como parte de la evaluación de riesgo individual de enfermedad cardiovascular. Tomografía computarizada (CT), la única técnica que puede medir de forma precisa y confiable la cantidad de AT intraabdominal profunda, sin embargo, es costosa y expone al sujeto a radiación ionizante (rayos X), además es una técnica que no es accesible a todos los médicos.  Deprès y sus colegas condujeron su estudio para desarrollar ecuaciones que predigan la cantidad de AT intraabdominal profunda a partir de medidas antropométricas simples.  Sus sujetos de estudio fueron hombres adultos de entre 18 y 42 años de edad, sin enfermedad de desorden metabólico que requiriera medicación.  Entre las medidas tomadas a cada sujeto estuvieron la de TA intraabdominal profunda por CT y la circunferencia de la cintura, listadas en el archivo `EXA_C09_S03_01.csv`.  La pregunta es; que tan bien se puede estimar la cantidad de TA intraabdominal profunda partir se la medida de la circunferencia de la cintura.  Como la medida de AT intraabdominal profunda es la variable a evaluar y hacer predicciones, se considera la variable dependiente.  La variable de la circunferencia de la cintura se tomará como la medida independiente.  
 
 ```{r}
-Waist <- read_csv("DataSets/ch09_all/EXA_C09_S03_01.csv", show_col_types = FALSE)
+Waist <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch09_all/EXA_C09_S03_01.csv", show_col_types = FALSE)
 Waist
 
 plot(Y ~ X, data = Waist, pch = 20, xlab = "Circunferencia de cintura (cm)", ylab = "área de TA intraabdominal profunda")
@@ -93,11 +91,11 @@ Esta es la cantidad llamada R-sq (en R es la llamada Adjusted R-squared).
 *Solución* primero resolveremos el modelo en forma general estimando los dos parámetros de ajuste de mínimos cuadrados, el término independiente (intersección con el eje $y$) $\beta_0$ y el segundo término o pendiente $\beta_1$ con el modelo lineal Y ~ X. Posteriormente estimaremos el modelo "sin el término independiente", forzaremos que el modelo en R estime sin el coeficiente $\beta_0$, Y ~ X - 1.  En la gráfica el modelo lineal completo es la línea roja y el modelo que pasa por el origen es la línea azul.  
 
 ```{r}
-Scores <- read_csv("DataSets/ch09_all/EXR_C09_S03_02.csv")
+Scores <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch09_all/EXR_C09_S03_02.csv", show_col_types = FALSE)
 Scores
 
 # X enfermera, Y médico
-plot(Y ~ X, data = Scores, pch = 20, xlab = "Eval. enfermera", ylab = "Eval. médico")
+plot(Y ~ X, data = Scores, pch = 20, xlab = "Eval. enfermera", ylab = "Eval. médico", xlim = c(0, 20), ylim = c(0, 25))
 abline(v = mean(Scores$X), col = 2, lty = 2)
 abline(h = mean(Scores$Y), col = 2, lty = 2)
 
@@ -131,15 +129,15 @@ A continuación listamos las suposiciones necesarias para hacer inferencias de u
 5. Las subpoblaciones de valores de $X$ tienen la misma varianza.  
 
 ## El coeficiente de correlación  
-La distribución bivariada normal que describe estos datos tiene cinco parámetros: $\sigma_x, \sigma_y, \mu_x, \mu_y,$ y $\rho$. Los cuatro primeros son las varianza de $X$ y $Y$ y sus respectivas medias respectivas y $\rho$ es el coeficiente de correlación de la población, que mide la fuerza de la relación lineal entre las variables $Y$ y $X$.  Por lo general estamos interesados en determinar si $\rho \neq 0$, esto es. si $Y$ y $X$ están linealmente correlacionadas.  Como $\rho$ es por o general desconocido, es necesario extraer muestras de las poblaciones para estimas el valor de $r$ y determinar el valor de $\rho$. Una hipótesis nula muy utilizada es $H_0: \rho = 0 \space | H_A: \rho \neq 0$.  
+La distribución bivariada normal que describe estos datos tiene cinco parámetros: $\sigma_x, \sigma_y, \mu_x, \mu_y,$ y $\rho$. Los cuatro primeros son las varianza de $X$ y $Y$ y sus medias respectivas y $\rho$ es el coeficiente de correlación de la población, que mide la fuerza de la relación lineal entre las variables $Y$ y $X$.  Por lo general estamos interesados en determinar si $\rho \neq 0$, esto es. si $Y$ y $X$ están linealmente correlacionadas.  Como $\rho$ es por lo general desconocido, es necesario extraer muestras de las poblaciones para estimas el valor de $r$ y determinar el valor de $\rho$. Una hipótesis nula más utilizada es $H_0: \rho = 0 \space | H_A: \rho \neq 0$.  
 El valor de r se puede estimar por:  
 
 $$ r = \frac{n \sum x_i y_i - (\sum x_i)(\sum y_i)}{\sqrt{n \sum x_i^2 - (\sum x_i)^2} \sqrt{n \sum y_i^2 - ( \sum y_i)^2}} $$  
 
-**Ejemplo** El propósito del estudio de Kwast-Rabben y colaboradores, fue analizar los potenciales somatosensoriales evocados (SEPs) y su interrelación seguida de la estimulación de los dígitos I, III y V de la mano. Los investigadores querían establecer un antecedente para criterio de referencia en una población control. Por lo tanto se reclutaron sujetos control sanos para el estudio. Para un futuro este estudio podría ser importante ya que los SEPs se podrían usar para establecer disturbios funcionales en pacientes con sospecha de lesión en la raíz cervical que presentan dolor, y síntomas sensoriales.  En el estudio se estimularon los dedos con una intensidad por debajo del punto de dolor.  Las respuestas medulares se registraron con electrodos fijos adheridos con crema adherente a la piel del sujeto. Una de las relaciones de interés fue la correlación entre la estatura del sujeto (cm) y la latencia medular pico (Cv) del SEP. Los datos obtenidos se muestran en `EXA_C09_S07_01.csv`.  
+**Ejemplo** El propósito del estudio de Kwast-Rabben y colaboradores, fue analizar los potenciales somatosensoriales evocados (SEPs) y su interrelación seguida de la estimulación de los dígitos I, III y V de la mano. Los investigadores querían establecer un antecedente para criterio de referencia en una población control. Por lo tanto se reclutaron sujetos control sanos para el estudio. En un futuro este estudio podría ser importante ya que los SEPs control se podrían usar para establecer disturbios funcionales en pacientes con sospecha de lesión en la raíz cervical que presentan dolor, y síntomas sensoriales.  En el estudio se estimularon los dedos con una intensidad por debajo del punto de dolor.  Las respuestas medulares se registraron con electrodos fijos adheridos con crema adherente a la piel del sujeto. Una de las relaciones de interés fue la correlación entre la estatura del sujeto (cm) y la latencia medular pico (Cv) del SEP. Los datos obtenidos se muestran en `EXA_C09_S07_01.csv`.  
 
 ```{r}
-SEP <- read_csv("DataSets/ch09_all/EXA_C09_S07_01.csv")
+SEP <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch09_all/EXA_C09_S07_01.csv", show_col_types = FALSE)
 plot(CV ~ HEIGHT, data = SEP, pch = 20, xlab = "Estatura (cm)", ylab = "Latencia pico (Cv)")
 # cor.test(HEIGHT, CV, alternative = c("two.sided"), method = c("pearson"), conf.level = 0.95)
 cor.test(~ HEIGHT + CV, data = SEP, alternative = c("two.sided"), method = c("pearson"), conf.level = 0.95)
@@ -149,7 +147,7 @@ cor.test(~ HEIGHT + CV, data = SEP, alternative = c("two.sided"), method = c("pe
 El propósito del estudio de Brown y Presley fue caracterizar la hepatitis A aguda, en pacientes mayores de 40 años.  Revisaron en forma retrospectiva los registros de 20 pacientes que fueron diagnosticados con hepatitis A aguda, que no fueron hospitalizados. De interés fue el hecho que se usó la edad (en años) para predecir los niveles de bilirrubina (mg/dl). Los datos colectados están en `EXR_C09_S07_01.csv`.  
 
 ```{r}
-Hepa <- read_csv("DataSets/ch09_all/EXR_C09_S07_01.csv")
+Hepa <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch09_all/EXR_C09_S07_01.csv", show_col_types = FALSE)
 plot(BILI ~ AGE, data = Hepa, pch = 20, xlab = "Edad (años)", ylab = "Nivel de Bilirrubina (mg/dl)")
 cor.test(~ AGE + BILI, data = Hepa, alternative = c("two.sided"), method = c("pearson"), conf.level = 0.95)
 

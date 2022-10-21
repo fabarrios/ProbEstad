@@ -1,0 +1,24 @@
+---
+title: "Tarea_07"
+author: "F.A. Barrios"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Regression and correlation
+
+1. Reiss et al. compared point-of-care and standard hospital laboratory assays for monitoring patients receiving a single anticoagulant or a regimen consisting of a combination of anticoagulants. It is quite common when comparing two measuring techniques, to use regression analysis in which one variable is used to predict another. In the present study, the researchers obtained measures of international normalized ratio (INR) by assay of capillary and venous blood samples collected from 90 subjects taking warfarin. INR, used especially when patients are receiving warfarin, measures the clotting ability of the blood. Point-of-care testing for INR was conducted with the CoaguChek assay product. Hospital testing was done with standard hospital laboratory assays. The authors used the hospital assay INR level to predict the CoaguChek INR level. The measurements are given in the file EXR_C09_S03_04.csv.  
+Plot a scatter diagram and obtain the regression model and the $p$. Plot it on the scatter diagram.  
+
+2. Another variable of interest in the study by Reiss et al. (exercise 1) was partial thromboplastin (aPTT), the standard test used to monitor heparin anticoagulation. Use the data in the file EXR_C09_S07_02.csv to examine the correlation between aPTT levels as measured by the CoaguCheck point-of-care assay and standard laboratory hospital assay in 90 subjects receiving heparin alone, heparin with warfarin, and warfarin and exoenoxaparin.  
+- Prepare a scatter diagram.  
+- Compute the sample correlation coefficient.  
+- Test $H_0 : \rho = 0$ at the .05 level of significance and state your conclusions.  
+- Determine the p value for the test.  
+- Construct the 95 percent confidence interval for $\rho$.
+
+3. A study by Scrogin et al. was designed to assess the effects of concurrent manipulations of dietary NaCl and calcium on blood pressure as well as blood pressure and catecholamine responses to stress. Subjects were salt-sensitive, spontaneously hypertensive male rats. Among the analyses performed by the investigators was a correlation between baseline blood pressure and plasma epinephrine concentration (E). The data in file REV_C09_16.csv on these two variables were collected. Let $\alpha = .01$.  
+Carry out the required analysis and test hypotheses at the indicated significance levels. Compute the p value for the linear model.  

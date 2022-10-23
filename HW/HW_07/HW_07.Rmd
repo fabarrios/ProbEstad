@@ -1,5 +1,5 @@
 ---
-title: "Tarea_07"
+title: "HW_07"
 author: "F.A. Barrios"
 output: github_document
 ---
@@ -7,8 +7,9 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-## Regression and correlation
+# Tema VII  
+## Lic. Tecnología 
+## Regresión and correlacieón
 
 1. Reiss et al. compared point-of-care and standard hospital laboratory assays for monitoring patients receiving a single anticoagulant or a regimen consisting of a combination of anticoagulants. It is quite common when comparing two measuring techniques, to use regression analysis in which one variable is used to predict another. In the present study, the researchers obtained measures of international normalized ratio (INR) by assay of capillary and venous blood samples collected from 90 subjects taking warfarin. INR, used especially when patients are receiving warfarin, measures the clotting ability of the blood. Point-of-care testing for INR was conducted with the CoaguChek assay product. Hospital testing was done with standard hospital laboratory assays. The authors used the hospital assay INR level to predict the CoaguChek INR level. The measurements are given in the file EXR_C09_S03_04.csv.  
 Plot a scatter diagram and obtain the regression model and the $p$. Plot it on the scatter diagram.  
@@ -18,7 +19,15 @@ Plot a scatter diagram and obtain the regression model and the $p$. Plot it on t
 - Compute the sample correlation coefficient.  
 - Test $H_0 : \rho = 0$ at the .05 level of significance and state your conclusions.  
 - Determine the p value for the test.  
-- Construct the 95 percent confidence interval for $\rho$.
+- Construct the 95 percent confidence interval for $\rho$.  
 
 3. A study by Scrogin et al. was designed to assess the effects of concurrent manipulations of dietary NaCl and calcium on blood pressure as well as blood pressure and catecholamine responses to stress. Subjects were salt-sensitive, spontaneously hypertensive male rats. Among the analyses performed by the investigators was a correlation between baseline blood pressure and plasma epinephrine concentration (E). The data in file REV_C09_16.csv on these two variables were collected. Let $\alpha = .01$.  
-Carry out the required analysis and test hypotheses at the indicated significance levels. Compute the p value for the linear model.  
+Carry out the required analysis and test hypotheses at the indicated significance levels. Compute the $p$ value for the linear model.  
+State all assumptions that are necessary to validate your analysis.
+Describe the population(s) about which you think inferences based on your analysis would be applicable.  
+
+4. The objective of a study by Peacock et al. was to investigate whether spinal osteoarthritis is responsible for the fact that lumbar spine $bone\space mineral\space density\space (BMD)$ is greater when measured in the anteroposterior plane than when measured in the lateral plane. Lateral spine radiographs were studied from women (age range 34–87 years) who attended a hospital outpatient department for bone density measurement and underwent lumbar spine radiography. Among the data collected (file REV_C09_41.csv) were the measurements on anteroposterior (A) and lateral (L) $BMD (g/cm^2)$.  
+- Construct graphs that you think would be helpful in illustrating the relationships among variables.  
+- Perform a statistical analysis of the data (including hypothesis testing and confidence interval construction) that you think would yield useful information for the researchers.  
+- Use techniques learned in other chapters, such hypothesis testing and interval estimation regarding means and proportions.  
+- Determine p values for each computed test statistic.  

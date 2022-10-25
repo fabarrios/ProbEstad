@@ -48,6 +48,7 @@ Tarea 6 [Prueba de Hipótesis](https://fabarrios.github.io/ProbEstad/HW/HW_06).
 Tema 6 [Problemas Resueltos](https://fabarrios.github.io/ProbEstad/tStudentExa/tStudentExa.html).  
 
 Tema 7 [Correlación y Regresíon](https://fabarrios.github.io/ProbEstad/CorrRegres/CorrRegres.html).  
+Tarea 7 [Prueba de Hipótesis](https://fabarrios.github.io/ProbEstad/HW/HW_07).
 Tema 7 [Problemas Resueltos](https://fabarrios.github.io/ProbEstad/PermCorrExa/PermCorrExa.html).  
 <!-- Tarea 7 [Correlación y Regresíon](https://fabarrios.github.io/ProbEstad/HW/HW_07).  -->
 

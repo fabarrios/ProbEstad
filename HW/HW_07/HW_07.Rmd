@@ -1,7 +1,9 @@
 ---
 title: "HW_07"
 author: "F.A. Barrios"
-output: github_document
+output:
+  github_document: default
+  html_notebook: default
 ---
 
 ```{r setup, include=FALSE}

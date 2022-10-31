@@ -61,7 +61,3 @@ LineA <- c(54, 99, 105, 46, 70, 87, 55, 58, 139, 91)
 LineB <- c(93, 91, 93, 150, 80, 104, 128, 83, 88, 95, 94, 97)
 
 var.test(LineA, LineB, ratio = 1, alternative = "two.sided", conf.level = .95)
-
-
-Pacientes de enfermedades reumáticas u osteoporosis generalemtne sufren de pérdidas críticas 
-de densidad mineral osea (Bone Mineral Density, BMD)

@@ -63,9 +63,12 @@ TukeyHSD(Exa8.2.1_aov)
 plot(TukeyHSD(Exa8.2.1_aov))
 ```
 
-**Más ejemplos**
+**Más ejemplos**  
+
+Pacientes de enfermedades reumáticas u osteoporosis generalemtne sufren de pérdidas críticas de densidad mineral osea (Bone Mineral Density, BMD). Un medicamento usado para recuperar o prevenir una pérdida mayor de BMD, es el Alendronato. Holcomb y Rothenberg examinaron a 96 mujeres tomando alendronato para determinar si había alguna diferencia en el promedio de cambio en densidad ósea entre cinco clasificaciones diagnostica primarias. El Grupo1 era de pacientes diagnosticados con artritis reumatoide (RA). Grupo2 era de pacientes con una variedad de diagnósticos incluyendo, Lupus, granulomatosis de Wegener y poliarteritis, y otros desordenes vasculares (LUPUS). Grupo3 consistió en pacientes diagnosticados con polimialgia reumática o artritis temporal (PMRTA). El Grupo4 estaba integrado por pacientes con artrosis (OA). Y el Grupo 5 de pacientes con diagnóstico de osteoporosis (O) sin otros desordenes reumáticos. ¿Puede determinar que los promedios de los grupos presentan alguna diferencia? Haga una gráfica de cajas de los grupos.  
+
 ```{r}
-# Exer. 8.2.2
+# Exer. 8.2.2 Bone Mineral Density, BMD
 # Patients suffering from rheumatic diseases or osteoporosis often suffer critical loss in bone
 # mineral density (BMD).
 #

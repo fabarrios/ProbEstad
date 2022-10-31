@@ -65,7 +65,7 @@ plot(TukeyHSD(Exa8.2.1_aov))
 
 **Más ejemplos**  
 
-Pacientes de enfermedades reumáticas u osteoporosis generalemtne sufren de pérdidas críticas de densidad mineral osea (Bone Mineral Density, BMD). Un medicamento usado para recuperar o prevenir una pérdida mayor de BMD, es el Alendronato. Holcomb y Rothenberg examinaron a 96 mujeres tomando alendronato para determinar si había alguna diferencia en el promedio de cambio en densidad ósea entre cinco clasificaciones diagnostica primarias. El Grupo1 era de pacientes diagnosticados con artritis reumatoide (RA). Grupo2 era de pacientes con una variedad de diagnósticos incluyendo, Lupus, granulomatosis de Wegener y poliarteritis, y otros desordenes vasculares (LUPUS). Grupo3 consistió en pacientes diagnosticados con polimialgia reumática o artritis temporal (PMRTA). El Grupo4 estaba integrado por pacientes con artrosis (OA). Y el Grupo 5 de pacientes con diagnóstico de osteoporosis (O) sin otros desordenes reumáticos. ¿Puede determinar que los promedios de los grupos presentan alguna diferencia? Haga una gráfica de cajas de los grupos.  
+1. Pacientes de enfermedades reumáticas u osteoporosis generalmente sufren de pérdidas críticas de densidad mineral osea (Bone Mineral Density, BMD). Un medicamento usado para recuperar o prevenir una pérdida mayor de BMD, es el Alendronato. Holcomb y Rothenberg examinaron a 96 mujeres tomando alendronato para determinar si había alguna diferencia en el promedio de cambio en densidad ósea entre cinco clasificaciones diagnostica primarias. El Grupo1 era de pacientes diagnosticados con artritis reumatoide (RA). Grupo2 era de pacientes con una variedad de diagnósticos incluyendo, Lupus, granulomatosis de Wegener y poliarteritis, y otros desordenes vasculares (LUPUS). Grupo3 consistió en pacientes diagnosticados con polimialgia reumática o artritis temporal (PMRTA). El Grupo4 estaba integrado por pacientes con artrosis (OA). Y el Grupo 5 de pacientes con diagnóstico de osteoporosis (O) sin otros desordenes reumáticos. ¿Puede determinar que los promedios de los grupos presentan alguna diferencia? Haga una gráfica de cajas de los grupos.  
 
 ```{r}
 # Exer. 8.2.2 Bone Mineral Density, BMD
@@ -76,34 +76,54 @@ EXR8.2.2 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXR_C08_
 
 boxplot(BMD ~ factor(GROUP), data = EXR8.2.2)
 Exr2_2.aov <- aov(BMD ~ factor(GROUP), data=EXR8.2.2)
-summary(Exr2_2.aov)
-#
-EXR8.2.2_M <- EXR8.2.2 %>% mutate(GROUP = case_when(GROUP == 1 ~ "RA", GROUP == 2 ~ "LUPUS",
-                                                    GROUP == 3 ~ "PMRTA", GROUP == 4 ~ "OA",
+anova(Exr2_2.aov)
+# anova() to print the ANOVA table
+
+EXR8.2.2_M <- EXR8.2.2 %>% mutate(GROUP = case_when(GROUP == 1 ~ "RA", 
+                                                    GROUP == 2 ~ "LUPUS",
+                                                    GROUP == 3 ~ "PMRTA", 
+                                                    GROUP == 4 ~ "OA",
                                                     GROUP == 5 ~ "O"))
 
-ggplot( data = EXR8.2.2_M, aes(x = GROUP, y = BMD) )  + geom_boxplot() + 
-  scale_fill_viridis(discrete = TRUE, alpha=0.6) +
-  geom_jitter(height= .2, width = .2, color="blue", alpha=0.6) + theme_ipsum()
+EXR8.2.2_M <- EXR8.2.2_M %>% 
+  mutate(GROUP = GROUP %>% fct_relevel("O", "RA", "LUPUS", "PMRTA", "OA"))
+  
+EXR8.2.2_M %>% ggplot( aes(x = GROUP, y = BMD) )  + 
+  geom_boxplot() +
+  geom_jitter(width = 0.1, alpha = 0.6, aes(color = GROUP))
 #
+
 Exr2_2_lm <- lm(BMD ~ factor(GROUP), data=EXR8.2.2_M)
 S(Exr2_2_lm)
+
 emmeans(Exr2_2_lm, pairwise ~ GROUP)
 emmeans(Exr2_2_lm, trt.vs.ctrl ~ GROUP)
+```
+
+2. Ilich-Ernst y colaboradores estudiaron el consumo de calcio en la dieta de un grupos de 113 mujeres adultas sanas de edades entre 20 y 88 años. Los investigadores segregaron a los sujetos de estudio por grupos de edad de la siguiente manera: Grupo A 20.0 – 45.9 años; grupo B 46.00 – 55. 9 años; grupo C56.0 – 65.9 años; y grupo D, de más de 66 años. El consumo de calsio estuvo medido en mg/día. Los datos están listados en el archivo EXR_C08_S02_03.csv. Siguiendo un ANOVA, ¿se puede concluir que hay uns diferencia en los promedios de las poblaciones? Haga un HSD Tukey para estimar las diferencias entre las distintas poblaciones, sea Alpha = .05. Grafique los datos usando una gráfica de cajas y explique los resultados.  
+
+```{r}
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Exr 8.2.3
 Exr8.2.3 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXR_C08_S02_03.csv", show_col_types = FALSE)
 
+plot(calcium ~ factor(Group), data = Exr8.2.3)
+
 Exr3.aov <- aov(calcium ~ Group, data=Exr8.2.3)
-summary(Exr3.aov)
+anova(Exr3.aov)
+plot(Exr3.aov)
+
 TukeyHSD(Exr3.aov)
 
 ```
 
 ## ANOVA de dos vías  
+Para el caso de un ANOVA de dos vías, tenemos que la función repuesta responde a dos factores que a su vez tiene dos o más niveles por factor: $Y \sim factor_1 + factor_2$
 
-Del ejemplo 8.3.1 de Daniel para un ANOVA de dos vías:  
-A physical therapist wished to compare three methods for teaching patients to use a certain prosthetic device. He felt that the rate of learning would be different for patients of different ages and wished to design an experiment in which the influence of age could be taken into account.  
+Del ejemplo 8.3.1 de Daniel para un ANOVA de dos vías:
+Un fisioterapeuta quería comparar tres métodos para enseñar a sus pacientes a usar una prótesis. Pensó que la 
+proporción de aprendizage sería diferente dependiendo de la edad de los parcientes y desarrolló un experimento 
+que le permitió tomar en cuenta la edad. Se construye la tábla de los datos del problema.
 
 ```{r}
 # Build a table, index by index since
@@ -128,28 +148,30 @@ Para las gráficas de cajas ejecutadas por un ggplot (o boxplot) es necesario ma
 ```{r}
 # For the Age group
 
-ggplot(data = Learn, aes(x = Age, y = Rate) )  + geom_boxplot() + 
-  scale_fill_viridis(discrete = TRUE, alpha=0.6) +
-  geom_jitter(height= .2, width = .2, color="blue", alpha=0.6) + theme_ipsum()
+ggplot(data = Learn, aes(x = Age, y = Rate) )  + 
+  geom_boxplot() + 
+  geom_jitter(width = 0.1, alpha=0.6, aes(color = Age))
 
 # For the Rate group
-ggplot(data = Learn, aes(x = Method, y = Rate) )  + geom_boxplot() + 
-  scale_fill_viridis(discrete = TRUE, alpha=0.6) +
-  geom_jitter(height= .2, width = .2, color="blue", alpha=0.6) + theme_ipsum()
+ggplot(data = Learn, aes(x = Method, y = Rate) )  + 
+  geom_boxplot() + 
+  geom_jitter(width = 0.1, alpha=0.6, aes(color = Method))
 
 # now the ANOVA model
 Rate_aov = aov(Rate ~ Method + Age, data = Learn)
-summary(Rate_aov)
+anova(Rate_aov)
 
-layout(matrix(c(1,2), nrow=2, ncol=1, byrow=TRUE))
+layout(matrix(c(1,2), nrow=1, ncol=2, byrow=TRUE))
 TukeyHSD(Rate_aov)
 
 plot(TukeyHSD(Rate_aov))
 abline(v=0, col=2)
 
 ```
+ 
+**Ejemplos two-way ANOVA**   
 
-**Ejemplos two-way ANOVA** En un estudio de efectos pulmonares en conejillos de Indias, Lacroix et al. expuso a 18 conejillos de Indias sensibilizados con albúmina y 18 no-sensibilizados con aire regular, benzaldehido y acetildehido.  Al final de la exposición los conejillos de Indias fueron anesteciados y la respuesta a alergias medida por lavado broncoalveolar (BAL). La tabla de resultados se muestra en REV_C08_16 y muestra la cuenta de células alveolares $(\times 10^6)$ por grupo de tratamiento (aire, benzaldehido y acetildehido) y sensibilizados a albúmina.  Pruebe por las diferencias en a) entre sensibilizados y no sensibilizados por albúmina, b) entre los tres tratamientos. Sea $\alpha=.05$ en todas las pruebas.  
+En un estudio de efectos pulmonares en conejillos de Indias, Lacroix et al. expuso a 18 conejillos de Indias sensibilizados con albúmina y 18 no-sensibilizados con aire regular, benzaldehido y acetildehido.  Al final de la exposición los conejillos de Indias fueron anesteciados y la respuesta a alergias medida por lavado broncoalveolar (BAL). La tabla de resultados se muestra en REV_C08_16 y muestra la cuenta de células alveolares $(\times 10^6)$ por grupo de tratamiento (aire, benzaldehido y acetildehido) y sensibilizados a albúmina.  Pruebe por las diferencias en a) entre sensibilizados y no sensibilizados por albúmina, b) entre los tres tratamientos. Sea $\alpha=.05$ en todas las pruebas.  
 
 ```{r}
 Rev8.16 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/REV_C08_16.csv", show_col_types = FALSE)
@@ -161,19 +183,19 @@ boxplot(Count ~ factor(Sens) + factor(Treat), data = Rev8.16)
 Rev8.16_M <- Rev8.16 %>% mutate( Treat = case_when( Treat == "Air" ~ "1Air", Treat == "Act" ~ "2Act", Treat == "Benz" ~ "3Benz"))
 
 Rev8.16_aov <- aov(Count ~ factor(Sens) + factor(Treat), data = Rev8.16)
-summary(Rev8.16_aov)
+anova(Rev8.16_aov)
 
 #
 # With car Anova
 Rev8.16_lm <- lm(Count ~ factor(Sens) + factor(Treat), data = Rev8.16_M)
 Anova(Rev8.16_lm)
 #
-S(Rev8.16_lm)
+anova(Rev8.16_lm)
 emmeans(Rev8.16_lm, pairwise ~ Sens + Treat)
 emmeans(Rev8.16_lm, trt.vs.ctrl ~ Sens + Treat)
 #
-Rev8.16_lm_int <- lm(Count ~ factor(Sens) * factor(Treat), data = Rev8.16_M)
-S(Rev8.16_lm_int)
+Rev8.16_lm_int <- aov(Count ~ factor(Sens) * factor(Treat), data = Rev8.16_M)
+anova(Rev8.16_lm_int)
 emmeans(Rev8.16_lm_int, pairwise ~ Sens + Treat)
 emmeans(Rev8.16_lm_int, trt.vs.ctrl ~ Sens + Treat)
 ```
@@ -186,9 +208,8 @@ Rev.8.22 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/REV_C08_22.cs
 boxplot(SCORES ~ factor(SIDE) + factor(SIZE), data = Rev.8.22)
 boxplot(SCORES ~ factor(SIZE) + factor(SIDE), data = Rev.8.22)
 #
-Rev.8.22_lm <- lm(SCORES ~ factor(SIZE) + factor(SIDE), data = Rev.8.22)
-Anova(Rev.8.22_lm)
-S(Rev.8.22_lm)
+Rev.8.22_lm <- aov(SCORES ~ factor(SIZE) + factor(SIDE), data = Rev.8.22)
+anova(Rev.8.22_lm)
 
 # contrasts
 emmeans(Rev.8.22_lm, pairwise ~ SIDE + SIZE)
@@ -231,8 +252,7 @@ Exa8.4.1 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXA_C08_S04_0
 
 ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + 
   geom_boxplot() + 
-  scale_fill_viridis(discrete = TRUE, alpha = 0.6) +
-  geom_jitter(height = .2, width = .2, color = "blue", alpha = 0.6)
+  geom_jitter(width = .15, alpha = 0.6, aes(color = Time))
 
 # Find outliers (extreme if present)
 Exa8.4.1 %>% 
@@ -255,11 +275,9 @@ emmeans_test(Exa8.4.1, Assessment ~ Time, p.adjust.method = "fdr")
 # Now with the R basic anova function, how to make a repeated measures
 ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + 
   geom_boxplot() + 
-  scale_fill_viridis(discrete = TRUE, alpha=0.9) +
-  geom_jitter(height = .2, width = .2, color = "blue", alpha=.6)
+  geom_jitter(width = .1, alpha=.6, aes(color = Time))
 
 Exa8.4.1_mod <- aov( Assessment ~ factor(Time) + Error(factor(Subject)), data = Exa8.4.1 )
-#
 summary(Exa8.4.1_mod)
 
 # emmeans(Exa8.4.1_mod, pairwise ~ Time)

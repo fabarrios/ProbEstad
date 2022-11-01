@@ -12,7 +12,7 @@ library(knitr)
 library(rmdformats)
 
 ## Global options
-options(max.print="80")
+options(max.print="100")
 opts_chunk$set(echo=TRUE,
 	             cache=TRUE,
                prompt=FALSE,
@@ -20,16 +20,14 @@ opts_chunk$set(echo=TRUE,
                comment=NA,
                message=FALSE,
                warning=FALSE)
-opts_knit$set(width=80)
+opts_knit$set(width=100)
 ```
 
 
 ```{r}
 # Set working directory
-library(hrbrthemes)
 library(car)
 library(emmeans)
-library(viridis)
 library(rstatix)
 library(tidyverse)
 ```

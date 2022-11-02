@@ -100,7 +100,8 @@ Muestras aleatorias simples de dos líneas genéticas de ratones se usaron en un
 `Línea A: 54, 99, 105, 46, 70, 87, 55, 58, 139, 91`  
 `Línea B: 93, 91, 93, 150, 80, 104, 128, 83, 88, 95, 94, 97`  
 ¿Estos datos dan suficiente evidencia para concluir que la varianza de los datos de los ratones de la línea A es mayor a la varianza de los datos de los ratones de la línea B? Sea $\alpha = 0.05$. Explique su hipótesis nula y todas sus repuestas.  
-Respuesta la hipótesis nula es $H_0: \frac{s^2_1}{s^2_2} = 1$ para varianzas  diferentes tenemos que aceptar la hipótesis alternativa $H_a: \frac{s^2_1}{s^2_2} \neq 1$ 
+Respuesta la hipótesis nula es $H_0: \frac{s^2_1}{s^2_2} = 1$ para varianzas  diferentes tenemos que aceptar la hipótesis alternativa $H_a: \frac{s^2_1}{s^2_2} \neq 1$  
+
 ```{r}
 # Usando dos líneas de ratones, se midió niveles de glucosa en suero, después de 
 # una experiencia traumática
@@ -110,4 +111,4 @@ LineB <- c(93, 91, 93, 150, 80, 104, 128, 83, 88, 95, 94, 97)
 var.test(LineA, LineB, ratio = 1, alternative = "two.sided", conf.level = .95)
 ```
 
-**Conclusión**: Las varianzas son iguales.
+**Conclusión**: Las varianzas son iguales.  

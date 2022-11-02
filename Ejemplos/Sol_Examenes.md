@@ -2,14 +2,17 @@ Soluciones a examanes parciales de Probabilidad y Estadística
 ================
 F.A. Barrios
 
-## Examen_02
+## Examen_02  
 
 Ejemplos de Daniel 9 ed. capítulo 4.  
 Problemas de distribuciones de probabilidad y sus aplicaciones.
-Distribuciones discretas (Binomial y Poisson) y continuas (Gauss).
+Distribuciones discretas (Binomial y Poisson) y continuas (Gauss).  
+[Solución Examen_02](https://fabarrios.github.io/ProbEstad/Ejemplos/Examen_02.html).  
 
-## Examen_03
+
+## Examen_03  
 
 Ejemplot de Daniel 9 ed. capítulo 7.  
 Problemas de Student’s t-Test, prueba t y prueba de proporciones y
-promedios de dos poblaciones.
+promedios de dos poblaciones.  
+[Solución Examen_03](https://fabarrios.github.io/ProbEstad/Ejemplos/Examen_03.html).  

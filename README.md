@@ -58,7 +58,7 @@ Tema 9 [Análisis no paramétrico](https://fabarrios.github.io/ProbEstad/NoParam
 
 Tema 10 [Análisis de Frecuencias](https://fabarrios.github.io/ProbEstad/Chi_Sq/Chi_Sq.html).
 
-[Ejemplos](https://fabarrios.github.io/ProbEstad/Ejemplos/Sol_Examenes).  
+[Solución de exámenes](https://fabarrios.github.io/ProbEstad/Ejemplos/Sol_Examenes).  
 
 [Notas](https://fabarrios.github.io/ProbEstad/Notas/Notas).  
 

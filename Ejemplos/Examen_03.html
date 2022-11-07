@@ -7,7 +7,7 @@
 
         <meta name="author" content="F.A. Barrios" />
     
-        <meta name="date" content="2022-11-01" />
+        <meta name="date" content="2022-11-06" />
     
     <title>ENES Juriquilla Examen_03</title>
 
@@ -1533,7 +1533,7 @@ margin-left: 0 !important;
           <li class="divider"></li>
                                 <li><span><i class="glyphicon glyphicon-user"></i> F.A.
 Barrios</span></li>
-                                         <li><span><i class="glyphicon glyphicon-calendar"></i> 2022-11-01</span></li>
+                                         <li><span><i class="glyphicon glyphicon-calendar"></i> 2022-11-06</span></li>
                   </ul>     
       </div>
       <div class="book-body fixed">
@@ -1737,23 +1737,24 @@ los datos de los ratones de la línea A es mayor a la varianza de los
 datos de los ratones de la línea B? Sea <span class="math inline">\(\alpha = 0.05\)</span>. Explique su hipótesis nula
 y todas sus repuestas.<br />
 Respuesta la hipótesis nula es <span class="math inline">\(H_0:
-\frac{s^2_1}{s^2_2} = 1\)</span> para varianzas diferentes tenemos que
-aceptar la hipótesis alternativa <span class="math inline">\(H_a:
-\frac{s^2_1}{s^2_2} \neq 1\)</span></p>
+\frac{s^2_1}{s^2_2} &lt; 1\)</span> para varianzas diferentes tenemos
+que aceptar la hipótesis alternativa <span class="math inline">\(H_a:
+\frac{s^2_1}{s^2_2} \geq 1\)</span><br />
+0</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando dos líneas de ratones, se midió niveles de glucosa en suero, después de </span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># una experiencia traumática</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>LineA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">54</span>, <span class="dv">99</span>, <span class="dv">105</span>, <span class="dv">46</span>, <span class="dv">70</span>, <span class="dv">87</span>, <span class="dv">55</span>, <span class="dv">58</span>, <span class="dv">139</span>, <span class="dv">91</span>)</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>LineB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">93</span>, <span class="dv">91</span>, <span class="dv">93</span>, <span class="dv">150</span>, <span class="dv">80</span>, <span class="dv">104</span>, <span class="dv">128</span>, <span class="dv">83</span>, <span class="dv">88</span>, <span class="dv">95</span>, <span class="dv">94</span>, <span class="dv">97</span>)</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(LineA, LineB, <span class="at">ratio =</span> <span class="dv">1</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">conf.level =</span> .<span class="dv">95</span>)</span></code></pre></div>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(LineA, LineB, <span class="at">ratio =</span> <span class="dv">1</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">conf.level =</span> .<span class="dv">95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  F test to compare two variances
 ## 
 ## data:  LineA and LineB
-## F = 2.1417, num df = 9, denom df = 11, p-value = 0.2336
-## alternative hypothesis: true ratio of variances is not equal to 1
+## F = 2.1417, num df = 9, denom df = 11, p-value = 0.1168
+## alternative hypothesis: true ratio of variances is greater than 1
 ## 95 percent confidence interval:
-##  0.5969355 8.3786621
+##  0.7394956       Inf
 ## sample estimates:
 ## ratio of variances 
 ##           2.141744</code></pre>

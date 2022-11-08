@@ -1885,35 +1885,34 @@ Residuals                 193.840 48
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(Rev.<span class="fl">8.22</span>_lm_int, trt.vs.ctrl <span class="sc">~</span> SIZE <span class="sc">+</span> SIDE)</span></code></pre></div>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(Rev.<span class="fl">8.22</span>_lm_int, trt.vs.ctrl <span class="sc">~</span> SIZE)</span></code></pre></div>
 <pre><code>$emmeans
- SIZE SIDE emmean    SE df lower.CL upper.CL
-    2 L     10.11 0.670 48     8.76     11.5
-    3 L     10.20 0.899 48     8.39     12.0
-    4 L     13.00 0.899 48    11.19     14.8
-    2 R      9.93 0.537 48     8.85     11.0
-    3 R     10.78 0.670 48     9.43     12.1
-    4 R     11.17 0.580 48    10.00     12.3
+ SIZE emmean    SE df lower.CL upper.CL
+    2   10.0 0.429 48     9.16     10.9
+    3   10.5 0.560 48     9.36     11.6
+    4   12.1 0.535 48    11.01     13.2
 
+Results are averaged over the levels of: SIDE 
 Confidence level used: 0.95 
 
 $contrasts
- contrast          estimate    SE df t.ratio p.value
- SIZE3 L - SIZE2 L   0.0889 1.121 48   0.079  0.9996
- SIZE4 L - SIZE2 L   2.8889 1.121 48   2.577  0.0548
- SIZE2 R - SIZE2 L  -0.1825 0.859 48  -0.213  0.9950
- SIZE3 R - SIZE2 L   0.6667 0.947 48   0.704  0.8853
- SIZE4 R - SIZE2 L   1.0556 0.886 48   1.191  0.6210
+ contrast      estimate    SE df t.ratio p.value
+ SIZE3 - SIZE2    0.469 0.706 48   0.664  0.7243
+ SIZE4 - SIZE2    2.063 0.686 48   3.009  0.0081
 
-P value adjustment: dunnettx method for 5 tests </code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With rstatix</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>Rev.<span class="fl">8.22</span>_aov <span class="ot">&lt;-</span> <span class="fu">anova_test</span>(<span class="at">data =</span> Rev.<span class="fl">8.22</span>, SCORES <span class="sc">~</span> <span class="fu">factor</span>(SIZE) <span class="sc">+</span> <span class="fu">factor</span>(SIDE))</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">get_anova_table</span>(Rev.<span class="fl">8.22</span>_aov)</span></code></pre></div>
+Results are averaged over the levels of: SIDE 
+P value adjustment: dunnettx method for 2 tests </code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># emmip(Rev.8.22_lm_int, SIDE ~ SIZE)</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="co"># With rstatix</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>Rev.<span class="fl">8.22</span>_aov <span class="ot">&lt;-</span> <span class="fu">anova_test</span>(<span class="at">data =</span> Rev.<span class="fl">8.22</span>, SCORES <span class="sc">~</span> <span class="fu">factor</span>(SIZE) <span class="sc">*</span> <span class="fu">factor</span>(SIDE))</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">get_anova_table</span>(Rev.<span class="fl">8.22</span>_aov)</span></code></pre></div>
 <pre><code>ANOVA Table (type II tests)
 
-        Effect DFn DFd     F     p p&lt;.05   ges
-1 factor(SIZE)   2  50 3.667 0.033     * 0.128
-2 factor(SIDE)   1  50 0.631 0.431       0.012</code></pre>
+                     Effect DFn DFd     F     p p&lt;.05   ges
+1              factor(SIZE)   2  48 3.712 0.032     * 0.134
+2              factor(SIDE)   1  48 0.638 0.428       0.013
+3 factor(SIZE):factor(SIDE)   2  48 1.305 0.281       0.052</code></pre>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Post hoc</span></span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans_test</span>(Rev.<span class="fl">8.22</span>, SCORES <span class="sc">~</span> SIZE, <span class="at">p.adjust.method =</span> <span class="st">&quot;fdr&quot;</span>)</span></code></pre></div>
 <pre><code># A tibble: 3 × 9

@@ -223,10 +223,11 @@ emmeans(Rev.8.22_lm, pairwise ~ SIDE )
 Rev.8.22_lm_int <- lm(SCORES ~ factor(SIZE) * factor(SIDE), data = Rev.8.22)
 Anova(Rev.8.22_lm_int)
 #
-emmeans(Rev.8.22_lm_int, trt.vs.ctrl ~ SIZE + SIDE)
+emmeans(Rev.8.22_lm_int, trt.vs.ctrl ~ SIZE)
+# emmip(Rev.8.22_lm_int, SIDE ~ SIZE)
 
 # With rstatix
-Rev.8.22_aov <- anova_test(data = Rev.8.22, SCORES ~ factor(SIZE) + factor(SIDE))
+Rev.8.22_aov <- anova_test(data = Rev.8.22, SCORES ~ factor(SIZE) * factor(SIDE))
 get_anova_table(Rev.8.22_aov)
 # Post hoc
 emmeans_test(Rev.8.22, SCORES ~ SIZE, p.adjust.method = "fdr")

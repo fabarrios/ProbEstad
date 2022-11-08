@@ -52,7 +52,7 @@ Tarea 7 [Correlación y Regresíon](https://fabarrios.github.io/ProbEstad/HW/HW_
 Tema 7 [Problemas Resueltos](https://fabarrios.github.io/ProbEstad/PermCorrExa/PermCorrExa.html).  
 
 Tema 8 [ANOVA](https://fabarrios.github.io/ProbEstad/ANOVA/ANOVA.html).  
-<!-- Tarea 8 [ANOVA](https://fabarrios.github.io/ProbEstad/HW/HW_08).  -->
+Tarea 8 [ANOVA](https://fabarrios.github.io/ProbEstad/HW/HW_08.html).  
 
 Tema 9 [Análisis no paramétrico](https://fabarrios.github.io/ProbEstad/NoParamet/NoParamet.html).  
 

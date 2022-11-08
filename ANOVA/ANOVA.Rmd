@@ -12,7 +12,7 @@ library(knitr)
 library(rmdformats)
 
 ## Global options
-options(max.print="100")
+options("max.print"=2000)
 opts_chunk$set(echo=TRUE,
 	             cache=TRUE,
                prompt=FALSE,
@@ -77,11 +77,12 @@ Exr2_2.aov <- aov(BMD ~ factor(GROUP), data=EXR8.2.2)
 anova(Exr2_2.aov)
 # anova() to print the ANOVA table
 
-EXR8.2.2_M <- EXR8.2.2 %>% mutate(GROUP = case_when(GROUP == 1 ~ "RA", 
-                                                    GROUP == 2 ~ "LUPUS",
-                                                    GROUP == 3 ~ "PMRTA", 
-                                                    GROUP == 4 ~ "OA",
-                                                    GROUP == 5 ~ "O"))
+EXR8.2.2_M <- EXR8.2.2 %>% 
+  mutate(GROUP = case_when(GROUP == 1 ~ "RA", 
+                           GROUP == 2 ~ "LUPUS",
+                           GROUP == 3 ~ "PMRTA", 
+                           GROUP == 4 ~ "OA",
+                           GROUP == 5 ~ "O"))
 
 EXR8.2.2_M <- EXR8.2.2_M %>% 
   mutate(GROUP = GROUP %>% fct_relevel("O", "RA", "LUPUS", "PMRTA", "OA"))
@@ -178,7 +179,10 @@ boxplot(Count ~ factor(Sens), data = Rev8.16)
 
 boxplot(Count ~ factor(Sens) + factor(Treat), data = Rev8.16)
 #
-Rev8.16_M <- Rev8.16 %>% mutate( Treat = case_when( Treat == "Air" ~ "1Air", Treat == "Act" ~ "2Act", Treat == "Benz" ~ "3Benz"))
+Rev8.16_M <- Rev8.16 %>% 
+  mutate( Treat = case_when( Treat == "Air" ~ "1Air", 
+                             Treat == "Act" ~ "2Act", 
+                             Treat == "Benz" ~ "3Benz"))
 
 Rev8.16_aov <- aov(Count ~ factor(Sens) + factor(Treat), data = Rev8.16)
 anova(Rev8.16_aov)
@@ -191,14 +195,18 @@ Anova(Rev8.16_lm)
 anova(Rev8.16_lm)
 emmeans(Rev8.16_lm, pairwise ~ Sens + Treat)
 emmeans(Rev8.16_lm, trt.vs.ctrl ~ Sens + Treat)
+
 #
 Rev8.16_lm_int <- aov(Count ~ factor(Sens) * factor(Treat), data = Rev8.16_M)
+# model with interaction
 anova(Rev8.16_lm_int)
-emmeans(Rev8.16_lm_int, pairwise ~ Sens + Treat)
-emmeans(Rev8.16_lm_int, trt.vs.ctrl ~ Sens + Treat)
+Rev8.16_lm_int_emm_p <- emmeans(Rev8.16_lm_int, pairwise ~ Sens + Treat)
+Rev8.16_lm_int_emm_p
+Rev8.16_lm_int_emm_c <- emmeans(Rev8.16_lm_int, trt.vs.ctrl ~ Sens + Treat)
+Rev8.16_lm_int_emm_c
 ```
 
-**Ejemplo** El interés del estudio de Hartman-Maeir et al. fue estimar los perfiles del déficit de concienciación entre pacientes con infarto cerebral que están en rehabilitación. Estudió 35 pacientes con lesiones por infarto en el hemisferio derecho y 19 pacientes con lesiones en el hemisferio izquierdo.  Además agrupó las lesiones por su tamaño como: 2 = 1-3 cm, 3 =3-5cm, y 4 = 5 cm o más grandes. Una de las medidas importantes fue la calificación de la concienciación por su propia limitación. Las calificaciones tuvieron un rango de 8 a 24, con una calificación más alta significando mayor concienciación (REV_C08_22.csv). Pruebe la diferencia por tamaño de lesión y lado de hemisferio, sea $\alpha = .05$.  
+**Ejemplo** El interés del estudio de Hartman-Maeir et al. fue estimar los perfiles del déficit de concienciación entre pacientes con infarto cerebral que están en rehabilitación. Estudió 35 pacientes con lesiones por infarto en el hemisferio derecho y 19 pacientes con lesiones en el hemisferio izquierdo.  Además agrupó las lesiones por su tamaño como: 2 = 1-3 cm, 3 = 3-5cm, y 4 = 5 cm o más grandes. Una de las medidas importantes fue la calificación de la concienciación por su propia limitación. Las calificaciones tuvieron un rango de 8 a 24, con una calificación más alta significando mayor concienciación (REV_C08_22.csv). Pruebe la diferencia por tamaño de lesión y lado de hemisferio, sea $\alpha = .05$.  
 
 ```{r}
 Rev.8.22 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/REV_C08_22.csv", show_col_types = FALSE)
@@ -210,10 +218,10 @@ Rev.8.22_lm <- aov(SCORES ~ factor(SIZE) + factor(SIDE), data = Rev.8.22)
 anova(Rev.8.22_lm)
 
 # contrasts
-emmeans(Rev.8.22_lm, pairwise ~ SIDE + SIZE)
+emmeans(Rev.8.22_lm, pairwise ~ SIDE )
 
 Rev.8.22_lm_int <- lm(SCORES ~ factor(SIZE) * factor(SIDE), data = Rev.8.22)
-S(Rev.8.22_lm_int)
+Anova(Rev.8.22_lm_int)
 #
 emmeans(Rev.8.22_lm_int, trt.vs.ctrl ~ SIZE + SIDE)
 
@@ -232,7 +240,7 @@ boxplot(Measure ~ factor(site) + factor(Geometry), data = Rev.8.18)
 
 #
 Rev.8.18_lm <- lm(Measure ~ factor(site) + factor(Geometry), data = Rev.8.18)
-S(Rev.8.18_lm)
+Anova(Rev.8.18_lm)
 
 # Pairwise post hoc
 emmeans(Rev.8.18_lm, pairwise ~ site + Geometry)

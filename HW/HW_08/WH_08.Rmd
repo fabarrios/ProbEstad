@@ -1,0 +1,28 @@
+---
+title: "HW_08"
+author: "F.A. Barrios"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Tema VIII  
+### Lic. Tecnología  
+### Regresión and correlacieón  
+
+1. A random sample of the records of single births was selected from each of four populations. The weights (grams) of the babies at birth were as presented in REV_C08_23.csv.Do these data provide sufficient evidence to indicate, at $\alpha = .05$ level of significance, that the four populations differ with respect to mean birth weight? Test for a significant difference between all possible pairs of means.  
+
+2. A study by Ikeda et al. was designed to determine the dose of ipratropium bromide aerosol that improves exercise performance using progressive cycle ergometry in patients with stable chronic obstructive pulmonary disease. The mean age of the 20 male subjects was 69.2 years with a standard deviation of 4.6 years. Among the data collected were the following maximum ventilation (VEmax,L/min) values at maximum achieved exercise for different ipratropium bromide dosage levels ($\mu g$) in REV_C08_46.csv.  
+a) Perform a statistical analysis of the data (including hypothesis testing and confidence interval construction) that you think would yield useful information for the researchers.  
+b) Determine p values for each computed test statistic.  
+c) State all assumptions that are necessary to validate your analysis.  
+
+3. Holben et al. designed a study to evaluate selenium intake in young women in the years of puberty. The researchers studied a cohort of 16 women for three consecutive summers. One of the outcome variables was the selenium intake per day. The researchers examined dietary journals of the subjects over the course of 2 weeks and then computed the average daily selenium intake. The table in EXR_C08_S04_03.csv shows the average daily selenium intake values in $\mu g/d$, for the 16 women in years 1, 2, and 3 of the study. Estimate the ANOVA table and calculate the p value. Let $\alpha = 0.05$.
+
+3. Researchers at a trauma center wished to develop a program to help brain-damaged trauma victims regain an acceptable level of independence. An experiment involving 72 subjects with the same degree of brain damage was conducted. The objective was to compare different combinations of psychiatric treatment and physical therapy. Each subject was assigned to one of 24 different combinations of four types of psychiatric treatment and six physical therapy programs. There were three subjects in each combination. The response variable is the number of months elapsing between initiation of therapy and time at which the patient was able to function independently. The results are in EXR_C08_S05_02.csv.  
+Can one conclude on the basis of these data that the different psychiatric treatment programs have different effects? Can one conclude that the physical therapy programs differ in effectiveness? Can one conclude that there is interaction between psychiatric treatment programs and physical therapy programs? Let $\alpha = .05$ for each test.
+

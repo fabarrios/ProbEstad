@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # Tema VII  
 ## Lic. Tecnología 
-## Regresión and correlacieón
+## Regresión and correlación
 
 1. Reiss et al. compared point-of-care and standard hospital laboratory assays for monitoring patients receiving a single anticoagulant or a regimen consisting of a combination of anticoagulants. It is quite common when comparing two measuring techniques, to use regression analysis in which one variable is used to predict another. In the present study, the researchers obtained measures of international normalized ratio (INR) by assay of capillary and venous blood samples collected from 90 subjects taking warfarin. INR, used especially when patients are receiving warfarin, measures the clotting ability of the blood. Point-of-care testing for INR was conducted with the CoaguChek assay product. Hospital testing was done with standard hospital laboratory assays. The authors used the hospital assay INR level to predict the CoaguChek INR level. The measurements are given in the file EXR_C09_S03_04.csv.  
 Plot a scatter diagram and obtain the regression model and the $p$. Plot it on the scatter diagram.  

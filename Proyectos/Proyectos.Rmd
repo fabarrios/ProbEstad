@@ -87,8 +87,33 @@ The purpose of a study by Halligan et al. was to evaluate diurnal variation in b
 
 ### Proyecto final 14  
 Another variable of interest in the study by Reiss et al. was partial thromboplastin (aPTT), the standard test used to monitor heparin anticoagulation. Use the data in EXR_C09_S07_02.csv to examine the correlation between aPTT levels as measured by the CoaguCheck point-of-care assay and standard laboratory hospital assay in 90 subjects receiving heparin alone, heparin with warfarin, and warfarin and exoenoxaparin.  
-1. Draw a scatter diagram of the data and plot the equation for each of the cases.  
-2. Compute r and test for significance at the .05 level. Find the p value of the models.  
+- Draw a scatter diagram of the data and plot the equation for each of the cases.  
+- Compute r and test for significance at the .05 level. Find the p value of the models.  
 
-###
+### Proyecto final 15  
+The objective of a study by Sakhaee et al. was to ascertain body content of aluminum (A1) noninvasively using the increment in serum and urinary Al following the intravenous administration of deferoxamine (DFO) in patients with kidney stones and osteoporotic women undergoing long-term treatment with potassium citrate (K3Cit) or tricalcium dicitrate (Ca3Cit2), respectively. Subjects consisted of 10 patients with calcium nephrolithiasis and five patients with osteoporosis who were maintained on potassium citrate or calcium citrate for 2–8 years, respectively, plus 16 normal volunteers without a history of regular aluminum-containing antacid use. Among the data collected were the following 24-hour urinary aluminum excretion measurements ($\mu g/day$) before (PRE) and after (POST) 2-hour infusion of DFO, en REV_C13_20.csv.  
+- Apply one of the none parametric techniques.  
+- Apply one of the ANOVA techniques.  
+- Formulate relevant hypotheses, perform the appropriate tests, and find p values.  
+- State the statistical decisions and clinical conclusions that the results of your hypothesis tests justify.  
+- Describe the population(s) to which you think your inferences are applicable.  
+- State the assumptions necessary for the validity of your analyses.  
+
+### Proyecto final 16  
+The purpose of a study by Kim et al. was to investigate the serial changes in Lp(a) lipoprotein levels with the loss of female sex hormones by surgical menopause and with estrogen replacement therapy in the same women. Subjects were 44 premenopausal women who underwent a transabdominal hysterectomy (TAH). Thirty-one of the women had a TAH and unilateral salpingo-oophorectomy (USO), and 13 had a TAH and bilateral salpingo-oophorectomy (BSO). The women ranged in age from 30 to 53 years. Subjects in the BSO group received .625 mg of conjugated equine estrogen daily 2 months after the operation. The data in REV_C13_23.csv were the subjects’ total cholesterol levels before (TC0), 2 months after (TC2), and 4 months after (TC4) the surgical procedure and hormone replacement therapy.  
+- Apply one of the none parametric techniques.  
+- Apply one of the ANOVA techniques.  
+- Formulate relevant hypotheses, perform the appropriate tests, and find p values.  
+- State the statistical decisions and clinical conclusions that the results of your hypothesis tests justify.  
+- Describe the population(s) to which you think your inferences are applicable.  
+- State the assumptions necessary for the validity of your analyses. 
+
+### Proyecto final 17  
+Heijdra et al. state that many patients with severe chronic obstructive pulmonary disease (COPD) have low arterial oxygen saturation during the night. These investigators conducted a study to determine whether there is a causal relationship between respiratory muscle dysfunction and nocturnal saturation. Subjects were 20 (5 females, 15 males) patients with COPD randomly assigned to receive either target-flow inspiratory muscle training (TF-IMT) at 60 percent of their maximal inspiratory mouth pressure (PImax) or sham TF-IMT at 10 percent of PImax. Among the data collected were the endurance times (Time, s) for each subject at the beginning of training and 10 weeks later, in REV_C13_25.csv.  
+- Apply one of the none parametric techniques.  
+- Apply one of the ANOVA techniques.  
+- Formulate relevant hypotheses, perform the appropriate tests, and find p values.  
+- State the statistical decisions and clinical conclusions that the results of your hypothesis tests justify.  
+- Describe the population(s) to which you think your inferences are applicable.  
+- State the assumptions necessary for the validity of your analyses.  
 

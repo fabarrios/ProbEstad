@@ -117,3 +117,10 @@ Heijdra et al. state that many patients with severe chronic obstructive pulmonar
 - Describe the population(s) to which you think your inferences are applicable.  
 - State the assumptions necessary for the validity of your analyses.  
 
+### Proyecto final 18  
+The purpose of a study by Maltais et al. was to compare and correlate the increase in arterial lactic acid (La) during exercise and the oxidative capacity of the skeletal muscle in patients with chronic obstructive pulmonary disease (COPD) and control subjects (C). There were nine subjects in each group. The mean age of the patients was 62 years with a standard deviation of 5. Control subjects had a mean age of 54 years with a standard deviation of 3. Among the data collected were the values for the activity of phosphofructokinase (PFK), hexokinase (HK), and lactate dehydrogenase (LDH) for the two groups in the file REV_C13_27.csv  
+- Apply one of the none parametric techniques.  
+- Apply one of the ANOVA techniques.  
+- Formulate relevant hypotheses, perform the appropriate tests, and find p values.  
+- State the statistical decisions and clinical conclusions that the results of your hypothesis tests justify.  
+- State the assumptions necessary for the validity of your analyses.  

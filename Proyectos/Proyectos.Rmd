@@ -39,10 +39,10 @@ In Kreiter et al., medical school exams were delivered via computer format. Beca
 ### Proyecto final 3  
 Refer to the serum angiotensin-converting enzyme data on 1600 subjects (LDS_C08_SACEDATA.csv). Sarcoidosis, found throughout the world, is a systemic granulomatous disease of unknown cause. The assay of serum angiotensin-converting enzyme (SACE) is helpful in the diagnosis of active sarcoidosis. The activity of SACE is usually increased in patients with the disease, while normal levels occur in subjects who have not had the disease, those who have recovered, and patients with other granulomatous disorders. The data are the SACE values for four populations of subjects classified according to status regarding sarcoidosis: never had, A; active, B; stable, C; recovered, D. Select a simple random sample of 15 subjects from each population and perform an analysis to determine if you can conclude that the population means are different. Let $\alpha = .05$. Use Tukey’s test to test for significant differences among individual pairs of means. Compare these results with those of second sample of 30 subjects from each population and finally use all the data and compare your results.   
 
-### Proyecto final 4  
+### Proyecto final 4 (Asignado)  
 Refer to the urinary colony-stimulating factor data on 1500 subjects (LDS_C08_CSFDATA.csv). The data are the urinary colony-stimulating factor (CSF) levels in five populations: normal subjects and subjects with four different diseases. Each observation represents the mean colony count of four plates from a single urine specimen from a given subject. Select a simple random sample of size 15 from each of the five populations and perform an analysis of variance to determine if one may conclude that the population means are different. Let $\alpha = .05$. Use Tukey’s HSD statistic to test for significant differences among all possible pairs of sample means. Prepare a narrative report on the results of your analysis. Compare these results with those of second sample of 30 subjects from each population and finally use all the data and compare your results.  
 
-### Proyecto final 5  
+### Proyecto final 5 (Asignado)  
 Refer to the red blood cell data on 1050 subjects (LDS_C08_RBCDATA.csv). Suppose that you are a statistical consultant to a medical researcher who is interested in learning something about the relationship between blood folate concentrations in adult females and the quality of their diet. The researcher has available three populations of subjects: those whose diet quality is rated as good, those whose diets are fair, and those with poor diets. For each subject there is also available her red blood cell (RBC) folate value (in $\mu g/liter$ of red cells). Draw a simple random sample of size 10 from each population and determine whether the researcher can conclude that the three populations differ with respect to mean RBC folate value. Use Tukey’s test to make all possible comparisons. Let $\alpha = .05$ and find the p value for each test. Compare these results with those of second random sample of 25 subjects from each population and finally use all the data and compare your results.  
 
 ### Proyecto final 6  
@@ -54,7 +54,7 @@ Potteiger et al. wished to determine if sodium citrate ingestion would improve c
 - Determine p values for each computed test statistic.  
 - State all assumptions that are necessary to validate your analysis.
   
-### Proyecto final 8  
+### Proyecto final 8 (Asignado)  
 Sloan et al. note that cardiac sympathetic activation and parasympathetic withdrawal result in heart rate increases during psychological stress. As indicators of cardiac adrenergic activity, plasma epinephrine (E) and norepinephrine (NE) generally increase in response to psychological challenge. Power spectral analysis of heart period variability also provides estimates of cardiac autonomic nervous system activity. The authors conducted a study to determine the relationship between neurohumoral and two different spectral estimates of cardiac sympathetic nervous system activity during a quiet resting baseline and in response to a psychologically challenging arithmetic task. Subjects were healthy, medication-free male and female volunteers with a mean age of 37.8 years. None had a history of cardiac, respiratory, or vascular disease. Among the data collected were the measurements on E, NE, low-frequency (LF) and very-low-frequency (VLF) power spectral indices, and low-frequency/high-frequency ratios (LH/HF). Measurements are given for three periods: baseline (B), a mental arithmetic task (MA), and change from baseline to task (DELTA), in file REV_C09_42.csv.  
 - Perform a statistical analysis of the data (including hypothesis testing and confidence interval construction) that you think would yield useful information for the researchers.  
 - Construct graphs that you think would be helpful in illustrating the relationships among variables.  
@@ -64,7 +64,7 @@ Sloan et al. note that cardiac sympathetic activation and parasympathetic withdr
 ### Proyecto final 9  
 Refer to the data for 1050 subjects with essential hypertension (LDS_C09_HYPERTEN.csv). Suppose that you are a statistical consultant to a medical research team interested in essential hypertension. Select a simple random sample of 80 subjects from the population and perform the analyses that you think would be useful to the researchers. Present your findings and conclusions in narrative form and illustrate with graphs where appropriate. Select a second simple random sample of 15 subjects and compare with your results of the first sample of 80.  
 
-### Proyecto final 10  
+### Proyecto final 10 (Asignado)  
 Refer to the data for 1050 subjects with cerebral edema (LDS_C09_CEREBRAL.csv). Cerebral edema with consequent increased intracranial pressure frequently accompanies lesions resulting from head injury and other conditions that adversely affect the integrity of the brain. Available treatments for cerebral edema vary in effectiveness and undesirable side effects. One such treatment is glycerol, administered either orally or intravenously. Of interest to clinicians is the relationship between intracranial pressure and glycerol plasma concentration. Suppose that you are a statistical consultant with a research team investigating the relationship between these two variables. Select a simple random sample from the population and perform the analysis that you think would be useful to the researchers. Present your findings and conclusions in narrative form and illustrate with graphs where appropriate. Compare these results with those of two different random samples.  
 
 ### Proyecto final 11  
@@ -74,7 +74,7 @@ Use the total number of pairs of observations to obtain the least-squares equati
 - Compute r and test for significance at the .05 level. Find the p value.  
 - Compare your results with those of two different random samples of three patients from each dose.  
 
-### Proyecto final 12  
+### Proyecto final 12  (Asignado)
 Yasu et al. used noninvasive magnetic resonance spectroscopy to determine the short- and long-term effects of percutaneous transvenous mitral commissurotomy (PTMC) on exercise capacity and metabolic responses of skeletal muscles during exercise. Data were collected on 11 patients (2 males, 9 females) with symptomatic mitral stenosis. Their mean age was 52 years with a standard deviation of 11. Among the data collected were the following measurements on changes in mitral valve area (d-MVA) and peak oxygen consumption (d-Vo2) 3, 30, and 90 days post-PTMC in REV_C09_46.csv.  
 - Perform a statistical analysis of the data (including hypothesis testing and confidence interval construction) that you think would yield useful information for the researchers.  
 - Construct graphs that you think would be helpful in illustrating the relationships among variables.  
@@ -85,7 +85,7 @@ The purpose of a study by Halligan et al. was to evaluate diurnal variation in b
 - Draw a scatter diagram of the data and plot the equation.  
 - Compute r and test for significance at the .05 level. Find the p value.  
 
-### Proyecto final 14  
+### Proyecto final 14 (Asignado)  
 Another variable of interest in the study by Reiss et al. was partial thromboplastin (aPTT), the standard test used to monitor heparin anticoagulation. Use the data in EXR_C09_S07_02.csv to examine the correlation between aPTT levels as measured by the CoaguCheck point-of-care assay and standard laboratory hospital assay in 90 subjects receiving heparin alone, heparin with warfarin, and warfarin and exoenoxaparin.  
 - Draw a scatter diagram of the data and plot the equation for each of the cases.  
 - Compute r and test for significance at the .05 level. Find the p value of the models.  
@@ -108,7 +108,7 @@ The purpose of a study by Kim et al. was to investigate the serial changes in Lp
 - Describe the population(s) to which you think your inferences are applicable.  
 - State the assumptions necessary for the validity of your analyses. 
 
-### Proyecto final 17  
+### Proyecto final 17 (Asignado)   
 Heijdra et al. state that many patients with severe chronic obstructive pulmonary disease (COPD) have low arterial oxygen saturation during the night. These investigators conducted a study to determine whether there is a causal relationship between respiratory muscle dysfunction and nocturnal saturation. Subjects were 20 (5 females, 15 males) patients with COPD randomly assigned to receive either target-flow inspiratory muscle training (TF-IMT) at 60 percent of their maximal inspiratory mouth pressure (PImax) or sham TF-IMT at 10 percent of PImax. Among the data collected were the endurance times (Time, s) for each subject at the beginning of training and 10 weeks later, in REV_C13_25.csv.  
 - Apply one of the none parametric techniques.  
 - Apply one of the ANOVA techniques.  
@@ -117,7 +117,7 @@ Heijdra et al. state that many patients with severe chronic obstructive pulmonar
 - Describe the population(s) to which you think your inferences are applicable.  
 - State the assumptions necessary for the validity of your analyses.  
 
-### Proyecto final 18  
+### Proyecto final 18 (Asignado)  
 The purpose of a study by Maltais et al. was to compare and correlate the increase in arterial lactic acid (La) during exercise and the oxidative capacity of the skeletal muscle in patients with chronic obstructive pulmonary disease (COPD) and control subjects (C). There were nine subjects in each group. The mean age of the patients was 62 years with a standard deviation of 5. Control subjects had a mean age of 54 years with a standard deviation of 3. Among the data collected were the values for the activity of phosphofructokinase (PFK), hexokinase (HK), and lactate dehydrogenase (LDH) for the two groups in the file REV_C13_27.csv  
 - Apply one of the none parametric techniques.  
 - Apply one of the ANOVA techniques.  

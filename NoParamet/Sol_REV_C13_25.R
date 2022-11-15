@@ -1,6 +1,13 @@
+# Reading the data
+Rev13.25 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch13_all/REV_C13_25.csv", show_col_types = FALSE)
+
+Rev13.25
+# There are no subject identification, se add subject ID for each graoup (two of 20)
+COPD <- Rev13.25 %>% mutate(Subject = 1:20)
+
+# now we can "elongate" the data for time - weeks, leaving the group out.
 COPD_long <- COPD %>% 
   pivot_longer(cols = c("week0", "week10"), names_to = "Time", values_to = "TF_IMT")
-
 COPD_long
 
 COPD_long %>%

@@ -80,7 +80,7 @@ Yasu et al. used noninvasive magnetic resonance spectroscopy to determine the sh
 - Construct graphs that you think would be helpful in illustrating the relationships among variables.  
 - Determine p values for each computed test statistic.  
 
-### Proyecto final 13  
+### Proyecto final 13 (Asignado)  
 The purpose of a study by Halligan et al. was to evaluate diurnal variation in blood pressure (BP) in women who were normotensive and those with pre-eclampsia. The subjects were similar in age, weight, and mean duration of gestation (35 weeks). The researchers collected the  BP readings at REV_C09_39.csv. As part of their analysis they studied the relationship between mean day and night measurements and day/night differences for both diastolic and systolic BP in each group.  C1 = group (0 = normotensive, 1 = pre-eclamptic); C2 = day diastolic; C3 = night diastolic; C4 = day systolic; C5 = night systolic.  
 - Draw a scatter diagram of the data and plot the equation.  
 - Compute r and test for significance at the .05 level. Find the p value.  

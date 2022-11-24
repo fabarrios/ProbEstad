@@ -30,6 +30,8 @@ library(car)
 library(emmeans)
 library(rstatix)
 library(tidyverse)
+
+options('max.print' = 100000)
 ```
 
 
@@ -43,6 +45,8 @@ Carne proveniente de caza, entre otras aquellas del venado de cola-blanca, y ard
 La hipótesis nula de este modelo es que todos los promedios poblacionales (cada promedio de la población de cada caso) son iguales entre ellos $\mu_1 = \mu_2 = \mu_3 \dots = \mu_n$, y la hipótesis alternativa es que "por lo menos uno de ellos es distinto".
 
 ```{r}
+getOption('max.print')
+
 # Exa_C08_S02_01 One-way
 #
 Exa8.2.1 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXA_C08_S02_01mod.csv", show_col_types = FALSE)
@@ -244,6 +248,7 @@ Rev.8.18_lm <- lm(Measure ~ factor(site) + factor(Geometry), data = Rev.8.18)
 Anova(Rev.8.18_lm)
 
 # Pairwise post hoc
+options('max.print' = 10000)
 emmeans(Rev.8.18_lm, pairwise ~ site + Geometry)
 ```
 
@@ -282,12 +287,12 @@ emmeans_test(Exa8.4.1, Assessment ~ Time, p.adjust.method = "fdr")
 # Now with the R basic anova function, how to make a repeated measures
 ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + 
   geom_boxplot() + 
-  geom_jitter(width = .1, alpha=.6, aes(color = Time))
+  geom_jitter(width = .1, alpha=.6, aes(color = Time)) +
+  theme_bw()
 
 Exa8.4.1_mod <- aov( Assessment ~ factor(Time) + Error(factor(Subject)), data = Exa8.4.1 )
 summary(Exa8.4.1_mod)
 
-# emmeans(Exa8.4.1_mod, pairwise ~ Time)
-# emmeans(Exa8.4.1_mod, trt.vs.crtl ~ Time)
+emmeans(Exa8.4.1_mod, pairwise ~ Time )
 
 ```

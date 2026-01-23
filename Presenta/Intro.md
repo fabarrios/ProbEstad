@@ -17,26 +17,28 @@ del materíal que se distribuye en el INTERNET, está en inglés, les sugiero qu
 en inglés.  
 
 ## Libro del curso  
-El curso no tiene un libro de texto, pero en lo general pienso seguir las ideas del libro de W.W. Daniel, Biostatistics, (yo
-uso la 11a y 9a ediciones). En particular por los ejercicios y ejemplos los tomaré de este libro principalmente, varios de estos
-ejemplos tienen una buena cantidad de temas relacionados con los problemas biológicos y ejemplos con temas que encontrarán de 
-interés.  También hay material que pueden accesar en la red, hay varios proyecto para la enseñanza de R que estánaccesbles y
-por lo general son de my buena cálidad. Otro libro que usaré de referencia es el de 
-[Harrison & Pius](https://argoshare.is.ed.ac.uk/healthyr_book/) que tiene una versión abierta en la red en la liga, cuenta con el 
-material en la red para seguir los ejemplos y el código de R.  Otro libro que tiene una buena cantidad de ejemplos y material 
-relacionado con R es 
-[Statistics de Crawley](https://www.oreilly.com/library/view/statistics-an-introduction/9781118941102/), con buenas explicaciones,
-por eso lo tengo listado en los libros de texto antes de la bibliografía más general.  
+El curso no tiene un libro de texto, pero en lo general pienso seguir las ideas del libro de [M.J. Crawley](https://www.oreilly.com/library/view/statistics-an-introduction/9781118941102/), 
+ "Statistics, An introduction using R" con buenas explicaciones cortas, El libro de W.W. Daniel, Biostatistics, (usaremos la 
+9a edición sobre todo por los ejercicios), en particular los ejercicios y ejemplos los tomaré de este libro principalmente, 
+varios de estos ejemplos cubren una buena cantidad de temas relacionados con los problemas biológicos y ejemplos con temas 
+que encontrarán de interés.  También hay material que pueden accesar en la red, hay varios proyectos para la enseñanza de R que 
+están accesbles y por lo general son de my buena cálidad. Otro libro que usaré de referencia es el de [
+Harrison & Pius](https://argoshare.is.ed.ac.uk/healthyr_book/) que tiene una versión abierta en la red en la liga, cuenta 
+con el material en la red para seguir los ejemplos y el código de R.  
+
 Hay otros materiales de empresas que se han dedicado a la publicación de libros que tienen versiones en papel así como verisiónes 
-digitales abiertas y si encuentran el material presentado de interés se puede pagar su acceso completo (sin restricción), como el libro de 
-[R in Action](https://livebook.manning.com/book/r-in-action-third-edition/copyright-2020-manning-publications/v-8/5), por ejemplo.  
-Hay material de consulta en español, y entre otros hay un libro digital de R y estadística en la liga [Introduccion a R](https://bookdown.org/matiasandina/R-intro/), de todas formas invito a los estudinates que no dominan el inglés a hacer un esfuerzo por practicarlo y trabajar con material editado en inglés ya que en un tema técnico simpre se encontrará que el dominió del inglés es una herramienta necesaria.
+digitales abiertas, en algunos casos el material presentado tiene una versión pagada, si el material es de interés se puede pagar 
+su acceso completo (sin restricción), como el libro de [R in Action](https://livebook.manning.com/book/r-in-action-third-edition/copyright-2020-manning-publications/v-8/5) 
+por ejemplo. Hay material de consulta en español, y entre otros hay un libro digital de R y estadística en la liga 
+[Introduccion a R](https://bookdown.org/matiasandina/R-intro/), de todas formas invito a los estudinates que no dominan el inglés 
+a hacer un esfuerzo por practicarlo y trabajar con material editado en inglés ya que para un tema técnico simpre se encontrará que 
+el dominió del inglés es una herramienta importante.
 
 ## Instalación 
-Como ya lo comentamos, el prograna R es un proyecto muy importante de "open code", "open access" y "open science", goza de una popularidad
+Como ya se comentó, el prograna R es un proyecto muy importante de "open code", "open access" y "open science", goza de una popularidad
 extraordinaria, en particular en la comunidad académica mundial. Es de distribución abierta y por lo tanto tiene una
-licencia de distribución pública, además cuenta con una inmensa cantidad de paquetes desarrollados para diferentes proyectos, y además con una 
-importante cantidad de documentos públicos de ayuda. Algunos de estos documentos de ayuda se apuntan en esta página.
+licencia de distribución pública, además cuenta con una inmensa librería de paquetes desarrollados para diferentes proyectos y con una 
+importante cantidad de documentos públicos de ayuda. Algunos de estos documentos de ayuda se apuntan en esta página en las ligas de interés.
 Se les recomienda bajar e instalar la última versión de R [CRAN](https://cran.r-project.org/) en donde encontrarán las distribuciónes 
 para Windows, Mac, y LINUX (Fedora, UBUNTU, etc). Y para la interface gráfica, hay que instalar la ultima verisión libre (hay una versión de paga) 
 de [RStudio desktop](https://www.rstudio.com/products/rstudio/).

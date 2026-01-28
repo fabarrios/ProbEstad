@@ -26,9 +26,9 @@ opts_knit$set(width=75)
 
 # Introducción
 
-En esta clase revisaremos el concepto de estadística descriptiva (Daniel W.W. 2009, Biostatistics, 9th). Y también tomaremos varias ideas y ejemplos del libro de Estadística con R de Verzani (Verzani, J. 2005, UsingR)
+En esta clase revisaremos el concepto de estadística descriptiva, se pueden revisar las primeras páginas del Crawley o Daniel. Para trabajar algunas ideas introductorias también tomaremos algunas ideas y ejemplos del libro de Estadística con R de Verzani (Verzani, J. 2005, UsingR).
 
-Una de las primeras cosas que es indispensable hacer al iniciar el sistema R es determinar cual es el directorio de trabajo y si se van a usar algunas librerías hay que cargarlas.  En este caso usaremos una librería muy popular, `tidyverse` que se usa para una multitud de cosas ya que es un sub-set de librerías que en conjunto cuentan con una gran cantidad de funciones de uso común.
+Una de las primeras cosas que es indispensable hacer al iniciar el sistema R es determinar cual es el directorio de trabajo y si se van a usar algunas librerías hay que cargarlas.  En este caso, como ejemplo cargaremos algunas librerías de R, entre otras una librería muy popular, `tidyverse` que se usa para una multitud de comandos ya que es un sub-set de librerías que en conjunto cuentan con una gran cantidad de funciones de uso común.
 
 ```{r}
 setwd("~/Dropbox/GitHub/ProbEstad")
@@ -40,7 +40,7 @@ library(UsingR)
 library(formatR)
 
 ```
-Iniciaremos con unos ejemplos muy simples de funciones ya integradas en R de carácter muy general.  Empezando por cargar una serie de números, usando una serie de datos de la cantidad de ballenas que llegaron a la playa en el estado de Texas, E.E.U.U. por año, en la década de los 90's.
+Iniciaremos con unos ejemplos muy simples de funciones, de carácter muy general, incluidas en el sistema base de R.  Empezando por cargar una serie de números, usando una serie de datos de la cantidad de ballenas que llegaron a la playa en el estado de Texas, E.E.U.U. por año, en la década de los 90's.
 
 ```{r}
 # Whale beaching per year in Texas during the 1990's
@@ -59,7 +59,7 @@ sd(whales)
 median(whales)
 mad(whales)  # median absolute deviation
 ```
-Como se puede ver con simples comandos se pueden estimar *estadísticas* de los datos.  Un mecanismo para describir una series de *datos crudos* es el ordenamiento, es decir si yo tengo un conjunto de datos numéricos una técnica para describirlos es iniciar por ordenarlos. En los tiempos anteriores a las computadoras esto tomaría un esfuerzo, pero en la actualidad se hace por una solicitud de ordenamiento, en el R existe un comando que hace esto en un paso, también es por medio de un comando que se puede encontrar el mínimo o el máximo.
+Como se puede ver, con simples comandos se pueden estimar *estadísticas* de los datos.  Un mecanismo para describir una serie de *datos crudos* es el ordenamiento, es decir si yo tengo un conjunto de datos numéricos una técnica para describirlos es ordenarlos. En los tiempos anteriores a las computadoras esto tomaría un esfuerzo, pero en la actualidad se hace por una solicitud de ordenamiento, en R existe un comando que hace esto en un paso, también es por medio de un comando que se puede encontrar el mínimo o el máximo.
 
 ```{r}
 sort(whales)
@@ -67,7 +67,7 @@ min(whales)
 max(whales)
 ```
 
-Y de esta colección de instrucciones se tienen el rango y la suma acumulada.  Pero uno de los comandos más útiles puede ser el `summary`, que nos entrega una serie de parámetros de la variable, y vale la pena mencionar que a esta funciona se le puede pasar una estructura que entregará la misma serie de parámetros para cada variable de la estructura, y muchas otras estructuras de R, como veremos posteriormente.
+Y de esta colección de instrucciones básicas también se tienen el rango y la suma acumulada.  Pero uno de los comandos más útiles puede ser: `summary`, que nos entrega una serie de parámetros de la variable que se le pasa, y vale la pena mencionar que a esta función se le puede pasar una estructura y entregará la misma serie de parámetros estimados para cada variable de la estructura, y muchas otras estructuras más complejas de R, como veremos posteriormente.
 
 ```{r}
 range(whales)
@@ -77,12 +77,12 @@ summary(whales)
 
 # Definiciones      
 
-El material básico de la estadística son los datos, datos experimentales, datos poblacionales, datos económicos y de mercado, etc. Dichos datos se puedes describir como números, pero en realidad son mucha más, pueden ser términos descriptivos, datos cualitativos, datos relacionales. En general pueden ser objetos de cuenta.  
+La materia prima de la estadística son los datos, datos experimentales, datos poblacionales, datos económicos y de mercado, etc. Dichos datos se pueden describir como números, pero en realidad son mucho más, pueden ser términos descriptivos, datos cualitativos, datos relacionales. En general pueden ser objetos de cuenta.  
 La estadística es el área de estudio de la colección, ordenamiento, concentración y análisis de datos y la extracción de inferencias a cerca de un sistema que describen datos parciales que se toman de dicho sistema.  
 
 ## Fuentes de datos  
 
-La necesidad de desarrollar estimaciones estadísticas está motivada por la necesidad de contestar preguntas relacionadas a un sistema que no se puede medir en totalidad y solo se pueden extraer medidas parciales de el.  Por lo tanto, es necesario adquirir datos del sistema que se quiera estudiar, ya que estos datos serán la materia prima para llegar a conclusiones de preguntas relativas a dicho sistema.  En la actualidad las fuentes de datos son muy variadas y se pueden agrupar en algunos grupos;  
+La necesidad de desarrollar estimaciones estadísticas está motivada por la necesidad de contestar preguntas relacionadas a un sistema que no se puede medir en su totalidad y solo se pueden extraer medidas parciales de el.  Por lo tanto, es necesario adquirir datos del sistema que se quiera estudiar, ya que estos datos serán la materia prima para llegar a conclusiones de preguntas relativas a dicho sistema.  En la actualidad las fuentes de datos son muy variadas y se pueden agrupar en algunos grupos;  
 
 **Repositorios públicos** o de acceso semi-público administrados. Repositorios que son regularmente alimentados por instituciones encargadas de administrar y curar dichos datos. Como ejemplos pueden ser archivos de pacientes de sistemas de salid, bases de datos de instituciones gubernamentales o no-gubernamentales, entre otros.  
 
@@ -94,7 +94,7 @@ La necesidad de desarrollar estimaciones estadísticas está motivada por la nec
 
 ## Población y Muestas  
 
-**Población**. Es el grupo completo de sujetos para los que se cumple alguna ley o regla. Por ejemplo: la población de todos los estudiantes, es decir todos aquellos sujetos que se dedican al estudio como actividad principal. Pero esta población se puede describir en forma más específica, por ejemplo: todos los estudiantes de licenciatura, o todos los estudiantes de escuelas técnicas. Pero hacer un estudio que nos permita concluir algo de toda la población sería necesario hacer la medida en toda la población, y esto limitaría seriamente nuestra capacidad de hacer estudios. Ya que la población podría además incluir a todos los miembros pasados, futuros y presentes, lo que en principio haría la población infinita. Por lo tanto para poder hacer un estudio y se toma una medida parcial de la población, o se a un su-grupo de la población que se quiere estudiar, un muestra de la población, y se asignan las medidas de dicha muestra como representantes de las que se obtendrían de la población completa.  
+**Población**. Es el grupo completo de sujetos para los que se cumple alguna ley o regla. Por ejemplo: la población de todos los estudiantes, es decir todos aquellos sujetos que se dedican al estudio como actividad principal. Pero esta población se puede describir en forma más específica, por ejemplo: todos los estudiantes de licenciatura, o todos los estudiantes de escuelas técnicas. Pero hacer un estudio que nos permita concluir algo de toda la población sería necesario hacer la medida en toda la población, y esto limitaría seriamente nuestra capacidad de hacer estudios. Ya que la población podría además incluir a todos los miembros pasados, futuros y presentes, lo que en principio haría la población infinita. Por lo tanto para poder hacer un estudio, estimación, se toma una medida parcial de la población, o se a un sub-grupo de la población a la que se quiere estudiar, un muestra de la población, y se asignan las medidas de dicha muestra como representantes de las que se obtendrían de la población completa.  
 
 **Muestra**. Una parte de la población, que se usa para describir a la población completa. Es un subconjunto que se toma de la población completa y puede extraerse en forma aleatoria (lo más común) o sistemática. Si se desarrolla un muestreo que sigue algoritmos para extraer muestras que no tengan influencia sobre los procesos de estimación (estadísticos) que se propone usar sobre los datos se dice que es sistemática.  Cuando una muestra de tamaño $n$ extraída de una población de tamaño $N$, se dice que es aleatoria si cualquier otra muestra de tamaño $n$ tomada de la misma población, tiene la misma oportunidad de ser escogida como la muestra original.
 
@@ -123,7 +123,7 @@ Para iniciar el estudio de una muestra de datos se pueden hacer algunos procesos
 Como ya lo expusimos en el ejemplo del número de ballenas que llegaron a las playas del estado de Texas en la década de los 90's. uno de los pasos iniciales que se puede hacer para entender un conjunto de datos medidos es hacer una arreglo ordenado de los datos que tenemos.  En el ejemplo a continuación vamos a usar una muestra de un estudio de sujetos que dejaron de fumar, se listan las edades a las que dejaron de ser fumadores.  La lista al cargarse, no está ordenada ni se han manipulado los datos y por lo tanto se acostumbra decir que los datos están *crudos (raw data)*, encontramos que si nos preguntaran cual es la edad mayor y menor de cuando este grupo de sujetos dejó de fumar nos tomaría algún esfuerzo, sin embargo si cargamos los datos en un vector (arreglo unidimensional) y lo ordenamos bastará con ver el primer y último elementos para saber cual es el mínimo y máximo del grupo de edades.   
 
 ```{r}
-Fuma <- read_csv("DataSets/ch02_all/EXA_C02_S02_01.csv")
+Fuma <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch02_all/EXA_C02_S02_01.csv")
 Fuma
 #
 ord_Fuma <- sort(Fuma$Age)
@@ -132,7 +132,7 @@ tail(ord_Fuma)
 #
 summary(Fuma)
 ```
-Otra forma muy útil de visualizar un conjunto de datos es el diagrama de tallo y hojas, este se diagrama en R se estima con el comando `stem()`, otra función de utilidad es hacer una tabla de frecuencias con `table()` y esta función se usa para *preparar* los datos en un variable para hace una gráfica de barras por ejemplo, `barplot(table(Fuma$Age, col = "red"))` pero una de las funciones más útiles para generar gráficas es el histograma, en R `hist()`, (claro que hay toda una gama de  posibilidades en ggplot para hacer histogramas).  Y un histograma con el polinomio de frecuencias graficando sobre el histograma, para usar `simple.freqpoly()` es necesario tener cargada la librería de UsingR.
+Otra forma muy útil de visualizar un conjunto de datos es el diagrama de tallo y hojas, este diagrama en R se estima con el comando `stem()`, otra función de utilidad es hacer una tabla de frecuencias con `table()` y esta función se usa para *preparar* los datos en una variable para hace una gráfica de barras por ejemplo, `barplot(table(Fuma$Age, col = "red"))` pero una de las funciones más útiles para generar gráficas es el histograma, en R `hist()`, (claro que hay toda una gama de  posibilidades en bibliotecas especializadas de graficación como `ggplot` para hacer histogramas).  Por ejemplo para graficar un histograma con el polinomio de frecuencias presentado sobre el histograma, se puede usar `simple.freqpoly()` solo que en este caso es necesario tener cargada la librería de UsingR.
 
 ```{r}
 stem(Fuma$Age)

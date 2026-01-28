@@ -1,4 +1,3 @@
-base
 knitr
 rmdformats
 tidyverse
@@ -19,3 +18,4 @@ Formula
 Hmisc
 UsingR
 formatR
+lubridate

@@ -84,19 +84,19 @@ La estadística es el área de estudio de la colección, ordenamiento, concentra
 
 La necesidad de desarrollar estimaciones estadísticas está motivada por la necesidad de contestar preguntas relacionadas a un sistema que no se puede medir en su totalidad y solo se pueden extraer medidas parciales de el.  Por lo tanto, es necesario adquirir datos del sistema que se quiera estudiar, ya que estos datos serán la materia prima para llegar a conclusiones de preguntas relativas a dicho sistema.  En la actualidad las fuentes de datos son muy variadas y se pueden agrupar en algunos grupos;  
 
-**Repositorios públicos** o de acceso semi-público administrados. Repositorios que son regularmente alimentados por instituciones encargadas de administrar y curar dichos datos. Como ejemplos pueden ser archivos de pacientes de sistemas de salid, bases de datos de instituciones gubernamentales o no-gubernamentales, entre otros.  
+**Repositorios públicos** o de acceso semi-público administrados. Repositorios que son regularmente alimentados por instituciones encargadas de administrar y curar dichos datos. Como ejemplos pueden ser archivos de pacientes de sistemas de salud, bases de datos de instituciones gubernamentales o no-gubernamentales, entre otros.  
 
-**Encuestas**. Cuando se quieren obtener datos específicos se de algunas cuestiones en particular se pueden hacer una serie de preguntas estructuradas que sean contestadas en forma libre por los sujetos de estudio.  
+**Encuestas**. Cuando se quieren obtener datos específicos, de algún tema en particular, se pueden hacer una serie de preguntas estructuradas que sean contestadas en forma libre por los sujetos entrevistados.  
 
-**Experimentos**. En ocasiones particulares, es común que los datos que se tienen son resultado de experimentos planeados para responder a una condición específica.  
+**Experimentos**. En ocasiones particulares, es común que los datos que se tienen son resultado de experimentos planeados para responder a una condición específica. Como es la experiencia en el trabajo científico.
 
 **Fuentes externas**.  En ocasiones se cuenta ya con datos de situaciones que se quieren estudiar y se pueden extraer datos de dichos estudios anteriores, para deducir información. Ejemplos pueden ser publicaciones anteriores, entre otros.  
 
 ## Población y Muestas  
 
-**Población**. Es el grupo completo de sujetos para los que se cumple alguna ley o regla. Por ejemplo: la población de todos los estudiantes, es decir todos aquellos sujetos que se dedican al estudio como actividad principal. Pero esta población se puede describir en forma más específica, por ejemplo: todos los estudiantes de licenciatura, o todos los estudiantes de escuelas técnicas. Pero hacer un estudio que nos permita concluir algo de toda la población sería necesario hacer la medida en toda la población, y esto limitaría seriamente nuestra capacidad de hacer estudios. Ya que la población podría además incluir a todos los miembros pasados, futuros y presentes, lo que en principio haría la población infinita. Por lo tanto para poder hacer un estudio, estimación, se toma una medida parcial de la población, o se a un sub-grupo de la población a la que se quiere estudiar, un muestra de la población, y se asignan las medidas de dicha muestra como representantes de las que se obtendrían de la población completa.  
+**Población**. Es el grupo completo de sujetos para los que se cumple alguna ley o regla. Por ejemplo: la población de todos los estudiantes, es decir todos aquellos sujetos que se dedican al estudio como actividad principal. Pero esta población se puede describir en forma más específica, por ejemplo: todos los estudiantes de licenciatura, o todos los estudiantes de escuelas técnicas. Pero hacer un estudio que nos permita concluir algo de toda la población sería necesario hacer la medida en toda la población, y esto limitaría seriamente nuestra capacidad de hacer estudios. Ya que la población podría además incluir a todos los miembros pasados, futuros y presentes, lo que en principio haría la población infinita. Por lo tanto para poder hacer un estudio, estimación, se toma una medida parcial de la población, un sub-grupo de la población a la que se quiere estudiar, o muestra de la población, y se asignan las medidas de dicha muestra como representantes de las que se obtendrían de la población completa.  
 
-**Muestra**. Una parte de la población, que se usa para describir a la población completa. Es un subconjunto que se toma de la población completa y puede extraerse en forma aleatoria (lo más común) o sistemática. Si se desarrolla un muestreo que sigue algoritmos para extraer muestras que no tengan influencia sobre los procesos de estimación (estadísticos) que se propone usar sobre los datos se dice que es sistemática.  Cuando una muestra de tamaño $n$ extraída de una población de tamaño $N$, se dice que es aleatoria si cualquier otra muestra de tamaño $n$ tomada de la misma población, tiene la misma oportunidad de ser escogida como la muestra original.
+**Muestra**. Una parte de la población, que se usa para describir a la población completa, es un subconjunto que se toma de la población completa y puede extraerse en forma aleatoria (lo más común) o sistemática. Si se desarrolla un muestreo que sigue algoritmos para extraer muestras que no tengan influencia sobre los procesos de estimación (estadísticos) que se propone usar sobre los datos se dice que es sistemática.  Cuando una muestra de tamaño $n$ extraída de una población de tamaño $N$, se dice que es aleatoria si cualquier otra muestra de tamaño $n$ tomada de la misma población, tiene la misma oportunidad de ser escogida como la muestra original.
 
 ## Variables
 
@@ -109,11 +109,11 @@ Las variables cuantitativas son aquellas que describen características, no son 
 ### Variables Aleatorias
 Las Variables aleatorias son aquellas que están descritas por alguna distribución. Por lo general las medidas obtenidas de algún expereimento se dice que son aleatorias, es decir cuando los valores obtenidos no pueden ser exactamente predichos antes de ser medidos. Este tipo de variables son medidas por procesos que tienen una aleatoriedad implícita (experimentales) generalmente.  Las variables aleatorias además pueden ser *discretas* o *continuas*.
 
-### Variables discretas
+### Variables Discretas
 Las variables discretas (aleatorias) para definir este tipo de variables no entraremos en detalles matemáticos mas allá del interés de este curso, así damos una definición no rigurósa de este tipo de variables. Se dice que una variable es discreta cuando tiene discontinuidades, saltos o interrupciones en los valores que puede tomar. Estas interrupciones indican la aucecia de los valores que la variable puede tomar.  
 
-### Variables continuas  
-Las variables continuas no incluyen discontinuidades o interrupciones que son características en las variables discretas.  Las variables continuas pueden tomar cualquier valor dentro del rango de la variable.  
+### Variables Continuas  
+Las variables continuas no incluyen discontinuidades o interrupciones, por lo grneral son descritas por números reales.  Las variables continuas pueden tomar cualquier valor dentro del rango de la variable.  
 
 ## Inferencia Estadística  
 La *inferencia estadística* es el proceso por el cual se puede llegar a conclusiones relacionadas a una *población* a partir de información contenida en una *muestra* que fue extraída de dicha población.  

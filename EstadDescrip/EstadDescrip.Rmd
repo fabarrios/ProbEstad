@@ -118,6 +118,19 @@ Las variables continuas no incluyen discontinuidades o interrupciones, por lo gr
 ## Inferencia Estadística  
 La *inferencia estadística* es el proceso por el cual se puede llegar a conclusiones relacionadas a una *población* a partir de información contenida en una *muestra* que fue extraída de dicha población.  
 
+## Tipos de Error
+En estadística se pueden hacer dos tipos de error al interpretar modelos estadísticos:  
+
+ - Se puede rechazar la hipótesis nula cuando es válida, esto lleva a un error tipo I  
+ - Se puede aceptar la hipótesis nula cuando es falsa, esto lleva a un error tipo II  
+
+## Modelo estadístico  
+En la estimación de modelos estadísticos, los datos son "intocables" y son los que nos dicen qué pasó bajo ciertas condiciones; lo que se busca es estimar el modelo mínimo más adecuado que descriva los datos con precisión. El modelo se ajusta a los datos, no los datos al modelo.
+El mejor modelo es el que resulta en un mínimo de variaciones no explicadas (minimal residual variance). Se busca el modelo mínimo (menos complejo) y de esta forma se responde al principio de parsimonia.  
+
+## Principio de Parsimonia
+El principio de parsimonia se atribuye al filósofo británico del siglo XIV William de Occam, y por eso se le llama la Navaja de Occam y establece que :“en igualdad de condiciones, la explicación más sencilla suele ser la más probable” o “no hay que multiplicar las causas sin necesidad”. No garantiza que la explicación más simple sea verdadera, pero funciona como una regla heurística para elegir hipótesis o modelos cuando varios explican por igual la evidencia disponible.
+
 # Agrupamiento de Datos
 Para iniciar el estudio de una muestra de datos se pueden hacer algunos procesos que nos permitan hacer una serie de *Medidas Descriptivas* de los datos que se obtuvieron a través de una muestra tomada de una población.  
 Como ya lo expusimos en el ejemplo del número de ballenas que llegaron a las playas del estado de Texas en la década de los 90's. uno de los pasos iniciales que se puede hacer para entender un conjunto de datos medidos es hacer una arreglo ordenado de los datos que tenemos.  En el ejemplo a continuación vamos a usar una muestra de un estudio de sujetos que dejaron de fumar, se listan las edades a las que dejaron de ser fumadores.  La lista al cargarse, no está ordenada ni se han manipulado los datos y por lo tanto se acostumbra decir que los datos están *crudos (raw data)*, encontramos que si nos preguntaran cual es la edad mayor y menor de cuando este grupo de sujetos dejó de fumar nos tomaría algún esfuerzo, sin embargo si cargamos los datos en un vector (arreglo unidimensional) y lo ordenamos bastará con ver el primer y último elementos para saber cual es el mínimo y máximo del grupo de edades.   
@@ -152,7 +165,7 @@ Hay varios casos que necesitan una mejor descripción que las que dan las distri
 
 **Definiciónes**  
 
-1. Una medida descriptiva que de calcula a partir de los datos de una muestra es una *estadística*.  
+1. Una medida descriptiva que se calcula a partir de los datos de una muestra es una *estadística*.  
 2. Una medida descriptiva que se calcula a partir de los datos de una población se llama *parámetro*.  
 
 Existen varia medidas descriptivas, nosotros solo cubriremos las *medidas de tendencia central* y las *medidas de dispersión*.  
@@ -166,7 +179,7 @@ $$ \mu = \frac{\sum_{i=1}^{N} x_i}{N} $$
 Sabemos que hacer una evaluación de un parámetro de toda la población puede ser imposible, por lo que se toma una muestra de la población y se evalúa el promedio de la muestra cómo una estadística para describir por el parámetro promedio. Y se define el promedio de la muestra de n elementos $x_i$ cómo
 $$ \bar{x} = \frac{\sum_{i=1}^{n} x}{n} $$
 Propiedades de promedio  
-1. Es único, para una serie de datos dados hay un y solo un promedio.  
+1. Es único, para una serie de datos dados hay uno y solo un promedio.  
 2. Es simple, el significado del promedio es fácil de entender y fácil de calcular.  
 3. Como cada elemento de la muestra entra en la estimación del promedio, este depende de cada valor. Es decir que los valores extremos tienen una influencia sobre el valor estimado, y en algunos casos distorsionar el valor estimado.  
 

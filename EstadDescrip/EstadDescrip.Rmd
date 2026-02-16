@@ -174,7 +174,7 @@ Las tres medidas de tendencia central más comunes son el *promedio* la *media* 
 ## Promedio (Media)
 
 **Promedio aritmético** La medida de tendencia central más conocida es el promedio aritmético o media, y se distingue por que puede ser estimado. Para generalizar al promedio se define el promedio general como la suma de los elementos de conjunto a describir divididos entre el número total de ellos. Si los elemetos de la variable aleatoria a describir se denotan por $x_i$ cib la letra $i$ como índice de referencia de los $N$ como el número total de valores distintos. Para una *población* la letra $\mu$ denota el promedio de la población, con fórmula
-$$ \mu = \frac{\sum_{i=1}^{N} x_i}{N} $$
+2
 
 Sabemos que hacer una evaluación de un parámetro de toda la población puede ser imposible, por lo que se toma una muestra de la población y se evalúa el promedio de la muestra cómo una estadística para describir por el parámetro promedio. Y se define el promedio de la muestra de n elementos $x_i$ cómo
 $$ \bar{x} = \frac{\sum_{i=1}^{n} x}{n} $$

@@ -104,6 +104,9 @@ $$ \mu = (1)(.2088) + (2)(.1582) + (3)(.1313) + (4)(.1313) + \dots + (8)(.0370) 
 $$ \sigma^2 = (1 - 3.5589)^2(.2088) + (2 - 3.5589)^2(.1582) + (3 - 3.5589)^2(.1313) + \dots + (8 - 3.5589)^2(.0370) = 3.8559 $$
 de donde concluimos que en promedio se usan $3.5589$ programas por familia con una varianza de $3.8559$ y una desviación estándar de $\sqrt{3.8559} = 1.9637$ programas por familia.
 
+## Otro ejemplo  
+Del ejercicio 4.2.1 del Daniel: Del estudio de Cross, a los pacientes que estaban en el programa de tratamiento para adiciones al juego. Se les preguntó si declaraban otra adicción a alcohol o substancias.  Si la variable X de la tabla 4.2.4 presenta la distribución de frecuencias de la variable aleatoria discreta X relacionada con el número de otras addiciones además del juego que declaran los participantes de este estudio.  Construya una tabla de frecuencias relativas y de frecuencias acumuladas para la variable discreta del número de adiciones.  Construya una gráfica de la distribución de las probabilidades.
+[Table 4.2.4](https://fabarrios.github.io/ProbEstad/Notas/StudyCrossTable_ch4)
 
 # Distribución Binomial  
 Cuando un ensayo (toma de dato) aleatorio solo puede suceder suceder de una de dos formas posibles, mutuamente excluyentes (vivo-muerto, enfermo-sano, mujer-hombre) se llama un ensayo de Bernoulli.  

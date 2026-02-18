@@ -9,6 +9,7 @@ cu_prob_casg <- cumsum(prob_casg)
 
 # Frequency of the CASG variable graph
 plot(freq_casg, ylab= "Frequency of CASG", pch =19)
+barplot(freq_casg, ylab= "Frequency of CASG", col = 6)
 
 # cumulative probability graph
 plot(1:10, cu_prob_casg,

@@ -7,7 +7,7 @@
 
         <meta name="author" content="F. A. Barrios ENES Juriquilla, UNAM " />
     
-        <meta name="date" content="2026-02-16" />
+        <meta name="date" content="2026-02-23" />
     
     <title>Distribuciones de Probabilidad</title>
 
@@ -1303,7 +1303,7 @@ margin-left: 0 !important;
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
                   <p class="author"><span class="glyphicon glyphicon-user"></span> F.
 A. Barrios<br>ENES Juriquilla, UNAM<br></p>
-                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2026-02-16</p>
+                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2026-02-23</p>
           </div>
    </div>
      
@@ -1439,14 +1439,14 @@ una gráfica de la distribución de las probabilidades. <a href="https://fabarri
 </div>
 <div id="distribución-binomial" class="section level1">
 <h1>Distribución Binomial</h1>
-<p>Cuando un ensayo (toma de dato) aleatorio solo puede suceder suceder
-de una de dos formas posibles, mutuamente excluyentes (vivo-muerto,
+<p>Cuando un ensayo (toma de dato) aleatorio solo puede suceder de una
+de dos formas posibles, mutuamente excluyentes (vivo-muerto,
 enfermo-sano, mujer-hombre) se llama un ensayo de Bernoulli.<br />
 Un <strong>Proceso de Bernoulli</strong> es una secuencia de ensayos de
 Bernoulli. Y cumple con las siguientes condiciones<br />
-1. Cada ensayo solo puede resultar en una de dos posibles, mutuamente
-excluyentes, posibilidades. A una de ellas se le llama “éxito” y a la
-otra “fracaso”.<br />
+1. Cada ensayo solo puede resultar en una de dos posibles,
+<em>mutuamente excluyentes</em>, posibilidades. A una de ellas se le
+llama “éxito” y a la otra “fracaso”.<br />
 2. La probabilidad de “éxito” se denota <span class="math inline">\(p\)</span>, y es constante de ensayo en ensayo, la
 probabilidad de “fracaso” es <span class="math inline">\((1-p) =
 q\)</span><br />
@@ -1469,10 +1469,12 @@ forma.\]</span> Esta expresión es la <strong>Distribución
 Binomial</strong>, en general los valores de <span class="math inline">\(p(x)\)</span> para una distribución Binomial, se
 pueden estimar a partir de tablas de valores de <span class="math inline">\(p\)</span>, pero en R se calculan con la familia
 de funciones <code>dbinom, pbinom, qbinom y rbinom</code>.<br />
-Los parámetros de una distribución binomial son dos: n y p, son
-suficientes para estimar la distribución binomial. Y la expresión para
-el promedio y varianza de una distribución binomial están dados por:
-<span class="math inline">\(\mu = np\)</span> y <span class="math inline">\(\sigma^2 = np(1-p) = npq\)</span>.<br />
+Los parámetros de una distribución binomial son dos: <em>n</em> y
+<em>p</em> (<em>n</em> el número de ensayos y <em>p</em> la probabilidad
+de éxito del proceso), son suficientes para estimar la distribución
+binomial. Y la expresión para el promedio y varianza de una distribución
+binomial están dados por: <span class="math inline">\(\mu = np\)</span>
+y <span class="math inline">\(\sigma^2 = np(1-p) = npq\)</span>.<br />
 Como lo mencionamos en R se usa la funciona <code>dbinom</code> para
 estimar el valor de la probabilidad en un punto <span class="math inline">\(x\)</span> del valor de la variable aleatoria, la
 distribución se estima con <code>pbinom</code> y resultados por cuartil
@@ -1488,8 +1490,8 @@ State Center for Health Statistics para el año 2001, se encontró que el
 85.8 por ciento de los embarazos tuvieron un parto a término de 37
 semanas. Con este dato podemos determinar que la probabilidad de
 nacimiento a término es de <span class="math inline">\(p =.858\)</span>.
-Si de estos registros escogemos de forma aleatoria cinco, cual es la
-probabilidad que exactamente tres de ellos sean nacimientos a
+Si de estos registros escogemos de forma aleatoria <em>cinco</em>, cual
+es la probabilidad que exactamente tres de ellos sean nacimientos a
 término?<br />
 <em>Respuesta:</em> tenemos que <span class="math inline">\(p =
 .858\)</span> probabilidad a término. ( <span class="math inline">\(q =
@@ -1538,7 +1540,7 @@ demostrar que <span class="math inline">\(f(x) \geq 0\)</span> para toda
 ocurrencia de un evento en un intervalo o volumen no tiene ningún efecto
 de que ocurra otro o más eventos en el intervalo.<br />
 </li>
-<li>En teoría puede suceden un número infinito de ocurrencias en el
+<li>En teoría pueden suceder un número infinito de ocurrencias en el
 intervalo.<br />
 </li>
 <li>La probabilidad de que ocurra un evento en un intervalo es
@@ -1550,23 +1552,24 @@ probabilidad de que ocurra más de un evento es insignificante.</li>
 <p>La distribución de Poisson se usa como modelo para describir cuando
 los ensayos de los eventos (o entidades) están distribuidas
 aleatoriamente en le tiempo o espacio.</p>
-<p>En R la distribución de Poisson es ejecutada por los comandos
+<p>En R la distribución de Poisson se estima por los comandos
 <code>dpois, ppois, qpois, y rpois</code></p>
 <p><strong>Ejemplo</strong> En un estudio de anafilaxis entre pacientes
-que expuestos a anestesia con rocuronio bromuro, laake y Rottingen
-encontraron que los casos de anafilaxis siguen una distribución de
-Poissson con <span class="math inline">\(\lambda = 12\)</span>
-incidentes por año en Noruega. Encuentre la probabilidad de que en el
-año siguiente a este estudio, en paciente que fueron anestesiados por
-rocuronio bromuro,se darán exactamente tres casos de anafilaxis.<br />
-<em>respuesta</em> La respuesta es <span class="math inline">\(P(X=3)\)</span> en una distribución de poisson. En
-R dpois(3, 12)</p>
+que fueron expuestos a anestesia con rocuronio bromuro, laake y
+Rottingen encontraron que los casos de anafilaxis siguen una
+distribución de Poisson con <span class="math inline">\(\lambda =
+12\)</span> incidentes por año en Noruega. Encuentre la probabilidad de
+que en el año siguiente a este estudio, en pacientes que fueron
+anestesiados por rocuronio bromuro, se pudieran dar exactamente tres
+casos de anafilaxis.<br />
+<em>respuesta</em> La respuesta es <span class="math inline">\(P(X=3)\)</span> en una distribución de poisson.
+estimando esta probabilidad usando R es: dpois(3, 12)</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">dpois</span>(<span class="dv">3</span>, <span class="dv">12</span>)</span></code></pre></div>
 <pre><code>[1] 0.001769533</code></pre>
 <p><strong>Ejemplo</strong> del mismo ejemplo anterior cual es la
-probabilidad de que por lo menos tres pacientes in el año siguiente al
-estudio experimenten anafilaxis si rocuronio bromuro es usan para
-anestesia.<br />
+probabilidad de que por lo menos tres pacientes en el año siguiente al
+estudio experimenten anafilaxis si rocuronio bromuro es usado para
+anestesiarlos.<br />
 <em>respuesta</em> Por lo menos tres es <span class="math inline">\(P(X
 \geq 3)\)</span> se necesita calcular el complemento de <span class="math inline">\(P(X \geq 3)\)</span> entonces es <span class="math inline">\(1 - P(X \leq 2)\)</span></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">ppois</span>(<span class="dv">2</span>, <span class="dv">12</span>))</span></code></pre></div>
@@ -1577,11 +1580,12 @@ anestesia.<br />
 complementarias en R podemos suponer:
 <code>(1 - ppois(x, l, lower.tail = TRUE) = ppois(x, l, lower.tail = FALSE)</code></p>
 <p><strong>Ejemplo</strong> En un estudio de un organismo acuático, una
-gran cantidad de muestras son tomadas de un estanque de agua, y el
-número de organismos del estudio son estimados. El promedio deorganismos
-fue determinado en dos. Suponiendo que el número de organismos sigue una
-distribución de Poisson, encuentre la probabilidad de que en la
-siguiente muestra contenga uno o menos organismos?.<br />
+gran cantidad de muestras del mismo volumen son tomadas de un estanque
+de agua, y el número de organismos del estudio son estimados. El
+promedio de organismos fue determinado en dos por muestra. Suponiendo
+que el número de organismos sigue una distribución de Poisson, encuentre
+la probabilidad de que la siguiente muestra contenga uno o menos
+organismos?.<br />
 <em>respuesta</em> estamos estimando <span class="math inline">\(P(X
 \leq 1)\)</span></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">ppois</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
@@ -1670,8 +1674,8 @@ cambios? Iniciando con una distribución para <span class="math inline">\(\sigma
 </div>
 <div id="aplicaciones-de-la-distribución-normal" class="section level2">
 <h2>Aplicaciones de la distribución normal</h2>
-<p><strong>Ejemplo</strong> cual es la probabilidad de que z tomado al
-azar esté entre <span class="math inline">\(-2.55\)</span> y <span class="math inline">\(2.55\)</span>?<br />
+<p><strong>Ejemplo</strong> cual es la probabilidad de un número
+aleatorio <em>z</em> tomado al azar, esté entre <span class="math inline">\(-2.55\)</span> y <span class="math inline">\(2.55\)</span>?<br />
 <em>respuesta</em> estamos calculando la probabilidad de <span class="math inline">\(P(-2.55 &lt; z &lt; 2.55) = P(X \leq 2.55) - P(X
 \leq -2.55)\)</span></p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">2.55</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">2.55</span>)</span></code></pre></div>

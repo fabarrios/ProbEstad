@@ -109,9 +109,9 @@ Del ejercicio 4.2.1 del Daniel: Del estudio de Cross, a los pacientes que estaba
 [Table 4.2.4](https://fabarrios.github.io/ProbEstad/Notas/StudyCrossTable_ch4)
 
 # Distribución Binomial  
-Cuando un ensayo (toma de dato) aleatorio solo puede suceder suceder de una de dos formas posibles, mutuamente excluyentes (vivo-muerto, enfermo-sano, mujer-hombre) se llama un ensayo de Bernoulli.  
+Cuando un ensayo (toma de dato) aleatorio solo puede suceder de una de dos formas posibles, mutuamente excluyentes (vivo-muerto, enfermo-sano, mujer-hombre) se llama un ensayo de Bernoulli.  
 Un **Proceso de Bernoulli** es una secuencia de ensayos de Bernoulli. Y cumple con las siguientes condiciones  
-1. Cada ensayo solo puede resultar en una de dos posibles, mutuamente excluyentes, posibilidades. A una de ellas se le llama "éxito" y a la otra "fracaso".  
+1. Cada ensayo solo puede resultar en una de dos posibles, *mutuamente excluyentes*, posibilidades. A una de ellas se le llama "éxito" y a la otra "fracaso".  
 2. La probabilidad de "éxito" se denota $p$, y es constante de ensayo en ensayo, la probabilidad de "fracaso" es $(1-p) = q$  
 3. Cada ensayo es *independiente*, es decir el resultado de cada ensayo no afecta el resultado de los otros ensayos.  
 
@@ -123,11 +123,11 @@ en donde $x!$ es el factorial de $x$, definido como el producto de números ente
 $$ f(x) =  _{n}C_{x} p^x (1-p)^{n-x} \hspace {20pt} para \; x = 0, 1, 2, \dots , n $$
 $$ f(x) = 0, \hspace {20pt} de\; otra\; forma.$$
 Esta expresión es la **Distribución Binomial**, en general los valores de $p(x)$ para una distribución Binomial, se pueden estimar a partir de tablas de valores de $p$, pero en R se calculan con la familia de funciones `dbinom, pbinom, qbinom y rbinom`.  
-Los parámetros de una distribución binomial son dos: n y p, son suficientes para estimar la distribución binomial. Y la expresión para el promedio y varianza de una distribución binomial están dados por: $\mu = np$ y $\sigma^2 = np(1-p) = npq$.  
+Los parámetros de una distribución binomial son dos: *n* y *p* (*n* el número de ensayos y *p* la probabilidad de éxito del proceso), son suficientes para estimar la distribución binomial. Y la expresión para el promedio y varianza de una distribución binomial están dados por: $\mu = np$ y $\sigma^2 = np(1-p) = npq$.  
 Como lo mencionamos en R se usa la funciona `dbinom` para estimar el valor de la probabilidad en un punto $x$ del valor de la variable aleatoria, la distribución se estima con `pbinom` y resultados por cuartil se usa `qbinom`. Además para obtener un conjunto de números estimados de tal forma que estén distribuidos siguiendo una binomial se usa `rbinom`.  
 Para calcular la función de probabilidad binomial para un conjunto de valores, $x_i$, un número de ensayos $n$ y una probabilidad de éxito $p$ se puede hacer uso de la función `dbinom`.  
 
-*Ejemplo* Se analizaron los registros de nacimientos del NC State Center for Health Statistics para el año 2001, se encontró que el 85.8 por ciento de los embarazos tuvieron un parto a término de 37 semanas. Con este dato podemos determinar que la probabilidad de nacimiento a término es de $p =.858$.  Si de estos registros escogemos de forma aleatoria cinco, cual es la probabilidad que exactamente tres de ellos sean nacimientos a término?  
+*Ejemplo* Se analizaron los registros de nacimientos del NC State Center for Health Statistics para el año 2001, se encontró que el 85.8 por ciento de los embarazos tuvieron un parto a término de 37 semanas. Con este dato podemos determinar que la probabilidad de nacimiento a término es de $p =.858$.  Si de estos registros escogemos de forma aleatoria *cinco*, cual es la probabilidad que exactamente tres de ellos sean nacimientos a término?  
 *Respuesta:* tenemos que $p = .858$ probabilidad a término. ( $q = (1-p) = (1-.858) = .142$ )  
 
 ```{r}
@@ -160,21 +160,21 @@ En donde $\lambda$ es el parámetro de la distribución y es el número promedio
 
 ## Proceso de Poisson  
 1. Las ocurrencias de cada evento son independientes. Es decir la ocurrencia de un evento en un intervalo o volumen no tiene ningún efecto de que ocurra otro o más eventos en el intervalo.  
-2. En teoría puede suceden un número infinito de ocurrencias en el intervalo.  
+2. En teoría pueden suceder un número infinito de ocurrencias en el intervalo.  
 3. La probabilidad de que ocurra un evento en un intervalo es proporcional a la longitud del intervalo.  
 4. En cuanquier porción infinitamente pequeña del intervalo, la probabilidad de que ocurra más de un evento es insignificante.  
 
 La distribución de Poisson se usa como modelo para describir cuando los ensayos de los eventos (o entidades) están distribuidas aleatoriamente en le tiempo o espacio.  
 
-En R la distribución de Poisson es ejecutada por los comandos `dpois, ppois, qpois, y rpois`
+En R la distribución de Poisson se estima por los comandos `dpois, ppois, qpois, y rpois`
 
-**Ejemplo** En un estudio de anafilaxis entre pacientes que expuestos a anestesia con rocuronio bromuro, laake y Rottingen encontraron que los casos de anafilaxis siguen una distribución de Poissson con $\lambda = 12$ incidentes por año en Noruega. Encuentre la probabilidad de que en el año siguiente a este estudio, en paciente que fueron anestesiados por rocuronio bromuro,se darán exactamente tres casos de anafilaxis.  
-*respuesta* La respuesta es $P(X=3)$ en una distribución de poisson. En R dpois(3, 12)  
+**Ejemplo** En un estudio de anafilaxis entre pacientes que fueron expuestos a anestesia con rocuronio bromuro, laake y Rottingen encontraron que los casos de anafilaxis siguen una distribución de Poisson con $\lambda = 12$ incidentes por año en Noruega. Encuentre la probabilidad de que en el año siguiente a este estudio, en pacientes que fueron anestesiados por rocuronio bromuro, se pudieran dar exactamente tres casos de anafilaxis.  
+*respuesta* La respuesta es $P(X=3)$ en una distribución de poisson. estimando esta probabilidad usando R es: dpois(3, 12)  
 ```{r}
 dpois(3, 12)
 ```
 
-**Ejemplo** del mismo ejemplo anterior cual es la probabilidad de que por lo menos tres pacientes in el año siguiente al estudio experimenten anafilaxis si rocuronio bromuro es usan para anestesia.  
+**Ejemplo** del mismo ejemplo anterior cual es la probabilidad de que por lo menos tres pacientes en el año siguiente al estudio experimenten anafilaxis si rocuronio bromuro es usado para anestesiarlos.  
 *respuesta* Por lo menos tres es $P(X \geq 3)$ se necesita calcular el complemento de $P(X \geq 3)$ entonces es $1 - P(X \leq 2)$  
 ```{r}
 (1 - ppois(2, 12))
@@ -184,7 +184,7 @@ ppois(2 ,12, lower.tail = FALSE)
 
 Podemos concluir de este ejemplo que para probabilidades complementarias en R podemos suponer: `(1 - ppois(x, l, lower.tail = TRUE) = ppois(x, l, lower.tail = FALSE)`  
 
-**Ejemplo** En un estudio de un organismo acuático, una gran cantidad de muestras son tomadas de un estanque de agua, y el número de organismos del estudio son estimados.  El promedio deorganismos fue determinado en dos.  Suponiendo que el número de organismos sigue una distribución de Poisson, encuentre la probabilidad de que en la siguiente muestra contenga uno o menos organismos?.  
+**Ejemplo** En un estudio de un organismo acuático, una gran cantidad de muestras del mismo volumen son tomadas de un estanque de agua, y el número de organismos del estudio son estimados.  El promedio de organismos fue determinado en dos por muestra.  Suponiendo que el número de organismos sigue una distribución de Poisson, encuentre la probabilidad de que la siguiente muestra contenga uno o menos organismos?.  
 *respuesta* estamos estimando $P(X \leq 1)$
 ```{r}
 
@@ -245,7 +245,7 @@ abline(v=-1.75, col = 4)
 
 ## Aplicaciones de la distribución normal  
 
-**Ejemplo** cual es la probabilidad de que z tomado al azar esté entre $-2.55$ y $2.55$?    
+**Ejemplo** cual es la probabilidad de un número aleatorio *z* tomado al azar, esté entre $-2.55$ y $2.55$?    
 *respuesta* estamos calculando la probabilidad de $P(-2.55 < z < 2.55) = P(X \leq 2.55) - P(X \leq -2.55)$  
 ```{r}
 pnorm(2.55) - pnorm(-2.55)

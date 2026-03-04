@@ -177,7 +177,7 @@ Si se hace un cálculo usando directamente la función `pnorm` de R, cómo puedo
 pnorm((92 - 105), mean = 0, sd = sqrt(20^2/15 + 20^2/15), lower.tail = TRUE)
 ```
 
-2. Suponga que se ah establecido que que para cierto tipo de usuario la longitud promedio de una visita a domicilio por un enfermero de salud pública es de 45 minutos con una desviación estándar de 15 minutos, y para un segundo tipo de usuario el promedio de la visita domiciliaria es de 30 minutos de duración con desviación estándar de 20 minutos.  Su un enfermero hace 35 visitas aleatorias a usuarios del primer tipo y 40 a usuarios del segundo tipo, cual es la probabilidad que el promedio de tiempo de visita domiciliaria entre los dos grupos sea de 20 o más minutos?  
+2. Suponga que está establecido que para cierto tipo de usuario la longitud promedio de una visita a domicilio por un enfermero de salud pública es de 45 minutos con una desviación estándar de 15 minutos, y para un segundo tipo de usuario el promedio de la visita domiciliaria es de 30 minutos de duración con desviación estándar de 20 minutos.  Su un enfermero hace 35 visitas aleatorias a usuarios del primer tipo y 40 a usuarios del segundo tipo, cual es la probabilidad que el promedio de tiempo de visita domiciliaria entre los dos grupos sea de 20 o más minutos?  
 *Respuesta*  
 ```{r}
 pnorm(20, mean = (45 - 30), sd = sqrt(15^2/35 + 20^2/40), lower.tail = FALSE)

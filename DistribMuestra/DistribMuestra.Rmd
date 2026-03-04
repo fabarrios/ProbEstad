@@ -83,7 +83,7 @@ b) $\sigma_{\bar{X}} = \sigma/\sqrt{n}$ cuando $n/N \leq .05$ y $\sigma_{\bar{X}
 c) La distribución de $\bar{X}$ es aproximadamente normal.  
 
 ## Ejemplos  
-1. Supongamos que de una determinada población humana grande, la longitud del cráneo está distribuida en forma normal con promedio de 185.6 mm y desviación estándar de 12.7 mm.  Cual es la probabilidad de que una muestra aleatoria de esta población de 10 sujetos resulte con un promedio de mayor a 190mm?  
+1. Supongamos que de una determinada población humana grande, la longitud del cráneo está distribuida en forma normal con promedio de 185.6 mm y desviación estándar de 12.7 mm.  ¿Cual es la probabilidad de que una muestra aleatoria de esta población de 10 sujetos resulte con un promedio de mayor a 190mm?  
 Se usa la transformada a $z = \frac{\bar{X}-\mu_{\bar{X}}}{\sigma/\sqrt{n}}$ y nos preguntan por la probabilidad de $P(X \geq 190mm)$ para una distribución con $\mu_{\bar{X}} = 185.6mm$ y una desviación estándar $\sigma = 12.7mm$ que resulta en una desviación estándar muestral de $\sigma_{\bar{X}} = \sigma/\sqrt{n}$  
 ```{r}
 # P(x >= 190)
@@ -91,8 +91,8 @@ pnorm(190, mean = 185.6, sd = (12.7/sqrt(10)), lower.tail = FALSE )
 
 ```
 
-2. Si el promedio y la desviación estándar para los valores de hierro en suero de hombres sanos es de $120$ y $15 \mu g$ por $100ml$, respectivamente, cual es la probabilidad de que una muestra al azar de 50 hombres normales sanos resulte en un promedio entre 115 y 125 micro gramos por $100ml$?  
-La respuesta es la diferencia de las probabilidades de $X$ menor o igual a $125$ y $X$ menor o igual a $115$, es decir $P(X\leq 125) - P(X \leq 115)$ claro que con la distribución normal con la desviación estándar escalada a la muestra de $n=50$.  
+2. Si el promedio y la desviación estándar para los valores de hierro en suero de hombres sanos es de $120$ y $15 \mu g$ por $100ml$, respectivamente, cual es la probabilidad de que una muestra al azar de 50 hombres normales sanos resulte en un promedio entre 115 y 125 micro gramos por $100 ml$?  
+La respuesta es la diferencia de las probabilidades de $X$ menor o igual a $125$ y $X$ mayor o igual a $115$, es decir $P(X\leq 125) - P(X \leq 115)$ claro que con la distribución normal con la desviación estándar escalada a la muestra de $n=50$.  
 ```{r}
 pnorm(125, mean = 120, sd = (15/sqrt(50)), lower.tail = TRUE ) - pnorm(115, mean = 120, sd = (15/sqrt(50)), lower.tail = TRUE )
 ```

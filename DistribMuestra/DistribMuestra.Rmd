@@ -124,7 +124,7 @@ $$ z_c = \frac{ \frac{x - .5}{n} - p}{ \sqrt{pq/n} }, \; para \; x > np $$
 
 **Ejemplo** Los resultados de una elección mostraron que determinado candidato obtuvo 46% de los votos. Determine la probabilidad de que en una encuesta realizada a (a) 200 y (b) 1000 personas elegidas al azar de la población de votantes se haya obtenido una mayoría de votos a favor de este candidato.  
 
-*Respuesta* Tenemos que para que tenga la mayoría es el caso de $p > 0.5$, más "uno", para una población con $\hat{p} = .46$ con una muestra de $200$ lo calculamos con $\frac{1}{2n}$ que resulta en $0.0025$ para $n=200$ la probabilidad de una mayoría resulta en estimar $P(x \geq .5025)$ y para b se estima la mayoría con .5 más uno en una muestra de 1000, es decir: $\frac{1}{2(1000)}$ resulta en $P(x \geq .5005)$.  
+*Respuesta* Tenemos que para que tenga la mayoría es el caso de $p > 0.5$, más "uno", para una población con $\hat{p} = .46$ en (a) con una muestra de $200$ lo calculamos con $\frac{1}{2n}$ en este caso es $\frac{1}{400}$ que resulta en $0.0025$ para la probabilidad de una mayoría resulta en estimar $P(x \geq .5025)$. Para (b) se estima la mayoría con .5 más uno en una muestra de 1000, es decir: $\frac{1}{2(1000)}$ resulta en estimar $P(x \geq .5005)$.  
 
 ```{r}
 # a) para P(x >= .5025)
@@ -135,7 +135,7 @@ pnorm(0.5005, mean = .46, sd = sqrt(.46*(1-.46)/1000), lower.tail = FALSE)
 
 ```
 
-**Ejemplo** Resultados de la Encuesta Nacional de Salud y Nutrición, 1999-2000 (NHANES), mostraron que el 31 por ciento de los adultos estadounidenses de edades entre 20-74 son obesos (obesidad está definida con un índice de masa corporal mayor o igual a 30.0). Designaremos a esta proporción de la población como $p=.31$. Si de forma aleatoria seleccionamos a 150 individuos de esta población, cual es la probabilidad de que la proporción de la muestra que son obesos sea tan grande o más como .40?  
+**Ejemplo** Resultados de la Encuesta Nacional de Salud y Nutrición, 1999-2000 (NHANES), mostraron que el 31 por ciento de los adultos estadounidenses de edades entre 20-74 son obesos (obesidad está definida con un índice de masa corporal mayor o igual a 30.0). Designaremos a esta proporción de la población como $p=.31$. Si de forma aleatoria seleccionamos a 150 individuos de esta población, ¿cuál es la probabilidad de que la proporción de la muestra los que son obesos sea tan grande o más de .40?  
 
 *Respuesta* Nos piden $\hat{p} \geq .40$  $\hat{p} = .40$ y $p=.31$ con $\sigma_{\hat{p}}^2 = p(1-p)/n$  
 
@@ -143,7 +143,7 @@ pnorm(0.5005, mean = .46, sd = sqrt(.46*(1-.46)/1000), lower.tail = FALSE)
 pnorm(.40, mean = .31, sd = sqrt(.31*.69/150), lower.tail = FALSE)
 ```
 
-**Ejemplo** En un estudio del cuidado médico en mujeres afroamericanas de bajos recursos, se encontró que solo el 51 por ciento de estas mujeres contaron con cuidados prenatales adecuados. Supongamos que para una población similar de mujeres afroamericanas de bajos recursos el 51 por ciento tuvieron cuidados médicos adecuados, si 200 mujeres de esta población son seleccionadas al azar, cual es la probabilidad de que menos del 45 por ciento haya recibido cuidado prenatal adecuado?  
+**Ejemplo** En un estudio del cuidado médico en mujeres afroamericanas de bajos recursos, se encontró que solo el 51 por ciento de estas mujeres contaron con cuidados prenatales adecuados. Supongamos que para una población similar de mujeres afroamericanas de bajos recursos el 51 por ciento tuvieron cuidados médicos adecuados, si 200 mujeres de esta población son seleccionadas al azar, ¿cuál es la probabilidad de que menos del 45 por ciento haya recibido cuidado prenatal adecuado?  
 
 *Respuesta* Nos preguntan la probabilidad de $P(\hat{p} \leq .45)$  
 

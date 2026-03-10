@@ -77,11 +77,11 @@ La cantidad $1-\alpha$ en el caso más común $.95$ es llamado el *coeficiente d
 
 ## Ejemplos  
 
-1. Un fisioterapeuta deseaba estimar, con una confianza del 99 por ciento, la fuerza máxima de un músculo en particular, de un grupo de individuos.  Está dispuesto a aceptar que los registros de fuerza muscular están aproximadamente distribuidos en forma normal con una varianza de $144$.  Una muestra de $15$ sujetos que participaron en este experimento resultaron en un promedio de fuerza de $84.3$.  
+1. Un fisioterapeuta deseaba estimar, con una confianza del 99 por ciento, la fuerza máxima de un músculo en particular, de un grupo de individuos.  Está dispuesto a aceptar que los registros de fuerza muscular están aproximadamente distribuidos en forma normal con una varianza de $144 N$.  Una muestra de $15$ sujetos que participaron en este experimento resultaron en un promedio de fuerza de $84.3 N$.  
 *Respuesta* Los elementos son: tenemos $\alpha=.01$, $z_{(1-.01/2)} \rightarrow \alpha/2 = .005$ si usamos R para obtener el valor de $z$ para la condición a la derecha de $\alpha/2 = .005$ usamos `qnorm(.005, lower.tail = FALSE)` y el intervalo es  
 ```{r}
-( 84.3 + qnorm(.005, lower.tail = FALSE)*sqrt(144/15) )
-( 84.3 + qnorm(.005, lower.tail = TRUE)*sqrt(144/15) )
+( maxi <- 84.3 + qnorm(.005, lower.tail = FALSE)*sqrt(144/15) )
+( mini <- 84.3 + qnorm(.005, lower.tail = TRUE)*sqrt(144/15) )
 ```
 
 2. En el archivo `EXA_C06_S02_04.csv` se listan los valores de actividad (micromoles por minuto por gramo de tejido) de cierta enzima medida en tejido normal gástrico de 35 pacientes con carcinoma gástrico. Se quiere estimar el intervalo de confianza a 95 por ciento del promedio de la población.  Suponga que conocemos que la varianza de la población es 0.36. No es necesario suponer que los valores de muestreo siguen una distribución normal, ya que el número de muestras es suficientemente grande 

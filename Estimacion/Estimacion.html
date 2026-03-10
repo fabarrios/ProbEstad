@@ -1441,16 +1441,16 @@ precisión de la estimación. Esta cantidad también es llamad
 ciento, la fuerza máxima de un músculo en particular, de un grupo de
 individuos. Está dispuesto a aceptar que los registros de fuerza
 muscular están aproximadamente distribuidos en forma normal con una
-varianza de <span class="math inline">\(144\)</span>. Una muestra de
+varianza de <span class="math inline">\(144 N\)</span>. Una muestra de
 <span class="math inline">\(15\)</span> sujetos que participaron en este
-experimento resultaron en un promedio de fuerza de <span class="math inline">\(84.3\)</span>.<br />
+experimento resultaron en un promedio de fuerza de <span class="math inline">\(84.3 N\)</span>.<br />
 <em>Respuesta</em> Los elementos son: tenemos <span class="math inline">\(\alpha=.01\)</span>, <span class="math inline">\(z_{(1-.01/2)} \rightarrow \alpha/2 = .005\)</span>
 si usamos R para obtener el valor de <span class="math inline">\(z\)</span> para la condición a la derecha de <span class="math inline">\(\alpha/2 = .005\)</span> usamos
 <code>qnorm(.005, lower.tail = FALSE)</code> y el intervalo es</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>( <span class="fl">84.3</span> <span class="sc">+</span> <span class="fu">qnorm</span>(.<span class="dv">005</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">144</span><span class="sc">/</span><span class="dv">15</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>( maxi <span class="ot">&lt;-</span> <span class="fl">84.3</span> <span class="sc">+</span> <span class="fu">qnorm</span>(.<span class="dv">005</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">144</span><span class="sc">/</span><span class="dv">15</span>) )</span></code></pre></div>
 <pre><code>[1] 92.28092</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>( <span class="fl">84.3</span> <span class="sc">+</span> <span class="fu">qnorm</span>(.<span class="dv">005</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">144</span><span class="sc">/</span><span class="dv">15</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>( mini <span class="ot">&lt;-</span> <span class="fl">84.3</span> <span class="sc">+</span> <span class="fu">qnorm</span>(.<span class="dv">005</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">144</span><span class="sc">/</span><span class="dv">15</span>) )</span></code></pre></div>
 <pre><code>[1] 76.31908</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>En el archivo <code>EXA_C06_S02_04.csv</code> se listan los valores

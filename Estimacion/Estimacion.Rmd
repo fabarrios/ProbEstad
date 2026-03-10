@@ -34,9 +34,9 @@ library(tidyverse)
 # Estimación  
 El proceso de hacer una estimación, es aquel que nos permite calcular, a partir de una muestra, alguna estadística que es una aproximación al valor real del parámetro de la población de donde la muestra fue tomada.  
 **Definición** Inferencia estadística es el procedimiento por el cual podemos alcanzar alguna conclusión acerca de alguna población con base en la información contenida en una muestra extraída de esa población.  
-Se encontrará que de cada parámetro que se discuta, se pueden estimar dos tipos de resultados: un estimado puntual y un estimado de intervalo.  
+Se encontrará que de cada parámetro que se discuta, se pueden estimar dos tipos de resultados: un **estimado puntual** y un **estimado de intervalo**.  
 **Definición** Un estimado puntual es un valor numérico único usado para estimar el parámetro correspondiente de la población.  
-**Definición** Un estimado de intervalo consiste en dos valores numéricos que definen el rango de valores que, con algún grado de confianza, que muy posiblemente incluye el parámetro de la población que se está estimando.  
+**Definición** Un estimado de intervalo consiste en dos valores numéricos que definen el rango de valores entre los que, con algún grado de confianza, muy posiblemente se incluye el parámetro de la población que se está estimando.  
 
 ## Estimador  
 Nos hemos referido a un valor único estimado como un estimado único, a esto nos referiremos como un estimador,  una fórmula para estimar un valor puntual de una variable aleatoria.  
@@ -49,10 +49,10 @@ El símbolo $E(T)$ se conoce como el *valor esperado de T*, para una población 
 Estas poblaciones pueden o no, ser la misma población. La estadística nos permite hacer inferencias de las poblaciones muestreadas, suponiendo que el muestreo fue hecho correctamente.  
 
 ## Intervalo de confianza para el promedio  
-En el tema anterior usamos el hecho de que una distribución normal tipificada es aquella con promedio $\mu=0$ y desviación estándar $\sigma = 1$ en donde para una muestra el promedio muestral $\mu_{\bar{x}}$ lo tomamos igual al promedio de la población $\mu$, y la varianza $\sigma_{\bar{x}}^2$ será igual a $\sigma^2/n$. En donde para una distribución normal tipificada resultará que el 95% de los valores de la distribución de $\bar{x}$ están localizados dentro de los valores de una desviación estándar $\sigma_{\bar{x}}$ a la izquierda de cero (promedio $\bar{x}$) y a la derecha del cero otra desviación estándar.  
+En el tema anterior usamos el hecho de que una distribución normal tipificada es aquella con promedio $\mu=0$ y desviación estándar $\sigma = 1$ en donde para una muestra el promedio muestral $\mu_{\bar{x}}$ lo tomamos igual al promedio de la población $\mu$, y la varianza $\sigma_{\bar{x}}^2$ será igual a $\sigma^2/n$. En donde para una distribución normal tipificada resultará que el 95% de los valores de la distribución de $\bar{x}$ están localizados dentro de los valores de una desviación estándar $\sigma_{\bar{x}}$ a la izquierda de cero (promedio $\bar{x}$) y a la derecha del cero otra desviación estándar.  Se dice que esto sigue la regla **68-95-99.7** (también llamada la regla empírica), en donde el 68% de los datos caen dentro de una desviación estándar, 95% dentreo de 2 desviaciones estándar, y 99.7% dentro de 3 desviaciones estándar.
 
 ```{r}
-curve(dnorm, from = -4.5, to = 4.5, main = "Distribución Normal Estándar")
+curve(dnorm, from = -3.5, to = 3.5, main = "Distribución Normal Estándar")
 abline(v=-2, lty = 2, col = 2)
 abline(v= 2, lty = 2, col = 2)
 ```
@@ -107,7 +107,7 @@ $$ s = \sqrt{\sum_i^n{(x_i - \bar{x})^2}/(n-1)} $$
 para reemplazar $\sigma$.  Cuando la muestra es grande, mayor a 30, el parámetro muestral $s$ se considera bueno.  Se sabe que para muestras de buen tamaño se tiene la *Distribución $t$ de Student* o distribución $t$  
 $$  t= \frac{\bar{x}-\mu}{s/\sqrt{n}} $$  
 
-## Propiedades de la distribución t    
+## Propiedades de la distribución t.      
 
 1. Tiene promedio $0$.  
 2. Es simétrica al promedio.  
@@ -138,6 +138,7 @@ $$  \bar{x} \pm t_{(1-\alpha/2)}\frac{s}{\sqrt{n}}  $$
 
 1. Maffulli et al. estudiaron la efectividad de terapias que limitan carga y movilidad del tobillo, como seguimiento al tratamiento a ruptura del tendón de Aquiles, midieron la fuerza en un músculo del tobillo. En 19 sujetos, la fuerza promedio isométrica medida en el tobillo intervenido (en Newtons) fue de 250.8 con una desviación estándar de 130.9.  Si suponemos que la muestra aleatoria fue tomada de una población de sujetos control. Queremos usar estas medidas de la muestra para estimar la fuerza isométrica de la población después de una cirugía.  
 *Respuesta* Vamos a estimar un intervalo de confianza a 95 por ciento de confianza. Tenemos $\bar{x} = 250.8$, y $s=130.9$, primero estimamos el error estándar $se = s/\sqrt{n}$  
+
 ```{r}
 # Intervalo conf. con t
 muestra.n <- 19

@@ -7,7 +7,7 @@
 
         <meta name="author" content="F. A. Barrios ENES Juriquilla, UNAM " />
     
-        <meta name="date" content="2026-03-10" />
+        <meta name="date" content="2026-03-11" />
     
     <title>Estimación</title>
 
@@ -1285,6 +1285,8 @@ margin-left: 0 !important;
       <li><a href="#interpretaci%C3%B3n-del-intervalo-de-confianza" id="toc-interpretación-del-intervalo-de-confianza">Interpretación
       del Intervalo de Confianza</a></li>
       <li><a href="#ejemplos" id="toc-ejemplos">Ejemplos</a></li>
+      <li><a href="#t-de-student" id="toc-t-de-student">t de
+      Student</a></li>
       <li><a href="#la-distribuci%C3%B3n-t" id="toc-la-distribución-t">La distribución t</a></li>
       <li><a href="#propiedades-de-la-distribuci%C3%B3n-t." id="toc-propiedades-de-la-distribución-t.">Propiedades de la
       distribución t.</a></li>
@@ -1312,7 +1314,7 @@ margin-left: 0 !important;
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
                   <p class="author"><span class="glyphicon glyphicon-user"></span> F.
 A. Barrios<br>ENES Juriquilla, UNAM<br></p>
-                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2026-03-10</p>
+                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2026-03-11</p>
           </div>
    </div>
      
@@ -1488,6 +1490,34 @@ sample estimates:
 mean of x 
 0.7166857 </code></pre>
 </div>
+<div id="t-de-student" class="section level2">
+<h2>t de Student</h2>
+<p>A principio del siglo veinte se publicaron varios trabajos de suma
+importancia por un estadístico de nombre “Student”. En realidad Student
+era en nombre de autor de William Gosset.<br />
+William Sealy Gosset (1876-1937), el estadístico inglés que desarrolló
+la distribución t y la prueba t mientras trabajaba como cervecero en la
+cervecería Guinness en Dublín, se vio obligado a publicar bajo el
+seudónimo “Student” debido a las estrictas políticas de confidencialidad
+de su empleador. Esta política de secreto, desencadenada por un
+incidente anterior en el que un investigador de Guinness reveló secretos
+comerciales en una publicación, dio forma a la recepción del trabajo de
+Gosset. El seudónimo ocultó su identidad durante décadas, retrasó el
+reconocimiento de sus contribuciones y creó una curiosa dinámica entre
+Gosset, Karl Pearson y Ronald Fisher que influyó en el desarrollo de la
+estadística moderna.<br />
+William Gosset fue contratado por Guinness como químico y cervecero y
+rápidamente se convirtió en jefe cervecero experimental; más tarde fue
+ascendido a jefe cervecero de la cervecería Guinness Park Royal y, en
+última instancia, a jefe cervecero para todo Guinness.<br />
+La tarea de Gosset como aprendiz de cervecero era evaluar la calidad de
+las materias primas (cebada malteada, lúpulo y levadura) de una manera
+rentable. Esto requirió sacar conclusiones de un pequeño número de
+observaciones experimentales, ya que las pruebas a gran escala eran poco
+prácticas y costosas. Fue precisamente esta restricción práctica la que
+lo llevó a desarrollar lo que se convirtió en la distribución t de
+Student.</p>
+</div>
 <div id="la-distribución-t" class="section level2">
 <h2>La distribución t</h2>
 <p>Hasta ahora hemos establecido los procedimientos par aestimar el
@@ -1497,20 +1527,17 @@ las muestras. Por lo geenral si no se tiene el promedio de la población
 es muy posible que tampoco se conozca a varianza, y por lo tanto se
 tendrá que estimar de la muestra. lo que genera un problema. Entre las
 herramientas con las que contamos para resolver este problema se sabe
-que la estadística<br />
-<span class="math display">\[ z=\frac{\bar{x}-\mu}{\sigma/\sqrt{n}}
+que la estadística</p>
+<p><span class="math display">\[ z=\frac{\bar{x}-\mu}{\sigma/\sqrt{n}}
 \]</span> está distribuida normalmente cuando la población está
-distribuida normalmente o que por lo menos está distribuida de forma
+distribuida normalmente o por lo menos está distribuida de forma
 parcialmente normal para valores grandes de <span class="math inline">\(n\)</span>, independientemente de la distribución
-de la población. Se puede usar la desviación estándar de la
-muestra<br />
-<span class="math display">\[ s = \sqrt{\sum_i^n{(x_i -
+de la población. Se puede usar la desviación estándar de la muestra</p>
+<p><span class="math display">\[ s = \sqrt{\sum_i^n{(x_i -
 \bar{x})^2}/(n-1)} \]</span> para reemplazar <span class="math inline">\(\sigma\)</span>. Cuando la muestra es grande,
-mayor a 30, el parámetro muestral <span class="math inline">\(s\)</span>
-se considera bueno. Se sabe que para muestras de buen tamaño se tiene la
-<em>Distribución <span class="math inline">\(t\)</span> de Student</em>
-o distribución <span class="math inline">\(t\)</span><br />
-<span class="math display">\[  t= \frac{\bar{x}-\mu}{s/\sqrt{n}}
+mayor a <strong>30</strong>, el parámetro muestral <span class="math inline">\(s\)</span> se considera bueno. Se sabe que para
+muestras de buen tamaño se tiene la <em>Distribución <span class="math inline">\(t\)</span> de Student</em> o distribución <span class="math inline">\(t\)</span></p>
+<p><span class="math display">\[  t= \frac{\bar{x}-\mu}{s/\sqrt{n}}
 \]</span></p>
 </div>
 <div id="propiedades-de-la-distribución-t." class="section level2">
@@ -1532,9 +1559,9 @@ es una familia de distribuciones que tienen diferentes distribuciones
 para diferentes drados de libertad (<span class="math inline">\(df\)</span>).<br />
 </li>
 <li>Comparado con la distribución normal la <span class="math inline">\(t\)</span> tiene un máximo central más bajo y
-cuerpo cntral más angosto y las colas mas anchas.<br />
+cuerpo central más angosto y las colas más anchas.<br />
 </li>
-<li>La distribución <span class="math inline">\(t\)</span> tiene a la
+<li>La distribución <span class="math inline">\(t\)</span> tiende a la
 distribución normal para <span class="math inline">\((n-1) \rightarrow
 \infty\)</span>.</li>
 </ol>
@@ -1551,14 +1578,14 @@ distribución normal para <span class="math inline">\((n-1) \rightarrow
 <h2>Intervalo de confianza usando <span class="math inline">\(t\)</span></h2>
 <p>El procedimiento general para estimar los intervalos de confianza no
 cambia al usar la distribución <span class="math inline">\(t\)</span> en
-lugar de la normal. Se usa el mismo algoritmo<br />
-<span class="math display">\[ \verb+estimador+ \pm (\verb+coeficiente de
-fiabilidad+) \times (\verb+error estándar+) \]</span><br />
+lugar de la normal. Se usa el mismo algoritmo</p>
+<p><span class="math display">\[ \verb+estimador+ \pm (\verb+coeficiente
+de fiabilidad+) \times (\verb+error estándar+) \]</span><br />
 La diferencia es el origen para el coeficiente de fiabilidad, que en
 este caso se obtiene de una función <span class="math inline">\(t\)</span>. Para una muestra de una distribución
 normal, con varianza desconocida el intervalo de confianza del <span class="math inline">\(100(1-\alpha)\)</span> por ciento para el promedio
-de la población, está dado por<br />
-<span class="math display">\[  \bar{x} \pm
+de la población, está dado por</p>
+<p><span class="math display">\[  \bar{x} \pm
 t_{(1-\alpha/2)}\frac{s}{\sqrt{n}}  \]</span></p>
 </div>
 <div id="ejemplos-1" class="section level2">

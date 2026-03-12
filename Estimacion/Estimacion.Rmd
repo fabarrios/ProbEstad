@@ -99,12 +99,24 @@ groupwiseMean(ACTIVITY ~ 1,
 t.test(ensyme$ACTIVITY, alternative = c("two.sided"), var.equal = .36, conf.level = 0.95)
 ```
 
-## La distribución t
+## t de Student
+
+A principio del siglo veinte se publicaron varios trabajos de suma importancia por un estadístico de nombre "Student". En realidad Student era en nombre de autor de William Gosset.  
+William Sealy Gosset (1876-1937), el estadístico inglés que desarrolló la distribución t y la prueba t mientras trabajaba como cervecero en la cervecería Guinness en Dublín, se vio obligado a publicar bajo el seudónimo “Student” debido a las estrictas políticas de confidencialidad de su empleador. Esta política de secreto, desencadenada por un incidente anterior en el que un investigador de Guinness reveló secretos comerciales en una publicación, dio forma a la recepción del trabajo de Gosset. El seudónimo ocultó su identidad durante décadas, retrasó el reconocimiento de sus contribuciones y creó una curiosa dinámica entre Gosset, Karl Pearson y Ronald Fisher que influyó en el desarrollo de la estadística moderna.  
+William Gosset fue contratado por Guinness como químico y cervecero y rápidamente se convirtió en jefe cervecero experimental; más tarde fue ascendido a jefe cervecero de la cervecería Guinness Park Royal y, en última instancia, a jefe cervecero para todo Guinness.  
+La tarea de Gosset como aprendiz de cervecero era evaluar la calidad de las materias primas (cebada malteada, lúpulo y levadura) de una manera rentable. Esto requirió sacar conclusiones de un pequeño número de observaciones experimentales, ya que las pruebas a gran escala eran poco prácticas y costosas. Fue precisamente esta restricción práctica la que lo llevó a desarrollar lo que se convirtió en la distribución t de Student.  
+
+
+## La distribución t  
+
 Hasta ahora hemos establecido los procedimientos par aestimar el intervalo de confianza de un proceso de muestreo, y en dicho proceso se ha dado por conocida la varianza de la población de donde se extrajeron las muestras.  Por lo geenral si no se tiene el promedio de la población es muy posible que tampoco se conozca a varianza, y por lo tanto se tendrá que estimar de la muestra. lo que genera un problema. Entre las herramientas con las que contamos para resolver este problema se sabe que la estadística  
+
 $$ z=\frac{\bar{x}-\mu}{\sigma/\sqrt{n}} $$
-está distribuida normalmente cuando la población está distribuida normalmente o que por lo menos está distribuida de forma parcialmente normal para valores grandes de $n$, independientemente de la distribución de la población. Se puede usar la desviación estándar de la muestra  
+está distribuida normalmente cuando la población está distribuida normalmente o por lo menos está distribuida de forma parcialmente normal para valores grandes de $n$, independientemente de la distribución de la población. Se puede usar la desviación estándar de la muestra  
+
 $$ s = \sqrt{\sum_i^n{(x_i - \bar{x})^2}/(n-1)} $$
-para reemplazar $\sigma$.  Cuando la muestra es grande, mayor a 30, el parámetro muestral $s$ se considera bueno.  Se sabe que para muestras de buen tamaño se tiene la *Distribución $t$ de Student* o distribución $t$  
+para reemplazar $\sigma$.  Cuando la muestra es grande, mayor a **30**, el parámetro muestral $s$ se considera bueno.  Se sabe que para muestras de buen tamaño se tiene la *Distribución $t$ de Student* o distribución $t$  
+
 $$  t= \frac{\bar{x}-\mu}{s/\sqrt{n}} $$  
 
 ## Propiedades de la distribución t.      
@@ -114,8 +126,8 @@ $$  t= \frac{\bar{x}-\mu}{s/\sqrt{n}} $$
 3. Por lo general tiene una varianza mayor que $1$, pero la varianza se aproxima a $1$ cuando el tamaño de la muestra se hace grande. Y por lo general para $df$ grados de libertad, la varianza de la $t$ es $(n-1)/(n-3)$ para $n>3$.  
 4. El rango de la variable $t$ va de $-\infty$ a $\infty$.  
 5. La distribución $t$ en realidad es una familia de distribuciones que tienen diferentes distribuciones para diferentes drados de libertad ($df$).  
-6. Comparado con la distribución normal la $t$ tiene un máximo central más bajo y cuerpo cntral más angosto y las colas mas anchas.  
-7. La distribución $t$ tiene a la distribución normal para $(n-1) \rightarrow \infty$.  
+6. Comparado con la distribución normal la $t$ tiene un máximo central más bajo y cuerpo central más angosto y las colas más anchas.  
+7. La distribución $t$ tiende a la distribución normal para $(n-1) \rightarrow \infty$.  
 
 ```{r}
 curve(dnorm(x, sd = 1), from = -4.5, to = 4.5, main = "Distribución Normal y t")
@@ -130,8 +142,10 @@ abline(v=2, col = 2)
 ## Intervalo de confianza usando $t$  
 
 El procedimiento general para estimar los intervalos de confianza no cambia al usar la distribución $t$ en lugar de la normal. Se usa el mismo algoritmo  
+
 $$ \verb+estimador+ \pm (\verb+coeficiente de fiabilidad+) \times (\verb+error estándar+) $$  
 La diferencia es el origen para el coeficiente de fiabilidad, que en este caso se obtiene de una función $t$.  Para una muestra de una distribución normal, con varianza desconocida el intervalo de confianza del $100(1-\alpha)$ por ciento para el promedio de la población, está dado por  
+
 $$  \bar{x} \pm t_{(1-\alpha/2)}\frac{s}{\sqrt{n}}  $$  
 
 ## Ejemplos  

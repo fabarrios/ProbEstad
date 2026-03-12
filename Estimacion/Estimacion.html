@@ -1520,10 +1520,10 @@ Student.</p>
 </div>
 <div id="la-distribución-t" class="section level2">
 <h2>La distribución t</h2>
-<p>Hasta ahora hemos establecido los procedimientos par aestimar el
+<p>Hasta ahora hemos establecido los procedimientos para estimar el
 intervalo de confianza de un proceso de muestreo, y en dicho proceso se
 ha dado por conocida la varianza de la población de donde se extrajeron
-las muestras. Por lo geenral si no se tiene el promedio de la población
+las muestras. Por lo general si no se tiene el promedio de la población
 es muy posible que tampoco se conozca a varianza, y por lo tanto se
 tendrá que estimar de la muestra. lo que genera un problema. Entre las
 herramientas con las que contamos para resolver este problema se sabe
@@ -1548,8 +1548,9 @@ muestras de buen tamaño se tiene la <em>Distribución <span class="math inline"
 <li>Es simétrica al promedio.<br />
 </li>
 <li>Por lo general tiene una varianza mayor que <span class="math inline">\(1\)</span>, pero la varianza se aproxima a <span class="math inline">\(1\)</span> cuando el tamaño de la muestra se hace
-grande. Y por lo general para <span class="math inline">\(df\)</span>
-grados de libertad, la varianza de la <span class="math inline">\(t\)</span> es <span class="math inline">\((n-1)/(n-3)\)</span> para <span class="math inline">\(n&gt;3\)</span>.<br />
+grande. Y por lo general para <span class="math inline">\(df (degrees of
+fredom)\)</span> grados de libertad, para <span class="math inline">\(df
+&gt;2\)</span> la varianza de <em>t</em> es <span class="math inline">\(df/(df -2)\)</span>. Como <span class="math inline">\(df = n-1\)</span> para <span class="math inline">\(n&gt;3\)</span> la varianza de la <span class="math inline">\(t\)</span> se puede escribir como <span class="math inline">\((n-1)/(n-3)\)</span> para <span class="math inline">\(n&gt;3\)</span>.<br />
 </li>
 <li>El rango de la variable <span class="math inline">\(t\)</span> va de
 <span class="math inline">\(-\infty\)</span> a <span class="math inline">\(\infty\)</span>.<br />
@@ -1686,21 +1687,20 @@ diferentes varianzas.</p>
 <p><em>Para varianzas iguales</em> Si se puede suponer que la varianza
 de las poblaciones es igual y se quiere estimar la diferencia del
 promedio de las poblaciones se puede usar lo que se conoce como un
-<em>valor combinado</em> de las varinazas (pooled estimate).<br />
-El valor combinado se estima por la siguiente ecuación<br />
-<span class="math display">\[ s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 -
-1)s_2^2}{n_1 + n_2 -2} \]</span><br />
-El error estándar del valor combinado es<br />
-<span class="math display">\[ s_{\bar{x}_1 - \bar{x}_2} = \sqrt{
-\frac{s_p^2}{n_1} + \frac{s_p^2}{n_2} } \]</span> y el intervalo de
-confianza al <span class="math inline">\(100(1-\alpha)\)</span> por
-ciento para <span class="math inline">\(\mu_1 - \mu_2\)</span> está dado
-por<br />
+<em>valor combinado</em> de las varinazas muestrales (pooled
+estimate).</p>
+<p>El valor combinado se estima por la siguiente ecuación</p>
+<p><span class="math display">\[ s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 -
+1)s_2^2}{n_1 + n_2 -2} \]</span></p>
+<p>El error estándar del valor combinado es</p>
+<p><span class="math display">\[ s_{\bar{x}_1 - \bar{x}_2} = \sqrt{
+\frac{s_p^2}{n_1} + \frac{s_p^2}{n_2} } \]</span></p>
+<p>y el intervalo de confianza al <span class="math inline">\(100(1-\alpha)\)</span> por ciento para <span class="math inline">\(\mu_1 - \mu_2\)</span> está dado por<br />
 <span class="math display">\[ (\bar{x}_1 - \bar{x}_2) \pm
 t_{(1-\alpha/2)} \sqrt{ \frac{s_p^2}{n_1} + \frac{s_p^2}{n_2}
 }  \]</span></p>
-<p>El número de grados de libertad para estimar el valor de t para usar
-en la estimación del intervalos esta dado por <span class="math inline">\(df = n_1 + n_2 -2\)</span>.</p>
+<p>El número de grados de libertad para estimar el valor de <em>t</em>
+para usar en la estimación del intervalo esta dado por <span class="math inline">\(df = n_1 + n_2 -2\)</span>.</p>
 <p><em>ejemplo</em> El propósito del estudio de Granholm et al. fue
 determinar la efectividad del tratamiento integrado por el programa
 ambulatorio integrado de doble diagnóstico para pacientes de salud
@@ -1749,7 +1749,7 @@ importancia. Una muestra muy grande resulta en un uso excesivo de
 recursos y una muestra muy pequeña puede no tener el poder estadístico
 necesario para determinar un resultado fiable.</p>
 <p>El objetivo de la estimación en estadística es obtener intervalos
-estrechos que resulten en estimaciones más precisas. una forma de darnos
+estrechos que resulten en estimaciones más precisas. Una forma de darnos
 cuenta lo los elementos necesarios es analizar los componentes usados
 para estimar el intervalo de confianza.<br />
 <span class="math display">\[ (\verb+coeficiente de fiabilidad+) \times
@@ -1759,17 +1759,18 @@ factor, y este parámetro se puede entender como el estimador del margen
 de error. Para un error estándar, incrementar la fiabilidad, implica un
 coeficiente de fiabilidad mayor, pero esto resulta en un intervalo más
 ancho. Cómo el margen de error está dado por <span class="math inline">\(\sigma/\sqrt{n}\)</span> y <span class="math inline">\(\sigma\)</span> es constante para una población,
-esto implica y la única forma de reducir el error estándar es
-adquiriendo una muestra mayor <span class="math inline">\(n\)</span> más
-grande.</p>
+esto implica que la única forma de reducir el error estándar es
+adquiriendo una muestra mayor con <span class="math inline">\(n\)</span>
+más grande.</p>
 <p>Supongamos que queremos un intervalo que se extienda <span class="math inline">\(d\)</span> unidades a cada lado del
 estimador<br />
 <span class="math display">\[ d = (\verb+coeficiente de fiabilidad+)
 \times (\verb+error estándar+) \]</span> Si el muestreo se toma con
 sustitución de una población infinita, o de una población
 suficientemente grande, que permita ignorar la corrección de población
-finita, la ecuación para <span class="math inline">\(d\)</span> es<br />
-<span class="math display">\[ d = z\frac{\sigma}{\sqrt{n}} \]</span></p>
+finita, la ecuación para <span class="math inline">\(d\)</span> es</p>
+<p><span class="math display">\[ d = z\frac{\sigma}{\sqrt{n}}
+\]</span></p>
 <p>Que si la resolvemos para la variable <span class="math inline">\(n\)</span> resulta en</p>
 <p><span class="math display">\[ n = \frac{z^2\sigma^2}{d^2} \]</span>
 Si el muestreo se toma sin sustitución de una población infinita, o de
@@ -1819,15 +1820,15 @@ en un caso dado se puede tener un valor de <span class="math inline">\(p\)</span
 <h2>El intervalo de confianza para la varianza de una distribución
 distribuida normalmente</h2>
 <p><strong>Estimación puntual de la varianza</strong> Como ya hemos
-comentado, para tner un bune estimador del valor central de un parámetro
-poblacional, este debe estar estimado libre de tendencias. Proponemos
-que un buen estimador de la varianza es el valor esperado para la
-varianza de la muestra <span class="math inline">\(E(s^2) =
+comentado, para tener un bune estimador del valor central de un
+parámetro poblacional, este debe estar estimado libre de tendencias.
+Proponemos que un buen estimador de la varianza es el valor esperado
+para la varianza de la muestra <span class="math inline">\(E(s^2) =
 \sigma^2\)</span>. Los dos valores de dispersión que conocemos son</p>
 <p><span class="math display">\[ \sigma^2 = \frac{\sum(x_i - \mu)^2}{N}
-\; y \; S^2 = \frac{\sum(x_i - \mu)^2}{N-1} \]</span><br />
-Si se estima el promedio de las varianzas de todas las posibles muestras
-de tamaño <span class="math inline">\(n\)</span> tomadas de una
+\; y \; S^2 = \frac{\sum(x_i - \bar x)^2}{N-1} \]</span></p>
+<p>Si se estima el promedio de las varianzas de todas las posibles
+muestras de tamaño <span class="math inline">\(n\)</span> tomadas de una
 población se llega a la estimación de <span class="math inline">\(s^2 =
 \sum(x_i - \bar{x})^2/(n-1)\)</span>.</p>
 </div>
@@ -1836,8 +1837,8 @@ población se llega a la estimación de <span class="math inline">\(s^2 =
 <p>Se tiene que para una distribución normal para una serie de muestras
 la cantidad <span class="math inline">\((n-1)s^2/\sigma^2\)</span> sigue
 una distribución llamada <em>chi-cuadrada</em> <span class="math inline">\(\chi^2\)</span>, con <span class="math inline">\(n-1\)</span> grados de libertad.<br />
-Para estimad un intervalo de confianza de la varianza poblacional, se
-puede usar esta distribución, y un intervalo <span class="math inline">\(100(1-\alpha)\)</span> pos ciento de la varianza
+Para estimar un intervalo de confianza de la varianza poblacional, se
+puede usar esta distribución, y un intervalo <span class="math inline">\(100(1-\alpha)\)</span> por ciento de la varianza
 se puede estimar a partir de</p>
 <p><span class="math display">\[ \chi_{\alpha/2}^2 &lt;
 \frac{(n-1)s^2}{\sigma^2} &lt;\chi_{1-(\alpha/2)}^2 \]</span></p>

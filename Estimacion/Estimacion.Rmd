@@ -109,7 +109,7 @@ La tarea de Gosset como aprendiz de cervecero era evaluar la calidad de las mate
 
 ## La distribución t  
 
-Hasta ahora hemos establecido los procedimientos par aestimar el intervalo de confianza de un proceso de muestreo, y en dicho proceso se ha dado por conocida la varianza de la población de donde se extrajeron las muestras.  Por lo geenral si no se tiene el promedio de la población es muy posible que tampoco se conozca a varianza, y por lo tanto se tendrá que estimar de la muestra. lo que genera un problema. Entre las herramientas con las que contamos para resolver este problema se sabe que la estadística  
+Hasta ahora hemos establecido los procedimientos para estimar el intervalo de confianza de un proceso de muestreo, y en dicho proceso se ha dado por conocida la varianza de la población de donde se extrajeron las muestras.  Por lo general si no se tiene el promedio de la población es muy posible que tampoco se conozca a varianza, y por lo tanto se tendrá que estimar de la muestra. lo que genera un problema. Entre las herramientas con las que contamos para resolver este problema se sabe que la estadística  
 
 $$ z=\frac{\bar{x}-\mu}{\sigma/\sqrt{n}} $$
 está distribuida normalmente cuando la población está distribuida normalmente o por lo menos está distribuida de forma parcialmente normal para valores grandes de $n$, independientemente de la distribución de la población. Se puede usar la desviación estándar de la muestra  
@@ -123,7 +123,7 @@ $$  t= \frac{\bar{x}-\mu}{s/\sqrt{n}} $$
 
 1. Tiene promedio $0$.  
 2. Es simétrica al promedio.  
-3. Por lo general tiene una varianza mayor que $1$, pero la varianza se aproxima a $1$ cuando el tamaño de la muestra se hace grande. Y por lo general para $df$ grados de libertad, la varianza de la $t$ es $(n-1)/(n-3)$ para $n>3$.  
+3. Por lo general tiene una varianza mayor que $1$, pero la varianza se aproxima a $1$ cuando el tamaño de la muestra se hace grande. Y por lo general para $df (degrees of fredom)$ grados de libertad, para $df >2$ la varianza de *t* es $df/(df -2)$. Como $df = n-1$ para $n>3$ la varianza de la $t$ se puede escribir como $(n-1)/(n-3)$ para $n>3$.  
 4. El rango de la variable $t$ va de $-\infty$ a $\infty$.  
 5. La distribución $t$ en realidad es una familia de distribuciones que tienen diferentes distribuciones para diferentes drados de libertad ($df$).  
 6. Comparado con la distribución normal la $t$ tiene un máximo central más bajo y cuerpo central más angosto y las colas más anchas.  
@@ -215,15 +215,20 @@ $$ (\bar{x}_1 - \bar{x}_2) \pm z_{1-\alpha/2} \sqrt{ \frac{\sigma_1^2}{n_1} + \f
 
 **La distribución t y la diferencia entre promedios** Cuando se quiere estimar la diferencia entre los promedios de dos poblaciones y no se conoce la varianza de las poblaciones, es necesario estimar la varianza de las poblaciones a partir de las **varianzas de las muestras** y se puede usar la distribución t para estimar el valor de confiabilidad. En lo general se tendrán dos posibilidades, que las varianzas de las poblaciones que se estudian tengan igual o diferentes varianzas.  
 
-*Para varianzas iguales* Si se puede suponer que la varianza de las poblaciones es igual y se quiere estimar la diferencia del promedio de las poblaciones se puede usar lo que se conoce como un *valor combinado* de las varinazas (pooled estimate).  
+*Para varianzas iguales* Si se puede suponer que la varianza de las poblaciones es igual y se quiere estimar la diferencia del promedio de las poblaciones se puede usar lo que se conoce como un *valor combinado* de las varinazas muestrales (pooled estimate).  
+
 El valor combinado se estima por la siguiente ecuación  
+
 $$ s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 -2} $$  
+
 El error estándar del valor combinado es  
+
 $$ s_{\bar{x}_1 - \bar{x}_2} = \sqrt{ \frac{s_p^2}{n_1} + \frac{s_p^2}{n_2} } $$
+
 y el intervalo de confianza al $100(1-\alpha)$ por ciento para $\mu_1 - \mu_2$ está dado por  
 $$ (\bar{x}_1 - \bar{x}_2) \pm t_{(1-\alpha/2)} \sqrt{ \frac{s_p^2}{n_1} + \frac{s_p^2}{n_2} }  $$
 
-El número de grados de libertad para estimar el valor de t para usar en la estimación del intervalos esta dado por $df = n_1 + n_2 -2$.  
+El número de grados de libertad para estimar el valor de *t* para usar en la estimación del intervalo esta dado por $df = n_1 + n_2 -2$.  
 
 *ejemplo* El propósito del estudio de Granholm et al. fue determinar la efectividad del tratamiento integrado por el programa ambulatorio integrado de doble diagnóstico para pacientes de salud mental. Los investigadores estaban evaluando problemas de abuso de sustancias entre pacientes con desorden mental severo.  Una tabla retrospectiva de revisión se llevó a cabo en 50 pacientes consecutivos referidos a un programa. Una de las variables usadas en dicho programa fue el número de días de internamiento por el desorden psiquiátrico durante el año que siguió al programa.  Entre 18 pacientes con esquizofrenia, el promedio el numero promedio de días de tratamiento fue de 4.7 con una desviación estándar de 9.3. Para 10 pacientes con desorden bipolar el promedio de días de tratamiento psiquiátrico fue de 8.8 con desviación estándar de 11.5. Queremos construir un intervalo de confianza del 95 por ciento de la diferencia entre los promedios de estas poblaciones.  
 
@@ -257,15 +262,15 @@ print(c(lim.bajo, lim.alto))
 
 La estimación del tamaño de la muestra a obtener para resolver una medida, es desde el inicio del proyecto un tema fundamental de suma importancia. Una muestra muy grande resulta en un uso excesivo de recursos y una muestra muy pequeña puede no tener el poder estadístico necesario para determinar un resultado fiable.
 
-El objetivo de la estimación en estadística es obtener intervalos estrechos que resulten en estimaciones más precisas. una forma de darnos cuenta lo los elementos necesarios es analizar los componentes usados para estimar el intervalo de confianza.  
+El objetivo de la estimación en estadística es obtener intervalos estrechos que resulten en estimaciones más precisas. Una forma de darnos cuenta lo los elementos necesarios es analizar los componentes usados para estimar el intervalo de confianza.  
 $$ (\verb+coeficiente de fiabilidad+) \times (\verb+error estándar+) $$  
 
-
-la extensión total del intervalo de confianza es dos veces este factor, y este parámetro se puede entender como el estimador del margen de error. Para un error estándar, incrementar la fiabilidad, implica un coeficiente de fiabilidad mayor, pero esto resulta en un intervalo más ancho.  Cómo el margen de error está dado por $\sigma/\sqrt{n}$ y $\sigma$ es constante para una población, esto implica y la única forma de reducir el error estándar es adquiriendo una muestra mayor $n$ más grande.  
+la extensión total del intervalo de confianza es dos veces este factor, y este parámetro se puede entender como el estimador del margen de error. Para un error estándar, incrementar la fiabilidad, implica un coeficiente de fiabilidad mayor, pero esto resulta en un intervalo más ancho.  Cómo el margen de error está dado por $\sigma/\sqrt{n}$ y $\sigma$ es constante para una población, esto implica que la única forma de reducir el error estándar es adquiriendo una muestra mayor con $n$ más grande.  
 
 Supongamos que queremos un intervalo que se extienda $d$ unidades a cada lado del estimador  
 $$ d = (\verb+coeficiente de fiabilidad+) \times (\verb+error estándar+) $$
 Si el muestreo se toma con sustitución de una población infinita, o de una población suficientemente grande, que permita ignorar la corrección de población finita, la ecuación para $d$ es  
+
 $$ d = z\frac{\sigma}{\sqrt{n}} $$  
 
 Que si la resolvemos para la variable $n$ resulta en  
@@ -295,16 +300,17 @@ Ambas fórmulas hacen uso de $p$ que representa la proporción de la población,
 
 ## El intervalo de confianza para la varianza de una distribución distribuida normalmente  
 
-**Estimación puntual de la varianza** Como ya hemos comentado, para tner un bune estimador del valor central de un parámetro poblacional, este debe estar estimado libre de tendencias. Proponemos que un buen estimador de la varianza es el valor esperado para la varianza de la muestra $E(s^2) = \sigma^2$. Los dos valores de dispersión que conocemos son
+**Estimación puntual de la varianza** Como ya hemos comentado, para tener un bune estimador del valor central de un parámetro poblacional, este debe estar estimado libre de tendencias. Proponemos que un buen estimador de la varianza es el valor esperado para la varianza de la muestra $E(s^2) = \sigma^2$. Los dos valores de dispersión que conocemos son
 
-$$ \sigma^2 = \frac{\sum(x_i - \mu)^2}{N} \; y \; S^2 = \frac{\sum(x_i - \mu)^2}{N-1} $$  
+$$ \sigma^2 = \frac{\sum(x_i - \mu)^2}{N} \; y \; S^2 = \frac{\sum(x_i - \bar x)^2}{N-1} $$  
+
 Si se estima el promedio de las varianzas de todas las posibles muestras de tamaño $n$ tomadas de una población se llega a la estimación de $s^2 = \sum(x_i - \bar{x})^2/(n-1)$.  
 
 
 ## La distribución Chi-cuadrada
 
 Se tiene que para una distribución normal para una serie de muestras la cantidad $(n-1)s^2/\sigma^2$ sigue una distribución llamada *chi-cuadrada* $\chi^2$, con $n-1$ grados de libertad.  
-Para estimad un intervalo de confianza de la varianza poblacional, se puede usar esta distribución, y un intervalo $100(1-\alpha)$ pos ciento de la varianza se puede estimar a partir de  
+Para estimar un intervalo de confianza de la varianza poblacional, se puede usar esta distribución, y un intervalo $100(1-\alpha)$ por ciento de la varianza se puede estimar a partir de  
 
 $$ \chi_{\alpha/2}^2 < \frac{(n-1)s^2}{\sigma^2} <\chi_{1-(\alpha/2)}^2 $$  
 

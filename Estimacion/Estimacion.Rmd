@@ -305,7 +305,7 @@ Ambas fórmulas hacen uso de $p$ que representa la proporción de la población,
 
 **Estimación puntual de la varianza** Como ya hemos comentado, para tener un bune estimador del valor central de un parámetro poblacional, este debe estar estimado libre de tendencias. Proponemos que un buen estimador de la varianza es el valor esperado para la varianza de la muestra $E(s^2) = \sigma^2$. Los dos valores de dispersión que conocemos son
 
-$$ \sigma^2 = \frac{\sum(x_i - \mu)^2}{N} \; y \; S^2 = \frac{\sum(x_i - \bar x)^2}{N-1} $$  
+$$ \sigma^2 = \frac{\sum(x_i - \mu)^2}{N} \; y \; S^2 = \frac{\sum(x_i - \mu)^2}{N-1} $$  
 
 Si se estima el promedio de las varianzas de todas las posibles muestras de tamaño $n$ tomadas de una población se llega a la estimación de $s^2 = \sum(x_i - \bar{x})^2/(n-1)$.  
 
@@ -332,7 +332,7 @@ curve(dchisq(x, df = 5), from = 0, to = 20, col = 5, add = TRUE)
 **Ejemplo** En un ejemplo de la efectividad de la dieta libre de gluten en parientes directos de pacientes con diabetes tipo-I, Hummel et al. pusieron a 7 sujetos a una dieta libre de gluten por 12 meses. Antes de la dieta, tomaron medidas de base de varios anticuerpos y autoanticuerpos, uno de ellos relacionado con diabetes el autoanticuerpo relacionado a insulina (IAA). Los niveles de IAA se midieron por medio de ensayos de radiobinding. Los niveles base de IAA de los siete sujetos en unidades base de IAA son:  
 
 $$ 9.7, 12.3, 11.2, 5.1, 24.8, 14.8, 17.7 $$
-Con estos datos queremos estimar la varianza de IAA en unidades de IAA de la población de donde se tomó esta muestra y construir el intervalo de confiannza al $95$ por ciento $(\alpha = .05)$ de dicha estimación.  
+Con estos datos queremos estimar la varianza de IAA en unidades de IAA de la población de donde se tomó esta muestra y construir el intervalo de confianza al $95$ por ciento $(\alpha = .05)$ de dicha estimación.  
 Vamos a escribir una función para estimar intervalos de confianza usando la función `qchisq(z, df)` de R, que estima la distribución $\chi^2$, y la expresión para el intervalo:  
 
 $$ \frac{(n-1)s^2}{\chi_{1- (\alpha/2)}^2} < \sigma^2 < \frac{(n-1)s^2}{\chi_{\alpha/12}^2} $$
@@ -347,15 +347,14 @@ CI_sig <- function(x,alpha) {
   n_x <- length(x)
   lbs <- sqrt((n_x-1)*sd_x^2/qchisq((1-alpha/2), (n_x-1)))
   las <- sqrt((n_x-1)*sd_x^2/qchisq(alpha/2, (n_x-1)))
-  print(c("Desviación estandar estimada"))
-  print(c(sd_x))
+  print(c("Desviación estandar estimada", sd_x), quote = FALSE)
   print(c("Intervalo de confianza de la desviación estándar"))
   print(c(lbs, las))
 }
 
 # Ejemplo de Hummel
 IAA <- c(9.7,12.3,11.2,5.1,24.8,14.8,17.7)
-CI_sig(IAA, .05)
+(CI_sig(IAA, .05))
 ```
 
 **Ejemplo** Veinte muestras de aire tomadas en el mismo lugar a lo largo de 6 meses mostraron las siguientes cantidades de partículas materiales suspendidas (microgramos por metro cubico de aire):

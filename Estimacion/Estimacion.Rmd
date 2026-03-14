@@ -348,13 +348,13 @@ CI_sig <- function(x,alpha) {
   lbs <- sqrt((n_x-1)*sd_x^2/qchisq((1-alpha/2), (n_x-1)))
   las <- sqrt((n_x-1)*sd_x^2/qchisq(alpha/2, (n_x-1)))
   print(c("Desviación estandar estimada", sd_x), quote = FALSE)
-  print(c("Intervalo de confianza de la desviación estándar"))
+  print(c("Intervalo de confianza de la desviación estándar"), quote = FALSE)
   print(c(lbs, las))
 }
 
 # Ejemplo de Hummel
 IAA <- c(9.7,12.3,11.2,5.1,24.8,14.8,17.7)
-(CI_sig(IAA, .05))
+CI_sig(IAA, .05)
 ```
 
 **Ejemplo** Veinte muestras de aire tomadas en el mismo lugar a lo largo de 6 meses mostraron las siguientes cantidades de partículas materiales suspendidas (microgramos por metro cubico de aire):

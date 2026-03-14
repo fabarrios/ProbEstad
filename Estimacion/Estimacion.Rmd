@@ -402,7 +402,7 @@ LAI <- s_prop/qf(.025, 15, 3)
 print(c(LBI, LAI))
 ```
 
-Para obtener los valores críticos de $F_{(1-\alpha/2), df_1, df_2}$ o $F_{\alpha/2, df_1, df_2}$ se puede usar `qf(.975, df1, df2)` o `qf(.025, df1, df2)`.  
+Para obtener los valores críticos de $F_{(1-\alpha/2), df_1, df_2}$ o $F_{\alpha/2, df_1, df_2}$ se usó la funcion base de R que estima el área bajo la curva de la distribución *F*: `qf(.975, df1, df2)` o `qf(.025, df1, df2)`.  
 
 **Ejemplo** El propósito del estudio de Moneim et al. fue examinar amputaciones del dedo índice por accidentes durante competencias de laso en rodeos. Los investigadores revisaron 16 casos de amputaciones de índice. De estás, 11 fueron amputaciones totales mientras 5 fueron parciales. El tiempo de isquemia es la longitud de tiempo de suministro de oxígeno insuficiente al índice amputado.  El tiempo de isquemia (en horas) para los sujetos que experimentaron amputación completa fueron:  
 
@@ -414,16 +414,8 @@ Para las víctimas de amputación parcial, los tiempos de isquemia fueron:
 
 Considere los dos grupos de datos como normalmente distribuidos y que representan a dos poblaciones independientes y construya el intervalo de confianza al 95% de la proporcion de las varianzas de las dos poblaciones.  
 
-*Respuesta* Se puede usar la funcion `var.test` de la librería de R o la pequeña función `PropVar_CI`
+*Respuesta* Usando la teoría presentada anteriormente puedo desarrollar la función `PropVar_CI` para calcular el intervalo de confianza para la proporción de las varianzas de los dos grupos de datos, descrita a continuación:  
 
-```{r}
-com_am <- c(4.67, 10.5, 2.0, 3.18, 4.00, 3.5, 3.33, 5.32, 2.0, 4.25, 6.0)
-inc_am <- c(3.0, 10.25, 1.5, 5.22, 5.0)
-
-var.test(inc_am, com_am, conf.level = .95)
-```
-
-O equivalentemente usando la función `PropVar_CI` descrita a continuación:  
 ```{r}
 # Proportion of Variance for two populations confidence interval
 # This small function estimates the confidence interval for the 
@@ -451,8 +443,12 @@ PropVar_CI <- function(x, y, alpha = 0.05) {
 com_am <- c(4.67, 10.5, 2.0, 3.18, 4.00, 3.5, 3.33, 5.32, 2.0, 4.25, 6.0)
 inc_am <- c(3.0, 10.25, 1.5, 5.22, 5.0)
 res <- PropVar_CI(com_am, inc_am, alpha = 0.05)
-print(c("Límite inferior", "Límite superior"))
 print(res)
 ```
 
+Y de forma mucho más directa se puede usar la función `var.test`, incluida en la librería base de R, que nos da la misma repuesta de forma directa, la cual además de estimar el intervalo de confianza nos da una prueba completa con pobabilidad de la poporción de las varianzas:  
+
+```{r}
+var.test(inc_am, com_am, conf.level = .95)
+```
 

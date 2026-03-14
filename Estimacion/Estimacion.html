@@ -7,7 +7,7 @@
 
         <meta name="author" content="F. A. Barrios ENES Juriquilla, UNAM " />
     
-        <meta name="date" content="2026-03-12" />
+        <meta name="date" content="2026-03-14" />
     
     <title>Estimación</title>
 
@@ -1314,7 +1314,7 @@ margin-left: 0 !important;
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
                   <p class="author"><span class="glyphicon glyphicon-user"></span> F.
 A. Barrios<br>ENES Juriquilla, UNAM<br></p>
-                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2026-03-12</p>
+                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2026-03-14</p>
           </div>
    </div>
      
@@ -1970,8 +1970,10 @@ para la proporción de las vatianzas <span class="math inline">\(\sigma_1^2/\sig
 <span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a></span>
 <span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(LBI, LAI))</span></code></pre></div>
 <pre><code>[1] 0.1322417 7.8272184</code></pre>
-<p>Para obtener los valores críticos de <span class="math inline">\(F_{(1-\alpha/2), df_1, df_2}\)</span> o <span class="math inline">\(F_{\alpha/2, df_1, df_2}\)</span> se puede usar
-<code>qf(.975, df1, df2)</code> o <code>qf(.025, df1, df2)</code>.</p>
+<p>Para obtener los valores críticos de <span class="math inline">\(F_{(1-\alpha/2), df_1, df_2}\)</span> o <span class="math inline">\(F_{\alpha/2, df_1, df_2}\)</span> se usó la
+funcion base de R que estima el área bajo la curva de la distribución
+<em>F</em>: <code>qf(.975, df1, df2)</code> o
+<code>qf(.025, df1, df2)</code>.</p>
 <p><strong>Ejemplo</strong> El propósito del estudio de Moneim et
 al. fue examinar amputaciones del dedo índice por accidentes durante
 competencias de laso en rodeos. Los investigadores revisaron 16 casos de
@@ -1988,12 +1990,43 @@ fueron:</p>
 representan a dos poblaciones independientes y construya el intervalo de
 confianza al 95% de la proporcion de las varianzas de las dos
 poblaciones.</p>
-<p><em>Respuesta</em> Se puede usar la funcion <code>var.test</code> de
-la librería de R o la pequeña función <code>PropVar_CI</code></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>com_am <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.67</span>, <span class="fl">10.5</span>, <span class="fl">2.0</span>, <span class="fl">3.18</span>, <span class="fl">4.00</span>, <span class="fl">3.5</span>, <span class="fl">3.33</span>, <span class="fl">5.32</span>, <span class="fl">2.0</span>, <span class="fl">4.25</span>, <span class="fl">6.0</span>)</span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>inc_am <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.0</span>, <span class="fl">10.25</span>, <span class="fl">1.5</span>, <span class="fl">5.22</span>, <span class="fl">5.0</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a><span class="fu">var.test</span>(inc_am, com_am, <span class="at">conf.level =</span> .<span class="dv">95</span>)</span></code></pre></div>
+<p><em>Respuesta</em> Usando la teoría presentada anteriormente puedo
+desarrollar la función <code>PropVar_CI</code> para calcular el
+intervalo de confianza para la proporción de las varianzas de los dos
+grupos de datos, descrita a continuación:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="co"># Proportion of Variance for two populations confidence interval This small</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a><span class="co"># function estimates the confidence interval for the proportion of the</span></span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a><span class="co"># variances estimated form two samples</span></span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>PropVar_CI <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">alpha =</span> <span class="fl">0.05</span>) {</span>
+<span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a>    v_x <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
+<span id="cb37-7"><a href="#cb37-7" tabindex="-1"></a>    n_x <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb37-8"><a href="#cb37-8" tabindex="-1"></a>    v_y <span class="ot">&lt;-</span> <span class="fu">var</span>(y)</span>
+<span id="cb37-9"><a href="#cb37-9" tabindex="-1"></a>    n_y <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
+<span id="cb37-10"><a href="#cb37-10" tabindex="-1"></a>    <span class="cf">if</span> (v_x <span class="sc">&gt;</span> v_y) {</span>
+<span id="cb37-11"><a href="#cb37-11" tabindex="-1"></a>        pro_v <span class="ot">&lt;-</span> v_x<span class="sc">/</span>v_y</span>
+<span id="cb37-12"><a href="#cb37-12" tabindex="-1"></a>        in_lim <span class="ot">&lt;-</span> pro_v<span class="sc">/</span><span class="fu">qf</span>((<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>), (n_x <span class="sc">-</span> <span class="dv">1</span>), (n_y <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb37-13"><a href="#cb37-13" tabindex="-1"></a>        su_lim <span class="ot">&lt;-</span> pro_v<span class="sc">/</span><span class="fu">qf</span>((alpha<span class="sc">/</span><span class="dv">2</span>), (n_x <span class="sc">-</span> <span class="dv">1</span>), (n_y <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb37-14"><a href="#cb37-14" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb37-15"><a href="#cb37-15" tabindex="-1"></a>        pro_v <span class="ot">&lt;-</span> v_y<span class="sc">/</span>v_x</span>
+<span id="cb37-16"><a href="#cb37-16" tabindex="-1"></a>        in_lim <span class="ot">&lt;-</span> pro_v<span class="sc">/</span><span class="fu">qf</span>((<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>), (n_y <span class="sc">-</span> <span class="dv">1</span>), (n_x <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb37-17"><a href="#cb37-17" tabindex="-1"></a>        su_lim <span class="ot">&lt;-</span> pro_v<span class="sc">/</span><span class="fu">qf</span>((alpha<span class="sc">/</span><span class="dv">2</span>), (n_y <span class="sc">-</span> <span class="dv">1</span>), (n_x <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb37-18"><a href="#cb37-18" tabindex="-1"></a>    }</span>
+<span id="cb37-19"><a href="#cb37-19" tabindex="-1"></a>    result <span class="ot">&lt;-</span> <span class="fu">c</span>(in_lim, su_lim)</span>
+<span id="cb37-20"><a href="#cb37-20" tabindex="-1"></a>    <span class="fu">return</span>(result)</span>
+<span id="cb37-21"><a href="#cb37-21" tabindex="-1"></a>}</span>
+<span id="cb37-22"><a href="#cb37-22" tabindex="-1"></a></span>
+<span id="cb37-23"><a href="#cb37-23" tabindex="-1"></a>com_am <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.67</span>, <span class="fl">10.5</span>, <span class="dv">2</span>, <span class="fl">3.18</span>, <span class="dv">4</span>, <span class="fl">3.5</span>, <span class="fl">3.33</span>, <span class="fl">5.32</span>, <span class="dv">2</span>, <span class="fl">4.25</span>, <span class="dv">6</span>)</span>
+<span id="cb37-24"><a href="#cb37-24" tabindex="-1"></a>inc_am <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="fl">10.25</span>, <span class="fl">1.5</span>, <span class="fl">5.22</span>, <span class="dv">5</span>)</span>
+<span id="cb37-25"><a href="#cb37-25" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">PropVar_CI</span>(com_am, inc_am, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
+<span id="cb37-26"><a href="#cb37-26" tabindex="-1"></a><span class="fu">print</span>(res)</span></code></pre></div>
+<pre><code>[1]  0.4395909 17.3715266</code></pre>
+<p>Y de forma mucho más directa se puede usar la función
+<code>var.test</code>, incluida en la librería base de R, que nos da la
+misma repuesta de forma directa, la cual además de estimar el intervalo
+de confianza nos da una prueba completa con pobabilidad de la poporción
+de las varianzas:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">var.test</span>(inc_am, com_am, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>
     F test to compare two variances
 
@@ -2005,38 +2038,6 @@ alternative hypothesis: true ratio of variances is not equal to 1
 sample estimates:
 ratio of variances 
           1.964242 </code></pre>
-<p>O equivalentemente usando la función <code>PropVar_CI</code> descrita
-a continuación:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="co"># Proportion of Variance for two populations confidence interval</span></span>
-<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="co"># This small function estimates the confidence interval for the </span></span>
-<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a><span class="co"># proportion of the variances estimated form two samples</span></span>
-<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb39-5"><a href="#cb39-5" tabindex="-1"></a></span>
-<span id="cb39-6"><a href="#cb39-6" tabindex="-1"></a>PropVar_CI <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">alpha =</span> <span class="fl">0.05</span>) {</span>
-<span id="cb39-7"><a href="#cb39-7" tabindex="-1"></a>  v_x <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
-<span id="cb39-8"><a href="#cb39-8" tabindex="-1"></a>  n_x <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb39-9"><a href="#cb39-9" tabindex="-1"></a>  v_y <span class="ot">&lt;-</span><span class="fu">var</span>(y)</span>
-<span id="cb39-10"><a href="#cb39-10" tabindex="-1"></a>  n_y <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
-<span id="cb39-11"><a href="#cb39-11" tabindex="-1"></a>  <span class="cf">if</span> (v_x <span class="sc">&gt;</span> v_y) {</span>
-<span id="cb39-12"><a href="#cb39-12" tabindex="-1"></a>    pro_v <span class="ot">&lt;-</span> v_x<span class="sc">/</span>v_y</span>
-<span id="cb39-13"><a href="#cb39-13" tabindex="-1"></a>    in_lim <span class="ot">&lt;-</span> pro_v<span class="sc">/</span><span class="fu">qf</span>((<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), (n_x <span class="sc">-</span> <span class="dv">1</span>), (n_y <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb39-14"><a href="#cb39-14" tabindex="-1"></a>    su_lim <span class="ot">&lt;-</span> pro_v<span class="sc">/</span><span class="fu">qf</span>((alpha<span class="sc">/</span><span class="dv">2</span>), (n_x <span class="sc">-</span> <span class="dv">1</span>), (n_y <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb39-15"><a href="#cb39-15" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb39-16"><a href="#cb39-16" tabindex="-1"></a>    pro_v <span class="ot">&lt;-</span> v_y<span class="sc">/</span>v_x</span>
-<span id="cb39-17"><a href="#cb39-17" tabindex="-1"></a>    in_lim <span class="ot">&lt;-</span> pro_v<span class="sc">/</span><span class="fu">qf</span>((<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), (n_y <span class="sc">-</span> <span class="dv">1</span>), (n_x <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb39-18"><a href="#cb39-18" tabindex="-1"></a>    su_lim <span class="ot">&lt;-</span> pro_v<span class="sc">/</span><span class="fu">qf</span>((alpha<span class="sc">/</span><span class="dv">2</span>), (n_y <span class="sc">-</span> <span class="dv">1</span>), (n_x <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb39-19"><a href="#cb39-19" tabindex="-1"></a>  }</span>
-<span id="cb39-20"><a href="#cb39-20" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">c</span>(in_lim, su_lim)</span>
-<span id="cb39-21"><a href="#cb39-21" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb39-22"><a href="#cb39-22" tabindex="-1"></a>}</span>
-<span id="cb39-23"><a href="#cb39-23" tabindex="-1"></a></span>
-<span id="cb39-24"><a href="#cb39-24" tabindex="-1"></a>com_am <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.67</span>, <span class="fl">10.5</span>, <span class="fl">2.0</span>, <span class="fl">3.18</span>, <span class="fl">4.00</span>, <span class="fl">3.5</span>, <span class="fl">3.33</span>, <span class="fl">5.32</span>, <span class="fl">2.0</span>, <span class="fl">4.25</span>, <span class="fl">6.0</span>)</span>
-<span id="cb39-25"><a href="#cb39-25" tabindex="-1"></a>inc_am <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.0</span>, <span class="fl">10.25</span>, <span class="fl">1.5</span>, <span class="fl">5.22</span>, <span class="fl">5.0</span>)</span>
-<span id="cb39-26"><a href="#cb39-26" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">PropVar_CI</span>(com_am, inc_am, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
-<span id="cb39-27"><a href="#cb39-27" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&quot;Límite inferior&quot;</span>, <span class="st">&quot;Límite superior&quot;</span>))</span></code></pre></div>
-<pre><code>[1] &quot;Límite inferior&quot; &quot;Límite superior&quot;</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">print</span>(res)</span></code></pre></div>
-<pre><code>[1]  0.4395909 17.3715266</code></pre>
 </div>
 </div>
 </div>

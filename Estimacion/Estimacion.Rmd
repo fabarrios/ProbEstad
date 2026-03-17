@@ -380,17 +380,21 @@ curve(df(x, 10, 3), from = 0, to = 10, col = 4, add = TRUE)
 curve(df(x, 10, 1), from = 0, to = 10, col = 5, add = TRUE)
 ```
 
-El tema de la varianza es un tema muy importante cuando se quieren sacar conclusiones de medidas de valor central por medio de muestreo. Un conclusión muy importante es que cuando las varinazas de dos poblaciones son distintas no se deben comparar los promedios de las poblaciones, ya que se puede llegar a conclusiones erróneas.  
+El tema de la varianza es un tema muy importante cuando se quieren sacar conclusiones de medidas de valor central por medio de muestreo. Una conclusión muy importante es que **cuando las varinazas de dos poblaciones son distintas no se deben comparar los promedios de las poblaciones**, ya que se puede llegar a conclusiones erróneas.  
 
-Para estimar el intervalo de confianza de la proporción de las varianzas de dos poblaciones $\sigma_1^2/\sigma_2^2$ se usa la relación  
+Para estimar el intervalo de confianza de la proporción de las varianzas de dos poblaciones $\sigma_1^2/\sigma_2^2$ se usa la relación    
+
 $$ F_{\alpha/2} < \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} < F_{1-(\alpha/2)} $$  
-que después de despejar la relación para la proporcion de las varinzas de las poblaciones resulta en  
+
+que después de despejar la relación para la proporcion de las varinzas de las poblaciones resulta en   
+
 $$ \frac{s_1^2/s_2^2}{F_{1-(\alpha/2)}} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2/s_2^2}{F_{\alpha/2}} $$
 
 Para el caso de la estimación de la proporción de la desviación estándar de muestras de dos poblaciones se puede usar la función en R `var.test()` que además de hacer una estimación del intervalo de confianza hace una medida de la probabilidad por $F$.
 
-**Ejemplo** Allen y Gross examinaron la fuerza del flexor del dedo gordo del pie de pacientes con fascitis plantar, una condición común en pacientes con problemas musculoesqueléticos. EL tratamiento de la fascia plantar es un tratamiento costoso y muchas veces poco efectivo.  Una de las medidas de base de los paciente fue su índice de masa corporal (BMI, por sus siglas en inglés). Para 16 de las mujeres del estudio, la desviación estándar para BMI fue de 8.1 y para los cuatro hombres en el estudio, la desviación estándar fue de 5.9. Queremos considerar un intervalo de confianza al 95% para la proporción de las desviaciones estándar de las poblaciones en el estudio.  
-*Respuesta* Los datos que tenemos son, $n_1 = 16$, y $n_2 =4$ con $s_1 = 8.1$ y $s_2 = 5.9$, para los grados de libertad de la función $\chi^2$ tenemos $df_1 = n_1 -1 = 15$ y $df_2 = n_2 -1 = 3$ y usando la ecuación para la proporción de las vatianzas $\sigma_1^2/\sigma_2^2$  
+**Ejemplo** Allen y Gross examinaron la fuerza del flexor del dedo gordo del pie de pacientes con fascitis plantar, una condición común en pacientes con problemas musculoesqueléticos. El tratamiento de la facitis plantar es un tratamiento costoso y muchas veces poco efectivo.  Una de las medidas de base de los paciente fue su índice de masa corporal (BMI, por sus siglas en inglés). Para 16 de las mujeres de este estudio, la desviación estándar para BMI fue de $s_1 = 8.1$ y para los cuatro hombres en el estudio, la desviación estándar fue de $s_2 = 5.9$. Queremos considerar un intervalo de confianza al 95% para la proporción de las desviaciones estándar de las poblaciones en el estudio.  
+
+*Respuesta* Los datos que tenemos son, $n_1 = 16$, y $n_2 =4$ con $s_1 = 8.1$ y $s_2 = 5.9$, para los grados de libertad de la función $\chi^2$ tenemos $df_1 = n_1 - 1 = 15$ y $df_2 = n_2 - 1 = 3$ y usando la ecuación para la proporción de las vatianzas $\sigma_1^2/\sigma_2^2$  
 
 ```{r}
 # Para s_1/s_2, df2 = 15, df1 = 3
@@ -404,7 +408,9 @@ print(c(LBI, LAI))
 
 Para obtener los valores críticos de $F_{(1-\alpha/2), df_1, df_2}$ o $F_{\alpha/2, df_1, df_2}$ se usó la funcion base de R que estima el área bajo la curva de la distribución *F*: `qf(.975, df1, df2)` o `qf(.025, df1, df2)`.  
 
-**Ejemplo** El propósito del estudio de Moneim et al. fue examinar amputaciones del dedo índice por accidentes durante competencias de laso en rodeos. Los investigadores revisaron 16 casos de amputaciones de índice. De estás, 11 fueron amputaciones totales mientras 5 fueron parciales. El tiempo de isquemia es la longitud de tiempo de suministro de oxígeno insuficiente al índice amputado.  El tiempo de isquemia (en horas) para los sujetos que experimentaron amputación completa fueron:  
+**Ejemplo** El propósito del estudio de Moneim et al. fue examinar amputaciones del dedo índice por accidentes durante competencias de laso en rodeos. Los investigadores revisaron 16 casos de amputaciones de índice. De estás, 11 fueron amputaciones totales mientras 5 fueron parciales. El tiempo de isquemia es la longitud de tiempo de suministro de oxígeno insuficiente al índice amputado.  
+
+Los tiempos de isquemia (en horas) para los sujetos que experimentaron amputación completa fueron:  
 
 `4.67, 10.5, 2.0, 3.18, 4.00, 3.5, 3.33, 5.32, 2.0, 4.25, 6.0`  
 

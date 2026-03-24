@@ -6,7 +6,7 @@
     <meta name="generator" content="pandoc" />
 
     
-        <meta name="date" content="2026-03-17" />
+        <meta name="date" content="2026-03-24" />
     
     <title>Hipotesis.knit</title>
 
@@ -1276,6 +1276,7 @@ margin-left: 0 !important;
       <li><a href="#prueba-de-hip%C3%B3tesis-con-muestreo-de-una-poblaci%C3%B3n-normalemente-distribu%C3%ADda-cuando-no-se-conoce-la-varianza." id="toc-prueba-de-hipótesis-con-muestreo-de-una-población-normalemente-distribuída-cuando-no-se-conoce-la-varianza.">Prueba
       de hipótesis con muestreo de una población normalemente
       distribuída, cuando no se conoce la varianza.</a></li>
+      <li><a href="#hip%C3%B3tesis-estad%C3%ADstica" id="toc-hipótesis-estadística">Hipótesis estadística</a></li>
       <li><a href="#prueba-de-hip%C3%B3tesis-la-diferencia-entre-los-promedios-de-dos-poblaciones." id="toc-prueba-de-hipótesis-la-diferencia-entre-los-promedios-de-dos-poblaciones.">Prueba
       de hipótesis: La diferencia entre los promedios de dos
       poblaciones.</a></li>
@@ -1287,7 +1288,7 @@ margin-left: 0 !important;
       </ul>
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
-                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2026-03-17</p>
+                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2026-03-24</p>
           </div>
    </div>
      
@@ -1542,6 +1543,32 @@ verdadero promedio es menor a <span class="math inline">\(\mu &lt;
 (izquierda) es menor a <span class="math inline">\(58.82\)</span>. El
 valor estimado de la muestra es <span class="math inline">\(54.94\)</span>.</p>
 </div>
+<div id="hipótesis-estadística" class="section level2">
+<h2>Hipótesis estadística</h2>
+<p>En toda investigación, los científicos utilizan estadística
+inferencial, porque siempre existe la posibilidad de que los resultados
+que observamos se deban al <strong>error de muestreo</strong>. Es decir,
+que la relación que vemos en los datos de nuestra muestra no refleje
+realmente lo que ocurre en la naturaleza o en toda la población.<br />
+La estadística inferencial nos ayuda a decidir si los datos de la
+muestra representan de manera confiable una relación existente en la
+población. En términos simples, debemos responder una de estas dos
+preguntas:<br />
+1- ¿Podemos creer que la relación observada en la muestra es parecida a
+la que encontraríamos si estudiáramos a toda la población?<br />
+2- ¿O más bien debemos pensar que esa relación es una coincidencia
+causada por el error de muestreo y que, en realidad, la muestra no
+refleja correctamente lo que ocurre en la naturaleza?</p>
+<p>A veces esperamos encontrar una relación, pero no sabemos en qué
+dirección se dará el cambio: si los valores aumentarán o disminuirán al
+modificar la variable independiente. En ese caso, usamos una
+<strong>prueba de dos colas</strong>, ya que consideramos ambas
+posibilidades.</p>
+<p>En cambio, cuando sí podemos predecir la dirección del cambio —por
+ejemplo, anticipamos que un grupo tendrá puntuaciones más altas que
+otro—, aplicamos una <strong>prueba de una cola</strong>, porque sólo
+nos interesa una dirección del efecto.</p>
+</div>
 <div id="prueba-de-hipótesis-la-diferencia-entre-los-promedios-de-dos-poblaciones." class="section level2">
 <h2>Prueba de hipótesis: La diferencia entre los promedios de dos
 poblaciones.</h2>
@@ -1572,8 +1599,8 @@ la expresión para estimar la varianza a partir de las muestras usando
 poblacional desconocida</strong> Este problema lo resolvemos con las
 ecuaciones de <span class="math inline">\(t\)</span>, recordamos que en
 general tenemos dos casos: para varianzas poblacionales iguales y
-varinzas poblacionales distintas.<br />
-<em>Varianza poblacional igual</em> cuando las varianzas de las
+varinzas poblacionales distintas.</p>
+<p><em>Varianza poblacional igual</em> cuando las varianzas de las
 poblaciones a comparar se supone son iguales. Se estima una varianza
 conjunta,</p>
 <p><span class="math display">\[ s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2
@@ -1658,8 +1685,8 @@ edad a la que caminaron por primera vez solos. Los datos en el archivo
 EXR_C07_S03_10.csv, contienen la edad en meses de las dos muestras de
 las poblaciones a la que los niños caminaron solos por primera vez. Usar
 <span class="math inline">\(\alpha = .05\)</span>. A que conclusión
-llegaron los investigadores?<br />
-<em>Respuesta</em> Se va a proponer la hipótesis nula <span class="math inline">\(H_0: \mu_1 = \mu_2 \; \; -&gt; \mu_1 - \mu2 =
+llegaron los investigadores?</p>
+<p><em>Respuesta</em> Se va a proponer la hipótesis nula <span class="math inline">\(H_0: \mu_1 = \mu_2 \; \; -&gt; \mu_1 - \mu2 =
 0\)</span>.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Edad a la que pudieron caminar solos</span></span>
 <span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>Infants <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;~/DropBox/GitHub/ProbEstad/DataSets/ch07_all/EXR_C07_S03_10.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>

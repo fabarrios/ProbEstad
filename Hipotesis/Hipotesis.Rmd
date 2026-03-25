@@ -278,10 +278,39 @@ ggwithinstats(
 
 ##  Prueba de la proporcion de varianzas
 
-En la prueba de la varinaza de dos poblaciones se estima la proporción de varianzas para determinar si as varianzas son iguales o no para decidir que prueba para la $t$ de Student se puede usar.  En R se cuenta con una prueba de varianza, a partir de dos muestras que nos permite contestar esta pregunta. Es la función `var.test`.  
+En la prueba de la varinaza de dos poblaciones se estima la proporción de varianzas para determinar si as varianzas son iguales o no para decidir que prueba para la $t$ de Student se puede usar.  En R se cuenta con una prueba de varianza, a partir de dos muestras que nos permite contestar esta pregunta. Esta funcion es la función `var.test`.  
+
 **Ejemplo** Si tomamos los datos en EXA_C07_S03_02.csv, podemos preguntar si podemos o no suponer que las varianzas son iguales o distintas y revisar nuestra llamada a la función `t.test`.  
 
 ```{r}
 var.test(SCI_con$CONTROL, SCI_con$SCI, ratio = 1, alternative = "two.sided", conf.level = .95)
 ```
+
+No podemos rechazar la hipótesis nula: la proporción de las varianzas es 1, por lo tanto las varianzas en este caso son iguales.
+
+
+## Errores en la toma de decisiones estadísticas. 
+
+Independientemente de que se concluya que la muestra representa o no la relación prevista, siempre existe la posibilidad de incurrir en un error. Recordemos que la hipótesis nula $H_o$ se plantea para negar una relación entre las variables de estudio.   
+
+## Errores de Tipo I: Rechazar Ho cuando Ho es verdadera. 
+
+En ocasiones, las variables analizadas no presentan una relación real entre sí, por lo que la hipótesis nula $H_o$ resulta ser cierta. Si en tal situación los datos obtenidos conducen a rechazar $H_o$, se comete un error de Tipo I.  
+
+Un error de Tipo I se define como el rechazo de $H_o$ cuando ésta es verdadera. En términos prácticos, implica concluir que la variable independiente ejerce un efecto cuando, en realidad, no lo hace.  
+
+En este tipo de error, el error muestral es tan grande que tanto el investigador -como los procedimientos estadísticos- se ven inducidos a aceptar la existencia de una relación que en realidad no existe. La probabilidad teórica de cometer un error de Tipo I se denota mediante $\alpha$. Por consiguiente, la probabilidad teórica de evitar un error de esta naturaleza es $1 - \alpha$.  
+
+## Errores de Tipo II: No rechazar Ho cuando Ho es falsa
+
+Es posible incurrir en un error de diferente naturaleza. A veces, las variables en estudio sí están auténticamente relacionadas, de modo que $H_o$ es falsa. Si en tal situación los datos conducen a conservar $H_o$, se incurre en un error de Tipo II.
+Este error se define como retener $H_o$ cuando es falsa (y, por tanto, $H_a$ es verdadera). En otras palabras, se falla en reconocer la existencia del efecto real de la variable independiente.
+
+En un error de Tipo II, la media muestral se aproxima tanto a la media poblacional ($\mu$) descrita por $H_o$ que el investigador —y las pruebas estadísticas— concluyen erróneamente que la relación prevista no existe, cuando en efecto sí existe.
+Aunque no es posible saber en qué caso particular se ha cometido un error de Tipo II, sí puede estimarse su probabilidad. Dicha probabilidad teórica se representa con el símbolo $\beta$. Por tanto, cada vez que se conserva $H_o$, la probabilidad de haber cometido un error de Tipo II es $\beta$; de forma complementaria,  $1 - \beta$ representa la probabilidad de evitarlo.
+
+## Poder estadístico. 
+
+El objetivo fundamental de la investigación es rechazar $H_o$ cuando esta es falsa. Cuando se logra tal resultado, no solo se evitan errores, sino que además se obtiene conocimiento acerca de una relación real en la naturaleza. Esta capacidad se denomina poder estadístico (power), y se define como la probabilidad de rechazar $H_o$ cuando es falsa, es decir, de identificar correctamente la existencia de una relación. En términos equivalentes, el poder representa la probabilidad de no cometer un error de Tipo II, de modo que: $1 - \beta$.  
+En consecuencia, se busca maximizar el **poder** de un estudio, es decir, aumentar el valor de $1 - \beta$. De esta forma, el investigador puede tener mayor confianza en la decisión tomada, incluso cuando los resultados conducen a conservar la hipótesis nula.  
 

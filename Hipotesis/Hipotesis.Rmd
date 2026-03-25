@@ -123,7 +123,7 @@ t.test(glaucoma_age, alternative = "less", mu = 60, conf.level = 0.95)
 
 el resultado muestra una $p = 0.01874$ que es menor a $.05$ por lo que si podemos descartar la hipótesis nula y concluir que el verdadero promedio es menor a $\mu < 60$. Además del intervalo de confianza a un solo lado (izquierda) es menor a $58.82$. El valor estimado de la muestra es $54.94$.  
 
-## Hipótesis estadística
+# Hipótesis estadística
 
 En toda investigación, los científicos utilizan estadística inferencial, porque siempre existe la posibilidad de que los resultados que observamos se deban al **error de muestreo**. Es decir, que la relación que vemos en los datos de nuestra muestra no refleje realmente lo que ocurre en la naturaleza o en toda la población.  
 La estadística inferencial nos ayuda a decidir si los datos de la muestra representan de manera confiable una relación existente en la población. En términos simples, debemos responder una de estas dos preguntas:  
@@ -141,7 +141,7 @@ La prueba de hipótesis para la diferencia entre los promedios de dos poblacione
 2. $H_0 : \mu_1 - \mu_2 \geq 0, H_A: \mu_1 - \mu_2 < 0$  
 3. $H_0 : \mu_1 - \mu_2 \leq 0, H_A: \mu_1 - \mu_2 > 0$  
 
-### Para muestras tomadas de poblaciones normalemte distribuídas, con sus varianzas conocidas.  
+## Para muestras tomadas de poblaciones normalemte distribuídas, con sus varianzas conocidas.  
 Del tema de Estimación sabemos que la estadística que describe este problema es  
 
 $$ z = \frac{(\bar{x_1} - \bar{x_2}) - (\mu_1 - \mu_2)_0}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} }} $$  
@@ -208,7 +208,7 @@ t.test(Age ~ factor(Group), data =  Infants, alternative = "two.sided", mu = 0, 
 Otra  
 Se puede ver que el valor de $p$ está por debajo del valor de alfa propuesto, por lo tanto se puede descartar la hipótesis nula, además del intervalos de confianza para el valor de $\mu_1 - \mu_2$ no contiene al cero.  
 
-## Comparaciones pareadas (t-pareada).  
+# Comparaciones pareadas (t-pareada).  
 
 Una forma frecuentemente empleada para medir la efectividad de algún tratamiento o procedimiento experimental es el uso de observaciones pareadas. Lo que se conoce como una prueba por comparación pareada.  
 Es estas pruebas en lugar de hacer uso de medidas independientes se hace uso de la diferencia entre pares de observaciones $d_i$, como variable de interés. Cuando una muestra de $n$ diferencias estimadas de $n$ pares de medidas, constituye una muestra de una variable normalemente distribuida con la prueba estadística para comparar con el promedio de la diferencia de la población.  
@@ -289,7 +289,7 @@ var.test(SCI_con$CONTROL, SCI_con$SCI, ratio = 1, alternative = "two.sided", con
 No podemos rechazar la hipótesis nula: la proporción de las varianzas es 1, por lo tanto las varianzas en este caso son iguales.
 
 
-## Errores en la toma de decisiones estadísticas. 
+# Errores en la toma de decisiones estadísticas. 
 
 Independientemente de que se concluya que la muestra representa o no la relación prevista, siempre existe la posibilidad de incurrir en un error. Recordemos que la hipótesis nula $H_o$ se plantea para negar una relación entre las variables de estudio.   
 
@@ -309,7 +309,7 @@ Este error se define como retener $H_o$ cuando es falsa (y, por tanto, $H_a$ es 
 En un error de Tipo II, la media muestral se aproxima tanto a la media poblacional ($\mu$) descrita por $H_o$ que el investigador —y las pruebas estadísticas— concluyen erróneamente que la relación prevista no existe, cuando en efecto sí existe.
 Aunque no es posible saber en qué caso particular se ha cometido un error de Tipo II, sí puede estimarse su probabilidad. Dicha probabilidad teórica se representa con el símbolo $\beta$. Por tanto, cada vez que se conserva $H_o$, la probabilidad de haber cometido un error de Tipo II es $\beta$; de forma complementaria,  $1 - \beta$ representa la probabilidad de evitarlo.
 
-## Poder estadístico. 
+# Poder estadístico. 
 
 El objetivo fundamental de la investigación es rechazar $H_o$ cuando esta es falsa. Cuando se logra tal resultado, no solo se evitan errores, sino que además se obtiene conocimiento acerca de una relación real en la naturaleza. Esta capacidad se denomina poder estadístico (power), y se define como la probabilidad de rechazar $H_o$ cuando es falsa, es decir, de identificar correctamente la existencia de una relación. En términos equivalentes, el poder representa la probabilidad de no cometer un error de Tipo II, de modo que: $1 - \beta$.  
 En consecuencia, se busca maximizar el **poder** de un estudio, es decir, aumentar el valor de $1 - \beta$. De esta forma, el investigador puede tener mayor confianza en la decisión tomada, incluso cuando los resultados conducen a conservar la hipótesis nula.  

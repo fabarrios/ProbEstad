@@ -1,12 +1,8 @@
 knitr
 rmdformats
-rcompanion
 carData
 car
 emmeans
-hrbrthemes
-viridisLite
-viridis
 rstatix
 tidyverse
 ggplot2
@@ -17,3 +13,4 @@ purrr
 dplyr
 stringr
 forcats
+lubridate

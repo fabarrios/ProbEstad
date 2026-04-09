@@ -12,15 +12,15 @@ library(knitr)
 library(rmdformats)
 
 ## Global options
-options("max.print"=2000)
+options(max.print="85")
 opts_chunk$set(echo=TRUE,
 	             cache=TRUE,
                prompt=FALSE,
-               tidy=FALSE,
+               tidy=TRUE,
                comment=NA,
                message=FALSE,
                warning=FALSE)
-opts_knit$set(width=100)
+opts_knit$set(width=85)
 ```
 
 
@@ -40,18 +40,21 @@ Uno de los procesos más usados para comparar diferentes "tratamientos" sobre un
 
 ## ANOVA Modelos de una via  (One-Way ANOVA)  
 
-Carne proveniente de caza, entre otras aquellas del venado de cola-blanca, y ardilla gris, son usadas como alimento or familias, cazadores y otros individuos por razones culturales, personales, o de salud. En un estudio de Holben et al. estimó el contenido de selenio de carne de venado cola-blanca libre (venison), y ardilla gris (squirrel) obtenidos de una región de baja concentración de selenio en EEUU.  Estos contenidos de selenio fueron también comparados con concentraciones de carne de ganado producido en la misma región (RRB) y en una región externa (NRRB). Nos interesa saber si la concentración de selenio $(\mu g/100g)$ es distinta en los grupos de carne. (EXA_C08_S02_01.csv).
+Carne proveniente de caza, entre otras aquellas del venado de cola-blanca, y ardilla gris, son usadas como alimento por familias, cazadores y otros individuos por razones culturales, personales, o de salud. En un estudio de Holben et al. estimó el contenido de selenio de carne de venado cola-blanca libre (venison), y ardilla gris (squirrel) obtenidos de una región de baja concentración de selenio en EEUU.  Estos contenidos de selenio fueron también comparados con concentraciones de carne de ganado producido en la misma región (RRB) y en una región externa (NRRB). Nos interesa saber si la concentración de selenio $(\mu g/100g)$ es distinta en los grupos de carne. (EXA_C08_S02_01.csv).
 
-La hipótesis nula de este modelo es que todos los promedios poblacionales (cada promedio de la población de cada caso) son iguales entre ellos $\mu_1 = \mu_2 = \mu_3 \dots = \mu_n$, y la hipótesis alternativa es que "por lo menos uno de ellos es distinto".
+La hipótesis nula $H_0$ de este modelo es que todos los promedios poblacionales (cada promedio de la población de cada caso) son iguales entre ellos $\mu_1 = \mu_2 = \mu_3 \dots = \mu_n$, y la hipótesis alternativa es que "por lo menos uno de ellos es distinto".  
+
 
 ```{r}
-getOption('max.print')
-
 # Exa_C08_S02_01 One-way
 #
 Exa8.2.1 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXA_C08_S02_01mod.csv", show_col_types = FALSE)
+head(Exa8.2.1)
+
 boxplot(Selenium ~ Group, data = Exa8.2.1)
 ggplot(data = Exa8.2.1, aes(x = Group, y = Selenium)) + geom_boxplot()
+
+# one way ANOVA estimated as a lineas model
 Exa8.2.1_lm <- lm(Selenium ~ Group, data = Exa8.2.1)
 (anova_Exa8.2.1_lm <- anova(Exa8.2.1_lm))
 #
@@ -97,7 +100,7 @@ EXR8.2.2_M %>% ggplot( aes(x = GROUP, y = BMD) )  +
 #
 
 Exr2_2_lm <- lm(BMD ~ factor(GROUP), data=EXR8.2.2_M)
-S(Exr2_2_lm)
+summ(Exr2_2_lm)
 
 emmeans(Exr2_2_lm, pairwise ~ GROUP)
 emmeans(Exr2_2_lm, trt.vs.ctrl ~ GROUP)
@@ -126,7 +129,7 @@ Para el caso de un ANOVA de dos vías, tenemos que la función repuesta responde
 Del ejemplo 8.3.1 de Daniel para un ANOVA de dos vías:
 Un fisioterapeuta quería comparar tres métodos para enseñar a sus pacientes a usar una prótesis. Pensó que la 
 proporción de aprendizage sería diferente dependiendo de la edad de los parcientes y desarrolló un experimento 
-que le permitió tomar en cuenta la edad. Se construye la tábla de los datos del problema.
+que le permitió tomar en cuenta la edad. Se construye la tabla de los datos del problema.
 
 ```{r}
 # Build a table, index by index since

@@ -52,17 +52,22 @@ Exa8.2.1 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXA_C08_
 head(Exa8.2.1)
 
 boxplot(Selenium ~ Group, data = Exa8.2.1)
-ggplot(data = Exa8.2.1, aes(x = Group, y = Selenium)) + geom_boxplot()
+#
+ggplot(data = Exa8.2.1, aes(x = Group, y = Selenium) )  + 
+  geom_boxplot() +
+  geom_jitter(width = 0.1, alpha = 0.6, aes(color = Group))
 
 # one way ANOVA estimated as a lineas model
 Exa8.2.1_lm <- lm(Selenium ~ Group, data = Exa8.2.1)
 (anova_Exa8.2.1_lm <- anova(Exa8.2.1_lm))
 #
 Exa8.2.1_aov <- aov(Selenium ~ Group, data = Exa8.2.1)
+
 #
 summary(Exa8.2.1_aov)
 model.tables(Exa8.2.1_aov, type="means")
 model.tables(Exa8.2.1_aov, type="effects")
+
 #
 TukeyHSD(Exa8.2.1_aov)
 plot(TukeyHSD(Exa8.2.1_aov))
@@ -78,11 +83,7 @@ plot(TukeyHSD(Exa8.2.1_aov))
 # mineral density (BMD).
 #
 EXR8.2.2 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXR_C08_S02_02.csv", show_col_types = FALSE)
-
-boxplot(BMD ~ factor(GROUP), data = EXR8.2.2)
-Exr2_2.aov <- aov(BMD ~ factor(GROUP), data=EXR8.2.2)
-anova(Exr2_2.aov)
-# anova() to print the ANOVA table
+EXR8.2.2
 
 EXR8.2.2_M <- EXR8.2.2 %>% 
   mutate(GROUP = case_when(GROUP == 1 ~ "RA", 
@@ -93,17 +94,20 @@ EXR8.2.2_M <- EXR8.2.2 %>%
 
 EXR8.2.2_M <- EXR8.2.2_M %>% 
   mutate(GROUP = GROUP %>% fct_relevel("O", "RA", "LUPUS", "PMRTA", "OA"))
-  
+
 EXR8.2.2_M %>% ggplot( aes(x = GROUP, y = BMD) )  + 
   geom_boxplot() +
   geom_jitter(width = 0.1, alpha = 0.6, aes(color = GROUP))
+
 #
+Exr2_2.aov <- aov(BMD ~ factor(GROUP), data=EXR8.2.2_M)
+
+# anova() function to print the ANOVA table
+anova(Exr2_2.aov)
 
 Exr2_2_lm <- lm(BMD ~ factor(GROUP), data=EXR8.2.2_M)
 summary(Exr2_2_lm)
 
-emmeans(Exr2_2_lm, pairwise ~ GROUP)
-emmeans(Exr2_2_lm, trt.vs.ctrl ~ GROUP)
 ```
 
 2. Ilich-Ernst y colaboradores estudiaron el consumo de calcio en la dieta de un grupos de 113 mujeres adultas sanas de edades entre 20 y 88 años. Los investigadores segregaron a los sujetos de estudio por grupos de edad de la siguiente manera: Grupo A; 20.0 – 45.9 años; grupo B; 46.00 – 55. 9 años; grupo C; 56.0 – 65.9 años; y grupo D; de más de 66 años. El consumo de calsio estuvo medido en mg/día. Los datos están listados en el archivo EXR_C08_S02_03.csv. Siguiendo un ANOVA, ¿se puede concluir que hay uns diferencia en los promedios de las poblaciones? Haga un HSD Tukey para estimar las diferencias entre las distintas poblaciones, sea Alpha = .05. Grafique los datos usando una gráfica de cajas y explique los resultados.  
@@ -118,10 +122,15 @@ plot(calcium ~ factor(Group), data = Exr8.2.3)
 
 Exr3.aov <- aov(calcium ~ Group, data=Exr8.2.3)
 anova(Exr3.aov)
-plot(Exr3.aov)
 
+plot(Exr3.aov)
 TukeyHSD(Exr3.aov)
 
+emmeans(Exr3.aov, pairwise ~ Group)
+emmeans(Exr3.aov, trt.vs.ctrl ~ Group)
+
+model.tables(Exa8.2.1_aov, type="means")
+model.tables(Exa8.2.1_aov, type="effects")
 ```
 
 ## ANOVA de dos vías  

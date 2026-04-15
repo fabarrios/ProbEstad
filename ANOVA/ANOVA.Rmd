@@ -85,6 +85,8 @@ plot(TukeyHSD(Exa8.2.1_aov))
 EXR8.2.2 <- read_csv(file="~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXR_C08_S02_02.csv", show_col_types = FALSE)
 EXR8.2.2
 
+EXR8.2.2$GROUP
+
 EXR8.2.2_M <- EXR8.2.2 %>% 
   mutate(GROUP = case_when(GROUP == 1 ~ "RA", 
                            GROUP == 2 ~ "LUPUS",
@@ -100,7 +102,7 @@ EXR8.2.2_M %>% ggplot( aes(x = GROUP, y = BMD) )  +
   geom_jitter(width = 0.1, alpha = 0.6, aes(color = GROUP))
 
 #
-Exr2_2.aov <- aov(BMD ~ factor(GROUP), data=EXR8.2.2_M)
+Exr2_2.aov <- aov(BMD ~ GROUP, data=EXR8.2.2_M)
 
 # anova() function to print the ANOVA table
 anova(Exr2_2.aov)
@@ -133,16 +135,21 @@ anova(Exr3.aov)
 
 plot(Exr3.aov)
 TukeyHSD(Exr3.aov)
+```
 
+*emmeans* del inglés "Estimated Marginal Means" proporciona métodos para obtener medias marginales estimadas (EMMs, también conocidas como medias de mínimos cuadrados) esta librería perminte calcular contrastes o combinaciones lineales de dichas medias marginales con varios ajustes por multiplicidad. También se pueden estimar y contrastar pendientes de líneas de tendencia.
+
+
+```{r}
 emmeans(Exr3.aov, pairwise ~ Group)
 emmeans(Exr3.aov, trt.vs.ctrl ~ Group)
 
-model.tables(Exa8.2.1_aov, type="means")
-model.tables(Exa8.2.1_aov, type="effects")
+model.tables(Exr3.aov, type="means", se = TRUE)
+model.tables(Exr3.aov, type="effects", se = TRUE)
 ```
 
 ## ANOVA de dos vías  
-Para el caso de un ANOVA de dos vías, tenemos que la función repuesta responde a dos factores que a su vez tiene dos o más niveles por factor: $Y \sim factor_1 + factor_2$
+Para el caso de un ANOVA de dos vías, tenemos que la función repuesta responde a dos factores que a su vez tiene dos o más niveles por factor: $Y \sim factor_1 + factor_2$.  En este caso ya se puede presentar un término de interacción entre factores.
 
 Del ejemplo 8.3.1 de Daniel para un ANOVA de dos vías:
 Un fisioterapeuta quería comparar tres métodos para enseñar a sus pacientes a usar una prótesis. Pensó que la 
@@ -174,12 +181,14 @@ Para las gráficas de cajas ejecutadas por un ggplot (o boxplot) es necesario ma
 
 ggplot(data = Learn, aes(x = Age, y = Rate) )  + 
   geom_boxplot() + 
-  geom_jitter(width = 0.1, alpha=0.6, aes(color = Method))
+  geom_jitter(width = 0.1, alpha=0.6, aes(color = Method)) +
+  theme_bw()
 
 # For the Rate group
 ggplot(data = Learn, aes(x = Method, y = Rate) )  + 
   geom_boxplot() + 
-  geom_jitter(width = 0.1, alpha=0.6, aes(color = Age))
+  geom_jitter(width = 0.1, alpha=0.8, aes(color = Age)) +
+  theme_bw()
 
 # now the ANOVA model
 Rate_aov = aov(Rate ~ Method + Age, data = Learn)
@@ -193,9 +202,9 @@ abline(v=0, col=2)
 
 ```
  
-**Ejemplos two-way ANOVA**   
+**Ejemplos de ANOVA de dos vías (two-way ANOVA)**   
 
-En un estudio de efectos pulmonares en conejillos de Indias, Lacroix et al. expuso a 18 conejillos de Indias sensibilizados con albúmina y 18 no-sensibilizados con aire regular, benzaldehido y acetildehido.  Al final de la exposición los conejillos de Indias fueron anesteciados y la respuesta a alergias medida por lavado broncoalveolar (BAL). La tabla de resultados se muestra en REV_C08_16 y muestra la cuenta de células alveolares $(\times 10^6)$ por grupo de tratamiento (aire, benzaldehido y acetildehido) y sensibilizados a albúmina.  Pruebe por las diferencias en a) entre sensibilizados y no sensibilizados por albúmina, b) entre los tres tratamientos. Sea $\alpha=.05$ en todas las pruebas.  
+En un estudio de efectos pulmonares en conejillos de Indias, Lacroix et al. expuso a 18 conejillos de Indias sensibilizados y 18 no-sensibilizados con albúmina, a tres tratamientos distintos: aire regular, benzaldehido y acetildehido.  Al final de la exposición los conejillos de Indias fueron anesteciados y la respuesta a alergias medida por lavado broncoalveolar (BAL). La tabla de resultados se muestra en REV_C08_16 y contiene la cuenta de células alveolares $(\times 10^6)$ por grupo de tratamiento (aire, benzaldehido y acetildehido) y sensibilizados o no con albúmina.  Pruebe por las diferencias en a) entre sensibilizados y no sensibilizados por albúmina, b) entre los tres tratamientos. Sea $\alpha=.05$ en todas las pruebas.  
 
 ```{r}
 Rev8.16 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/REV_C08_16.csv", show_col_types = FALSE)

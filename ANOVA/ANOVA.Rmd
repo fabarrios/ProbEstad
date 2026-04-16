@@ -75,7 +75,7 @@ plot(TukeyHSD(Exa8.2.1_aov))
 
 **Más ejemplos**  
 
-1. Pacientes de enfermedades reumáticas u osteoporosis generalmente sufren de pérdidas críticas de densidad mineral osea (Bone Mineral Density, BMD). Un medicamento usado para recuperar o prevenir una pérdida mayor de BMD, es el Alendronato. Holcomb y Rothenberg examinaron a 96 mujeres tomando alendronato para determinar si había alguna diferencia en el promedio de cambio en densidad ósea entre cinco clasificaciones diagnostica primarias. El Grupo1 era de pacientes diagnosticados con artritis reumatoide (RA). Grupo2 era de pacientes con una variedad de diagnósticos incluyendo, Lupus, granulomatosis de Wegener y poliarteritis, y otros desordenes vasculares (LUPUS). Grupo3 consistió en pacientes diagnosticados con polimialgia reumática o artritis temporal (PMRTA). El Grupo4 estaba integrado por pacientes con artrosis (OA). Y el Grupo 5 de pacientes con diagnóstico de osteoporosis (O) sin otros desordenes reumáticos. ¿Puede determinar que los promedios de los grupos presentan alguna diferencia? Haga una gráfica de cajas de los grupos.  
+Pacientes de enfermedades reumáticas u osteoporosis generalmente sufren de pérdidas críticas de densidad mineral osea (Bone Mineral Density, BMD). Un medicamento usado para recuperar o prevenir una pérdida mayor de BMD, es el Alendronato. Holcomb y Rothenberg examinaron a 96 mujeres tomando alendronato para determinar si había alguna diferencia en el promedio de cambio en densidad ósea entre cinco clasificaciones diagnostica primarias. El Grupo1 era de pacientes diagnosticados con artritis reumatoide (RA). Grupo2 era de pacientes con una variedad de diagnósticos incluyendo, Lupus, granulomatosis de Wegener y poliarteritis, y otros desordenes vasculares (LUPUS). Grupo3 consistió en pacientes diagnosticados con polimialgia reumática o artritis temporal (PMRTA). El Grupo4 estaba integrado por pacientes con artrosis (OA). Y el Grupo 5 de pacientes con diagnóstico de osteoporosis (O) sin otros desordenes reumáticos. ¿Puede determinar que los promedios de los grupos presentan alguna diferencia? Haga una gráfica de cajas de los grupos.  
 
 ```{r}
 # Exer. 8.2.2 Bone Mineral Density, BMD
@@ -115,7 +115,7 @@ S(Exr2_2_lm)
 
 ```
 
-2. Ilich-Ernst y colaboradores estudiaron el consumo de calcio en la dieta de un grupos de 113 mujeres adultas sanas de edades entre 20 y 88 años. Los investigadores segregaron a los sujetos de estudio por grupos de edad de la siguiente manera: Grupo A; 20.0 – 45.9 años; grupo B; 46.00 – 55. 9 años; grupo C; 56.0 – 65.9 años; y grupo D; de más de 66 años. El consumo de calsio estuvo medido en mg/día. Los datos están listados en el archivo EXR_C08_S02_03.csv. Siguiendo un ANOVA, ¿se puede concluir que hay uns diferencia en los promedios de las poblaciones? Haga un HSD Tukey para estimar las diferencias entre las distintas poblaciones, sea Alpha = .05. Grafique los datos usando una gráfica de cajas y explique los resultados.  
+2. Ilich-Ernst y colaboradores estudiaron el consumo de calcio en la dieta de un grupo de 113 mujeres adultas sanas de edades entre 20 y 88 años. Los investigadores segregaron a los sujetos de estudio por grupos de edad de la siguiente manera: Grupo A; 20.0 – 45.9 años; grupo B; 46.00 – 55. 9 años; grupo C; 56.0 – 65.9 años; y grupo D; de más de 66 años. El consumo de calcio estuvo medido en mg/día. Los datos están listados en el archivo EXR_C08_S02_03.csv. Siguiendo un ANOVA, ¿se puede concluir que hay una diferencia en los promedios de las poblaciones? Haga un HSD Tukey para estimar las diferencias entre las distintas poblaciones, sea Alpha = .05. Grafique los datos usando una gráfica de cajas y explique los resultados.  
 
 ```{r}
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -137,7 +137,7 @@ plot(Exr3.aov)
 TukeyHSD(Exr3.aov)
 ```
 
-*emmeans* del inglés "Estimated Marginal Means" proporciona métodos para obtener medias marginales estimadas (EMMs, también conocidas como medias de mínimos cuadrados) esta librería perminte calcular contrastes o combinaciones lineales de dichas medias marginales con varios ajustes por multiplicidad. También se pueden estimar y contrastar pendientes de líneas de tendencia.
+**emmeans** del inglés "Estimated Marginal Means" proporciona métodos para obtener *medias marginales estimadas* (EMMs, también conocidas como medias de mínimos cuadrados) En R la librería *emmeans* perminte calcular contrastes o combinaciones lineales de dichas medias marginales con varios ajustes por multiplicidad. También se pueden estimar y contrastar pendientes de líneas de tendencia.
 
 
 ```{r}
@@ -202,7 +202,7 @@ abline(v=0, col=2)
 
 ```
  
-**Ejemplos de ANOVA de dos vías (two-way ANOVA)**   
+**Más Ejemplos de ANOVA de dos vías (two-way ANOVA)**   
 
 En un estudio de efectos pulmonares en conejillos de Indias, Lacroix et al. expuso a 18 conejillos de Indias sensibilizados y 18 no-sensibilizados con albúmina, a tres tratamientos distintos: aire regular, benzaldehido y acetildehido.  Al final de la exposición los conejillos de Indias fueron anesteciados y la respuesta a alergias medida por lavado broncoalveolar (BAL). La tabla de resultados se muestra en REV_C08_16 y contiene la cuenta de células alveolares $(\times 10^6)$ por grupo de tratamiento (aire, benzaldehido y acetildehido) y sensibilizados o no con albúmina.  Pruebe por las diferencias en a) entre sensibilizados y no sensibilizados por albúmina, b) entre los tres tratamientos. Sea $\alpha=.05$ en todas las pruebas.  
 
@@ -218,14 +218,11 @@ Rev8.16_fac <- Rev8.16 %>%
 Rev8.16_fac <- Rev8.16_fac %>% 
    mutate(Treat = Treat %>% fct_relevel("Air", "Act", "Benz"))
 
-boxplot(Count ~ Treat, data = Rev8.16_fac)
-boxplot(Count ~ Sens, data = Rev8.16_fac)
-
 boxplot(Count ~ Sens + Treat, data = Rev8.16_fac)
 
-ggplot(data = Rev8.16_fac, aes(x = Sens, y = Count) )  + 
+ggplot(data = Rev8.16_fac, aes(x = Treat, y = Count) )  + 
   geom_boxplot() + 
-  geom_jitter(width = 0.1, alpha=0.6, aes(color = Treat))
+  geom_jitter(width = 0.1, alpha=0.6, aes(color = Sens))
 
 Rev8.16_aov <- aov(Count ~ Sens + Treat, data = Rev8.16_fac)
 anova(Rev8.16_aov)
@@ -248,7 +245,7 @@ Rev8.16_lm_int_emm_c <- emmeans(Rev8.16_lm_int, trt.vs.ctrl ~ Sens + Treat)
 Rev8.16_lm_int_emm_c
 ```
 
-**Ejemplo** El interés del estudio de Hartman-Maeir et al. fue estimar los perfiles del déficit de concienciación entre pacientes con infarto cerebral que están en rehabilitación. Estudió 35 pacientes con lesiones por infarto en el hemisferio derecho y 19 pacientes con lesiones en el hemisferio izquierdo.  Además agrupó las lesiones por su tamaño como: 2 = 1-3 cm, 3 = 3-5cm, y 4 = 5 cm o más grandes. Una de las medidas importantes fue la calificación de la concienciación por su propia limitación. Las calificaciones tuvieron un rango de 8 a 24, con una calificación más alta significando mayor concienciación (REV_C08_22.csv). Pruebe la diferencia por tamaño de lesión y lado de hemisferio, sea $\alpha = .05$.  
+**Otro Ejemplo** El interés del estudio de Hartman-Maeir et al. fue estimar los perfiles del déficit de concienciación entre pacientes con infarto cerebral que están en rehabilitación. Estudió 35 pacientes con lesiones por infarto en el hemisferio derecho y 19 pacientes con lesiones en el hemisferio izquierdo.  Además agrupó las lesiones por su tamaño como: 2 = 1-3 cm, 3 = 3-5cm, y 4 = 5 cm o más grandes. Una de las medidas importantes fue la calificación de la concienciación por su propia limitación. Las calificaciones tuvieron un rango de 8 a 24, con una calificación más alta significando mayor concienciación (REV_C08_22.csv). Pruebe la diferencia por tamaño de lesión y lado de hemisferio, sea $\alpha = .05$.  
 
 ```{r}
 Rev.8.22 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/REV_C08_22.csv", show_col_types = FALSE)

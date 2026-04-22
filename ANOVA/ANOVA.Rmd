@@ -30,6 +30,7 @@ library(car)
 library(emmeans)
 library(rstatix)
 library(tidyverse)
+library(ggpubr)
 
 options('max.print' = 100000)
 ```
@@ -304,17 +305,21 @@ emmeans(Rev.8.18_lm, trt.vs.ctrl ~ site)
 
 ## ANOVA Modelos de medidas repetidas   
 
-Los modelos de medidas repetidas son aquellos en los que la misma variable es medida en los mismos sujetos en dos o más ocasiones.  En donde las ocaciones pueden significar condiciones distintas como diferentes tratamientos o diferentes puntos de tiempo.  
-Las ventajas de usar este tipo de modelos se han mencionado y son que permiten controlar variables relacionadas con el sujeto y no con el estudio que se está desarrollado .
+Los modelos de medidas repetidas son aquellos en los que la misma variable es medida en los mismos sujetos en dos o más ocasiones.  En donde cada ocasión puede significar una condición distinta; como diferentes tratamientos o diferentes puntos de tiempo.  
+Las ventajas de usar este tipo de modelos se han mencionado y son que permiten controlar variables relacionadas con el sujeto y con factores relacionados con el estudio que se está desarrollado .
 
 **Ejemplo** Licciardone et al. examined subjects with chronic, nonspecific low back pain. In this study, 18 of the subjects completed a survey questionnaire assessing physical functioning at baseline, and after 1, 3, and 6 months. Table (EXA_C08_S04_01) shows the data for these subjects who received a sham treatment that appeared to be genuine osteopathic manipulation. Higher values indicate better physical functioning. The goal of the experiment was to determine if subjects would report improvement over time even though the treatment they received would provide minimal improvement. We wish to know if there is a difference in the mean survey values among the four points in time.  
 
 ```{r}
 Exa8.4.1 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXA_C08_S04_01mod.csv", show_col_types = FALSE)
+Exa8.4.1 <- Exa8.4.1 %>% mutate(Subject = factor(Subject), Time = factor(Time))
+
+head(Exa8.4.1)
 
 ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + 
   geom_boxplot() + 
-  geom_jitter(width = .15, alpha = 0.6, aes(color = Time))
+  geom_jitter(width = .1, alpha=.6, aes(color = Time)) +
+  theme_bw()
 
 # Find outliers (extreme if present)
 Exa8.4.1 %>% 
@@ -326,6 +331,10 @@ Exa8.4.1 %>%
   group_by(Time) %>% 
   shapiro_test(Assessment)
 
+# ggplot used with ggpubr package
+bxp <- ggboxplot(data = Exa8.4.1, x = "Time", y = "Assessment", add = "jitter", color = "Time")
+bxp
+
 # ANOVA test from the rstatix package
 Exa8.4.1_aov <- anova_test(data = Exa8.4.1, dv = Assessment, wid = Subject, within = Time)
 get_anova_table(Exa8.4.1_aov)
@@ -333,13 +342,22 @@ get_anova_table(Exa8.4.1_aov)
 # Pairwise comparisons
 emmeans_test(Exa8.4.1, Assessment ~ Time, p.adjust.method = "fdr")
 
+pwc <- Exa8.4.1 %>%
+  pairwise_t_test(
+    Assessment ~ Time, paired = TRUE,
+    p.adjust.method = "bonferroni"
+  )
+pwc
+
+pwc <- pwc %>% add_xy_position(x = "Time")
+bxp + 
+  stat_pvalue_manual(pwc) +
+  labs(
+    subtitle = get_test_label(Exa8.4.1_aov, detailed = TRUE),
+    caption = get_pwc_label(pwc)
+  )
 # # # # # # # # # # # # # # # # # # # 
 # Now with the R basic anova function, how to make a repeated measures
-ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + 
-  geom_boxplot() + 
-  geom_jitter(width = .1, alpha=.6, aes(color = Time)) +
-  theme_bw()
-
 Exa8.4.1_mod <- aov( Assessment ~ factor(Time) + Error(factor(Subject)), data = Exa8.4.1 )
 summary(Exa8.4.1_mod)
 

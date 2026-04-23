@@ -314,8 +314,7 @@ Las ventajas de usar este tipo de modelos se han mencionado y son que permiten c
 Exa8.4.1 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXA_C08_S04_01mod.csv", show_col_types = FALSE)
 Exa8.4.1 <- Exa8.4.1 %>% mutate(Subject = factor(Subject), Time = factor(Time))
 
-head(Exa8.4.1)
-
+head(Exa8.4.1, 20)
 ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + 
   geom_boxplot() + 
   geom_jitter(width = .1, alpha=.6, aes(color = Time)) +
@@ -331,6 +330,18 @@ Exa8.4.1 %>%
   group_by(Time) %>% 
   shapiro_test(Assessment)
 
+# # # # # # # # # # # # # # # # # # # 
+# With the R basic anova function, how to make a repeated measures
+Exa8.4.1_mod <- aov( Assessment ~ factor(Time) + Error(factor(Subject)), data = Exa8.4.1 )
+summary(Exa8.4.1_mod)
+
+emmeans(Exa8.4.1_mod, pairwise ~ Time )
+
+```
+
+Hay una librería de R que redefine varias de las puebas de "base R" para estructuras tibble.
+
+```{r}
 # ggplot used with ggpubr package
 bxp <- ggboxplot(data = Exa8.4.1, x = "Time", y = "Assessment", add = "jitter", color = "Time")
 bxp
@@ -342,25 +353,11 @@ get_anova_table(Exa8.4.1_aov)
 # Pairwise comparisons
 emmeans_test(Exa8.4.1, Assessment ~ Time, p.adjust.method = "fdr")
 
+# Pairwise comparisons
 pwc <- Exa8.4.1 %>%
   pairwise_t_test(
     Assessment ~ Time, paired = TRUE,
     p.adjust.method = "bonferroni"
   )
 pwc
-
-pwc <- pwc %>% add_xy_position(x = "Time")
-bxp + 
-  stat_pvalue_manual(pwc) +
-  labs(
-    subtitle = get_test_label(Exa8.4.1_aov, detailed = TRUE),
-    caption = get_pwc_label(pwc)
-  )
-# # # # # # # # # # # # # # # # # # # 
-# Now with the R basic anova function, how to make a repeated measures
-Exa8.4.1_mod <- aov( Assessment ~ factor(Time) + Error(factor(Subject)), data = Exa8.4.1 )
-summary(Exa8.4.1_mod)
-
-emmeans(Exa8.4.1_mod, pairwise ~ Time )
-
 ```

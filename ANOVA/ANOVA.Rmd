@@ -366,6 +366,7 @@ Exr8.32_mod <- aov( GLUCOSE ~ TIME + Error(SUBJ), data = Exr8.32 )
 summary(Exr8.32_mod)
 
 emmeans(Exr8.32_mod, pairwise ~ TIME )
+emmeans(Exr8.32_mod, trt.vs.ctrl ~ TIME)
 ```
 
 Hay un par de librerias de R - rstatix y ggpubr - que redefinen varias de las puebas de "base R" y de ggplot para estructuras tibble.  En esta sección usamos algunas de estas funciones que en ocaciones hacen más fácil la definición del problema y el uso de los datos en tibble.

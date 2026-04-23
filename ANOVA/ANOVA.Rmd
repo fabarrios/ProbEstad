@@ -279,7 +279,7 @@ get_anova_table(Rev.8.22_aov)
 emmeans_test(Rev.8.22, SCORES ~ SIZE, p.adjust.method = "fdr")
 ```
 
-**Ejemplo 18** The effects of thermal pollution on Corbicula fluminea (Asiatic clams) at three different geographical locations were analyzed by John Brooker (REV_C08_18). Sample data on clam shell length, width, and height are displayed in the following table. Determine if there is a significant difference in mean length, height, or width (measured in mm) of the clam shell at the three different locations by performing three analyses. What inferences can be made from your results? What are the assumptions underlying your inferences? What are the target populations?  
+**Ejemplo 18** Los efectos de la contaminación térmica sobre Corbicula fluminea (almejas asiáticas) en tres ubicaciones geográficas diferentes fueron analizados por John Brooker (REV_C08_18). Los datos muestrales sobre la longitud, el ancho y la altura de las conchas se presentan en la siguiente tabla. Determine si existe una diferencia significativa en la longitud, altura o ancho medios (medidos en mm) de la concha en las tres ubicaciones, realizando tres análisis. ¿Qué inferencias pueden extraerse de sus resultados? ¿Cuáles son los supuestos subyacentes a dichas inferencias? ¿Cuáles son las poblaciones objetivo?  
 
 ```{r}
 Rev.8.18 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/REV_C08_18_mod.csv", show_col_types = FALSE)
@@ -308,7 +308,7 @@ emmeans(Rev.8.18_lm, trt.vs.ctrl ~ site)
 Los modelos de medidas repetidas son aquellos en los que la misma variable es medida en los mismos sujetos en dos o más ocasiones.  En donde cada ocasión puede significar una condición distinta; como diferentes tratamientos o diferentes puntos de tiempo.  
 Las ventajas de usar este tipo de modelos se han mencionado y son que permiten controlar variables relacionadas con el sujeto y con factores relacionados con el estudio que se está desarrollado .
 
-**Ejemplo** Licciardone et al. examined subjects with chronic, nonspecific low back pain. In this study, 18 of the subjects completed a survey questionnaire assessing physical functioning at baseline, and after 1, 3, and 6 months. Table (EXA_C08_S04_01) shows the data for these subjects who received a sham treatment that appeared to be genuine osteopathic manipulation. Higher values indicate better physical functioning. The goal of the experiment was to determine if subjects would report improvement over time even though the treatment they received would provide minimal improvement. We wish to know if there is a difference in the mean survey values among the four points in time.  
+**Ejemplo** Licciardone et al. examinaron sujetos con dolor lumbar crónico inespecífico. En este estudio, 18 de los sujetos completaron un cuestionario de encuesta que evaluaba el funcionamiento físico al inicio, y después de 1, 3 y 6 meses. La Tabla (EXA_C08_S04_01) muestra los datos de estos sujetos que recibieron un tratamiento simulado que parecía ser una manipulación osteopática genuina. Valores más altos indican un mejor funcionamiento físico. El objetivo del experimento fue determinar si los sujetos reportarían mejoría con el tiempo, aun cuando el tratamiento recibido proporcionaría una mejoría mínima. Deseamos saber si existe una diferencia en los valores medios de la encuesta entre los cuatro puntos en el tiempo.  
 
 ```{r}
 Exa8.4.1 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXA_C08_S04_01mod.csv", show_col_types = FALSE)

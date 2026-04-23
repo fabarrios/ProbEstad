@@ -314,7 +314,7 @@ Las ventajas de usar este tipo de modelos se han mencionado y son que permiten c
 Exa8.4.1 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/EXA_C08_S04_01mod.csv", show_col_types = FALSE)
 Exa8.4.1 <- Exa8.4.1 %>% mutate(Subject = factor(Subject), Time = factor(Time))
 
-head(Exa8.4.1, 20)
+head(Exa8.4.1, 26)
 ggplot( data = Exa8.4.1, aes(x = Time, y = Assessment) ) + 
   geom_boxplot() + 
   geom_jitter(width = .1, alpha=.6, aes(color = Time)) +
@@ -332,14 +332,43 @@ Exa8.4.1 %>%
 
 # # # # # # # # # # # # # # # # # # # 
 # With the R basic anova function, how to make a repeated measures
-Exa8.4.1_mod <- aov( Assessment ~ factor(Time) + Error(factor(Subject)), data = Exa8.4.1 )
+Exa8.4.1_mod <- aov( Assessment ~ Time + Error(Subject), data = Exa8.4.1 )
 summary(Exa8.4.1_mod)
 
 emmeans(Exa8.4.1_mod, pairwise ~ Time )
-
 ```
 
-Hay una librería de R que redefine varias de las puebas de "base R" para estructuras tibble.
+Ejemplo 2.  Polyzogopoulou et al. reportan los efectos de la cirugía bariátrica sobre los niveles de glucosa en ayuno (mmol/L) en 12 sujetos obesos con diabetestipo 2 en cuatro momentos: antes de la operación, a los 3 meses, 6 meses y 12 meses. ¿Podemos concluir, tras eliminar los efectos atribuibles a los sujetos, que los niveles de glucosa en ayuno difieren a lo largo del tiempo después de la cirugía? Considere $\alpha = 0.05$.  
+
+
+```{r}
+Exr8.32 <- read_csv("~/Dropbox/GitHub/ProbEstad/DataSets/ch08_all/REV_C08_32.csv", show_col_types = FALSE)
+Exr8.32
+
+Exr8.32 <- Exr8.32 %>% mutate(SUBJ = factor(SUBJ), TIME = factor(TIME))
+
+ggplot( data = Exr8.32, aes(x = TIME, y = GLUCOSE) ) + 
+  geom_boxplot() + 
+  geom_jitter(width = .1, alpha=.6, aes(color = TIME)) +
+  theme_bw()
+
+# Find outliers (extreme if present)
+Exr8.32 %>% 
+  group_by(TIME) %>% 
+  identify_outliers(GLUCOSE)
+
+# Test normal distribution
+Exr8.32 %>% 
+  group_by(TIME) %>% 
+  shapiro_test(GLUCOSE)
+
+Exr8.32_mod <- aov( GLUCOSE ~ TIME + Error(SUBJ), data = Exr8.32 )
+summary(Exr8.32_mod)
+
+emmeans(Exr8.32_mod, pairwise ~ TIME )
+```
+
+Hay un par de librerias de R - rstatix y ggpubr - que redefinen varias de las puebas de "base R" y de ggplot para estructuras tibble.  En esta sección usamos algunas de estas funciones que en ocaciones hacen más fácil la definición del problema y el uso de los datos en tibble.
 
 ```{r}
 # ggplot used with ggpubr package
@@ -351,7 +380,7 @@ Exa8.4.1_aov <- anova_test(data = Exa8.4.1, dv = Assessment, wid = Subject, with
 get_anova_table(Exa8.4.1_aov)
 
 # Pairwise comparisons
-emmeans_test(Exa8.4.1, Assessment ~ Time, p.adjust.method = "fdr")
+emmeans_test(Exa8.4.1, Assessment ~ Time, p.adjust.method = "bonferroni")
 
 # Pairwise comparisons
 pwc <- Exa8.4.1 %>%

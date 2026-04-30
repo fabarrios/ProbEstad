@@ -154,12 +154,11 @@ Hygiene_long <- Hygiene_long %>%
   mutate( Group = Group %>% fct_relevel("Uninstructed", "Instructed") )
 
 # En este caso por la forma en que está pareada la muestra una gráfica de cajas
-HyPlot <- ggboxplot(
-  Hygiene_long, x = "Group", y = "HygieneScore", add = "jitter",
-  ylab = "Hygiene Score", xlab = "Groups", color = "blue"
-)
+#HyPlot <- ggboxplot(Hygiene_long, x = "Group", y = "HygieneScore", add = "jitter",
+#                    ylab = "Hygiene Score", color="blue")
+
 # mostramos la gráfica
-HyPlot
+# HyPlot
 
 Hygiene_stat.test <- Hygiene_long  %>%
   wilcox_test(HygieneScore ~ Group, paired = TRUE, alternative = "greater") %>%
